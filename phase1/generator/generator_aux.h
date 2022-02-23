@@ -15,13 +15,13 @@
 
 #include "Triangle.h"
 
-void createSphere(float radius, float slices, float stacks, char *filename);
+void createSphere(float radius, float slices, float stacks, std::string filename);
 
-void createBox(float units, float grid, char *filename);
+void createBox(float units, float grid, std::string filename);
 
-void createCone(float radius, float height, float slices, float stacks, char *filename);
+void createCone(float radius, float height, float slices, float stacks, std::string filename);
 
-void createPlane(float units, int divisions, char *filename);
+void createPlane(float units, int divisions, std::string filename);
 
 std::string vertexToString(Vertex v);
 
