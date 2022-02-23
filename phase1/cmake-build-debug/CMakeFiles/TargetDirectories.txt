@@ -1,0 +1,3 @@
+/home/sleiman/Projeto-CG-21-22/phase1/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/sleiman/Projeto-CG-21-22/phase1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/sleiman/Projeto-CG-21-22/phase1/cmake-build-debug/CMakeFiles/phase1.dir
