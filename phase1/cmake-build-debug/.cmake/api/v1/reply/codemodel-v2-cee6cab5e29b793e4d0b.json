@@ -9,7 +9,7 @@
 					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
 					"minimumCMakeVersion" : 
 					{
-						"string" : "3.21"
+						"string" : "3.5"
 					},
 					"projectIndex" : 0,
 					"source" : ".",
@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "phase1::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-phase1-Debug-3f61bc7bc673d1dffa28.json",
+					"jsonFile" : "target-phase1-Debug-4b6f7fe16d3337d8874e.json",
 					"name" : "phase1",
 					"projectIndex" : 0
 				}
