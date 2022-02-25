@@ -31,8 +31,8 @@ void createPlane(float units, int divisions, std::string filename){
     file_handler.open(filename);
     file_handler << "Number of triangles in the grid: " << triangle_nmr_max << std::endl;
 
-    for (int i = 0; -halfx + i + halfx_temp < halfx; i++) {
-        for (int j = 0; -halfz + j + halfz_temp < halfz; j++) {
+    for (int i = 0; -halfx + i * halfx_temp < halfx; i++) {
+        for (int j = 0; -halfz + j * halfz_temp < halfz; j++) {
             aux_x1 = -halfx + (i * halfx_temp);
             aux_z1 = -halfz + (j * halfz_temp);
             aux_x2 = -halfx + ((i + 1) * halfx_temp);

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="phase1"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/sleiman/Projeto-CG-21-22/phase1"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/sleiman/Projeto-CG-21-22/phase1/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/sleiman/Projeto-CG-21-22/phase1/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/sleiman/Projeto-CG-21-22/phase1/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/sleiman/Projeto-CG-21-22/phase1/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/sleiman/Projeto-CG-21-22/phase1"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/sleiman/Projeto-CG-21-22/phase1/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/sleiman/Projeto-CG-21-22/phase1/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/sleiman/Projeto-CG-21-22/phase1/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/sleiman/Projeto-CG-21-22/phase1/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/sleiman/Projeto-CG-21-22/phase1"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/sleiman/Projeto-CG-21-22/phase1/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/sleiman/Projeto-CG-21-22/phase1/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/sleiman/Projeto-CG-21-22/phase1/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/sleiman/Projeto-CG-21-22/phase1/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="phase1">
+				<Option output="/home/sleiman/Projeto-CG-21-22/phase1/phase1" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/sleiman/Projeto-CG-21-22/phase1"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/sleiman/Projeto-CG-21-22/phase1/Makefile&quot;  VERBOSE=1 phase1"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/sleiman/Projeto-CG-21-22/phase1/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/sleiman/Projeto-CG-21-22/phase1/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/sleiman/Projeto-CG-21-22/phase1/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="phase1/fast">
+				<Option output="/home/sleiman/Projeto-CG-21-22/phase1/phase1" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/sleiman/Projeto-CG-21-22/phase1"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/sleiman/Projeto-CG-21-22/phase1/Makefile&quot;  VERBOSE=1 phase1/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/sleiman/Projeto-CG-21-22/phase1/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/sleiman/Projeto-CG-21-22/phase1/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/sleiman/Projeto-CG-21-22/phase1/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/sleiman/Projeto-CG-21-22/phase1/engine/engine.cpp">
+			<Option target="phase1"/>
+		</Unit>
+		<Unit filename="/home/sleiman/Projeto-CG-21-22/phase1/engine/engine.h">
+			<Option target="phase1"/>
+		</Unit>
+		<Unit filename="/home/sleiman/Projeto-CG-21-22/phase1/engine/engine_aux.h">
+			<Option target="phase1"/>
+		</Unit>
+		<Unit filename="/home/sleiman/Projeto-CG-21-22/phase1/generator/Triangle.h">
+			<Option target="phase1"/>
+		</Unit>
+		<Unit filename="/home/sleiman/Projeto-CG-21-22/phase1/generator/Vertex.h">
+			<Option target="phase1"/>
+		</Unit>
+		<Unit filename="/home/sleiman/Projeto-CG-21-22/phase1/generator/generator.cpp">
+			<Option target="phase1"/>
+		</Unit>
+		<Unit filename="/home/sleiman/Projeto-CG-21-22/phase1/generator/generator.h">
+			<Option target="phase1"/>
+		</Unit>
+		<Unit filename="/home/sleiman/Projeto-CG-21-22/phase1/generator/generator_aux.cpp">
+			<Option target="phase1"/>
+		</Unit>
+		<Unit filename="/home/sleiman/Projeto-CG-21-22/phase1/generator/generator_aux.h">
+			<Option target="phase1"/>
+		</Unit>
+		<Unit filename="/home/sleiman/Projeto-CG-21-22/phase1/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
