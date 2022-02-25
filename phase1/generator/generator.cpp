@@ -1,3 +1,13 @@
+/**
+ * @file generator.cpp
+ * @author David Duarte (A93253) & Ema Dias (A89518)
+ * @brief File where the generator function is defined
+ * @version 0.1
+ * @date 2022-02-25
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "generator.h"
 
 int main(int argc, char *argv[]) {

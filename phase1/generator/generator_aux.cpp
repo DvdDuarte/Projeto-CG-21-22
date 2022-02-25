@@ -1,3 +1,13 @@
+/**
+ * @file generator_aux.cpp
+ * @author David Duarte (A93253) & Ema Dias (A89518)
+ * @brief File where the auxiliar functions for the generator are defined
+ * @version 0.1
+ * @date 2022-02-25
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "generator_aux.h"
 #include <iostream>
 
