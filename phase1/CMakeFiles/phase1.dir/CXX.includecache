@@ -6,24 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/sleiman/Projeto-CG-21-22/phase1/engine/engine.cpp
-engine.h
-/home/sleiman/Projeto-CG-21-22/phase1/engine/engine.h
-
-/home/sleiman/Projeto-CG-21-22/phase1/engine/engine.h
-GL/glut.h
--
-math.h
--
-engine_aux.h
-/home/sleiman/Projeto-CG-21-22/phase1/engine/engine_aux.h
-
-/home/sleiman/Projeto-CG-21-22/phase1/engine/engine_aux.h
-GL/glut.h
--
-math.h
--
-
 /home/sleiman/Projeto-CG-21-22/phase1/generator/Triangle.h
 Vertex.h
 /home/sleiman/Projeto-CG-21-22/phase1/generator/Vertex.h

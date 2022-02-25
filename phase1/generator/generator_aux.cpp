@@ -48,10 +48,10 @@ void createPlane(float units, int divisions, std::string filename){
             aux_x2 = -halfx + ((i + 1) * halfx_temp);
             aux_z2 = -halfz + ((j + 1) * halfz_temp);
 
-            v1 = new Vertex(aux_x1, 0 , aux_z2);
-            v2 = new Vertex(aux_x1,0,aux_z1);
-            v3 = new Vertex(aux_x2, 0 , aux_z1);
-            v4 = new Vertex(aux_x2, 0 ,aux_z2);
+            v1 = new Vertex(aux_x1, 0 , aux_z1);
+            v2 = new Vertex(aux_x1, 0, aux_z2);
+            v3 = new Vertex(aux_x2, 0 , aux_z2);
+            v4 = new Vertex(aux_x2, 0 ,aux_z1);
 
             if(triangle_nmr == sizeArray) {
                 sizeArray *= 2;
@@ -60,8 +60,8 @@ void createPlane(float units, int divisions, std::string filename){
 
             Triangle *t1, *t2;
 
-            t1 = new Triangle(v1,v2,v3);
-            t2 = new Triangle(v1, v3, v4);
+            t1 = new Triangle(v1, v2, v3);
+            t2 = new Triangle(v3, v4, v1);
 
             triangles[triangle_nmr] = t1;
             triangles[triangle_nmr + 1] = t2;
