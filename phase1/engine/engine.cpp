@@ -56,7 +56,7 @@ void renderScene(void) {
 
 
 
-/*
+
 int main(int argc, char **argv) {
 
 // init GLUT and the window
@@ -84,4 +84,3 @@ int main(int argc, char **argv) {
 
     return 1;
 }
-*/

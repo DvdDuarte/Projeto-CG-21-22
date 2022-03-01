@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.5)
 
 # Project Name
-PROJECT(phase1)
+PROJECT(generator)
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
-add_executable(${PROJECT_NAME} generator/generator.cpp generator/generator.h engine/engine.cpp engine/engine.h engine/engine_aux.h engine/engine_aux.h generator/generator_aux.cpp generator/Vertex.h generator/Triangle.h)
+add_executable(${PROJECT_NAME} generator.cpp generator.h  generator_aux.cpp Vertex.h Triangle.h)
 
 find_package(OpenGL REQUIRED)
 include_directories(${OpenGL_INCLUDE_DIRS})
@@ -34,7 +34,7 @@ if  (WIN32)
         file(COPY ${TOOLKITS_FOLDER}/glut/glut32.dll DESTINATION ${CMAKE_BINARY_DIR})
     endif(EXISTS "${TOOLKITS_FOLDER}/glut/glut32.dll" )
 
-    set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${PROJECT_NAME})
+    set_property(DIRECTORY .. PROPERTY VS_STARTUP_PROJECT ${PROJECT_NAME})
 
 else (WIN32) #Linux and Mac
 
