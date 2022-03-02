@@ -1,4 +1,6 @@
 #include "engine.h"
+#include "tinyxml2.h"
+using namespace tinyxml2;
 
 void changeSize(int w, int h) {
 
@@ -58,7 +60,7 @@ void renderScene(void) {
 
 
 int main(int argc, char **argv) {
-
+    engine (argc,argv);
 // init GLUT and the window
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DEPTH|GLUT_DOUBLE|GLUT_RGBA);
@@ -83,4 +85,35 @@ int main(int argc, char **argv) {
     glutMainLoop();
 
     return 1;
+}
+
+int engine (int argc, char **argv) {
+    ifstream file;
+    string name;
+    if (argc != 1) {
+        name.append("/home/ema/Projeto-CG-21-22/phase1/test_files/").append(argv[1]);
+        cout << "\033[1;33mFILENAME: \033[0m" << name << endl;
+    }
+    readXML(name);
+    return 0;
+}
+
+void readXML(string filename){
+    XMLDocument document;
+    bool load = document.LoadFile(filename.c_str());
+    cout << "\033[1;31mERROR: \033[0m" << load << endl;
+    if(load != 0) return;
+        vector <string> filesNames;
+        int i = 0;
+        XMLElement *world = document.FirstChildElement("world");
+        XMLElement *camera = world->FirstChildElement("camera");
+        XMLElement *group = camera->NextSiblingElement("group");
+        XMLElement *models = group->FirstChildElement("models");
+        XMLElement *model = models->FirstChildElement("model");
+        for (model; model != nullptr; model = model->NextSiblingElement()) {
+            filesNames.push_back(model->Attribute("file"));
+            cout<< model->Attribute("file")<< endl;
+            i++;
+        }
+
 }
