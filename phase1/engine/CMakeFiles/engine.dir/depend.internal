@@ -7,6 +7,8 @@ CMakeFiles/engine.dir/engine.cpp.o
  /home/sleiman/Projeto-CG-21-22/phase1/engine/engine.h
  /home/sleiman/Projeto-CG-21-22/phase1/engine/engine_aux.h
  /home/sleiman/Projeto-CG-21-22/phase1/engine/tinyxml2.h
+ /home/sleiman/Projeto-CG-21-22/phase1/generator/Triangle.h
+ /home/sleiman/Projeto-CG-21-22/phase1/generator/Vertex.h
 CMakeFiles/engine.dir/tinyxml2.cpp.o
  /home/sleiman/Projeto-CG-21-22/phase1/engine/tinyxml2.cpp
  /home/sleiman/Projeto-CG-21-22/phase1/engine/tinyxml2.h

@@ -1,6 +1,9 @@
 #include "engine.h"
 #include "tinyxml2.h"
 using namespace tinyxml2;
+int triangle_nmr;
+Triangle * tr_arr;
+float c1=1.0, c2=1.0, c3=1.0;
 
 void changeSize(int w, int h) {
 
@@ -41,7 +44,16 @@ void renderScene(void) {
 
 // put the geometric transformations here
 
-
+    for(int i= 0; i< triangle_nmr; i++){
+            glBegin(GL_TRIANGLES);
+            glColor3f(c1,c2,c3);
+            glVertex3f(tr_arr[i].v1.x, tr_arr[i].v1.y, tr_arr[i].v1.z);
+            glColor3f(c1,c2,c3);
+            glVertex3f(tr_arr[i].v2.x, tr_arr[i].v2.y, tr_arr[i].v2.z);
+            glColor3f(c1,c2,c3);
+            glVertex3f(tr_arr[i].v3.x, tr_arr[i].v3.y, tr_arr[i].v3.z);
+            glEnd();
+    }
 
 
 // put drawing instructions here
@@ -103,17 +115,98 @@ void readXML(string filename){
     bool load = document.LoadFile(filename.c_str());
     cout << BOLD_RED << "ERROR: " << RESET << load << endl;
     if(load != 0) return;
-        vector <string> filesNames;
-        int i = 0;
-        XMLElement *world = document.FirstChildElement("world");
-        XMLElement *camera = world->FirstChildElement("camera");
-        XMLElement *group = camera->NextSiblingElement("group");
-        XMLElement *models = group->FirstChildElement("models");
-        XMLElement *model = models->FirstChildElement("model");
-        for (model; model != nullptr; model = model->NextSiblingElement()) {
-            filesNames.push_back(model->Attribute("file"));
-            cout<< model->Attribute("file")<< endl;
+    string *filesNames;
+    int i = 0;
+    XMLElement *world = document.FirstChildElement("world");
+    XMLElement *camera = world->FirstChildElement("camera");
+    XMLElement *group = camera->NextSiblingElement("group");
+    XMLElement *models = group->FirstChildElement("models");
+    XMLElement *model = models->FirstChildElement("model");
+    int j = 0;
+    for (model; model != nullptr; model = model->NextSiblingElement()) {
+        filesNames[j] = (model->Attribute("file"));
+        cout<< model->Attribute("file")<< endl;
+        j++;
+    }
+    read3dFiles(filesNames);
+
+}
+
+void read3dFiles (string *files){
+    triangle_nmr = 2;
+    int i = 0;
+    tr_arr = (Triangle *) malloc (2 * triangle_nmr * sizeof(Triangle));
+    
+    while(files[i].c_str() != nullptr) {
+        ifstream file_in;
+        
+        file_in.open("../generator/build/" + files[i]);
+
+        if(file_in.fail()) {
+            cerr << "ERROR on opening file " << files[i] << endl;
+            file_in.close();
+            exit(1);
+        }
+
+        string line, first;
+        getline(file_in, first);
+
+        string s = first;
+        vector<string> out;
+        const char ntr_delim = ':';
+        tokengen(s,ntr_delim,out);
+        triangle_nmr = stof(out.at(1));
+
+        int index = 0;
+
+        while(getline(file_in, line)){
+            if(line == "|Triangle|") {
+                cout << line << endl;
+            } else if (line == "|EOT|") {
+                cout << line << endl;
+                index++;
+            } else {
+                Vertex vertexes[3];
+                string vertex_line = line;
+                const char delim = '$';
+                vector<string> out;
+                tokengen(vertex_line, delim, out);
+                for(int j = 0; j < 3; j ++){
+                    if(j == 3) j = 0;
+                      
+                    const char vertex_delim = ',';
+                    string aux = out.at(j);
+                    vector<string> out_1;
+                    tokengen(aux, vertex_delim, out_1);
+                    float v1, v2, v3;
+                    v1 = stof(out_1.at(0));
+                    v2 = stof(out_1.at(1));
+                    v3 = stof(out_1.at(2));
+                    vertexes[j] = new Vertex(v1,v2,v3);
+                }
+        
+                Vertex *v1 = new Vertex(vertexes[0]);
+                Vertex *v2 = new Vertex(vertexes[1]);
+                Vertex *v3 = new Vertex(vertexes[2]);
+                Triangle *tr1 = new Triangle(v1,v2,v3);
+                if(index == triangle_nmr) {
+                    triangle_nmr *= 2;
+                    tr_arr = (Triangle *) (realloc(tr_arr, triangle_nmr * sizeof(Triangle)));
+                }
+                tr_arr[index] = tr1;
+            }
             i++;
         }
 
+    }
+}
+
+void tokengen (string const &line, const char delim, vector<string> &out){
+    size_t start;
+    size_t end = 0;
+
+    while((start = line.find_first_not_of(delim, end)) != string::npos){
+        end = line.find(delim,start);
+        out.push_back(line.substr(start,end - start));
+    }
 }

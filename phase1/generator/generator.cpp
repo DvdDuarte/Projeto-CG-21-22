@@ -13,8 +13,8 @@
 int main(int argc, char *argv[]) {
 
     std::string model = argv[1];
-    //std::string filename = "build/";
-    std::string filename;
+    std::string filename = "build/";
+    
     if(model == "sphere") {
         filename += argv[5];
         createSphere(atof(argv[2]), atof(argv[3]), atof(argv[4]), filename);

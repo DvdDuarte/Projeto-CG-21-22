@@ -21,4 +21,20 @@ using namespace std;
 
 int engine (int argc, char **argv);
 void readXML(string filename);
+
+/**
+ * @brief Function that read the .3d files
+ * 
+ * @param files The files to read
+ */
+void read3dFiles (string *files);
+
+/**
+ * @brief 
+ * 
+ * @param line 
+ * @param delim 
+ * @param out 
+ */
+void tokengen (string const &line, const char delim, vector<string> &out);
 #endif //PHASE1_GENERATOR_H
