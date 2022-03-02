@@ -91,8 +91,8 @@ int engine (int argc, char **argv) {
     ifstream file;
     string name;
     if (argc != 1) {
-        name.append("/home/ema/Projeto-CG-21-22/phase1/test_files/").append(argv[1]);
-        cout << "\033[1;33mFILENAME: \033[0m" << name << endl;
+        name.append("/home/sleiman/Projeto-CG-21-22/phase1/test_files/").append(argv[1]);
+        cout << BOLD_YELLOW << "FILENAME: " << RESET << name << endl;
     }
     readXML(name);
     return 0;
@@ -101,7 +101,7 @@ int engine (int argc, char **argv) {
 void readXML(string filename){
     XMLDocument document;
     bool load = document.LoadFile(filename.c_str());
-    cout << "\033[1;31mERROR: \033[0m" << load << endl;
+    cout << BOLD_RED << "ERROR: " << RESET << load << endl;
     if(load != 0) return;
         vector <string> filesNames;
         int i = 0;

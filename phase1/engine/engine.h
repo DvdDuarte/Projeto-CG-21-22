@@ -17,6 +17,7 @@ using namespace std;
 
 
 #include "engine_aux.h"
+#include "colors.h"
 
 int engine (int argc, char **argv);
 void readXML(string filename);
