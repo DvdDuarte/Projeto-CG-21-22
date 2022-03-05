@@ -1,3 +1,0 @@
-/home/ema/Projeto-CG-21-22/phase1/CMakeFiles/rebuild_cache.dir
-/home/ema/Projeto-CG-21-22/phase1/CMakeFiles/edit_cache.dir
-/home/ema/Projeto-CG-21-22/phase1/CMakeFiles/generator.dir

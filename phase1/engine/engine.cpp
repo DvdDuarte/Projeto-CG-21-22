@@ -2,9 +2,10 @@
 #include "tinyxml2.h"
 using namespace tinyxml2;
 int triangle_nmr;
-Triangle * tr_arr;
+vector<Triangle> tr_arr;
 float c1=1.0, c2=1.0, c3=1.0;
 
+float posx = 0, posz = 0, angle = 0, scalex = 1, scaley = 1, scalez = 1;
 void changeSize(int w, int h) {
 
     // Prevent a divide by zero, when window is too short
@@ -42,18 +43,39 @@ void renderScene(void) {
               0.0,0.0,0.0,
               0.0f,1.0f,0.0f);
 
+
+    glTranslatef(posx,0.0,posz);
+    glRotatef(angle, 0.0, 1.0, 0.0);
+    glScalef(scalex, scaley, scalez);
+
 // put the geometric transformations here
+    glBegin(GL_LINES);
+    // X axis in red
+    glColor3f(1.0f, 0.0f, 0.0f);
+    glVertex3f(-100.0f, 0.0f, 0.0f);
+    glVertex3f( 100.0f, 0.0f, 0.0f);
+    // Y Axis in Green
+    glColor3f(0.0f, 1.0f, 0.0f);
+    glVertex3f(0.0f, -100.0f, 0.0f);
+    glVertex3f(0.0f, 100.0f, 0.0f);
+    // Z Axis in Blue
+    glColor3f(0.0f, 0.0f, 1.0f);
+    glVertex3f(0.0f, 0.0f,-100.0f);
+    glVertex3f(0.0f, 0.0f, 100.0f);
+    glEnd();
 
     for(int i= 0; i< triangle_nmr; i++){
             glBegin(GL_TRIANGLES);
-            glColor3f(c1,c2,c3);
+            glColor3f(0.0f, 0.0f, 1.0f);
             glVertex3f(tr_arr[i].v1.x, tr_arr[i].v1.y, tr_arr[i].v1.z);
-            glColor3f(c1,c2,c3);
+            glColor3f(1.0f, 0.0f, 0.0f);
             glVertex3f(tr_arr[i].v2.x, tr_arr[i].v2.y, tr_arr[i].v2.z);
-            glColor3f(c1,c2,c3);
+            glColor3f(0.0f, 0.0f, 1.0f);
             glVertex3f(tr_arr[i].v3.x, tr_arr[i].v3.y, tr_arr[i].v3.z);
             glEnd();
+
     }
+
 
 
 // put drawing instructions here
@@ -66,6 +88,61 @@ void renderScene(void) {
 
 
 // write function to process keyboard events
+
+
+
+void keyboardFunc(unsigned char key, int x, int y) {
+    switch(key) {
+        case 'a':
+            posx -= 0.1;
+            break;
+        case 'd':
+            posx += 0.1;
+            break;
+        case 's':
+            posz += 0.1;
+            break;
+        case 'w':
+            posz -= 0.1;
+            break;
+        case 'q':
+            angle -= 15;
+            break;
+        case 'e':
+            angle += 15;
+            break;
+        case 'i':
+            scalez += 0.1;
+            break;
+        case 'k':
+            scalez -= 0.1;
+            break;
+        case 'j':
+            scalex -= 0.1;
+            break;
+        case 'l':
+            scalex += 0.1;
+            break;
+        case 'u':
+            scaley -= 0.1;
+            break;
+        case 'o':
+            scaley += 0.1;
+            break;
+        case '+':
+            scalex += 0.1;
+            scaley += 0.1;
+            scalez += 0.1;
+            break;
+        case '-':
+            scalex -= 0.1;
+            scaley -= 0.1;
+            scalez -= 0.1;
+            break;
+    }
+    glutPostRedisplay();
+}
+
 
 
 
@@ -85,6 +162,7 @@ int main(int argc, char **argv) {
     glutReshapeFunc(changeSize);
 
 
+    glutKeyboardFunc(keyboardFunc);
 // put here the registration of the keyboard callbacks
 
 
@@ -103,7 +181,7 @@ int engine (int argc, char **argv) {
     ifstream file;
     string name;
     if (argc != 1) {
-        name.append("/home/sleiman/Projeto-CG-21-22/phase1/test_files/").append(argv[1]);
+        name.append("/home/ema/Projeto-CG-21-22/phase1/test_files/").append(argv[1]);
         cout << BOLD_YELLOW << "FILENAME: " << RESET << name << endl;
     }
     readXML(name);
@@ -115,7 +193,7 @@ void readXML(string filename){
     bool load = document.LoadFile(filename.c_str());
     cout << BOLD_RED << "ERROR: " << RESET << load << endl;
     if(load != 0) return;
-    string *filesNames;
+    string *filesNames = (string*)malloc (10000 * sizeof(string));
     int i = 0;
     XMLElement *world = document.FirstChildElement("world");
     XMLElement *camera = world->FirstChildElement("camera");
@@ -123,11 +201,13 @@ void readXML(string filename){
     XMLElement *models = group->FirstChildElement("models");
     XMLElement *model = models->FirstChildElement("model");
     int j = 0;
+
     for (model; model != nullptr; model = model->NextSiblingElement()) {
         filesNames[j] = (model->Attribute("file"));
-        cout<< model->Attribute("file")<< endl;
+        cout<< model->Attribute("file") << endl;
         j++;
     }
+    cout << "end of models "<< endl;
     read3dFiles(filesNames);
 
 }
@@ -135,11 +215,9 @@ void readXML(string filename){
 void read3dFiles (string *files){
     triangle_nmr = 2;
     int i = 0;
-    tr_arr = (Triangle *) malloc (2 * triangle_nmr * sizeof(Triangle));
-    
+
     while(files[i].c_str() != nullptr) {
         ifstream file_in;
-        
         file_in.open("../generator/build/" + files[i]);
 
         if(file_in.fail()) {
@@ -160,10 +238,9 @@ void read3dFiles (string *files){
         int index = 0;
 
         while(getline(file_in, line)){
+
             if(line == "|Triangle|") {
-                cout << line << endl;
             } else if (line == "|EOT|") {
-                cout << line << endl;
                 index++;
             } else {
                 Vertex vertexes[3];
@@ -174,7 +251,7 @@ void read3dFiles (string *files){
                 for(int j = 0; j < 3; j ++){
                     if(j == 3) j = 0;
                       
-                    const char vertex_delim = ',';
+                    const char vertex_delim = ';';
                     string aux = out.at(j);
                     vector<string> out_1;
                     tokengen(aux, vertex_delim, out_1);
@@ -189,11 +266,8 @@ void read3dFiles (string *files){
                 Vertex *v2 = new Vertex(vertexes[1]);
                 Vertex *v3 = new Vertex(vertexes[2]);
                 Triangle *tr1 = new Triangle(v1,v2,v3);
-                if(index == triangle_nmr) {
-                    triangle_nmr *= 2;
-                    tr_arr = (Triangle *) (realloc(tr_arr, triangle_nmr * sizeof(Triangle)));
-                }
-                tr_arr[index] = tr1;
+
+                tr_arr.push_back(tr1);
             }
             i++;
         }
@@ -204,7 +278,6 @@ void read3dFiles (string *files){
 void tokengen (string const &line, const char delim, vector<string> &out){
     size_t start;
     size_t end = 0;
-
     while((start = line.find_first_not_of(delim, end)) != string::npos){
         end = line.find(delim,start);
         out.push_back(line.substr(start,end - start));

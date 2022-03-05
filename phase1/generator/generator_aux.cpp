@@ -78,7 +78,7 @@ void createPlane(float units, int divisions, std::string filename){
 }
 
 std::string vertexToString(Vertex v){
-    std::string vertex_info = std::to_string(v.x) + "," + std::to_string(v.y) + "," + std::to_string(v.z);
+    std::string vertex_info = std::to_string(v.x) + ";" + std::to_string(v.y) + ";" + std::to_string(v.z);
     return vertex_info;
 }
 
@@ -87,6 +87,6 @@ std::string triangleToString(Triangle t){
     Vertex v2 = t.v2;
     Vertex v3 = t.v3;
 
-    std::string triangle_info = "|Triangle|" + vertexToString(v1) + "$" +vertexToString(v2) + "$" +vertexToString(v3) + "$" + "|EOT|" + "\n"; // EOT == End Of Triangle
+    std::string triangle_info = "|Triangle|\n" + vertexToString(v1) + "$" +vertexToString(v2) + "$" +vertexToString(v3) + "$" + "\n|EOT|\n"; // EOT == End Of Triangle
     return triangle_info;
 }
