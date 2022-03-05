@@ -15,6 +15,6 @@
 #include <math.h>
 
 #include "generator_aux.h"
-
+using namespace std;
 
 #endif //PHASE1_GENERATOR_H

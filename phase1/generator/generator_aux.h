@@ -25,6 +25,7 @@
 
 #include "Triangle.h"
 
+using namespace std;
 /**
  * @brief Create a Sphere object
  * 

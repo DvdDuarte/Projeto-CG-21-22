@@ -12,8 +12,8 @@
 
 int main(int argc, char *argv[]) {
 
-    std::string model = argv[1];
-    std::string filename = "build/";
+    string model = argv[1];
+    string filename = "build/";
     
     if(model == "sphere") {
         filename += argv[5];

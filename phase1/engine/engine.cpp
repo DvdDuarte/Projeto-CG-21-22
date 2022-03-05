@@ -207,6 +207,7 @@ void readXML(string filename){
         cout<< model->Attribute("file") << endl;
         j++;
     }
+
     cout << "end of models "<< endl;
     read3dFiles(filesNames);
 
