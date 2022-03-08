@@ -10,14 +10,17 @@
  */
 #include "generator_aux.h"
 #include <iostream>
+#include <cstring>
 
+int sizeArray = 100;
+Triangle *triangles;
 void createSphere(float radius, float slices, float stacks, std::string filename) {
 
 }
 
 void createBox(float units, float grid, string filename) {
     int triangle_nmr_max = 12 * grid * grid * grid;
-    int sizeArray = 100;
+
     int triangle_nmr = 0;
 
     float halfx = 0, halfz = 0, halfy = 0, halfx_temp = 0, halfy_temp = 0, halfz_temp = 0, aux_x1 = 0, aux_y1 = 0, aux_y2 = 0, aux_z1 = 0, aux_x2 = 0, aux_z2 = 0;
@@ -25,11 +28,8 @@ void createBox(float units, float grid, string filename) {
     Triangle *t1, *t2, *t3, *t4, *t5, *t6, *t7, *t8, *t9, *t10, *t11, *t12;
     Vertex *v1, *v2, *v3, *v4, *v5, *v6, *v7, *v8;
 
-
-    Triangle *triangles = (Triangle *) malloc(sizeArray * sizeof(Triangle));
-
     halfx_temp = halfz_temp = halfy_temp =  units / grid;
-
+    triangles = (Triangle *) malloc(sizeArray * sizeof(Triangle));
     ofstream file_handler;
     file_handler.open(filename);
     file_handler << "Number of triangles in the grid: " << triangle_nmr_max << endl;
@@ -37,7 +37,14 @@ void createBox(float units, float grid, string filename) {
     for (int j = 0; -halfz + j * halfz_temp < halfz; j++) {
            for (int i = 0; -halfx + i * halfx_temp < halfx; i++) {
               for (int k = 0; -halfy + k * halfy_temp < halfy; k++) {
-                cout << triangle_nmr << endl;
+
+                  triangles = (Triangle *) malloc(12* sizeof(Triangle));
+                 /* if(triangle_nmr >= sizeArray) {
+                       cout << "entrou " << triangle_nmr << endl;
+                       sizeArray= sizeArray*2;
+                       triangles = (Triangle*) realloc(triangles, sizeArray * sizeof(Triangle));
+                  }*/
+
                 aux_x1 = -halfx + ((i) * halfx_temp);
                 aux_x2 = -halfx + ((i + 1) * halfx_temp);
                 aux_y1 = -halfy + (k) * halfy_temp;
@@ -55,61 +62,57 @@ void createBox(float units, float grid, string filename) {
                 v8 = new Vertex(aux_x2, aux_y2, aux_z2);
 
 
-                  if(triangle_nmr>= sizeArray) {
-                      cout << "entrou" << endl;
-                      sizeArray *=2;
-                      triangles = (Triangle *) realloc(triangles, sizeArray * sizeof(Triangle));
-                  }
-
-
                   //right
                 t1 = new Triangle(v6, v5, v8);
-                triangles[triangle_nmr] = *t1;
+                triangles[triangle_nmr] = t1;
                 t2 = new Triangle(v5, v7, v8);
-                triangles[triangle_nmr+1] = *t2;
+                triangles[triangle_nmr+1] = t2;
 
                 //left
                 t3 = new Triangle(v1, v2, v4);
-                triangles[triangle_nmr+2] = *t3;
+                triangles[triangle_nmr+2] = t3;
                 t4 = new Triangle(v1, v4, v3);
-                triangles[triangle_nmr+3] = *t4;
+                triangles[triangle_nmr+3] =t4;
 
 
                 //front
                 t5 = new Triangle(v2, v6, v8);
-                triangles[triangle_nmr+4] = *t5;
+                triangles[triangle_nmr+4] = t5;
                 t6 = new Triangle(v2, v8, v4);
-                triangles[triangle_nmr+5] = *t6;
+                triangles[triangle_nmr+5] = t6;
 
 
                 //back
                 t7 = new Triangle(v5, v1, v3);
-                triangles[triangle_nmr+6] = *t7;
+                triangles[triangle_nmr+6] = t7;
                 t8 = new Triangle(v5, v3, v7);
-                triangles[triangle_nmr+7] = *t8;
+                triangles[triangle_nmr+7] = t8;
 
                 //top
                 t9 = new Triangle(v4, v8, v3);
-                triangles[triangle_nmr+8] = *t9;
+                triangles[triangle_nmr+8] = t9;
                 t10 = new Triangle(v8, v7, v3);
-                triangles[triangle_nmr+9] = *t10;
+                triangles[triangle_nmr+9] = t10;
 
                 //down
                 t11 = new Triangle(v6, v2, v1);
-                triangles[triangle_nmr+10] = *t11;
+                triangles[triangle_nmr+10] = t11;
                 t12 = new Triangle(v5, v6, v1);
-                triangles[triangle_nmr+11] = *t12;
+                triangles[triangle_nmr+11] = t12;
                 triangle_nmr= triangle_nmr +12; //12 triangles for round: 2 for each face
 
+                  for(triangle_nmr = 0; triangle_nmr < 12; triangle_nmr++) {
+                      string info = triangleToString(triangles[triangle_nmr]);
+                      file_handler << info;
+                  }
+                  triangle_nmr = 0;
+                  free(triangles);
 
             }
         }
     }
-    for(triangle_nmr = 0; triangle_nmr < triangle_nmr_max; triangle_nmr++) {
-        string info = triangleToString(triangles[triangle_nmr]);
-        file_handler << info;
-    }
-     free(triangles);
+
+   //  free(triangles);
     file_handler.close();
 }
 
@@ -121,7 +124,7 @@ void createPlane(float units, int divisions, std::string filename){
 
     int triangle_nmr_max = divisions * divisions * 2; // For each slice in the grid generated by the number of divisions we have 2 slices;
 
-    int sizeArray = 100;
+   // int sizeArray = 100;
     int triangle_nmr = 0;
     Triangle *t1, *t2;
     float halfx = 0, halfz = 0, halfx_temp = 0, halfz_temp = 0, aux_x1 = 0, aux_z1 = 0, aux_x2 = 0, aux_z2 = 0;
@@ -129,7 +132,7 @@ void createPlane(float units, int divisions, std::string filename){
     halfx_temp = halfz_temp = units / divisions;
 
     Vertex *v1, *v2, *v3, *v4;
-    Triangle *triangles = (Triangle *) malloc(sizeArray * sizeof(Triangle));
+    triangles = (Triangle *) malloc(sizeArray * sizeof(Triangle));
 
     ofstream file_handler;
     file_handler.open(filename);
@@ -167,7 +170,7 @@ void createPlane(float units, int divisions, std::string filename){
         file_handler << info;
     }
 
-    free(triangles);
+   // free(triangles);
     file_handler.close();
 }
 
