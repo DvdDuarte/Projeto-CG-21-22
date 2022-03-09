@@ -184,6 +184,6 @@ string triangleToString(Triangle t){
     Vertex v2 = t.v2;
     Vertex v3 = t.v3;
 
-    string triangle_info = "|T|\n" + vertexToString(v1) + "$" +vertexToString(v2) + "$" +vertexToString(v3) + "$" + "\n|EOT|\n"; // EOT == End Of Triangle
+    string triangle_info = "|T|\n" + vertexToString(v1) + "||" +vertexToString(v2) + "||" +vertexToString(v3) + "||" + "\n|EOT|\n"; // EOT == End Of Triangle
     return triangle_info;
 }

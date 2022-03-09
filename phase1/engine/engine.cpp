@@ -242,53 +242,48 @@ void read3dFiles (string *files, int nmr_files){
         vector<string> out;
         tokengen(s,ntr_delim,out);
         triangle_nmr = stof(out.at(1));
-
         out.clear();
 
         int index = 1;
         while(index <= triangle_nmr && getline(file_in, line)){
-            cout << BOLD_BRIGHT_GREEN << "Entrou no ciclo" << RESET << endl;
+            vector<string> out_1;
+            out_1.clear();
             if(line == "|T|") {
             } else if(line == "|EOT|") {
                 index++;
-                cout << BOLD_BRIGHT_BLUE << "Index after " << RESET << index << endl;
             } else {
-                cout << BOLD_BLUE << "Triangle NMR: " << RESET << index << endl;
                 Vertex vertexes[3];
                 string vertex_line = line;
-                const char delim = '$';
+                 const char delim = '|';
                 tokengen(vertex_line, delim, out);
-
+                cout << "LINHA " << BACKGROUND_BLUE << vertex_line << RESET << "Triang "<< index << endl;
                 for(int j = 0; j < 3; j++){
                     const char vertex_delim = ';';
                     string aux = out.at(j);
-                    vector<string> out_1;
+                    cout << BACKGROUND_RED << "aux " << RESET << aux << endl;
+
                     tokengen(aux, vertex_delim, out_1);
+
                     float v1, v2, v3;
+                    cout << "out 1 " << out_1.at(0) << endl;
+                    cout << "out 2 " << out_1.at(1) << endl;
+                    cout << "out 3 " << out_1.at(2) << endl;
+
                     v1 = stof(out_1.at(0));
                     v2 = stof(out_1.at(1));
                     v3 = stof(out_1.at(2));
-                    vertexes[j] = new Vertex(v1,v2,v3);
-
-                    cout << "j"<< j << endl;
-                    cout << v1 << endl;
-                    cout << v2 << endl;
-                    cout << v3 << endl;
-
                     out_1.clear();
-
-
+                    vertexes[j] = new Vertex(v1,v2,v3);
                 }
+                out.clear();
                 Vertex *v1 = new Vertex(vertexes[0]);
                 Vertex *v2 = new Vertex(vertexes[1]);
                 Vertex *v3 = new Vertex(vertexes[2]);
                 Triangle *tr1 = new Triangle(v1,v2,v3);
 
-
-               // cout << index << endl;
                 tr_arr.push_back(tr1);
-                cout << BOLD_BRIGHT_YELLOW << "Done Trianglo" << RESET << endl;
             }
+
         }
         i++;
     }
@@ -297,8 +292,13 @@ void read3dFiles (string *files, int nmr_files){
 void tokengen (string const &line, const char delim, vector<string> &out){
     size_t start;
     size_t end = 0;
-    while((start = line.find_first_not_of(delim, end)) != string::npos){
-        end = line.find(delim,start);
-        out.push_back(line.substr(start,end - start));
+    cout << BOLD_BRIGHT_GREEN << line << RESET << endl;
+    int i = 0;
+    while ((start = line.find_first_not_of(delim, end)) != string::npos)
+    {
+        end = line.find(delim, start);
+        out.push_back(line.substr(start, end - start));
+        i++;
     }
+
 }
