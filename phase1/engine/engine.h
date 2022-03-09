@@ -27,7 +27,7 @@ void readXML(string filename);
  * 
  * @param files The files to read
  */
-void read3dFiles (string *files);
+void read3dFiles (string *files, int nmr_files);
 
 /**
  * @brief 
@@ -37,4 +37,5 @@ void read3dFiles (string *files);
  * @param out 
  */
 void tokengen (string const &line, const char delim, vector<string> &out);
+void readTri(int index, string file);
 #endif //PHASE1_GENERATOR_H

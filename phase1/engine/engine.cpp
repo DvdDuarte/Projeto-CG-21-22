@@ -3,9 +3,15 @@
 using namespace tinyxml2;
 int triangle_nmr;
 vector<Triangle> tr_arr;
+//Triangle *tr_arr;
 float c1=1.0, c2=1.0, c3=1.0;
-
 float posx = 0, posz = 0, angle = 0, scalex = 1, scaley = 1, scalez = 1;
+
+string vertexToString(Vertex v){
+    string vertex_info = to_string(v.x) + ";" + to_string(v.y) + ";" + to_string(v.z);
+    return vertex_info;
+}
+
 void changeSize(int w, int h) {
 
     // Prevent a divide by zero, when window is too short
@@ -63,19 +69,19 @@ void renderScene(void) {
     glVertex3f(0.0f, 0.0f,-100.0f);
     glVertex3f(0.0f, 0.0f, 100.0f);
     glEnd();
-
-    for(int i= 0; i< triangle_nmr; i++){
-            glBegin(GL_TRIANGLES);
-            glColor3f(0.0f, 0.0f, 1.0f);
-            glVertex3f(tr_arr[i].v1.x, tr_arr[i].v1.y, tr_arr[i].v1.z);
-            glColor3f(1.0f, 0.0f, 0.0f);
-            glVertex3f(tr_arr[i].v2.x, tr_arr[i].v2.y, tr_arr[i].v2.z);
-            glColor3f(0.0f, 0.0f, 1.0f);
-            glVertex3f(tr_arr[i].v3.x, tr_arr[i].v3.y, tr_arr[i].v3.z);
-            glEnd();
-
+    int i;
+    for( i= 0; i< triangle_nmr; i++){
+        // cout << UNDERLINED_BRIGHT_MAGENTA << "Entrei render Tri" << RESET << endl;
+        glBegin(GL_TRIANGLES);
+        glColor3f(1.0f, 0.0f, 0.0f);
+        glVertex3f(tr_arr[i].v1.x, tr_arr[i].v1.y, tr_arr[i].v1.z);
+        glColor3f(0.0f, 0.0f, 1.0f);
+        glVertex3f(tr_arr[i].v2.x, tr_arr[i].v2.y, tr_arr[i].v2.z);
+        glColor3f(0.0f, 0.0f, 1.0f);
+        glVertex3f(tr_arr[i].v3.x, tr_arr[i].v3.y, tr_arr[i].v3.z);
+        glEnd();
     }
-
+    tr_arr.clear();
 
 
 // put drawing instructions here
@@ -209,15 +215,15 @@ void readXML(string filename){
     }
 
     cout << "end of models "<< endl;
-    read3dFiles(filesNames);
+    read3dFiles(filesNames, j);
 
 }
 
-void read3dFiles (string *files){
-    triangle_nmr = 2;
+void read3dFiles (string *files, int nmr_files){
+
     int i = 0;
 
-    while(files[i].c_str() != nullptr) {
+    while(i < nmr_files) {
         ifstream file_in;
         file_in.open("../generator/build/" + files[i]);
 
@@ -231,27 +237,29 @@ void read3dFiles (string *files){
         getline(file_in, first);
 
         string s = first;
-        vector<string> out;
+
         const char ntr_delim = ':';
+        vector<string> out;
         tokengen(s,ntr_delim,out);
         triangle_nmr = stof(out.at(1));
 
-        int index = 0;
+        out.clear();
 
-        while(getline(file_in, line)){
-
-            if(line == "|Triangle|") {
-            } else if (line == "|EOT|") {
+        int index = 1;
+        while(index <= triangle_nmr && getline(file_in, line)){
+            cout << BOLD_BRIGHT_GREEN << "Entrou no ciclo" << RESET << endl;
+            if(line == "|T|") {
+            } else if(line == "|EOT|") {
                 index++;
+                cout << BOLD_BRIGHT_BLUE << "Index after " << RESET << index << endl;
             } else {
+                cout << BOLD_BLUE << "Triangle NMR: " << RESET << index << endl;
                 Vertex vertexes[3];
                 string vertex_line = line;
                 const char delim = '$';
-                vector<string> out;
                 tokengen(vertex_line, delim, out);
-                for(int j = 0; j < 3; j ++){
-                    if(j == 3) j = 0;
-                      
+
+                for(int j = 0; j < 3; j++){
                     const char vertex_delim = ';';
                     string aux = out.at(j);
                     vector<string> out_1;
@@ -261,18 +269,28 @@ void read3dFiles (string *files){
                     v2 = stof(out_1.at(1));
                     v3 = stof(out_1.at(2));
                     vertexes[j] = new Vertex(v1,v2,v3);
+
+                    cout << "j"<< j << endl;
+                    cout << v1 << endl;
+                    cout << v2 << endl;
+                    cout << v3 << endl;
+
+                    out_1.clear();
+
+
                 }
-        
                 Vertex *v1 = new Vertex(vertexes[0]);
                 Vertex *v2 = new Vertex(vertexes[1]);
                 Vertex *v3 = new Vertex(vertexes[2]);
                 Triangle *tr1 = new Triangle(v1,v2,v3);
 
-                tr_arr.push_back(tr1);
-            }
-            i++;
-        }
 
+               // cout << index << endl;
+                tr_arr.push_back(tr1);
+                cout << BOLD_BRIGHT_YELLOW << "Done Trianglo" << RESET << endl;
+            }
+        }
+        i++;
     }
 }
 

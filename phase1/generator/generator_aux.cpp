@@ -29,7 +29,7 @@ void createBox(float units, float grid, string filename) {
     Vertex *v1, *v2, *v3, *v4, *v5, *v6, *v7, *v8;
 
     halfx_temp = halfz_temp = halfy_temp =  units / grid;
-    triangles = (Triangle *) malloc(sizeArray * sizeof(Triangle));
+    //triangles = (Triangle *) malloc(sizeArray * sizeof(Triangle));
     ofstream file_handler;
     file_handler.open(filename);
     file_handler << "Number of triangles in the grid: " << triangle_nmr_max << endl;
@@ -184,6 +184,6 @@ string triangleToString(Triangle t){
     Vertex v2 = t.v2;
     Vertex v3 = t.v3;
 
-    string triangle_info = "|Triangle|\n" + vertexToString(v1) + "$" +vertexToString(v2) + "$" +vertexToString(v3) + "$" + "\n|EOT|\n"; // EOT == End Of Triangle
+    string triangle_info = "|T|\n" + vertexToString(v1) + "$" +vertexToString(v2) + "$" +vertexToString(v3) + "$" + "\n|EOT|\n"; // EOT == End Of Triangle
     return triangle_info;
 }
