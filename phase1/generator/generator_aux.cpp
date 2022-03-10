@@ -1,6 +1,6 @@
 /**
  * @file generator_aux.cpp
- * @author David Duarte (A93253) & Ema Dias (A89518)
+ * @author David Duarte (A93253) , Ema Dias (A89518) & Samuel Lira(A94166)
  * @brief File where the auxiliar functions for the generator are defined
  * @version 0.1
  * @date 2022-02-25
@@ -14,8 +14,29 @@
 
 int sizeArray = 100;
 Triangle *triangles;
-void createSphere(float radius, float slices, float stacks, std::string filename) {
 
+void createSphere(float radius, int slices, int stacks, std::string filename) {
+    //int triangle_nmr_max ;
+    /*falta testar isso aqui
+    int triangle_nmr = 0;
+    Vertex*v1;
+
+    float delta_alfa=M_PI/stacks;
+    float delta_beta=M_PI/slices;
+    for(int i=0;i<stacks;i++){
+        float beta=-M_PI/2.0 + i*delta_beta;
+        float aux=radius*cos(beta);
+        float y=radius*sin(beta);
+
+        for(int j=0;j<slices;j++){
+            float alfa=j*delta_alfa;
+            float x=aux*sin(alfa);
+            float z=aux*cos(alfa);
+            v1 = new Vertex(x, y, z);
+        }
+    }
+    
+    */
 }
 
 void createBox(float units, float grid, string filename) {

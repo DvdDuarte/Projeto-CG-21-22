@@ -1,6 +1,6 @@
 /**
  * @file generator_aux.h
- * @author David Duarte (A93253) & Ema Dias (A89518)
+ * @author David Duarte (A93253) , Ema Dias (A89518) & Samuel Lira(A94166)
  * @brief File with the auxiliar functions for the generator
  * @version 0.1
  * @date 2022-02-25
@@ -34,7 +34,8 @@ using namespace std;
  * @param stacks The number of
  * @param filename The name of the file where the data is going to be stored (Preferably sphere.3d)
  */
-void createSphere(float radius, float slices, float stacks, std::string filename);
+void createSphere(float radius, int slices, int stacks, std::string filename);
+
 
 /**
  * @brief Create a Box object

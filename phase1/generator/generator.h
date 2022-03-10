@@ -1,6 +1,6 @@
 /**
  * @file generator.h
- * @author David Duarte (A93253) & Ema Dias (A89518)
+ * @author David Duarte (A93253) , Ema Dias (A89518) & Samuel Lira(A94166)
  * @brief File that generates the information for a Solid Object 
  * @version 0.1
  * @date 2022-02-25
