@@ -30,7 +30,7 @@ void changeSize(int w, int h) {
     // Set the viewport to be the entire window
     glViewport(0, 0, w, h);
 
-    // Set perspective
+    // Set perspective - projection
     gluPerspective(45.0f ,ratio, 1.0f ,1000.0f);
 
     // return to the model view matrix mode
@@ -51,7 +51,7 @@ void renderScene(void) {
 
 
     glTranslatef(posx,0.0,posz);
-    glRotatef(angle, 0.0, 1.0, 0.0);
+    glRotatef(angle, 1.0, 0.0, .0);
     glScalef(scalex, scaley, scalez);
 
 // put the geometric transformations here
