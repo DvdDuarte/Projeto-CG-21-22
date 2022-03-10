@@ -6,6 +6,7 @@ vector<Triangle> tr_arr;
 //Triangle *tr_arr;
 float c1=1.0, c2=1.0, c3=1.0;
 float posx = 0, posz = 0, angle = 0, scalex = 1, scaley = 1, scalez = 1;
+float position_x=0, position_y=0, position_z=0, lx=0, ly=0 , lz=0, up_x=0, up_y=0, up_z=0, projfov=0, projnear=0, projfar=0;
 
 string vertexToString(Vertex v){
     string vertex_info = to_string(v.x) + ";" + to_string(v.y) + ";" + to_string(v.z);
@@ -31,7 +32,7 @@ void changeSize(int w, int h) {
     glViewport(0, 0, w, h);
 
     // Set perspective - projection
-    gluPerspective(45.0f ,ratio, 1.0f ,1000.0f);
+    gluPerspective(projfov ,ratio, projnear ,projfar);
 
     // return to the model view matrix mode
     glMatrixMode(GL_MODELVIEW);
@@ -45,9 +46,9 @@ void renderScene(void) {
 
     // set the camera
     glLoadIdentity();
-    gluLookAt(5.0,5.0,5.0,
-              0.0,0.0,0.0,
-              0.0f,1.0f,0.0f);
+    gluLookAt(position_x,position_y,position_z,
+              lx,ly,lz,
+              up_x,up_y,up_z);
 
 
     glTranslatef(posx,0.0,posz);
@@ -214,6 +215,24 @@ void readXML(string filename){
         cout<< model->Attribute("file") << endl;
         j++;
     }
+
+    XMLElement *position = camera->FirstChildElement("position");
+    XMLElement *lookat = position->NextSiblingElement("lookAt");
+    XMLElement *up= lookat->NextSiblingElement("up");
+    XMLElement *projection= up->NextSiblingElement("projection");
+
+    if(position->Attribute("x")!= nullptr) position_x=stof(position->Attribute("x"));
+    if(position->Attribute("y")!= nullptr) position_y=stof(position->Attribute("y"));
+    if(position->Attribute("z")!= nullptr) position_z=stof(position->Attribute("z"));
+    if(lookat->Attribute("x")!= nullptr) lx=stof(lookat->Attribute("x"));
+    if(lookat->Attribute("y")!= nullptr) ly=stof(lookat->Attribute("y"));
+    if(lookat->Attribute("z")!= nullptr) lz=stof(lookat->Attribute("z"));
+    if(up->Attribute("x")!= nullptr) up_x= stof(up->Attribute("x"));
+    if(up->Attribute("y")!= nullptr) up_y=stof(up->Attribute("y"));
+    if(up->Attribute("z")!= nullptr) up_z=stof(up->Attribute("z"));
+    if(projection->Attribute("fov")!= nullptr) projfov= stof(projection->Attribute("fov"));
+    if(projection->Attribute("near")!= nullptr) projnear= stof(projection->Attribute("near"));
+    if(projection->Attribute("far")!= nullptr) projfar= stof(projection->Attribute("far"));
 
     cout << "end of models "<< endl;
     read3dFiles(filesNames, j);
