@@ -70,8 +70,9 @@ void renderScene(void) {
     glVertex3f(0.0f, 0.0f, 100.0f);
     glEnd();
     int i;
-    for( i= 0; i< triangle_nmr; i++){
-        // cout << UNDERLINED_BRIGHT_MAGENTA << "Entrei render Tri" << RESET << endl;
+    cout << tr_arr.size() << endl;
+    for( i= 0; i< tr_arr.size(); i++){
+    //     cout << UNDERLINED_BRIGHT_MAGENTA << "Entrei render Tri" << RESET << endl;
         glBegin(GL_TRIANGLES);
         glColor3f(1.0f, 0.0f, 0.0f);
         glVertex3f(tr_arr[i].v1.x, tr_arr[i].v1.y, tr_arr[i].v1.z);
@@ -81,7 +82,7 @@ void renderScene(void) {
         glVertex3f(tr_arr[i].v3.x, tr_arr[i].v3.y, tr_arr[i].v3.z);
         glEnd();
     }
-    tr_arr.clear();
+    
 
 
 // put drawing instructions here
@@ -220,85 +221,41 @@ void readXML(string filename){
 }
 
 void read3dFiles (string *files, int nmr_files){
-
+    cout <<"readfiles" << endl;
     int i = 0;
 
     while(i < nmr_files) {
-        ifstream file_in;
-        file_in.open("../generator/build/" + files[i]);
-
-        if(file_in.fail()) {
-            cerr << "ERROR on opening file " << files[i] << endl;
-            file_in.close();
-            exit(1);
-        }
-
-        string line, first;
-        getline(file_in, first);
-
-        string s = first;
-
-        const char ntr_delim = ':';
-        vector<string> out;
-        tokengen(s,ntr_delim,out);
-        triangle_nmr = stof(out.at(1));
-        out.clear();
+        FILE * fp;
+        char * char_aux;
+        string s = "../generator/build/";
+        char_aux = strcpy(char_aux, s.c_str());
+        char* name=  strcat (char_aux , files[i].c_str());
+        errno = 0;
+        fp = fopen (name,"r+");
 
         int index = 1;
-        while(index <= triangle_nmr && getline(file_in, line)){
-            vector<string> out_1;
-            out_1.clear();
-            if(line == "|T|") {
-            } else if(line == "|EOT|") {
-                index++;
-            } else {
-                Vertex vertexes[3];
-                string vertex_line = line;
-                 const char delim = '|';
-                tokengen(vertex_line, delim, out);
-                cout << "LINHA " << BACKGROUND_BLUE << vertex_line << RESET << "Triang "<< index << endl;
-                for(int j = 0; j < 3; j++){
-                    const char vertex_delim = ';';
-                    string aux = out.at(j);
-                    cout << BACKGROUND_RED << "aux " << RESET << aux << endl;
+        float v1, v2, v3, v4,v5,v6,v7,v8,v9;
 
-                    tokengen(aux, vertex_delim, out_1);
+        string line;
 
-                    float v1, v2, v3;
-                    cout << "out 1 " << out_1.at(0) << endl;
-                    cout << "out 2 " << out_1.at(1) << endl;
-                    cout << "out 3 " << out_1.at(2) << endl;
 
-                    v1 = stof(out_1.at(0));
-                    v2 = stof(out_1.at(1));
-                    v3 = stof(out_1.at(2));
-                    out_1.clear();
-                    vertexes[j] = new Vertex(v1,v2,v3);
-                }
-                out.clear();
-                Vertex *v1 = new Vertex(vertexes[0]);
-                Vertex *v2 = new Vertex(vertexes[1]);
-                Vertex *v3 = new Vertex(vertexes[2]);
-                Triangle *tr1 = new Triangle(v1,v2,v3);
+        if ((fp = fopen(name, "r")) == NULL)
+        {
+            cout << name << endl;
+            printf("Error %d \n", errno);
+         //   cout << "error in open" << endl;
+            break;
+        }
+        while(fscanf(fp, "%f;%f;%f,%f;%f;%f,%f;%f;%f",&v1,&v2,&v3,&v4,&v5,&v6,&v7,&v8,&v9)>0 ){
+                Vertex *vv1 = new Vertex(v1,v2,v3);
+                Vertex *vv2 = new Vertex(v4,v5,v6);
+                Vertex *vv3 = new Vertex(v7,v8,v9);
+                Triangle *tr1 = new Triangle(vv1,vv2,vv3);
 
                 tr_arr.push_back(tr1);
             }
 
-        }
+        fclose(fp);
         i++;
     }
-}
-
-void tokengen (string const &line, const char delim, vector<string> &out){
-    size_t start;
-    size_t end = 0;
-    cout << BOLD_BRIGHT_GREEN << line << RESET << endl;
-    int i = 0;
-    while ((start = line.find_first_not_of(delim, end)) != string::npos)
-    {
-        end = line.find(delim, start);
-        out.push_back(line.substr(start, end - start));
-        i++;
-    }
-
 }

@@ -35,7 +35,7 @@ void createBox(float units, float grid, string filename) {
     //triangles = (Triangle *) malloc(sizeArray * sizeof(Triangle));
     ofstream file_handler;
     file_handler.open(filename);
-    file_handler << "Number of triangles in the grid: " << triangle_nmr_max << endl;
+  //  file_handler << "Number of triangles in the grid: " << triangle_nmr_max << endl;
     cout << "max " << triangle_nmr_max << endl;
 
     // Faces: Front e Back for x and y
@@ -171,85 +171,7 @@ void createBox(float units, float grid, string filename) {
             free(triangles);
         }
     }
-   /*
-    for (int j = 0; -halfz + j * halfz_temp < halfz; j++) {
-           for (int i = 0; -halfx + i * halfx_temp < halfx; i++) {
-              for (int k = 0; -halfy + k * halfy_temp < halfy; k++) {
 
-                  triangles = (Triangle *) malloc(12* sizeof(Triangle));
-                  if(triangle_nmr >= sizeArray) {
-                       cout << "entrou " << triangle_nmr << endl;
-                       sizeArray= sizeArray*2;
-                       triangles = (Triangle*) realloc(triangles, sizeArray * sizeof(Triangle));
-                  }
-
-                aux_x1 = -halfx + ((i) * halfx_temp);
-                aux_x2 = -halfx + ((i + 1) * halfx_temp);
-                aux_y1 = -halfy + (k) * halfy_temp;
-                aux_y2 = -halfy + (k + 1) * halfy_temp;
-                aux_z1 = -halfz + (j) * halfz_temp;
-                aux_z2 = -halfz + (j+ 1) * halfz_temp;
-
-                v1 = new Vertex(aux_x1, aux_y1, aux_z1);
-                v2 = new Vertex(aux_x1, aux_y1, aux_z2);
-                v3 = new Vertex(aux_x1, aux_y2, aux_z1);
-                v4 = new Vertex(aux_x1, aux_y2, aux_z2);
-                v5 = new Vertex(aux_x2, aux_y1, aux_z1);
-                v6 = new Vertex(aux_x2, aux_y1, aux_z2);
-                v7 = new Vertex(aux_x2, aux_y2, aux_z1);
-                v8 = new Vertex(aux_x2, aux_y2, aux_z2);
-
-
-                  //right
-                t1 = new Triangle(v6, v5, v8);
-                triangles[triangle_nmr] = t1;
-                t2 = new Triangle(v5, v7, v8);
-                triangles[triangle_nmr+1] = t2;
-
-                //left
-                t3 = new Triangle(v1, v2, v4);
-                triangles[triangle_nmr+2] = t3;
-                t4 = new Triangle(v1, v4, v3);
-                triangles[triangle_nmr+3] =t4;
-
-
-                //front
-                t5 = new Triangle(v2, v6, v8);
-                triangles[triangle_nmr+4] = t5;
-                t6 = new Triangle(v2, v8, v4);
-                triangles[triangle_nmr+5] = t6;
-
-
-                //back
-                t7 = new Triangle(v5, v1, v3);
-                triangles[triangle_nmr+6] = t7;
-                t8 = new Triangle(v5, v3, v7);
-                triangles[triangle_nmr+7] = t8;
-
-                //top
-                t9 = new Triangle(v4, v8, v3);
-                triangles[triangle_nmr+8] = t9;
-                t10 = new Triangle(v8, v7, v3);
-                triangles[triangle_nmr+9] = t10;
-
-                //down
-                t11 = new Triangle(v6, v2, v1);
-                triangles[triangle_nmr+10] = t11;
-                t12 = new Triangle(v5, v6, v1);
-                triangles[triangle_nmr+11] = t12;
-                triangle_nmr= triangle_nmr +12; //12 triangles for round: 2 for each face
-
-                  for(triangle_nmr = 0; triangle_nmr < 12; triangle_nmr++) {
-                      string info = triangleToString(triangles[triangle_nmr]);
-                      file_handler << info;
-                  }
-                  triangle_nmr = 0;
-                  free(triangles);
-
-            }
-        }
-    }
-*/
    //  free(triangles);
     file_handler.close();
 }
@@ -274,7 +196,7 @@ void createPlane(float units, int divisions, std::string filename){
 
     ofstream file_handler;
     file_handler.open(filename);
-    file_handler << "Number of triangles in the grid: " << triangle_nmr_max << endl;
+    //file_handler << "Number of triangles in the grid: " << triangle_nmr_max << endl;
 
     for (int i = 0; -halfx + i * halfx_temp < halfx; i++) {
         for (int j = 0; -halfz + j * halfz_temp < halfz; j++) {
@@ -322,6 +244,6 @@ string triangleToString(Triangle t){
     Vertex v2 = t.v2;
     Vertex v3 = t.v3;
 
-    string triangle_info = "|T|\n" + vertexToString(v1) + "||" +vertexToString(v2) + "||" +vertexToString(v3) + "||" + "\n|EOT|\n"; // EOT == End Of Triangle
+    string triangle_info = vertexToString(v1) + "," +vertexToString(v2) + "," +vertexToString(v3) + "\n"; // EOT == End Of Triangle
     return triangle_info;
 }
