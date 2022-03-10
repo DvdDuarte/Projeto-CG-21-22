@@ -188,7 +188,7 @@ int engine (int argc, char **argv) {
     ifstream file;
     string name;
     if (argc != 1) {
-        name.append("/home/ema/Projeto-CG-21-22/phase1/test_files/").append(argv[1]);
+        name.append("../test_files/").append(argv[1]);
         cout << BOLD_YELLOW << "FILENAME: " << RESET << name << endl;
     }
     readXML(name);
