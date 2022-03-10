@@ -70,7 +70,7 @@ void renderScene(void) {
     glVertex3f(0.0f, 0.0f, 100.0f);
     glEnd();
     int i;
-    //cout << tr_arr.size() << endl;
+    cout << tr_arr.size() << endl;
     for( i= 0; i< tr_arr.size(); i++){
     //     cout << UNDERLINED_BRIGHT_MAGENTA << "Entrei render Tri" << RESET << endl;
         glBegin(GL_TRIANGLES);
@@ -113,10 +113,10 @@ void keyboardFunc(unsigned char key, int x, int y) {
             posz -= 0.1;
             break;
         case 'q':
-            angle -= 15;
+            angle -= 5;
             break;
         case 'e':
-            angle += 15;
+            angle += 5;
             break;
         case 'i':
             scalez += 0.1;
@@ -189,7 +189,7 @@ int engine (int argc, char **argv) {
     string name;
     if (argc != 1) {
         name.append("../test_files/").append(argv[1]);
-        //cout << BOLD_YELLOW << "FILENAME: " << RESET << name << endl;
+        cout << BOLD_YELLOW << "FILENAME: " << RESET << name << endl;
     }
     readXML(name);
     return 0;
@@ -198,7 +198,7 @@ int engine (int argc, char **argv) {
 void readXML(string filename){
     XMLDocument document;
     bool load = document.LoadFile(filename.c_str());
-    //cout << BOLD_RED << "ERROR: " << RESET << load << endl;
+    cout << BOLD_RED << "ERROR: " << RESET << load << endl;
     if(load != 0) return;
     string *filesNames = (string*)malloc (10000 * sizeof(string));
     int i = 0;
@@ -211,17 +211,17 @@ void readXML(string filename){
 
     for (model; model != nullptr; model = model->NextSiblingElement()) {
         filesNames[j] = (model->Attribute("file"));
-        //cout<< model->Attribute("file") << endl;
+        cout<< model->Attribute("file") << endl;
         j++;
     }
 
-    //cout << "end of models "<< endl;
+    cout << "end of models "<< endl;
     read3dFiles(filesNames, j);
 
 }
 
 void read3dFiles (string *files, int nmr_files){
-    //cout <<"readfiles" << endl;
+    cout <<"readfiles" << endl;
     int i = 0;
 
     while(i < nmr_files) {
@@ -241,7 +241,7 @@ void read3dFiles (string *files, int nmr_files){
 
         if ((fp = fopen(name, "r")) == NULL)
         {
-            //cout << name << endl;
+            cout << name << endl;
             printf("Error %d \n", errno);
          //   cout << "error in open" << endl;
             break;
