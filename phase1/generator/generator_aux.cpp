@@ -24,32 +24,32 @@ void createSphere(float radius, int slices, int stacks, std::string filename) {
     file_handler.open(filename);
     Vertex *v1,*v2,*v3,*v4;
     Triangle *t1,*t2;
-    float delta_alfa=M_PI/stacks;
-    float delta_beta=M_PI/slices;
-    for(int i=0;i<=stacks;i++){
-        float beta=(-M_PI/2.0) + i*delta_beta;
-        float aux=radius*cos((-M_PI/2.0) + i*delta_beta);
-        float y=radius*sin((-M_PI/2.0) + i*delta_beta);
+    float delta_alfa=2*M_PI/(stacks);
+    float delta_beta=2*M_PI/(slices);
+    float origem=-M_PI/2;
+    for(int i=0;i<stacks;i++){
+        //triangles = (Triangle *) malloc(2* sizeof(Triangle));
         //vector<int> pt;
+
         for(int j=0;j<slices;j++){
             triangles = (Triangle *) malloc(2* sizeof(Triangle));
-            float x1=radius*cos((-M_PI/2.0) + i*delta_beta)*sin(j*delta_alfa);
-            float z1=radius*cos((-M_PI/2.0) + i*delta_beta)*cos(j*delta_alfa);
-            float y1=radius*sin((-M_PI/2.0) + i*delta_beta);
+            float x1=radius*cos((origem) + i*delta_beta)*sin(j*delta_alfa);
+            float z1=radius*cos((origem) + i*delta_beta)*cos(j*delta_alfa);
+            float y1=radius*sin((origem) + i*delta_beta);
             //Vertex *v1,*v2,*v3,*v4;
             v1=new Vertex(x1,y1,z1);
             
-            v2=new Vertex(radius*cos((-M_PI/2.0) + (i+1)*delta_beta)*sin(j*delta_alfa),
-            radius*sin((-M_PI/2.0) + (i+1)*delta_beta),
-            radius*cos((-M_PI/2.0) + (i+1)*delta_beta)*cos(j*delta_alfa));
+            v2=new Vertex(radius*cos((origem) + (i+1)*delta_beta)*sin(j*delta_alfa),
+            radius*sin((origem) + (i+1)*delta_beta),
+            radius*cos((origem) + (i+1)*delta_beta)*cos(j*delta_alfa));
             
-            v3=new Vertex(radius*cos((-M_PI/2.0) + (i+1)*delta_beta)*sin((j+1)*delta_alfa),
-            radius*sin((-M_PI/2.0) + (i+1)*delta_beta),
-            radius*cos((-M_PI/2.0) + (i+1)*delta_beta)*cos((j+1)*delta_alfa));
+            v3=new Vertex(radius*cos((origem) + (i+1)*delta_beta)*sin((j+1)*delta_alfa),
+            radius*sin((origem) + (i+1)*delta_beta),
+            radius*cos((origem) + (i+1)*delta_beta)*cos((j+1)*delta_alfa));
 
-            v4=new Vertex(radius*cos((-M_PI/2.0) + i*delta_beta)*sin((j+1)*delta_alfa),
-            radius*sin((-M_PI/2.0) + i*delta_beta),
-            radius*cos((-M_PI/2.0) + i*delta_beta)*cos((j+1)*delta_alfa));
+            v4=new Vertex(radius*cos((origem) + i*delta_beta)*sin((j+1)*delta_alfa),
+            radius*sin((origem) + i*delta_beta),
+            radius*cos((origem) + i*delta_beta)*cos((j+1)*delta_alfa));
             //primeiro triang = v1,v2,v3
             t1 = new Triangle(v1,v2,v3);
             //segundo triang= v1,v3,v4
