@@ -7,6 +7,11 @@ vector<Triangle> tr_arr;
 float c1=1.0, c2=1.0, c3=1.0;
 float posx = 0, posz = 0, angle = 0, scalex = 1, scaley = 1, scalez = 1;
 float position_x=0, position_y=0, position_z=0, lx=0, ly=0 , lz=0, up_x=0, up_y=0, up_z=0, projfov=0, projnear=0, projfar=0;
+//
+float r=5.0f;
+float beta=0,alfa=0;
+float xeye=r*cos(beta)*sin(alfa),yeye=r*sin(beta),zeye=r*cos(beta)*cos(alfa);
+//
 
 string vertexToString(Vertex v){
     string vertex_info = to_string(v.x) + ";" + to_string(v.y) + ";" + to_string(v.z);
@@ -46,10 +51,17 @@ void renderScene(void) {
 
     // set the camera
     glLoadIdentity();
+    /*
     gluLookAt(position_x,position_y,position_z,
               lx,ly,lz,
               up_x,up_y,up_z);
-
+              */
+    xeye=r*cos(beta)*sin(beta);
+    yeye=r*sin(beta);
+    zeye=r*cos(beta)*cos(beta);
+    gluLookAt(xeye,yeye,zeye,
+              lx,ly,lz,
+              up_x,up_y,up_z);
 
     glTranslatef(posx,0.0,posz);
     glRotatef(angle, 1.0, 0.0, .0);
@@ -152,7 +164,26 @@ void keyboardFunc(unsigned char key, int x, int y) {
 }
 
 
+void processSpecialKeys(int key, int xx, int yy) {
+    //trabalho a ser feito
+// put code to process special keys in here
+   if(key== GLUT_KEY_UP){
+       alfa+=M_PI/64;
+   }else if(key==GLUT_KEY_DOWN){
+       alfa-=M_PI/64;
+       //bla
+   }else if(key==GLUT_KEY_LEFT){
+       //bla
+       beta+=M_PI/64;
+       if(beta>=M_PI/2)beta=0;
+   }else if(key==GLUT_KEY_RIGHT){
+       //bla
+       beta-=M_PI/64;
+       if(beta<=-M_PI/2)beta=0;
 
+   }else;
+    glutPostRedisplay();
+}
 
 
 
@@ -171,6 +202,8 @@ int main(int argc, char **argv) {
 
 
     glutKeyboardFunc(keyboardFunc);
+    glutSpecialFunc(processSpecialKeys);
+    
 // put here the registration of the keyboard callbacks
 
 
