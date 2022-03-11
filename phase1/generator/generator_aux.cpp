@@ -11,34 +11,60 @@
 #include "generator_aux.h"
 #include <iostream>
 #include <cstring>
-
+#include <stdlib.h>
+#include <vector>
 int sizeArray = 100;
 Triangle *triangles;
 //Vertex * vertices;
 
 void createSphere(float radius, int slices, int stacks, std::string filename) {
-    //int triangle_nmr_max ;
-    //falta testar isso aqui
+    int triangle_nmr = 0;
     ofstream file_handler;
     file_handler.open(filename);
-    int triangle_nmr = 0;
-    Vertex*v1;
-    Vertex vertices[stacks+1][slices];
+    Vertex *v1,*v2,*v3,*v4;
+    Triangle *t1,*t2;
     float delta_alfa=M_PI/stacks;
     float delta_beta=M_PI/slices;
     for(int i=0;i<=stacks;i++){
         float beta=(-M_PI/2.0) + i*delta_beta;
-        float aux=radius*cos(beta);
-        float y=radius*sin(beta);
-        Vertex* v;
+        float aux=radius*cos((-M_PI/2.0) + i*delta_beta);
+        float y=radius*sin((-M_PI/2.0) + i*delta_beta);
+        //vector<int> pt;
         for(int j=0;j<slices;j++){
+            triangles = (Triangle *) malloc(2* sizeof(Triangle));
             float alfa=j*delta_alfa;
-            float x=aux*sin(alfa);
-            float z=aux*cos(alfa);
-            v = new Vertex(x, y, z);
-            string s=vertexToString(v);
-            file_handler<<s<<"\n";
+            float x1=radius*cos((-M_PI/2.0) + i*delta_beta)*sin(j*delta_alfa);
+            float z1=radius*cos((-M_PI/2.0) + i*delta_beta)*cos(j*delta_alfa);
+            float y1=radius*sin((-M_PI/2.0) + i*delta_beta);
+            //Vertex *v1,*v2,*v3,*v4;
+            v1=new Vertex(x1,y1,z1);
+            
+            v2=new Vertex(radius*cos((-M_PI/2.0) + (i+1)*delta_beta)*sin(j*delta_alfa),
+            radius*sin((-M_PI/2.0) + (i+1)*delta_beta),
+            radius*cos((-M_PI/2.0) + (i+1)*delta_beta)*cos(j*delta_alfa));
+            
+            v3=new Vertex(radius*cos((-M_PI/2.0) + (i+1)*delta_beta)*sin((j+1)*delta_alfa),
+            radius*sin((-M_PI/2.0) + (i+1)*delta_beta),
+            radius*cos((-M_PI/2.0) + (i+1)*delta_beta)*cos((j+1)*delta_alfa));
+
+            v4=new Vertex(radius*cos((-M_PI/2.0) + i*delta_beta)*sin((j+1)*delta_alfa),
+            radius*sin((-M_PI/2.0) + i*delta_beta),
+            radius*cos((-M_PI/2.0) + i*delta_beta)*cos((j+1)*delta_alfa));
+            //primeiro triang = v1,v2,v3
+            t1 = new Triangle(v1,v2,v3);
+            //segundo triang= v1,v3,v4
+            t2 = new Triangle(v1,v3,v4);
+            triangles[triangle_nmr] = t1;
+            triangles[triangle_nmr+1] = t2;
+
+            for(triangle_nmr = 0; triangle_nmr < 2; triangle_nmr++) {
+                string info = triangleToString(triangles[triangle_nmr]);
+                file_handler << info;
+            }
+            triangle_nmr = 0;
+            free(triangles);
         }
+    
     }
 
     
