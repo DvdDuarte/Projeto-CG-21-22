@@ -6,21 +6,33 @@
 
 #IncludeRegexTransform: 
 
-/home/sdaslira/Projeto-CG-21-22/phase1/generator/Triangle.h
+/home/sleiman/Projeto-CG-21-22/phase1/generator/Triangle.h
 Vertex.h
-/home/sdaslira/Projeto-CG-21-22/phase1/generator/Vertex.h
+/home/sleiman/Projeto-CG-21-22/phase1/generator/Vertex.h
 
-/home/sdaslira/Projeto-CG-21-22/phase1/generator/Vertex.h
+/home/sleiman/Projeto-CG-21-22/phase1/generator/Vertex.h
 
-/home/sdaslira/Projeto-CG-21-22/phase1/generator/generator_aux.cpp
+/home/sleiman/Projeto-CG-21-22/phase1/generator/generator.cpp
+generator.h
+/home/sleiman/Projeto-CG-21-22/phase1/generator/generator.h
+
+/home/sleiman/Projeto-CG-21-22/phase1/generator/generator.h
+GL/glut.h
+-
+math.h
+-
 generator_aux.h
-/home/sdaslira/Projeto-CG-21-22/phase1/generator/generator_aux.h
+/home/sleiman/Projeto-CG-21-22/phase1/generator/generator_aux.h
+
+/home/sleiman/Projeto-CG-21-22/phase1/generator/generator_aux.cpp
+generator_aux.h
+/home/sleiman/Projeto-CG-21-22/phase1/generator/generator_aux.h
 iostream
 -
 cstring
 -
 
-/home/sdaslira/Projeto-CG-21-22/phase1/generator/generator_aux.h
+/home/sleiman/Projeto-CG-21-22/phase1/generator/generator_aux.h
 GL/glut.h
 -
 math.h
@@ -44,5 +56,5 @@ string
 cstdlib
 -
 Triangle.h
-/home/sdaslira/Projeto-CG-21-22/phase1/generator/Triangle.h
+/home/sleiman/Projeto-CG-21-22/phase1/generator/Triangle.h
 
