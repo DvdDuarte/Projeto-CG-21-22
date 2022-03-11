@@ -6,6 +6,7 @@
 
 #IncludeRegexTransform: 
 
+<<<<<<< HEAD
 /home/sdaslira/Projeto-CG-21-22/phase1/engine/colors.h
 
 /home/sdaslira/Projeto-CG-21-22/phase1/engine/engine.cpp
@@ -15,6 +16,17 @@ tinyxml2.h
 /home/sdaslira/Projeto-CG-21-22/phase1/engine/tinyxml2.h
 
 /home/sdaslira/Projeto-CG-21-22/phase1/engine/engine.h
+=======
+/home/sleiman/Projeto-CG-21-22/phase1/engine/colors.h
+
+/home/sleiman/Projeto-CG-21-22/phase1/engine/engine.cpp
+engine.h
+/home/sleiman/Projeto-CG-21-22/phase1/engine/engine.h
+tinyxml2.h
+/home/sleiman/Projeto-CG-21-22/phase1/engine/tinyxml2.h
+
+/home/sleiman/Projeto-CG-21-22/phase1/engine/engine.h
+>>>>>>> 1d4f474e735a3c9e93c67b4f753caf365b2c0d9f
 GL/glut.h
 -
 vector
@@ -28,11 +40,19 @@ math.h
 iostream
 -
 engine_aux.h
+<<<<<<< HEAD
 /home/sdaslira/Projeto-CG-21-22/phase1/engine/engine_aux.h
 colors.h
 /home/sdaslira/Projeto-CG-21-22/phase1/engine/colors.h
 
 /home/sdaslira/Projeto-CG-21-22/phase1/engine/engine_aux.h
+=======
+/home/sleiman/Projeto-CG-21-22/phase1/engine/engine_aux.h
+colors.h
+/home/sleiman/Projeto-CG-21-22/phase1/engine/colors.h
+
+/home/sleiman/Projeto-CG-21-22/phase1/engine/engine_aux.h
+>>>>>>> 1d4f474e735a3c9e93c67b4f753caf365b2c0d9f
 GL/glut.h
 -
 vector
@@ -46,6 +66,7 @@ math.h
 iostream
 -
 colors.h
+<<<<<<< HEAD
 /home/sdaslira/Projeto-CG-21-22/phase1/engine/colors.h
 ../generator/Vertex.h
 /home/sdaslira/Projeto-CG-21-22/phase1/generator/Vertex.h
@@ -53,6 +74,29 @@ colors.h
 /home/sdaslira/Projeto-CG-21-22/phase1/generator/Triangle.h
 
 /home/sdaslira/Projeto-CG-21-22/phase1/engine/tinyxml2.h
+=======
+/home/sleiman/Projeto-CG-21-22/phase1/engine/colors.h
+../generator/Vertex.h
+/home/sleiman/Projeto-CG-21-22/phase1/generator/Vertex.h
+../generator/Triangle.h
+/home/sleiman/Projeto-CG-21-22/phase1/generator/Triangle.h
+
+/home/sleiman/Projeto-CG-21-22/phase1/engine/tinyxml2.cpp
+tinyxml2.h
+/home/sleiman/Projeto-CG-21-22/phase1/engine/tinyxml2.h
+new
+-
+stddef.h
+-
+stdarg.h
+-
+cstddef
+-
+cstdarg
+-
+
+/home/sleiman/Projeto-CG-21-22/phase1/engine/tinyxml2.h
+>>>>>>> 1d4f474e735a3c9e93c67b4f753caf365b2c0d9f
 ctype.h
 -
 limits.h
@@ -82,9 +126,17 @@ android/log.h
 assert.h
 -
 
+<<<<<<< HEAD
 /home/sdaslira/Projeto-CG-21-22/phase1/generator/Triangle.h
 Vertex.h
 /home/sdaslira/Projeto-CG-21-22/phase1/generator/Vertex.h
 
 /home/sdaslira/Projeto-CG-21-22/phase1/generator/Vertex.h
+=======
+/home/sleiman/Projeto-CG-21-22/phase1/generator/Triangle.h
+Vertex.h
+/home/sleiman/Projeto-CG-21-22/phase1/generator/Vertex.h
+
+/home/sleiman/Projeto-CG-21-22/phase1/generator/Vertex.h
+>>>>>>> 1d4f474e735a3c9e93c67b4f753caf365b2c0d9f
 

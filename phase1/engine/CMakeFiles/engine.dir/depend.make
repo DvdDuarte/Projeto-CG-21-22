@@ -6,8 +6,13 @@ CMakeFiles/engine.dir/engine.cpp.o: engine.cpp
 CMakeFiles/engine.dir/engine.cpp.o: engine.h
 CMakeFiles/engine.dir/engine.cpp.o: engine_aux.h
 CMakeFiles/engine.dir/engine.cpp.o: tinyxml2.h
+<<<<<<< HEAD
 CMakeFiles/engine.dir/engine.cpp.o: /home/sdaslira/Projeto-CG-21-22/phase1/generator/Triangle.h
 CMakeFiles/engine.dir/engine.cpp.o: /home/sdaslira/Projeto-CG-21-22/phase1/generator/Vertex.h
+=======
+CMakeFiles/engine.dir/engine.cpp.o: /home/sleiman/Projeto-CG-21-22/phase1/generator/Triangle.h
+CMakeFiles/engine.dir/engine.cpp.o: /home/sleiman/Projeto-CG-21-22/phase1/generator/Vertex.h
+>>>>>>> 1d4f474e735a3c9e93c67b4f753caf365b2c0d9f
 
 CMakeFiles/engine.dir/tinyxml2.cpp.o: tinyxml2.cpp
 CMakeFiles/engine.dir/tinyxml2.cpp.o: tinyxml2.h

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Install script for directory: /home/sdaslira/Projeto-CG-21-22/phase1/engine
+=======
+# Install script for directory: /home/sleiman/Projeto-CG-21-22/phase1/engine
+>>>>>>> 1d4f474e735a3c9e93c67b4f753caf365b2c0d9f
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +49,9 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
+<<<<<<< HEAD
 file(WRITE "/home/sdaslira/Projeto-CG-21-22/phase1/engine/${CMAKE_INSTALL_MANIFEST}"
+=======
+file(WRITE "/home/sleiman/Projeto-CG-21-22/phase1/engine/${CMAKE_INSTALL_MANIFEST}"
+>>>>>>> 1d4f474e735a3c9e93c67b4f753caf365b2c0d9f
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
