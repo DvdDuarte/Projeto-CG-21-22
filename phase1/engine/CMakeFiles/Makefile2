@@ -44,17 +44,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-<<<<<<< HEAD
 CMAKE_SOURCE_DIR = /home/sdaslira/Projeto-CG-21-22/phase1/engine
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/sdaslira/Projeto-CG-21-22/phase1/engine
-=======
-CMAKE_SOURCE_DIR = /home/sleiman/Projeto-CG-21-22/phase1/engine
-
-# The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/sleiman/Projeto-CG-21-22/phase1/engine
->>>>>>> 1d4f474e735a3c9e93c67b4f753caf365b2c0d9f
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -81,24 +74,14 @@ clean: CMakeFiles/engine.dir/clean
 CMakeFiles/engine.dir/all:
 	$(MAKE) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/depend
 	$(MAKE) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/build
-<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/sdaslira/Projeto-CG-21-22/phase1/engine/CMakeFiles --progress-num=1,2,3 "Built target engine"
-=======
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/sleiman/Projeto-CG-21-22/phase1/engine/CMakeFiles --progress-num=1,2,3 "Built target engine"
->>>>>>> 1d4f474e735a3c9e93c67b4f753caf365b2c0d9f
 .PHONY : CMakeFiles/engine.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/engine.dir/rule: cmake_check_build_system
-<<<<<<< HEAD
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/sdaslira/Projeto-CG-21-22/phase1/engine/CMakeFiles 3
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/engine.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/sdaslira/Projeto-CG-21-22/phase1/engine/CMakeFiles 0
-=======
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sleiman/Projeto-CG-21-22/phase1/engine/CMakeFiles 3
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/engine.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sleiman/Projeto-CG-21-22/phase1/engine/CMakeFiles 0
->>>>>>> 1d4f474e735a3c9e93c67b4f753caf365b2c0d9f
 .PHONY : CMakeFiles/engine.dir/rule
 
 # Convenience name for target.
