@@ -177,6 +177,7 @@ void createBox(float units, float grid, string filename) {
             triangle_nmr = 0;
             free(triangles);
         }
+        file_handler.close();
     }
 
     // Faces: right and left for z and y
@@ -229,7 +230,58 @@ void createBox(float units, float grid, string filename) {
 }
 
 void createCone(float radius, float height, float slices, float stacks, string filename){
+ //incompleto
+ /*
+     int triangle_nmr = 0;
+    ofstream file_handler;
+    file_handler.open(filename);
+    Vertex *v1,*v2,*v3,*v4,*v5;
+    Triangle *t1,*t2,*t3;
+    float delta_alfa=2*M_PI/(slices);
+    float a= height/stacks;
+   // float delta_beta=2*M_PI/(slices);
+    float origem=0;
+    for(int i=0;i<stacks;i++){
+        //triangles = (Triangle *) malloc(2* sizeof(Triangle));
+        //vector<int> pt;
 
+        for(int j=0;j<slices;j++){
+        //triangulo1 do plano
+            triangles = (Triangle *) malloc(3* sizeof(Triangle));
+        
+            //Vertex *v1,*v2,*v3,*v4;
+            v1=new Vertex(radius*sin(delta_alfa*i), height-(i*a), radius*cos(delta_alfa*i));
+            
+            v2=new Vertex(radius*sin(delta_alfa*i), height-(a*(i+1)), radius*cos(delta_alfa*i));
+            
+            v3=new Vertex(radius*sin(delta_alfa*(i+1)), height-((i+1)*a), radius*cos(delta_alfa*(i+1)));
+
+            v4=new Vertex(radius*sin(delta_alfa*i), height-(i*a), radius*cos(delta_alfa*i));     
+            
+            v5= new Vertex(0,height-(i*a),0);
+            //primeiro triang = v1,v2,v3
+            t1 = new Triangle(v1,v2,v3);
+            //segundo triang= v1,v3,v4
+            t2 = new Triangle(v1,v3,v4);
+            //terceiro triang=v5,v4,v2
+            t3= new Triangle(v5,v4,v2);
+            triangles[triangle_nmr] = t1;
+            triangles[triangle_nmr+1] = t2;
+            triangles[triangle_nmr+2]=t3;
+            for(triangle_nmr = 0; triangle_nmr < 2; triangle_nmr++) {
+                string info = triangleToString(triangles[triangle_nmr]);
+                file_handler << info;
+            }
+            if(i==stacks-1){
+                string info = triangleToString(triangles[triangle_nmr]);
+                file_handler << info;
+            }
+            triangle_nmr = 0;
+            free(triangles);
+        }
+    }
+    file_handler.close();
+*/
 }
 
 void createPlane(float units, int divisions, std::string filename){
