@@ -83,7 +83,7 @@ void renderScene(void) {
     glVertex3f(0.0f, 0.0f, 100.0f);
     glEnd();
     int i;
-    cout << tr_arr.size() << endl;
+    //cout << tr_arr.size() << endl;
     for( i= 0; i< tr_arr.size(); i++){
     //     cout << UNDERLINED_BRIGHT_MAGENTA << "Entrei render Tri" << RESET << endl;
         glBegin(GL_TRIANGLES);
@@ -245,7 +245,7 @@ void readXML(string filename){
 
     for (model; model != nullptr; model = model->NextSiblingElement()) {
         filesNames[j] = (model->Attribute("file"));
-        cout<< model->Attribute("file") << endl;
+        //cout<< model->Attribute("file") << endl;
         j++;
     }
 
@@ -273,7 +273,7 @@ void readXML(string filename){
 }
 
 void read3dFiles (string *files, int nmr_files){
-    cout <<"readfiles" << endl;
+    //cout <<"readfiles" << endl;
     int i = 0;
 
     while(i < nmr_files) {

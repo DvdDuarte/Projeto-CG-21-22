@@ -229,62 +229,46 @@ void createBox(float units, float grid, string filename) {
 }
 
 void createCone(float radius, float height, float slices, float stacks, string filename){
- //incompleto
- /*
- int triangle_nmr = 0;
-    ofstream file_handler;
-    file_handler.open(filename);
-    Vertex *v1,*v2,*v3,*v4,*v5;
-    Triangle *t1,*t2,*t3;
-    float delta_alfa=2*M_PI/(stacks);
-    float delta_beta=2*M_PI/(slices);
-    float origem=-M_PI/2;
-    for(int i=0;i<stacks;i++){
-        //triangles = (Triangle *) malloc(2* sizeof(Triangle));
-        //vector<int> pt;
 
-        for(int j=0;j<slices;j++){
-            triangles = (Triangle *) malloc(3* sizeof(Triangle));
-            float x1=radius*cos((origem) + i*delta_beta)*sin(j*delta_alfa);
-            float z1=radius*cos((origem) + i*delta_beta)*cos(j*delta_alfa);
-            float y1=height/2-(height*i);
-            //Vertex *v1,*v2,*v3,*v4;
-            v1=new Vertex(x1,y1,z1);
-            
-            v2=new Vertex(radius*cos((origem) + (i+1)*delta_beta)*sin(j*delta_alfa),
-            height/2-(height*(i+1)),
-            radius*cos((origem) + (i+1)*delta_beta)*cos(j*delta_alfa));
-            
-            v3=new Vertex(radius*cos((origem) + (i+1)*delta_beta)*sin((j+1)*delta_alfa),
-            height/2-(height*(i+1)),
-            radius*cos((origem) + (i+1)*delta_beta)*cos((j+1)*delta_alfa));
-
-            v4=new Vertex(radius*cos((origem) + i*delta_beta)*sin((j+1)*delta_alfa),
-            y1=height/2-(height*i),
-            radius*cos((origem) + i*delta_beta)*cos((j+1)*delta_alfa));
-            v5= new Vertex(0,height/2-(height*(i+1)),0);
-            //primeiro triang = v1,v2,v3
-            t1 = new Triangle(v1,v2,v3);
-            //segundo triang= v1,v3,v4
-            t2 = new Triangle(v1,v3,v4);
-            //terceiro triang =v5,v4,v2
-            t3=new Triangle(v5,v4,v2);
-
-            triangles[triangle_nmr] = t1;
-            triangles[triangle_nmr+1] = t2;
-            triangles[triangle_nmr+2] = t3;
-            for(triangle_nmr = 0; triangle_nmr < 3; triangle_nmr++) {
-                string info = triangleToString(triangles[triangle_nmr]);
-                file_handler << info;
-            }
-            triangle_nmr = 0;
-            free(triangles);
-        }
+    float stack_height = height / slices;
+    float stack_radius = radius / stacks;
+    float angle = ( 2 * M_PI) / slices;
+    ofstream file_cone_handler;
+    file_cone_handler.open(filename);
     
-    }
+    for (int stack_step = 0; stack_step < stacks; stack_step++){
+        float previous_height = stack_height * (stacks - stack_step);
+        float next_height = stack_height * (stacks - stack_step - 1);
+        float init_radius = stack_radius * stack_step;
+        float final_radius = stack_radius * (stack_step + 1);
 
-    file_handler.close();
-*/
+        for(int slice_step = 0; slice_step < slices; slice_step++){
+            float current_angle = angle * slice_step;
+            float next_angle = angle * (slice_step + 1);
+            if(!stack_step) {
+                Vertex *v1 = new Vertex(0.0, 0.0, 0.0);
+                Vertex *v2 = new Vertex(radius * sin(next_angle), 0.0, radius * cos(next_angle));
+                Vertex *v3 = new Vertex(radius * sin(current_angle), 0.0, radius * cos(current_angle));
+                Triangle *t1 = new Triangle(v1, v2, v3);
+                string info = triangleToString(t1);
+                file_cone_handler << info;
+            } 
+            Vertex *v4 = new Vertex(final_radius * sin(next_angle), next_height, final_radius * cos(next_angle));
+            Vertex *v5 = new Vertex(init_radius * sin(next_angle), previous_height, init_radius * cos(next_angle));
+            Vertex *v6 = new Vertex(init_radius * sin(current_angle), previous_height, init_radius * cos(current_angle));
+            Triangle *t2 = new Triangle(v4, v5, v6);
+            string info = triangleToString(t2);
+            file_cone_handler << info;
+            Vertex *v7 = new Vertex(final_radius * sin(current_angle), next_height, final_radius * cos(current_angle));
+            Vertex *v8 = new Vertex(final_radius * sin(next_angle), next_height, final_radius * cos(next_angle));
+            Vertex *v9 = new Vertex(init_radius * sin(current_angle), previous_height, init_radius * cos(current_angle));
+            Triangle *t3 = new Triangle(v7, v8, v9);
+            info = triangleToString(t3);
+            file_cone_handler << info;
+
+        }
+    }
+    file_cone_handler.close();
 }
 
 void createPlane(float units, int divisions, std::string filename){
