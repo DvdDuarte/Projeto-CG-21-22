@@ -18,13 +18,13 @@ Triangle *triangles;
 //Vertex * vertices;
 
 void createSphere(float radius, int slices, int stacks, std::string filename) {
-    //not sure yet
+    
     int triangle_nmr = 0;
     ofstream file_handler;
     file_handler.open(filename);
     Vertex *v1,*v2,*v3,*v4;
     Triangle *t1,*t2;
-    float delta_alfa=M_PI/(stacks);
+    float delta_alfa=2*M_PI/(stacks);
     float delta_beta=M_PI/(slices);
     float origem=-M_PI/2;
     
@@ -32,7 +32,7 @@ void createSphere(float radius, int slices, int stacks, std::string filename) {
         //triangles = (Triangle *) malloc(2* sizeof(Triangle));
         //vector<int> pt;
 
-        for(int j=0;j < 2 * slices; j++){
+        for(int j=0;j < slices; j++){
             triangles = (Triangle *) malloc(2* sizeof(Triangle));
             float x1=radius*cos((origem) + i*delta_beta)*sin(j*delta_alfa);
             float z1=radius*cos((origem) + i*delta_beta)*cos(j*delta_alfa);

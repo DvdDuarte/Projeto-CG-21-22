@@ -12,18 +12,6 @@ Vertex.h
 
 /home/sdaslira/Projeto-CG-21-22/phase1/generator/Vertex.h
 
-/home/sdaslira/Projeto-CG-21-22/phase1/generator/generator.cpp
-generator.h
-/home/sdaslira/Projeto-CG-21-22/phase1/generator/generator.h
-
-/home/sdaslira/Projeto-CG-21-22/phase1/generator/generator.h
-GL/glut.h
--
-math.h
--
-generator_aux.h
-/home/sdaslira/Projeto-CG-21-22/phase1/generator/generator_aux.h
-
 /home/sdaslira/Projeto-CG-21-22/phase1/generator/generator_aux.cpp
 generator_aux.h
 /home/sdaslira/Projeto-CG-21-22/phase1/generator/generator_aux.h
