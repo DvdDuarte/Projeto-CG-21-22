@@ -24,8 +24,8 @@ void createSphere(float radius, int slices, int stacks, std::string filename) {
     file_handler.open(filename);
     Vertex *v1,*v2,*v3,*v4;
     Triangle *t1,*t2;
-    float delta_alfa=2*M_PI/(stacks);
-    float delta_beta=2*M_PI/(slices);
+    float delta_alfa=M_PI/(stacks);
+    float delta_beta=M_PI/(slices);
     float origem=-M_PI/2;
     
     for(int i=0;i < 2 * stacks; i++){
