@@ -66,7 +66,7 @@ void createSphere(float radius, int slices, int stacks, std::string filename) {
         }
     
     }
-
+    file_handler.close();
     
 }
 
@@ -177,7 +177,6 @@ void createBox(float units, float grid, string filename) {
             triangle_nmr = 0;
             free(triangles);
         }
-        file_handler.close();
     }
 
     // Faces: right and left for z and y
@@ -232,54 +231,58 @@ void createBox(float units, float grid, string filename) {
 void createCone(float radius, float height, float slices, float stacks, string filename){
  //incompleto
  /*
-     int triangle_nmr = 0;
+ int triangle_nmr = 0;
     ofstream file_handler;
     file_handler.open(filename);
     Vertex *v1,*v2,*v3,*v4,*v5;
     Triangle *t1,*t2,*t3;
-    float delta_alfa=2*M_PI/(slices);
-    float a= height/stacks;
-   // float delta_beta=2*M_PI/(slices);
-    float origem=0;
+    float delta_alfa=2*M_PI/(stacks);
+    float delta_beta=2*M_PI/(slices);
+    float origem=-M_PI/2;
     for(int i=0;i<stacks;i++){
         //triangles = (Triangle *) malloc(2* sizeof(Triangle));
         //vector<int> pt;
 
         for(int j=0;j<slices;j++){
-        //triangulo1 do plano
             triangles = (Triangle *) malloc(3* sizeof(Triangle));
-        
+            float x1=radius*cos((origem) + i*delta_beta)*sin(j*delta_alfa);
+            float z1=radius*cos((origem) + i*delta_beta)*cos(j*delta_alfa);
+            float y1=height/2-(height*i);
             //Vertex *v1,*v2,*v3,*v4;
-            v1=new Vertex(radius*sin(delta_alfa*i), height-(i*a), radius*cos(delta_alfa*i));
+            v1=new Vertex(x1,y1,z1);
             
-            v2=new Vertex(radius*sin(delta_alfa*i), height-(a*(i+1)), radius*cos(delta_alfa*i));
+            v2=new Vertex(radius*cos((origem) + (i+1)*delta_beta)*sin(j*delta_alfa),
+            height/2-(height*(i+1)),
+            radius*cos((origem) + (i+1)*delta_beta)*cos(j*delta_alfa));
             
-            v3=new Vertex(radius*sin(delta_alfa*(i+1)), height-((i+1)*a), radius*cos(delta_alfa*(i+1)));
+            v3=new Vertex(radius*cos((origem) + (i+1)*delta_beta)*sin((j+1)*delta_alfa),
+            height/2-(height*(i+1)),
+            radius*cos((origem) + (i+1)*delta_beta)*cos((j+1)*delta_alfa));
 
-            v4=new Vertex(radius*sin(delta_alfa*i), height-(i*a), radius*cos(delta_alfa*i));     
-            
-            v5= new Vertex(0,height-(i*a),0);
+            v4=new Vertex(radius*cos((origem) + i*delta_beta)*sin((j+1)*delta_alfa),
+            y1=height/2-(height*i),
+            radius*cos((origem) + i*delta_beta)*cos((j+1)*delta_alfa));
+            v5= new Vertex(0,height/2-(height*(i+1)),0);
             //primeiro triang = v1,v2,v3
             t1 = new Triangle(v1,v2,v3);
             //segundo triang= v1,v3,v4
             t2 = new Triangle(v1,v3,v4);
-            //terceiro triang=v5,v4,v2
-            t3= new Triangle(v5,v4,v2);
+            //terceiro triang =v5,v4,v2
+            t3=new Triangle(v5,v4,v2);
+
             triangles[triangle_nmr] = t1;
             triangles[triangle_nmr+1] = t2;
-            triangles[triangle_nmr+2]=t3;
-            for(triangle_nmr = 0; triangle_nmr < 2; triangle_nmr++) {
-                string info = triangleToString(triangles[triangle_nmr]);
-                file_handler << info;
-            }
-            if(i==stacks-1){
+            triangles[triangle_nmr+2] = t3;
+            for(triangle_nmr = 0; triangle_nmr < 3; triangle_nmr++) {
                 string info = triangleToString(triangles[triangle_nmr]);
                 file_handler << info;
             }
             triangle_nmr = 0;
             free(triangles);
         }
+    
     }
+
     file_handler.close();
 */
 }
