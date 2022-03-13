@@ -27,11 +27,12 @@ void createSphere(float radius, int slices, int stacks, std::string filename) {
     float delta_alfa=2*M_PI/(stacks);
     float delta_beta=2*M_PI/(slices);
     float origem=-M_PI/2;
-    for(int i=0;i<stacks;i++){
+    
+    for(int i=0;i < 2 * stacks; i++){
         //triangles = (Triangle *) malloc(2* sizeof(Triangle));
         //vector<int> pt;
 
-        for(int j=0;j<slices;j++){
+        for(int j=0;j < 2 * slices; j++){
             triangles = (Triangle *) malloc(2* sizeof(Triangle));
             float x1=radius*cos((origem) + i*delta_beta)*sin(j*delta_alfa);
             float z1=radius*cos((origem) + i*delta_beta)*cos(j*delta_alfa);
