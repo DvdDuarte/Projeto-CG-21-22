@@ -7,7 +7,8 @@ vector<Triangle> tr_arr;
 float c1=1.0, c2=1.0, c3=1.0;
 float posx = 0, posz = 0, angle = 0, scalex = 1, scaley = 1, scalez = 1;
 float position_x=0, position_y=0, position_z=0, lx=0, ly=0 , lz=0, up_x=0, up_y=0, up_z=0, projfov=0, projnear=0, projfar=0;
-
+Group *groupbrothers;
+int iBrothers= 0;
 //
 float r=5.0f;
 float beta=0,alfa=0;
