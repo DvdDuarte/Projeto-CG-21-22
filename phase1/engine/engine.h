@@ -14,7 +14,7 @@
 using namespace std;
 
 #include <iostream>
-
+#include "tinyxml2.h"
 
 #include "engine_aux.h"
 #include "colors.h"
@@ -27,7 +27,7 @@ void readXML(string filename);
  * 
  * @param files The files to read
  */
-void read3dFiles (string *files, int nmr_files);
+vector<Triangle> read3dFiles (vector<string >files, int nmr_files, vector<Triangle> tr_arr);
 
 /**
  * @brief 
@@ -102,13 +102,9 @@ public:
     Scale (float x1, float y1, float z1) {
 
         x = x1;
-
         y = y1;
-
         z = z1;
-        cout << " scale x: " << x << " y: " << y  << " z: "<< z << endl;
-
-
+        cout << " scale x: " << x1 << " y: " << y1  << " z: "<< z1 << endl;
     }
     Scale (Scale *s) {
         x = s->x;
@@ -128,15 +124,17 @@ public:
 
 class Group{
 public:
-    Group(Translate* x, Rotate* y, Scale* z, vector<string>filesAux, Group *groupchildsAux, int nrchildsAux, vector<string> transferencias, int nrFilesAux){
+    Group(Translate* x, Rotate* y, Scale* z, vector<string>filesAux, vector<Group>groupchildsAux, int nrchildsAux,vector<string> transforms, int nrFilesAux){
+        cout << "criou grupo" <<endl;
         t = x;
         r = y;
         s = z;
         files = filesAux;
         groupchilds = groupchildsAux;
         nrchilds = nrchildsAux;
-        orderTransferencia = transferencias;
+        orderTransform = transforms;
         nrFiles = nrFilesAux;
+        cout << "nrfilhos " << nrchildsAux << endl;
     }
 
     Group(Group *group) {
@@ -146,19 +144,19 @@ public:
         s = group->s;
         groupchilds = group->groupchilds;
         nrchilds = group->nrchilds;
-        orderTransferencia = group->orderTransferencia;
+        orderTransform= group->orderTransform;
         nrFiles = group ->nrFiles;
 
     }
     vector<string> files;
-    Group *groupchilds;
+    vector<Group>groupchilds;
     Translate* t;
     Rotate* r;
     Scale* s;
-    Color c;
     int nrchilds;
-    vector<string> orderTransferencia;
+    vector<string> orderTransform;
     int nrFiles;
 };
 
-
+void readCamera(tinyxml2::XMLElement *world);
+Group readGroup(tinyxml2::XMLElement *group);

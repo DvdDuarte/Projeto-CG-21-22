@@ -2,18 +2,20 @@
 #include "tinyxml2.h"
 using namespace tinyxml2;
 int triangle_nmr;
-vector<Triangle> tr_arr;
+
 //Triangle *tr_arr;
-float c1=1.0, c2=1.0, c3=1.0;
+float c1=1.0, c2=0, c3=1.0;
+int size = 10;
 float posx = 0, posz = 0, angle = 0, scalex = 1, scaley = 1, scalez = 1;
 float position_x=0, position_y=0, position_z=0, lx=0, ly=0 , lz=0, up_x=0, up_y=0, up_z=0, projfov=0, projnear=0, projfar=0;
-Group *groupbrothers;
+vector<Group> groupbrothers;
 int iBrothers= 0;
-//
+float rangle = 0,tx = 0,ty = 0, tz = 0,rx = 0,ry = 0,rz = 0;
+float sx=1, sy=1, sz=1;
 float r=5.0f;
 float beta=0,alfa=0;
-//float xeye=r*cos(beta)*sin(alfa),yeye=r*sin(beta),zeye=r*cos(beta)*cos(alfa);
-//
+int nrTriangles = 0;
+
 
 string vertexToString(Vertex v){
     string vertex_info = to_string(v.x) + ";" + to_string(v.y) + ";" + to_string(v.z);
@@ -90,18 +92,127 @@ void renderScene(void) {
     glEnd();
     int i;
     //cout << tr_arr.size() << endl;
-    for( i= 0; i< tr_arr.size(); i++){
-    //     cout << UNDERLINED_BRIGHT_MAGENTA << "Entrei render Tri" << RESET << endl;
-        glBegin(GL_TRIANGLES);
-        glColor3f(1.0f, 0.0f, 0.0f);
-        glVertex3f(tr_arr[i].v1.x, tr_arr[i].v1.y, tr_arr[i].v1.z);
-        glColor3f(0.0f, 0.0f, 1.0f);
-        glVertex3f(tr_arr[i].v2.x, tr_arr[i].v2.y, tr_arr[i].v2.z);
-        glColor3f(0.0f, 0.0f, 1.0f);
-        glVertex3f(tr_arr[i].v3.x, tr_arr[i].v3.y, tr_arr[i].v3.z);
-        glEnd();
+    cout << iBrothers << endl;
+
+    for (int j=0; j<iBrothers; j++) { //for each brother
+
+        vector <Triangle> t_arr;
+        int iForTranslate= 0;
+        int iForRotate = 0;
+        int iForScale = 0;
+        glPushMatrix(); //push for brother
+        cout << "tamanho de operacoes " << groupbrothers[j].orderTransform.size() << endl;
+        for(int z=0; z < groupbrothers[j].orderTransform.size(); z++) {  // for each transform of each brother
+            string order = groupbrothers[j].orderTransform[z];
+            string t = "translate";
+            string r = "rotate";
+            string s = "scale";
+            cout << "order " <<order<<endl;
+            if (order == t){
+                cout <<"render scene for translate" << endl;
+                tx = groupbrothers[j].t[iForTranslate].x;
+                ty = groupbrothers[j].t[iForTranslate].y;
+                tz = groupbrothers[j].t[iForTranslate].z;
+                iForTranslate++;
+                glTranslated(tx, ty, tz);
+            }
+
+            if(order==r) {
+                rangle = groupbrothers[j].r[iForRotate].angle;
+                rx = groupbrothers[j].r[iForRotate].x;
+                ry = groupbrothers[j].r[iForRotate].y;
+                rz = groupbrothers[j].r[iForRotate].z;
+                iForRotate++;
+                glRotated(rangle, rx, ry, rz);
+            }
+            if(order==s) {
+                sx = groupbrothers[j].s[iForScale].x;
+                sy = groupbrothers[j].s[iForScale].y;
+                sz = groupbrothers[j].s[iForScale].z;
+                iForScale++;
+                glScalef(sx, sy, sz);
+            }
+
+        }
+        nrTriangles = 0;
+        t_arr = read3dFiles(groupbrothers[j].files, groupbrothers[j].nrFiles, t_arr);
+        nrTriangles= t_arr.size();
+        cout << "nrTriangles: " << nrTriangles << endl;
+        for(int i= 0; i< nrTriangles; i++){
+            glBegin(GL_TRIANGLES);
+            glColor3f(c1,c2,c3);
+            glVertex3f(t_arr[i].v1.x, t_arr[i].v1.y, t_arr[i].v1.z);
+            glVertex3f(t_arr[i].v2.x, t_arr[i].v2.y, t_arr[i].v2.z);
+            glVertex3f(t_arr[i].v3.x, t_arr[i].v3.y, t_arr[i].v3.z);
+            glEnd();
+        }
+        t_arr.clear();
+
+
+        if (groupbrothers[j].nrchilds==0) {  //no childs
+
+            glPopMatrix();}
+
+        else{ //childs
+            int x=0;
+            cout << "FILHOS A DESENHAR" << groupbrothers[j].nrchilds << endl;
+            while (x<groupbrothers[j].nrchilds){ //iterate each child
+                iForTranslate= 0, iForRotate=0,iForScale=0;
+                glPushMatrix(); //push matrix for a child
+                for(int z=0; z < groupbrothers[j].groupchilds[x].orderTransform.size(); z++) {
+                    string tr= groupbrothers[j].groupchilds[x].orderTransform[z];
+                    string t = "translate";
+                    string r = "rotate";
+                    string s = "scale";
+                    if (tr==t){
+                        tx = groupbrothers[j].groupchilds[x].t[iForTranslate].x;
+                        ty = groupbrothers[j].groupchilds[x].t[iForTranslate].y;
+                        tz = groupbrothers[j].groupchilds[x].t[iForTranslate].z;
+                        iForTranslate++;
+                        glTranslated(tx, ty, tz);
+                    }
+
+                    if(tr==r) {
+                        rangle = groupbrothers[j].groupchilds[x].r[iForRotate].angle;
+                        rx = groupbrothers[j].groupchilds[x].r[iForRotate].x;
+                        ry = groupbrothers[j].groupchilds[x].r[iForRotate].y;
+                        rz = groupbrothers[j].groupchilds[x].r[iForRotate].z;
+                        iForRotate++;
+                        glRotated(rangle, rx, ry, rz);
+                    }
+                    if(tr==s) {
+                        sx = groupbrothers[j].groupchilds[x].s[iForScale].x;
+                        sy = groupbrothers[j].groupchilds[x].s[iForScale].y;
+                        sz = groupbrothers[j].groupchilds[x].s[iForScale].z;
+                        iForScale++;
+                        glScalef(sx, sy, sz);
+                    }
+
+
+                }
+                nrTriangles = 0;
+                t_arr = read3dFiles(groupbrothers[j].groupchilds[x].files, groupbrothers[j].groupchilds[x].nrFiles, t_arr);
+                nrTriangles= t_arr.size();
+                cout << "nr :" << nrTriangles << endl;
+
+                for(int i= 0; i< nrTriangles; i++){
+                    glBegin(GL_TRIANGLES);
+                    glColor3f(c1,c2,c3);
+                    glVertex3f(t_arr[i].v1.x, t_arr[i].v1.y, t_arr[i].v1.z);
+                    glVertex3f(t_arr[i].v2.x, t_arr[i].v2.y, t_arr[i].v2.z);
+                    glVertex3f(t_arr[i].v3.x, t_arr[i].v3.y, t_arr[i].v3.z);
+                    glEnd();
+
+                }
+                glPopMatrix(); //pop matrix because the childs are siblings
+                t_arr.clear();
+                x++;
+            }
+
+        }
     }
-    
+
+
     // End of frame
     glutSwapBuffers();
 }
@@ -213,41 +324,119 @@ int main(int argc, char **argv) {
 
 // enter GLUT's main cycle
     glutMainLoop();
-
     return 1;
 }
 
-int engine (int argc, char **argv) {
-    ifstream file;
-    string name;
-    if (argc != 1) {
-        name.append("../test_files/").append(argv[1]);
-        cout << BOLD_YELLOW << "FILENAME: " << RESET << name << endl;
+
+
+Group readGroup (XMLElement *group) {
+    cout << "ler grupo" << endl;
+    Translate *translates= (Translate *)(malloc(20 * sizeof(Translate)));
+    Rotate *rotates= (Rotate *)(malloc(20 * sizeof(Rotate)));
+    Scale *scales= (Scale*)(malloc(20 * sizeof(Scale)));
+    int iFiles=0;
+    vector<string> filesNames;
+    vector<string> listOfTransform;
+    int  iChilds=0, iTranslate = 0, iRotate=0, iScale=0, iTransform=0;
+    vector<Group> childs;
+    vector<Group> brothers;
+    int nB =0;
+    XMLElement *scale ;
+    XMLElement *rotate;
+    XMLElement *translate;
+    XMLElement *transform = group->FirstChildElement("transform");
+    XMLElement *transformElement = transform->FirstChildElement();
+
+    char* name = (char *)(transformElement->Name());
+    while(strcmp (name,"end")!=0) {
+
+        if (strcmp(name, "rotate") == 0) {
+            rotate = transformElement;
+            listOfTransform.push_back("rotate");
+            iTransform++;
+            rangle = 0, rx = 0, ry = 0, rz = 0;
+            if (rotate->Attribute("angle") != nullptr)
+                rangle = stof(rotate->Attribute("angle"));
+            if (rotate->Attribute("axisX") != nullptr)
+                rx = stof(rotate->Attribute("axisX"));
+            if (rotate->Attribute("axisY") != nullptr)
+                ry = stof(rotate->Attribute("axisY"));
+            if (rotate->Attribute("axisZ"))
+                rz = stof(rotate->Attribute("axisZ"));
+            rotates[iRotate] = Rotate(rangle, rx, ry, rz);
+            iRotate++;
+
+        }
+        if (strcmp(name, "translate") == 0) {
+            translate = transformElement;
+
+            listOfTransform.push_back("translate");
+            iTransform++;
+            float tx = 0, ty = 0, tz = 0;
+            if (translate->Attribute("x") != nullptr)
+                tx = stof(translate->Attribute("x"));
+            if (translate->Attribute("y") != nullptr)
+                ty = stof(translate->Attribute("y"));
+            if (translate->Attribute("z") != nullptr)
+                tz = stof(translate->Attribute("z"));
+            translates[iTranslate] = Translate(tx, ty, tz);
+            iTranslate++;
+        }
+
+        if (strcmp(name, "scale") == 0) {
+            scale = transformElement;
+            listOfTransform.push_back("scale");
+            iTransform++;
+            sx = 1, sy = 1, sz = 1;
+            if (scale->Attribute("x") != nullptr)
+                sx = stof(scale->Attribute("x"));
+            if (scale->Attribute("y") != nullptr)
+                sy = stof(scale->Attribute("y"));
+            if (scale->Attribute("z") != nullptr)
+                sz = stof(scale->Attribute("z"));
+            scales[iScale] = Scale(sx, sy, sz);
+            iScale++;
+        }
+
+        if (transformElement->NextSiblingElement() != nullptr) {
+            transformElement = transformElement->NextSiblingElement();
+            name = (char *) (transformElement->Name());
+
+        } else name = (char *) "end";
     }
-    readXML(name);
-    return 0;
+
+    XMLElement *models = transform->NextSiblingElement("models");
+    for (models;models != nullptr; models = models->NextSiblingElement()) { //Percorrers os models irmaos no group
+        XMLElement *model = models->FirstChildElement("model");
+        for (model; model != nullptr; model = model->NextSiblingElement()) {
+            cout << "file " << model->Attribute("file") << endl;
+            filesNames.push_back(model->Attribute("file"));
+            iFiles++;
+        }
+    }
+
+    XMLElement *groupchild2;
+
+        for (groupchild2 = group->FirstChildElement("group");groupchild2 != nullptr; groupchild2 = groupchild2->NextSiblingElement("group")) //for each brother, see the child
+        {
+
+            childs.push_back(readGroup(groupchild2));
+
+            iChilds++;
+        }
+
+
+
+
+
+    Group g = Group(translates,rotates,scales,filesNames,childs,iChilds,listOfTransform, iFiles);
+    cout << "a sair do group" << endl;
+    return g;
+
 }
-
-void readXML(string filename){
-    XMLDocument document;
-    bool load = document.LoadFile(filename.c_str());
-    cout << BOLD_RED << "ERROR: " << RESET << load << endl;
-    if(load != 0) return;
-    string *filesNames = (string*)malloc (10000 * sizeof(string));
-    int i = 0;
-    XMLElement *world = document.FirstChildElement("world");
+void readCamera(XMLElement *world) {
+    cout << "ler camera" << endl;
     XMLElement *camera = world->FirstChildElement("camera");
-    XMLElement *group = camera->NextSiblingElement("group");
-    XMLElement *models = group->FirstChildElement("models");
-    XMLElement *model = models->FirstChildElement("model");
-    int j = 0;
-
-    for (model; model != nullptr; model = model->NextSiblingElement()) {
-        filesNames[j] = (model->Attribute("file"));
-        //cout<< model->Attribute("file") << endl;
-        j++;
-    }
-
     XMLElement *position = camera->FirstChildElement("position");
     XMLElement *lookat = position->NextSiblingElement("lookAt");
     XMLElement *up= lookat->NextSiblingElement("up");
@@ -266,33 +455,36 @@ void readXML(string filename){
     if(projection->Attribute("near")!= nullptr) projnear= stof(projection->Attribute("near"));
     if(projection->Attribute("far")!= nullptr) projfar= stof(projection->Attribute("far"));
 
-    cout << "end of models "<< endl;
-    read3dFiles(filesNames, j);
+}
+void readXML(string filename){
+
 
 }
-
-void read3dFiles (string *files, int nmr_files){
+vector<Triangle> read3dFiles (vector<string >files, int nmr_files, vector<Triangle> tr_arr){
     //cout <<"readfiles" << endl;
     int i = 0;
-
+    cout << "ler triangulos" << endl;
     while(i < nmr_files) {
-        FILE * fp;
+
+
         char * char_aux;
-        string s = "../generator/build/";
-        char_aux = strcpy(char_aux, s.c_str());
-        char* name=  strcat (char_aux , files[i].c_str());
+        string s = "../generator/build/" + files[i];
+        cout << s << endl;
+        char_aux = const_cast<char*> (s.c_str());
+
+        FILE * fp;
+
         errno = 0;
-        fp = fopen (name,"r+");
+        fp = fopen (char_aux,"r+");
 
         int index = 1;
         float v1, v2, v3, v4,v5,v6,v7,v8,v9;
 
         string line;
 
-
-        if ((fp = fopen(name, "r")) == NULL)
+        if ((fp = fopen(char_aux, "r")) == NULL)
         {
-            cout << name << endl;
+            cout << s << endl;
             printf("Error %d \n", errno);
          //   cout << "error in open" << endl;
             break;
@@ -302,11 +494,47 @@ void read3dFiles (string *files, int nmr_files){
                 Vertex *vv2 = new Vertex(v4,v5,v6);
                 Vertex *vv3 = new Vertex(v7,v8,v9);
                 Triangle *tr1 = new Triangle(vv1,vv2,vv3);
-
                 tr_arr.push_back(tr1);
             }
 
         fclose(fp);
         i++;
     }
+    cout << "terminou a leitura dos triangulos " << endl;
+    return tr_arr;
+}
+
+
+int engine (int argc, char **argv) {
+   // groupbrothers = (Group *) malloc(size * sizeof(Group));
+    ifstream file;
+    string name;
+    if (argc != 1) {
+        name.append("../test_files/").append(argv[1]);
+        cout << BOLD_YELLOW << "FILENAME: " << RESET << name << endl;
+    }
+    cout << "ler ficheiro xml" << endl;
+    XMLDocument document;
+    bool load = document.LoadFile(name.c_str());
+    cout << BOLD_RED << "ERROR: " << RESET << load << endl;
+    if (load != 0) return -1;
+    string *filesNames = (string *) malloc(10000 * sizeof(string));
+    int i = 0;
+    XMLElement *world = document.FirstChildElement("world");
+
+    readCamera(world);
+    XMLElement *camera = world->FirstChildElement("camera");
+    XMLElement *group;
+
+    for (group = camera->NextSiblingElement("group");group != nullptr; group = group->NextSiblingElement("group")) //iterator for brother
+    {
+
+        cout << "pai " << iBrothers << endl;
+        groupbrothers.push_back(readGroup(group));
+        iBrothers++;
+        cout << "irmao " << iBrothers << endl;
+    }
+
+    cout << "end " << endl;
+    return 0;
 }
