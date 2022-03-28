@@ -91,134 +91,86 @@ void renderScene(void) {
     glVertex3f(0.0f, 0.0f, 100.0f);
     glEnd();
     int i;
-    //cout << tr_arr.size() << endl;
     cout << iBrothers << endl;
 
     for (int j=0; j<iBrothers; j++) { //for each brother
-
-        vector <Triangle> t_arr;
+        glPushMatrix();
+        vector<Triangle> arr;
         int iForTranslate= 0;
         int iForRotate = 0;
-        int iForScale = 0;
-        glPushMatrix(); //push for brother
-        cout << "tamanho de operacoes " << groupbrothers[j].orderTransform.size() << endl;
-        for(int z=0; z < groupbrothers[j].orderTransform.size(); z++) {  // for each transform of each brother
-            string order = groupbrothers[j].orderTransform[z];
-            string t = "translate";
-            string r = "rotate";
-            string s = "scale";
-            cout << "order " <<order<<endl;
-            if (order == t){
-                cout <<"render scene for translate" << endl;
-                tx = groupbrothers[j].t[iForTranslate].x;
-                ty = groupbrothers[j].t[iForTranslate].y;
-                tz = groupbrothers[j].t[iForTranslate].z;
-                iForTranslate++;
-                glTranslated(tx, ty, tz);
-            }
-
-            if(order==r) {
-                rangle = groupbrothers[j].r[iForRotate].angle;
-                rx = groupbrothers[j].r[iForRotate].x;
-                ry = groupbrothers[j].r[iForRotate].y;
-                rz = groupbrothers[j].r[iForRotate].z;
-                iForRotate++;
-                glRotated(rangle, rx, ry, rz);
-            }
-            if(order==s) {
-                sx = groupbrothers[j].s[iForScale].x;
-                sy = groupbrothers[j].s[iForScale].y;
-                sz = groupbrothers[j].s[iForScale].z;
-                iForScale++;
-                glScalef(sx, sy, sz);
-            }
-
-        }
-        nrTriangles = 0;
-        t_arr = read3dFiles(groupbrothers[j].files, groupbrothers[j].nrFiles, t_arr);
-        nrTriangles= t_arr.size();
-        cout << "nrTriangles: " << nrTriangles << endl;
-        for(int i= 0; i< nrTriangles; i++){
-            glBegin(GL_TRIANGLES);
-            glColor3f(c1,c2,c3);
-            glVertex3f(t_arr[i].v1.x, t_arr[i].v1.y, t_arr[i].v1.z);
-            glVertex3f(t_arr[i].v2.x, t_arr[i].v2.y, t_arr[i].v2.z);
-            glVertex3f(t_arr[i].v3.x, t_arr[i].v3.y, t_arr[i].v3.z);
-            glEnd();
-        }
-        t_arr.clear();
-
-
-        if (groupbrothers[j].nrchilds==0) {  //no childs
-
-            glPopMatrix();}
-
-        else{ //childs
-            int x=0;
-            cout << "FILHOS A DESENHAR" << groupbrothers[j].nrchilds << endl;
-            while (x<groupbrothers[j].nrchilds){ //iterate each child
-                iForTranslate= 0, iForRotate=0,iForScale=0;
-                glPushMatrix(); //push matrix for a child
-                for(int z=0; z < groupbrothers[j].groupchilds[x].orderTransform.size(); z++) {
-                    string tr= groupbrothers[j].groupchilds[x].orderTransform[z];
-                    string t = "translate";
-                    string r = "rotate";
-                    string s = "scale";
-                    if (tr==t){
-                        tx = groupbrothers[j].groupchilds[x].t[iForTranslate].x;
-                        ty = groupbrothers[j].groupchilds[x].t[iForTranslate].y;
-                        tz = groupbrothers[j].groupchilds[x].t[iForTranslate].z;
-                        iForTranslate++;
-                        glTranslated(tx, ty, tz);
-                    }
-
-                    if(tr==r) {
-                        rangle = groupbrothers[j].groupchilds[x].r[iForRotate].angle;
-                        rx = groupbrothers[j].groupchilds[x].r[iForRotate].x;
-                        ry = groupbrothers[j].groupchilds[x].r[iForRotate].y;
-                        rz = groupbrothers[j].groupchilds[x].r[iForRotate].z;
-                        iForRotate++;
-                        glRotated(rangle, rx, ry, rz);
-                    }
-                    if(tr==s) {
-                        sx = groupbrothers[j].groupchilds[x].s[iForScale].x;
-                        sy = groupbrothers[j].groupchilds[x].s[iForScale].y;
-                        sz = groupbrothers[j].groupchilds[x].s[iForScale].z;
-                        iForScale++;
-                        glScalef(sx, sy, sz);
-                    }
-
-
-                }
-                nrTriangles = 0;
-                t_arr = read3dFiles(groupbrothers[j].groupchilds[x].files, groupbrothers[j].groupchilds[x].nrFiles, t_arr);
-                nrTriangles= t_arr.size();
-                cout << "nr :" << nrTriangles << endl;
-
-                for(int i= 0; i< nrTriangles; i++){
-                    glBegin(GL_TRIANGLES);
-                    glColor3f(c1,c2,c3);
-                    glVertex3f(t_arr[i].v1.x, t_arr[i].v1.y, t_arr[i].v1.z);
-                    glVertex3f(t_arr[i].v2.x, t_arr[i].v2.y, t_arr[i].v2.z);
-                    glVertex3f(t_arr[i].v3.x, t_arr[i].v3.y, t_arr[i].v3.z);
-                    glEnd();
-
-                }
-                glPopMatrix(); //pop matrix because the childs are siblings
-                t_arr.clear();
-                x++;
-            }
-
-        }
+        draw(groupbrothers[j]);
+        glPopMatrix();
     }
 
 
-    // End of frame
     glutSwapBuffers();
 }
 
 
 
+
+void draw (Group g) {
+    int iForTranslate = 0;
+    int iForRotate = 0;
+    int iForScale = 0;
+    c1 = 0, c2 = 1, c3 = 1;
+    for (int z = 0; z < g.orderTransform.size(); z++) {
+
+        string order = g.orderTransform[z];
+        string t = "translate";
+        string r = "rotate";
+        string s = "scale";
+
+
+        if (order == t) {
+            tx = g.t[iForTranslate].x;
+            ty = g.t[iForTranslate].y;
+            tz = g.t[iForTranslate].z;
+            iForTranslate++;
+            glTranslated(tx, ty, tz);
+        }
+
+        if (order == r) {
+            rangle = g.r[iForRotate].angle;
+            rx = g.r[iForRotate].x;
+            ry = g.r[iForRotate].y;
+            rz = g.r[iForRotate].z;
+            iForRotate++;
+            glRotated(rangle, rx, ry, rz);
+        }
+        if (order == s) {
+            sx = g.s[iForScale].x;
+            sy = g.s[iForScale].y;
+            sz = g.s[iForScale].z;
+            glScalef(sx, sy, sz);
+        }
+
+    }
+
+    nrTriangles = 0;
+    vector <Triangle> arr = g.files;
+    for (int i = 0; i < arr.size(); i++) {
+        glPolygonMode(GL_FRONT, GL_LINE);
+        glBegin(GL_TRIANGLES);
+        glVertex3f(arr[i].v1.x, arr[i].v1.y, arr[i].v1.z);
+        glVertex3f(arr[i].v2.x, arr[i].v2.y, arr[i].v2.z);
+        glVertex3f(arr[i].v3.x, arr[i].v3.y, arr[i].v3.z);
+        glEnd();
+    }
+
+    arr.clear();
+
+    int x = 0;
+    while (x < g.nrchilds) {
+        glPushMatrix();
+        glPushMatrix();
+        draw(g.groupchilds[x]);
+        arr.clear();
+        glPopMatrix();
+        x++;
+
+    }
+}
 // write function to process keyboard events
 
 void keyboardFunc(unsigned char key, int x, int y) {
@@ -330,7 +282,6 @@ int main(int argc, char **argv) {
 
 
 Group readGroup (XMLElement *group) {
-    cout << "ler grupo" << endl;
     Translate *translates= (Translate *)(malloc(20 * sizeof(Translate)));
     Rotate *rotates= (Rotate *)(malloc(20 * sizeof(Rotate)));
     Scale *scales= (Scale*)(malloc(20 * sizeof(Scale)));
@@ -339,14 +290,12 @@ Group readGroup (XMLElement *group) {
     vector<string> listOfTransform;
     int  iChilds=0, iTranslate = 0, iRotate=0, iScale=0, iTransform=0;
     vector<Group> childs;
-    vector<Group> brothers;
-    int nB =0;
     XMLElement *scale ;
     XMLElement *rotate;
     XMLElement *translate;
     XMLElement *transform = group->FirstChildElement("transform");
     XMLElement *transformElement = transform->FirstChildElement();
-
+    vector<Triangle> arr;
     char* name = (char *)(transformElement->Name());
     while(strcmp (name,"end")!=0) {
 
@@ -357,12 +306,12 @@ Group readGroup (XMLElement *group) {
             rangle = 0, rx = 0, ry = 0, rz = 0;
             if (rotate->Attribute("angle") != nullptr)
                 rangle = stof(rotate->Attribute("angle"));
-            if (rotate->Attribute("axisX") != nullptr)
-                rx = stof(rotate->Attribute("axisX"));
-            if (rotate->Attribute("axisY") != nullptr)
-                ry = stof(rotate->Attribute("axisY"));
-            if (rotate->Attribute("axisZ"))
-                rz = stof(rotate->Attribute("axisZ"));
+            if (rotate->Attribute("x") != nullptr)
+                rx = stof(rotate->Attribute("x"));
+            if (rotate->Attribute("y") != nullptr)
+                ry = stof(rotate->Attribute("y"));
+            if (rotate->Attribute("z"))
+                rz = stof(rotate->Attribute("z"));
             rotates[iRotate] = Rotate(rangle, rx, ry, rz);
             iRotate++;
 
@@ -409,33 +358,27 @@ Group readGroup (XMLElement *group) {
     for (models;models != nullptr; models = models->NextSiblingElement()) { //Percorrers os models irmaos no group
         XMLElement *model = models->FirstChildElement("model");
         for (model; model != nullptr; model = model->NextSiblingElement()) {
-            cout << "file " << model->Attribute("file") << endl;
+            cout << "file do model " << model->Attribute("file") << endl;
             filesNames.push_back(model->Attribute("file"));
             iFiles++;
         }
+        arr = read3dFiles(filesNames,iFiles,arr);
     }
 
     XMLElement *groupchild2;
 
         for (groupchild2 = group->FirstChildElement("group");groupchild2 != nullptr; groupchild2 = groupchild2->NextSiblingElement("group")) //for each brother, see the child
         {
-
             childs.push_back(readGroup(groupchild2));
-
             iChilds++;
         }
 
+    Group g = Group(translates,rotates,scales,arr,childs,iChilds,listOfTransform,iFiles);
 
-
-
-
-    Group g = Group(translates,rotates,scales,filesNames,childs,iChilds,listOfTransform, iFiles);
-    cout << "a sair do group" << endl;
     return g;
 
 }
 void readCamera(XMLElement *world) {
-    cout << "ler camera" << endl;
     XMLElement *camera = world->FirstChildElement("camera");
     XMLElement *position = camera->FirstChildElement("position");
     XMLElement *lookat = position->NextSiblingElement("lookAt");
@@ -461,19 +404,16 @@ void readXML(string filename){
 
 }
 vector<Triangle> read3dFiles (vector<string >files, int nmr_files, vector<Triangle> tr_arr){
-    //cout <<"readfiles" << endl;
     int i = 0;
-    cout << "ler triangulos" << endl;
     while(i < nmr_files) {
 
 
         char * char_aux;
         string s = "../generator/build/" + files[i];
-        cout << s << endl;
         char_aux = const_cast<char*> (s.c_str());
 
         FILE * fp;
-
+        cout<< "Ficheiro " << s << endl;
         errno = 0;
         fp = fopen (char_aux,"r+");
 
@@ -500,7 +440,6 @@ vector<Triangle> read3dFiles (vector<string >files, int nmr_files, vector<Triang
         fclose(fp);
         i++;
     }
-    cout << "terminou a leitura dos triangulos " << endl;
     return tr_arr;
 }
 
@@ -513,7 +452,6 @@ int engine (int argc, char **argv) {
         name.append("../test_files/").append(argv[1]);
         cout << BOLD_YELLOW << "FILENAME: " << RESET << name << endl;
     }
-    cout << "ler ficheiro xml" << endl;
     XMLDocument document;
     bool load = document.LoadFile(name.c_str());
     cout << BOLD_RED << "ERROR: " << RESET << load << endl;
@@ -528,13 +466,9 @@ int engine (int argc, char **argv) {
 
     for (group = camera->NextSiblingElement("group");group != nullptr; group = group->NextSiblingElement("group")) //iterator for brother
     {
-
-        cout << "pai " << iBrothers << endl;
         groupbrothers.push_back(readGroup(group));
         iBrothers++;
-        cout << "irmao " << iBrothers << endl;
     }
 
-    cout << "end " << endl;
     return 0;
 }

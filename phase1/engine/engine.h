@@ -124,8 +124,7 @@ public:
 
 class Group{
 public:
-    Group(Translate* x, Rotate* y, Scale* z, vector<string>filesAux, vector<Group>groupchildsAux, int nrchildsAux,vector<string> transforms, int nrFilesAux){
-        cout << "criou grupo" <<endl;
+    Group(Translate* x, Rotate* y, Scale* z, vector<Triangle> filesAux, vector<Group>groupchildsAux, int nrchildsAux,vector<string> transforms, int nrFilesAux){
         t = x;
         r = y;
         s = z;
@@ -134,7 +133,7 @@ public:
         nrchilds = nrchildsAux;
         orderTransform = transforms;
         nrFiles = nrFilesAux;
-        cout << "nrfilhos " << nrchildsAux << endl;
+        cout << "numero de files no .h " << nrFiles <<endl;
     }
 
     Group(Group *group) {
@@ -148,7 +147,7 @@ public:
         nrFiles = group ->nrFiles;
 
     }
-    vector<string> files;
+    vector<Triangle> files;
     vector<Group>groupchilds;
     Translate* t;
     Rotate* r;
@@ -160,3 +159,4 @@ public:
 
 void readCamera(tinyxml2::XMLElement *world);
 Group readGroup(tinyxml2::XMLElement *group);
+void draw (Group g);
