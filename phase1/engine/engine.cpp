@@ -13,20 +13,16 @@ int iBrothers= 0;
 float rangle = 0,tx = 0,ty = 0, tz = 0,rx = 0,ry = 0,rz = 0;
 float sx=1, sy=1, sz=1;
 float r=5.0f;
-float alfa = 0.0f, beta = 0.5f, radius = 20.0;
+float alpha = 0.0f, beta = 0.5f, radius = 20.0;
 int nrTriangles = 0;
 bool wh;
-
+int startX, startY, tracking = 0;
+unsigned int picked = 0;
 string vertexToString(Vertex v){
     string vertex_info = to_string(v.x) + ";" + to_string(v.y) + ";" + to_string(v.z);
     return vertex_info;
 }
-void spherical2Cartesian() {
 
-    position_x= radius * cos(beta) * sin(alfa);
-    position_y= radius * sin(beta);
-    position_z = radius * cos(beta) * cos(alfa);
-}
 
 void changeSize(int w, int h) {
 
@@ -100,6 +96,12 @@ void renderScene(void) {
 }
 
 
+unsigned char  picking(int x, int y) {
+
+    unsigned char res[4];
+
+    return res[0];
+}
 
 // write function to process keyboard events
 
@@ -160,39 +162,82 @@ void keyboardFunc(unsigned char key, int x, int y) {
 }
 
 
-void processSpecialKeys(int key, int xx, int yy) {
+void processMouseMotion(int xx, int yy)
+{
 
-    switch (key) {
+    int deltaX, deltaY;
+    int alphaAux, betaAux;
+    int rAux;
 
-        case GLUT_KEY_RIGHT:
-            alfa -= 0.1; break;
+    if (!tracking)
+        return;
 
-        case GLUT_KEY_LEFT:
-            alfa += 0.1; break;
+    deltaX = xx - startX;
+    deltaY = yy - startY;
 
-        case GLUT_KEY_UP:
-            beta += 0.1f;
-            if (beta > 1.5f)
-                beta = 1.5f;
-            break;
+    if (tracking == 1) {
 
-        case GLUT_KEY_DOWN:
-            beta -= 0.1f;
-            if (beta < -1.5f)
-                beta = -1.5f;
-            break;
 
-        case GLUT_KEY_PAGE_DOWN: radius -= 1.0f;
-            if (radius < 1.0f)
-                radius = 1.0f;
-            break;
+        alphaAux = alpha + deltaX;
+        betaAux = beta + deltaY;
 
-        case GLUT_KEY_PAGE_UP: radius += 1.0f; break;
+        if (betaAux > 85.0)
+            betaAux = 85.0;
+        else if (betaAux < -85.0)
+            betaAux = -85.0;
+
+        rAux = r;
     }
-    spherical2Cartesian();
-    glutPostRedisplay();
+    else if (tracking == 2) {
 
+        alphaAux = alpha;
+        betaAux = beta;
+        rAux = r - deltaY;
+        if (rAux < 3)
+            rAux = 3;
+    }
+    position_x = rAux * sin(alphaAux * 3.14 / 180.0) * cos(betaAux * 3.14 / 180.0);
+    position_z = rAux * cos(alphaAux * 3.14 / 180.0) * cos(betaAux * 3.14 / 180.0);
+    position_y = rAux * 							     sin(betaAux * 3.14 / 180.0);
+
+    glutPostRedisplay();
 }
+
+void processMouseButtons(int button, int state, int xx, int yy)
+{
+    printf("%d %d\n", xx, yy);
+    if (state == GLUT_DOWN)  {
+        startX = xx;
+        startY = yy;
+        if (button == GLUT_LEFT_BUTTON)
+            tracking = 1;
+        else if (button == GLUT_RIGHT_BUTTON)
+            tracking = 2;
+        else { // Middle button
+            tracking = 0;
+            picked = picking(xx,yy);
+            if (picked)
+                printf("Picked Snowman number %d\n", picked);
+            else
+                printf("Nothing selected\n");
+            glutPostRedisplay();
+        }
+    }
+    else if (state == GLUT_UP) {
+        if (tracking == 1) {
+            alpha += (xx - startX);
+            beta += (yy - startY);
+        }
+        else if (tracking == 2) {
+
+            r -= yy - startY;
+            if (r < 3)
+                r = 3.0;
+        }
+        tracking = 0;
+    }
+}
+
 
 
 
@@ -211,8 +256,10 @@ int main(int argc, char **argv) {
 
 
     glutKeyboardFunc(keyboardFunc);
-    glutSpecialFunc(processSpecialKeys);
-    
+    glutMouseFunc(processMouseButtons);
+    glutMotionFunc(processMouseMotion);
+
+
 // put here the registration of the keyboard callbacks
 
 //  OpenGL settings
