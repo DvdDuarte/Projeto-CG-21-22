@@ -13,13 +13,19 @@ int iBrothers= 0;
 float rangle = 0,tx = 0,ty = 0, tz = 0,rx = 0,ry = 0,rz = 0;
 float sx=1, sy=1, sz=1;
 float r=5.0f;
-float beta=0,alfa=0;
+float alfa = 0.0f, beta = 0.5f, radius = 20.0;
 int nrTriangles = 0;
-
+bool wh;
 
 string vertexToString(Vertex v){
     string vertex_info = to_string(v.x) + ";" + to_string(v.y) + ";" + to_string(v.z);
     return vertex_info;
+}
+void spherical2Cartesian() {
+
+    position_x= radius * cos(beta) * sin(alfa);
+    position_y= radius * sin(beta);
+    position_z = radius * cos(beta) * cos(alfa);
 }
 
 void changeSize(int w, int h) {
@@ -59,22 +65,6 @@ void renderScene(void) {
     gluLookAt(position_x,position_y,position_z,
               lx,ly,lz,
               up_x,up_y,up_z);
-    /*
-    xeye=r*cos(beta)*sin(beta);
-    yeye=r*sin(beta);
-    zeye=r*cos(beta)*cos(beta);
-    gluLookAt(xeye,yeye,zeye,
-              lx,ly,lz,
-              up_x,up_y,up_z);*/
-
-    glTranslatef(posx,0.0,posz);
-    glRotatef(angle, 1.0, 0.0, .0);
-    glScalef(scalex, scaley, scalez);
-
-// put the geometric transformations here
- 
-
-// put drawing instructions here
  
     glBegin(GL_LINES);
     // X axis in red
@@ -98,7 +88,9 @@ void renderScene(void) {
         vector<Triangle> arr;
         int iForTranslate= 0;
         int iForRotate = 0;
-        c1= 1, c2=2, c3=1;
+        glTranslatef(posx,0.0,posz);
+        glRotatef(angle, 1.0, 0.0, .0);
+        glScalef(scalex, scaley, scalez);
         draw(groupbrothers[j]);
         glPopMatrix();
     }
@@ -109,75 +101,6 @@ void renderScene(void) {
 
 
 
-
-void draw (Group g) {
-    int iForTranslate = 0;
-    int iForRotate = 0;
-    int iForScale = 0;
-    c1 = 0, c2 = 1, c3 = 1;
-    for (int z = 0; z < g.orderTransform.size(); z++) {
-
-        string order = g.orderTransform[z];
-        string t = "translate";
-        string r = "rotate";
-        string s = "scale";
-
-
-        if (order == t) {
-            tx = g.t[iForTranslate].x;
-            ty = g.t[iForTranslate].y;
-            tz = g.t[iForTranslate].z;
-            iForTranslate++;
-            cout << "translacao " << tx << " "<< ty << " " << tz <<endl;
-            glTranslated(tx, ty, tz);
-        }
-
-        if (order == r) {
-            rangle = g.r[iForRotate].angle;
-            rx = g.r[iForRotate].x;
-            ry = g.r[iForRotate].y;
-            rz = g.r[iForRotate].z;
-            iForRotate++;
-            glRotated(rangle, rx, ry, rz);
-        }
-        if (order == s) {
-            sx = g.s[iForScale].x;
-            sy = g.s[iForScale].y;
-            sz = g.s[iForScale].z;
-            glScalef(sx, sy, sz);
-        }
-
-    }
-
-    nrTriangles = 0;
-    vector <Triangle> arr = g.files;
-
-
-    for (int i = 0; i < arr.size(); i++) {
-       // glPolygonMode(GL_FRONT,  GL_LINE);
-        glBegin(GL_TRIANGLES);
-        glColor3f(1.0f, 0.0f, 0.0f);
-        glVertex3f(arr[i].v1.x, arr[i].v1.y, arr[i].v1.z);
-        glColor3f(0.0f, 0.0f, 1.0f);
-        glVertex3f(arr[i].v2.x, arr[i].v2.y, arr[i].v2.z);
-        glColor3f(0.0f, 0.0f, 1.0f);
-        glVertex3f(arr[i].v3.x, arr[i].v3.y, arr[i].v3.z);
-        glEnd();
-    }
-
-    arr.clear();
-
-    int x = 0;
-    while (x < g.nrchilds) {
-        glPushMatrix();
-        glPushMatrix();
-        draw(g.groupchilds[x]);
-        arr.clear();
-        glPopMatrix();
-        x++;
-
-    }
-}
 // write function to process keyboard events
 
 void keyboardFunc(unsigned char key, int x, int y) {
@@ -228,30 +151,47 @@ void keyboardFunc(unsigned char key, int x, int y) {
             scaley -= 0.1;
             scalez -= 0.1;
             break;
+        case 't':
+            glPolygonMode(GL_FRONT_AND_BACK, wh?GL_LINE:GL_FILL);
+            wh=!wh;
+            break;
     }
     glutPostRedisplay();
 }
 
 
 void processSpecialKeys(int key, int xx, int yy) {
-    //trabalho a ser feito
-// put code to process special keys in here
-   if(key== GLUT_KEY_UP){
-       alfa+=M_PI/64;
-   }else if(key==GLUT_KEY_DOWN){
-       alfa-=M_PI/64;
-       //bla
-   }else if(key==GLUT_KEY_LEFT){
-       //bla
-       beta+=M_PI/64;
-       if(beta>=M_PI/2)beta=0;
-   }else if(key==GLUT_KEY_RIGHT){
-       //bla
-       beta-=M_PI/64;
-       if(beta<=-M_PI/2)beta=0;
 
-   }else;
+    switch (key) {
+
+        case GLUT_KEY_RIGHT:
+            alfa -= 0.1; break;
+
+        case GLUT_KEY_LEFT:
+            alfa += 0.1; break;
+
+        case GLUT_KEY_UP:
+            beta += 0.1f;
+            if (beta > 1.5f)
+                beta = 1.5f;
+            break;
+
+        case GLUT_KEY_DOWN:
+            beta -= 0.1f;
+            if (beta < -1.5f)
+                beta = -1.5f;
+            break;
+
+        case GLUT_KEY_PAGE_DOWN: radius -= 1.0f;
+            if (radius < 1.0f)
+                radius = 1.0f;
+            break;
+
+        case GLUT_KEY_PAGE_UP: radius += 1.0f; break;
+    }
+    spherical2Cartesian();
     glutPostRedisplay();
+
 }
 
 
@@ -275,8 +215,6 @@ int main(int argc, char **argv) {
     
 // put here the registration of the keyboard callbacks
 
-
-
 //  OpenGL settings
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
@@ -287,6 +225,72 @@ int main(int argc, char **argv) {
 }
 
 
+
+void draw (Group g) {
+    int iForTranslate = 0;
+    int iForRotate = 0;
+    int iForScale = 0;
+    c1 = 0, c2 = 1, c3 = 1;
+    for (int z = 0; z < g.orderTransform.size(); z++) {
+
+        string order = g.orderTransform[z];
+        string t = "translate";
+        string r = "rotate";
+        string s = "scale";
+
+
+        if (order == t) {
+            tx = g.t[iForTranslate].x;
+            ty = g.t[iForTranslate].y;
+            tz = g.t[iForTranslate].z;
+            iForTranslate++;
+            glTranslated(tx, ty, tz);
+        }
+
+        if (order == r) {
+            rangle = g.r[iForRotate].angle;
+            rx = g.r[iForRotate].x;
+            ry = g.r[iForRotate].y;
+            rz = g.r[iForRotate].z;
+            iForRotate++;
+            glRotated(rangle, rx, ry, rz);
+        }
+        if (order == s) {
+            sx = g.s[iForScale].x;
+            sy = g.s[iForScale].y;
+            sz = g.s[iForScale].z;
+            glScalef(sx, sy, sz);
+        }
+
+    }
+
+    nrTriangles = 0;
+    vector <Triangle> arr = g.files;
+
+    for (int i = 0; i < arr.size(); i++) {
+        // glPolygonMode(GL_FRONT,  GL_LINE);
+        glBegin(GL_TRIANGLES);
+        glColor3f(1.0f, 0.0f, 0.0f);
+        glVertex3f(arr[i].v1.x, arr[i].v1.y, arr[i].v1.z);
+        glColor3f(0.0f, 0.0f, 1.0f);
+        glVertex3f(arr[i].v2.x, arr[i].v2.y, arr[i].v2.z);
+        glColor3f(0.0f, 0.0f, 1.0f);
+        glVertex3f(arr[i].v3.x, arr[i].v3.y, arr[i].v3.z);
+        glEnd();
+    }
+
+    arr.clear();
+
+    int x = 0;
+    while (x < g.nrchilds) {
+        glPushMatrix();
+        draw(g.groupchilds[x]);
+        arr.clear();
+        glPopMatrix();
+        x++;
+
+    }
+}
 
 Group readGroup (XMLElement *group) {
     cout <<"entrou 2" <<endl;
