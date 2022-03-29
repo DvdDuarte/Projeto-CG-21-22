@@ -98,6 +98,7 @@ void renderScene(void) {
         vector<Triangle> arr;
         int iForTranslate= 0;
         int iForRotate = 0;
+        c1= 1, c2=2, c3=1;
         draw(groupbrothers[j]);
         glPopMatrix();
     }
@@ -127,6 +128,7 @@ void draw (Group g) {
             ty = g.t[iForTranslate].y;
             tz = g.t[iForTranslate].z;
             iForTranslate++;
+            cout << "translacao " << tx << " "<< ty << " " << tz <<endl;
             glTranslated(tx, ty, tz);
         }
 
@@ -149,11 +151,16 @@ void draw (Group g) {
 
     nrTriangles = 0;
     vector <Triangle> arr = g.files;
+
+
     for (int i = 0; i < arr.size(); i++) {
-        glPolygonMode(GL_FRONT, GL_LINE);
+       // glPolygonMode(GL_FRONT,  GL_LINE);
         glBegin(GL_TRIANGLES);
+        glColor3f(1.0f, 0.0f, 0.0f);
         glVertex3f(arr[i].v1.x, arr[i].v1.y, arr[i].v1.z);
+        glColor3f(0.0f, 0.0f, 1.0f);
         glVertex3f(arr[i].v2.x, arr[i].v2.y, arr[i].v2.z);
+        glColor3f(0.0f, 0.0f, 1.0f);
         glVertex3f(arr[i].v3.x, arr[i].v3.y, arr[i].v3.z);
         glEnd();
     }
@@ -282,6 +289,7 @@ int main(int argc, char **argv) {
 
 
 Group readGroup (XMLElement *group) {
+    cout <<"entrou 2" <<endl;
     Translate *translates= (Translate *)(malloc(20 * sizeof(Translate)));
     Rotate *rotates= (Rotate *)(malloc(20 * sizeof(Rotate)));
     Scale *scales= (Scale*)(malloc(20 * sizeof(Scale)));
@@ -293,77 +301,95 @@ Group readGroup (XMLElement *group) {
     XMLElement *scale ;
     XMLElement *rotate;
     XMLElement *translate;
-    XMLElement *transform = group->FirstChildElement("transform");
-    XMLElement *transformElement = transform->FirstChildElement();
+    XMLElement *transform;
+    XMLElement *transformElement;
+
+    char *debug = (char*) group->FirstChildElement()->Name();
+    cout << debug <<endl;
+
     vector<Triangle> arr;
-    char* name = (char *)(transformElement->Name());
-    while(strcmp (name,"end")!=0) {
-
-        if (strcmp(name, "rotate") == 0) {
-            rotate = transformElement;
-            listOfTransform.push_back("rotate");
-            iTransform++;
-            rangle = 0, rx = 0, ry = 0, rz = 0;
-            if (rotate->Attribute("angle") != nullptr)
-                rangle = stof(rotate->Attribute("angle"));
-            if (rotate->Attribute("x") != nullptr)
-                rx = stof(rotate->Attribute("x"));
-            if (rotate->Attribute("y") != nullptr)
-                ry = stof(rotate->Attribute("y"));
-            if (rotate->Attribute("z"))
-                rz = stof(rotate->Attribute("z"));
-            rotates[iRotate] = Rotate(rangle, rx, ry, rz);
-            iRotate++;
-
-        }
-        if (strcmp(name, "translate") == 0) {
-            translate = transformElement;
-
-            listOfTransform.push_back("translate");
-            iTransform++;
-            float tx = 0, ty = 0, tz = 0;
-            if (translate->Attribute("x") != nullptr)
-                tx = stof(translate->Attribute("x"));
-            if (translate->Attribute("y") != nullptr)
-                ty = stof(translate->Attribute("y"));
-            if (translate->Attribute("z") != nullptr)
-                tz = stof(translate->Attribute("z"));
-            translates[iTranslate] = Translate(tx, ty, tz);
-            iTranslate++;
-        }
-
-        if (strcmp(name, "scale") == 0) {
-            scale = transformElement;
-            listOfTransform.push_back("scale");
-            iTransform++;
-            sx = 1, sy = 1, sz = 1;
-            if (scale->Attribute("x") != nullptr)
-                sx = stof(scale->Attribute("x"));
-            if (scale->Attribute("y") != nullptr)
-                sy = stof(scale->Attribute("y"));
-            if (scale->Attribute("z") != nullptr)
-                sz = stof(scale->Attribute("z"));
-            scales[iScale] = Scale(sx, sy, sz);
-            iScale++;
-        }
-
-        if (transformElement->NextSiblingElement() != nullptr) {
-            transformElement = transformElement->NextSiblingElement();
-            name = (char *) (transformElement->Name());
-
-        } else name = (char *) "end";
+    char *name;
+    if (strcmp(debug,"models")!=0) {
+        transform = group->FirstChildElement("transform");
+        transformElement = transform->FirstChildElement();
+        name = (char *) (transformElement->Name());
     }
-
-    XMLElement *models = transform->NextSiblingElement("models");
-    for (models;models != nullptr; models = models->NextSiblingElement()) { //Percorrers os models irmaos no group
-        XMLElement *model = models->FirstChildElement("model");
-        for (model; model != nullptr; model = model->NextSiblingElement()) {
-            cout << "file do model " << model->Attribute("file") << endl;
-            filesNames.push_back(model->Attribute("file"));
-            iFiles++;
-        }
-        arr = read3dFiles(filesNames,iFiles,arr);
+    else {
+        name = (char *) "end";
     }
+        while (strcmp(name, "end") != 0) {
+            if (strcmp(name, "rotate") == 0) {
+                rotate = transformElement;
+                listOfTransform.push_back("rotate");
+                iTransform++;
+                rangle = 0, rx = 0, ry = 0, rz = 0;
+                if (rotate->Attribute("angle") != nullptr)
+                    rangle = stof(rotate->Attribute("angle"));
+                if (rotate->Attribute("x") != nullptr)
+                    rx = stof(rotate->Attribute("x"));
+                if (rotate->Attribute("y") != nullptr)
+                    ry = stof(rotate->Attribute("y"));
+                if (rotate->Attribute("z"))
+                    rz = stof(rotate->Attribute("z"));
+                rotates[iRotate] = Rotate(rangle, rx, ry, rz);
+                iRotate++;
+
+            }
+            if (strcmp(name, "translate") == 0) {
+                translate = transformElement;
+
+                listOfTransform.push_back("translate");
+                iTransform++;
+                float tx = 0, ty = 0, tz = 0;
+                if (translate->Attribute("x") != nullptr)
+                    tx = stof(translate->Attribute("x"));
+                if (translate->Attribute("y") != nullptr)
+                    ty = stof(translate->Attribute("y"));
+                if (translate->Attribute("z") != nullptr)
+                    tz = stof(translate->Attribute("z"));
+                translates[iTranslate] = Translate(tx, ty, tz);
+                iTranslate++;
+            }
+
+            if (strcmp(name, "scale") == 0) {
+                scale = transformElement;
+                listOfTransform.push_back("scale");
+                iTransform++;
+                sx = 1, sy = 1, sz = 1;
+                if (scale->Attribute("x") != nullptr)
+                    sx = stof(scale->Attribute("x"));
+                if (scale->Attribute("y") != nullptr)
+                    sy = stof(scale->Attribute("y"));
+                if (scale->Attribute("z") != nullptr)
+                    sz = stof(scale->Attribute("z"));
+                scales[iScale] = Scale(sx, sy, sz);
+                iScale++;
+            }
+
+            if (transformElement->NextSiblingElement() != nullptr) {
+                transformElement = transformElement->NextSiblingElement();
+                name = (char *) (transformElement->Name());
+
+            } else name = (char *) "end";
+        }
+    XMLElement *models;
+    if (strcmp(debug,"models")!=0) {
+        models = transform->NextSiblingElement("models");
+    }
+    else {
+        models = group->FirstChildElement("models");
+    }
+        for (models; models != nullptr; models = models->NextSiblingElement()) { //Percorrers os models irmaos no group
+            XMLElement *model = models->FirstChildElement("model");
+            for (model; model != nullptr; model = model->NextSiblingElement()) {
+                cout << "file do model " << model->Attribute("file") << endl;
+                filesNames.push_back(model->Attribute("file"));
+                iFiles++;
+            }
+            arr = read3dFiles(filesNames, iFiles, arr);
+
+        }
+
 
     XMLElement *groupchild2;
 
@@ -374,7 +400,7 @@ Group readGroup (XMLElement *group) {
         }
 
     Group g = Group(translates,rotates,scales,arr,childs,iChilds,listOfTransform,iFiles);
-
+    cout <<"saiu 2" <<endl;
     return g;
 
 }

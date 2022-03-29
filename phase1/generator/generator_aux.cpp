@@ -1,13 +1,3 @@
-/**
- * @file generator_aux.cpp
- * @author David Duarte (A93253) , Ema Dias (A89518) & Samuel Lira(A94166)
- * @brief File where the auxiliar functions for the generator are defined
- * @version 0.1
- * @date 2022-02-25
- * 
- * @copyright Copyright (c) 2022
- * 
- */
 #include "generator_aux.h"
 #include <iostream>
 #include <cstring>
@@ -18,7 +8,7 @@ Triangle *triangles;
 //Vertex * vertices;
 
 void createSphere(float radius, int slices, int stacks, std::string filename) {
-    
+
     int triangle_nmr = 0;
     ofstream file_handler;
     file_handler.open(filename);
@@ -27,7 +17,7 @@ void createSphere(float radius, int slices, int stacks, std::string filename) {
     float delta_alfa=2*M_PI/(slices);
     float delta_beta=M_PI/(stacks);
     float origem=-M_PI/2;
-    
+
     for(int i=0;i < 2 * stacks; i++){
         //triangles = (Triangle *) malloc(2* sizeof(Triangle));
         //vector<int> pt;
@@ -39,18 +29,18 @@ void createSphere(float radius, int slices, int stacks, std::string filename) {
             float y1=radius*sin((origem) + i*delta_beta);
             //Vertex *v1,*v2,*v3,*v4;
             v1=new Vertex(x1,y1,z1);
-            
+
             v2=new Vertex(radius*cos((origem) + (i+1)*delta_beta)*sin(j*delta_alfa),
-            radius*sin((origem) + (i+1)*delta_beta),
-            radius*cos((origem) + (i+1)*delta_beta)*cos(j*delta_alfa));
-            
+                          radius*sin((origem) + (i+1)*delta_beta),
+                          radius*cos((origem) + (i+1)*delta_beta)*cos(j*delta_alfa));
+
             v3=new Vertex(radius*cos((origem) + (i+1)*delta_beta)*sin((j+1)*delta_alfa),
-            radius*sin((origem) + (i+1)*delta_beta),
-            radius*cos((origem) + (i+1)*delta_beta)*cos((j+1)*delta_alfa));
+                          radius*sin((origem) + (i+1)*delta_beta),
+                          radius*cos((origem) + (i+1)*delta_beta)*cos((j+1)*delta_alfa));
 
             v4=new Vertex(radius*cos((origem) + i*delta_beta)*sin((j+1)*delta_alfa),
-            radius*sin((origem) + i*delta_beta),
-            radius*cos((origem) + i*delta_beta)*cos((j+1)*delta_alfa));
+                          radius*sin((origem) + i*delta_beta),
+                          radius*cos((origem) + i*delta_beta)*cos((j+1)*delta_alfa));
             //primeiro triang = v1,v2,v3
             t1 = new Triangle(v1,v2,v3);
             //segundo triang= v1,v3,v4
@@ -65,10 +55,10 @@ void createSphere(float radius, int slices, int stacks, std::string filename) {
             triangle_nmr = 0;
             free(triangles);
         }
-    
+
     }
     file_handler.close();
-    
+
 }
 
 void createBox(float units, float grid, string filename) {
@@ -88,14 +78,14 @@ void createBox(float units, float grid, string filename) {
     //triangles = (Triangle *) malloc(sizeArray * sizeof(Triangle));
     ofstream file_handler;
     file_handler.open(filename);
-  //  file_handler << "Number of triangles in the grid: " << triangle_nmr_max << endl;
+    //  file_handler << "Number of triangles in the grid: " << triangle_nmr_max << endl;
     cout << "max " << triangle_nmr_max << endl;
 
     // Faces: Front e Back for x and y
-   // aux_x1 = 0, aux_x2= 0, aux_y1 = 0, aux_y2 = 0, aux_z1 = 0, aux_z2=0;
-       for (int i = 0; -halfx + i * halfx_temp < halfx; i++) {
-            for (int j=0; -halfy + j*halfy_temp < halfy; j++) {
-                triangles = (Triangle *) malloc(4* sizeof(Triangle));
+    // aux_x1 = 0, aux_x2= 0, aux_y1 = 0, aux_y2 = 0, aux_z1 = 0, aux_z2=0;
+    for (int i = 0; -halfx + i * halfx_temp < halfx; i++) {
+        for (int j=0; -halfy + j*halfy_temp < halfy; j++) {
+            triangles = (Triangle *) malloc(4* sizeof(Triangle));
 
             aux_x1 = -halfx + ((i) * halfx_temp);
             aux_x2 = -halfx + ((i + 1) * halfx_temp);
@@ -136,7 +126,7 @@ void createBox(float units, float grid, string filename) {
     }
 
     //Faces : top and bottom x e z
-  //  aux_x1 = 0, aux_x2= 0, aux_y1 = 0, aux_y2 = 0, aux_z1 = 0, aux_z2=0;
+    //  aux_x1 = 0, aux_x2= 0, aux_y1 = 0, aux_y2 = 0, aux_z1 = 0, aux_z2=0;
     for (int k=0; -halfz + k* halfz_temp < halfz; k++) {
         for (int i=0; -halfx + i*halfx_temp < halfx; i++) {
 
@@ -181,7 +171,7 @@ void createBox(float units, float grid, string filename) {
     }
 
     // Faces: right and left for z and y
-  //  aux_x1 = 0, aux_x2= 0, aux_y1 = 0, aux_y2 = 0, aux_z1 = 0, aux_z2=0;
+    //  aux_x1 = 0, aux_x2= 0, aux_y1 = 0, aux_y2 = 0, aux_z1 = 0, aux_z2=0;
     for (int k=0; -halfz + k* halfz_temp < halfz; k++) {
         for (int j = 0; -halfy + j*halfy_temp < halfy; j++) {
 
@@ -225,18 +215,18 @@ void createBox(float units, float grid, string filename) {
         }
     }
 
-   //  free(triangles);
+    //  free(triangles);
     file_handler.close();
 }
 
 void createCone(float radius, float height, float slices, float stacks, string filename){
 
-    float stack_height = height / slices;
+    float stack_height = height / stacks;
     float stack_radius = radius / stacks;
     float angle = ( 2 * M_PI) / slices;
     ofstream file_cone_handler;
     file_cone_handler.open(filename);
-    
+
     for (int stack_step = 0; stack_step < stacks; stack_step++){
         float previous_height = stack_height * (stacks - stack_step);
         float next_height = stack_height * (stacks - stack_step - 1);
@@ -253,7 +243,7 @@ void createCone(float radius, float height, float slices, float stacks, string f
                 Triangle *t1 = new Triangle(v1, v2, v3);
                 string info = triangleToString(t1);
                 file_cone_handler << info;
-            } 
+            }
             Vertex *v4 = new Vertex(final_radius * sin(next_angle), next_height, final_radius * cos(next_angle));
             Vertex *v5 = new Vertex(init_radius * sin(next_angle), previous_height, init_radius * cos(next_angle));
             Vertex *v6 = new Vertex(init_radius * sin(current_angle), previous_height, init_radius * cos(current_angle));
@@ -276,7 +266,7 @@ void createPlane(float units, int divisions, std::string filename){
 
     int triangle_nmr_max = divisions * divisions * 2; // For each slice in the grid generated by the number of divisions we have 2 slices;
 
-   // int sizeArray = 100;
+    // int sizeArray = 100;
     int triangle_nmr = 0;
     Triangle *t1, *t2;
     float halfx = 0, halfz = 0, halfx_temp = 0, halfz_temp = 0, aux_x1 = 0, aux_z1 = 0, aux_x2 = 0, aux_z2 = 0;
@@ -317,12 +307,12 @@ void createPlane(float units, int divisions, std::string filename){
         }
     }
 
-   for(triangle_nmr = 0; triangle_nmr < triangle_nmr_max; triangle_nmr++) {
+    for(triangle_nmr = 0; triangle_nmr < triangle_nmr_max; triangle_nmr++) {
         string info = triangleToString(triangles[triangle_nmr]);
         file_handler << info;
     }
 
-   // free(triangles);
+    // free(triangles);
     file_handler.close();
 }
 
