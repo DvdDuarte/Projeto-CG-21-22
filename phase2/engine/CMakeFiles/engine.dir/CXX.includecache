@@ -6,15 +6,15 @@
 
 #IncludeRegexTransform: 
 
-/home/sleiman/Projeto-CG-21-22/phase2/engine/colors.h
+/home/ema/Projeto-CG-21-22/phase2/engine/colors.h
 
-/home/sleiman/Projeto-CG-21-22/phase2/engine/engine.cpp
+/home/ema/Projeto-CG-21-22/phase2/engine/engine.cpp
 engine.h
-/home/sleiman/Projeto-CG-21-22/phase2/engine/engine.h
+/home/ema/Projeto-CG-21-22/phase2/engine/engine.h
 tinyxml2.h
-/home/sleiman/Projeto-CG-21-22/phase2/engine/tinyxml2.h
+/home/ema/Projeto-CG-21-22/phase2/engine/tinyxml2.h
 
-/home/sleiman/Projeto-CG-21-22/phase2/engine/engine.h
+/home/ema/Projeto-CG-21-22/phase2/engine/engine.h
 GL/glut.h
 -
 vector
@@ -28,13 +28,13 @@ math.h
 iostream
 -
 tinyxml2.h
-/home/sleiman/Projeto-CG-21-22/phase2/engine/tinyxml2.h
+/home/ema/Projeto-CG-21-22/phase2/engine/tinyxml2.h
 engine_aux.h
-/home/sleiman/Projeto-CG-21-22/phase2/engine/engine_aux.h
+/home/ema/Projeto-CG-21-22/phase2/engine/engine_aux.h
 colors.h
-/home/sleiman/Projeto-CG-21-22/phase2/engine/colors.h
+/home/ema/Projeto-CG-21-22/phase2/engine/colors.h
 
-/home/sleiman/Projeto-CG-21-22/phase2/engine/engine_aux.h
+/home/ema/Projeto-CG-21-22/phase2/engine/engine_aux.h
 GL/glut.h
 -
 vector
@@ -48,13 +48,13 @@ math.h
 iostream
 -
 colors.h
-/home/sleiman/Projeto-CG-21-22/phase2/engine/colors.h
+/home/ema/Projeto-CG-21-22/phase2/engine/colors.h
 ../generator/Vertex.h
-/home/sleiman/Projeto-CG-21-22/phase2/generator/Vertex.h
+/home/ema/Projeto-CG-21-22/phase2/generator/Vertex.h
 ../generator/Triangle.h
-/home/sleiman/Projeto-CG-21-22/phase2/generator/Triangle.h
+/home/ema/Projeto-CG-21-22/phase2/generator/Triangle.h
 
-/home/sleiman/Projeto-CG-21-22/phase2/engine/tinyxml2.h
+/home/ema/Projeto-CG-21-22/phase2/engine/tinyxml2.h
 ctype.h
 -
 limits.h
@@ -84,9 +84,9 @@ android/log.h
 assert.h
 -
 
-/home/sleiman/Projeto-CG-21-22/phase2/generator/Triangle.h
+/home/ema/Projeto-CG-21-22/phase2/generator/Triangle.h
 Vertex.h
-/home/sleiman/Projeto-CG-21-22/phase2/generator/Vertex.h
+/home/ema/Projeto-CG-21-22/phase2/generator/Vertex.h
 
-/home/sleiman/Projeto-CG-21-22/phase2/generator/Vertex.h
+/home/ema/Projeto-CG-21-22/phase2/generator/Vertex.h
 

@@ -12,8 +12,8 @@ vector<Group> groupbrothers;
 int iBrothers= 0;
 float rangle = 0,tx = 0,ty = 0, tz = 0,rx = 0,ry = 0,rz = 0;
 float sx=1, sy=1, sz=1;
-float r=5.0f;
-float alpha = 0.0f, beta = 0.5f, radius = 20.0;
+
+float alpha = 0.0f, beta = 0.5f, r = 20.0;
 int nrTriangles = 0;
 bool wh;
 int startX, startY, tracking = 0;
@@ -23,7 +23,21 @@ string vertexToString(Vertex v){
     return vertex_info;
 }
 
-
+void cart2spherical (){
+    float X = position_x;
+    float Y = position_y;
+    float Z = position_z;
+    float X1 = lx;
+    float Y1 = ly;
+    float Z1 = lz;
+    // r = sqrt(X* X + Y*Y + Z*Z);
+    r = sqrt((X-X1) * (X-X1) + (Y-Y1) * (Y-Y1) + (Z-Z1) * (Z-Z1));
+    alpha = atan2(Z, X);
+    beta = asin(Y / r);
+  /*  position_x = r * cos(beta) * sin (alpha);
+    position_y = r * sin(beta);
+    position_z = r * cos(beta) * cos(alpha); */
+}
 void changeSize(int w, int h) {
 
     // Prevent a divide by zero, when window is too short
@@ -57,7 +71,8 @@ void renderScene(void) {
 
     // set the camera
     glLoadIdentity();
-    
+
+    cart2spherical ();
     gluLookAt(position_x,position_y,position_z,
               lx,ly,lz,
               up_x,up_y,up_z);
@@ -77,17 +92,14 @@ void renderScene(void) {
     glVertex3f(0.0f, 0.0f, 100.0f);
     glEnd();
     int i;
-    cout << iBrothers << endl;
 
-    for (int j=0; j<iBrothers; j++) { //for each brother
+
+    for (int iteratorBrothers=0; iteratorBrothers<iBrothers; iteratorBrothers++) { //for each brother
         glPushMatrix();
-        vector<Triangle> arr;
-        int iForTranslate= 0;
-        int iForRotate = 0;
         glTranslatef(posx,0.0,posz);
         glRotatef(angle, 1.0, 0.0, .0);
         glScalef(scalex, scaley, scalez);
-        draw(groupbrothers[j]);
+        draw(groupbrothers[iteratorBrothers]);
         glPopMatrix();
     }
 
@@ -196,15 +208,21 @@ void processMouseMotion(int xx, int yy)
         if (rAux < 3)
             rAux = 3;
     }
+
+
+
     position_x = rAux * sin(alphaAux * 3.14 / 180.0) * cos(betaAux * 3.14 / 180.0);
     position_z = rAux * cos(alphaAux * 3.14 / 180.0) * cos(betaAux * 3.14 / 180.0);
     position_y = rAux * 							     sin(betaAux * 3.14 / 180.0);
+
+
 
     glutPostRedisplay();
 }
 
 void processMouseButtons(int button, int state, int xx, int yy)
 {
+
     printf("%d %d\n", xx, yy);
     if (state == GLUT_DOWN)  {
         startX = xx;
@@ -236,6 +254,7 @@ void processMouseButtons(int button, int state, int xx, int yy)
         }
         tracking = 0;
     }
+
 }
 
 
@@ -280,13 +299,13 @@ void draw (Group g) {
     c1 = 0, c2 = 1, c3 = 1;
     for (int z = 0; z < g.orderTransform.size(); z++) {
 
-        string order = g.orderTransform[z];
+        string transform = g.orderTransform[z];
         string t = "translate";
         string r = "rotate";
         string s = "scale";
 
 
-        if (order == t) {
+        if (transform == t) {
             tx = g.t[iForTranslate].x;
             ty = g.t[iForTranslate].y;
             tz = g.t[iForTranslate].z;
@@ -294,7 +313,7 @@ void draw (Group g) {
             glTranslated(tx, ty, tz);
         }
 
-        if (order == r) {
+        if (transform == r) {
             rangle = g.r[iForRotate].angle;
             rx = g.r[iForRotate].x;
             ry = g.r[iForRotate].y;
@@ -302,7 +321,7 @@ void draw (Group g) {
             iForRotate++;
             glRotated(rangle, rx, ry, rz);
         }
-        if (order == s) {
+        if (transform== s) {
             sx = g.s[iForScale].x;
             sy = g.s[iForScale].y;
             sz = g.s[iForScale].z;
@@ -312,35 +331,35 @@ void draw (Group g) {
     }
 
     nrTriangles = 0;
-    vector <Triangle> arr = g.files;
+    vector <Triangle> triangle_vector = g.files;
 
-    for (int i = 0; i < arr.size(); i++) {
+    for (int i = 0; i <  triangle_vector.size(); i++) {
         // glPolygonMode(GL_FRONT,  GL_LINE);
         glBegin(GL_TRIANGLES);
         glColor3f(1.0f, 0.0f, 0.0f);
-        glVertex3f(arr[i].v1.x, arr[i].v1.y, arr[i].v1.z);
+        glVertex3f( triangle_vector[i].v1.x,  triangle_vector[i].v1.y,  triangle_vector[i].v1.z);
         glColor3f(0.0f, 0.0f, 1.0f);
-        glVertex3f(arr[i].v2.x, arr[i].v2.y, arr[i].v2.z);
+        glVertex3f( triangle_vector[i].v2.x,  triangle_vector[i].v2.y,  triangle_vector[i].v2.z);
         glColor3f(0.0f, 0.0f, 1.0f);
-        glVertex3f(arr[i].v3.x, arr[i].v3.y, arr[i].v3.z);
+        glVertex3f( triangle_vector[i].v3.x,  triangle_vector[i].v3.y, triangle_vector[i].v3.z);
         glEnd();
     }
 
-    arr.clear();
+    triangle_vector.clear();
 
-    int x = 0;
-    while (x < g.nrchilds) {
+    int iterateChildren= 0;
+    while (iterateChildren< g.nrchilds) {
         glPushMatrix();
-        draw(g.groupchilds[x]);
-        arr.clear();
+        draw(g.groupchilds[iterateChildren]);
+        triangle_vector.clear();
         glPopMatrix();
-        x++;
+        iterateChildren++;
 
     }
 }
 
 Group readGroup (XMLElement *group) {
-    cout <<"entrou 2" <<endl;
+
     Translate *translates= (Translate *)(malloc(20 * sizeof(Translate)));
     Rotate *rotates= (Rotate *)(malloc(20 * sizeof(Rotate)));
     Scale *scales= (Scale*)(malloc(20 * sizeof(Scale)));
@@ -356,9 +375,8 @@ Group readGroup (XMLElement *group) {
     XMLElement *transformElement;
 
     char *debug = (char*) group->FirstChildElement()->Name();
-    cout << debug <<endl;
 
-    vector<Triangle> arr;
+    vector<Triangle> triangleVec;
     char *name;
     if (strcmp(debug,"models")!=0) {
         transform = group->FirstChildElement("transform");
@@ -437,7 +455,7 @@ Group readGroup (XMLElement *group) {
                 filesNames.push_back(model->Attribute("file"));
                 iFiles++;
             }
-            arr = read3dFiles(filesNames, iFiles, arr);
+            triangleVec = read3dFiles(filesNames, iFiles,  triangleVec);
 
         }
 
@@ -450,8 +468,8 @@ Group readGroup (XMLElement *group) {
             iChilds++;
         }
 
-    Group g = Group(translates,rotates,scales,arr,childs,iChilds,listOfTransform,iFiles);
-    cout <<"saiu 2" <<endl;
+    Group g = Group(translates,rotates,scales, triangleVec,childs,iChilds,listOfTransform);
+
     return g;
 
 }
