@@ -18,7 +18,7 @@ void createSphere(float radius, int slices, int stacks, std::string filename) {
     float delta_beta=M_PI/(stacks);
     float origem=-M_PI/2;
 
-    for(int i=0;i < 2 * stacks; i++){
+    for(int i=0;i <stacks; i++){
         //triangles = (Triangle *) malloc(2* sizeof(Triangle));
         //vector<int> pt;
 
