@@ -8,7 +8,8 @@
     </camera>
 
     <!-- planetas-->
-    <group>
+    <!-- generator sphere 0.5 10 10 lua.3d-->
+	<group>
         <transform> 
             <translate x="0" y="1" z="0" />
         </transform>
