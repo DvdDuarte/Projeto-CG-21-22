@@ -1,0 +1,91 @@
+<world> <!-- a world can have a camera, a set of lights, and a single group -->
+	
+    <camera> 
+	    <position x="3" y="10" z="4" />
+	    <lookAt x="0" y="0" z="0" />
+	    <up x="0" y="1" z="0" /> <!-- optional, use these values as default-->
+        <projection fov="60" near="1" far="1000" /> <!-- optional, use these values as default-->
+    </camera>
+
+    <!-- aneis-->
+    <group>
+        <transform> 
+            <translate x="0" y="1" z="0" />
+        </transform>
+        <models> 
+				<model file="sun.3d" /> <!-- generator sphere 3 15 15 sun.3d -->
+			</models>
+        <group> 
+            <transform> 
+                <rotate angle="45" x="0" y ="1" z = "0" />
+                <translate x="40" y="0" z="0" />
+            </transform>
+			<models> 
+				<model file="aneis_sat.3d" /> <!-- generator sphere 1 10 10 anel155.3d mudar nome para os planetas!-->
+			</models>
+        </group>
+        <group> 
+            <transform> 
+                <rotate angle="90" x="0" y ="1" z = "0" />
+                <translate x="5" y="0" z="0" />
+            </transform>
+			<models> 
+				<model file="aneis_sat.3d" /> <!-- generator sphere 1 10 10 anel155.3d -->
+			</models>
+        </group>
+        <group> 
+            <transform> 
+                <rotate angle="135" x="0" y ="1" z = "0" />
+                <translate x="10" y="0" z="0" />
+            </transform>
+			<models> 
+				<model file="aneis_sat.3d" /> <!-- generator sphere 1 10 10 anel155.3d -->
+			</models>
+        </group>
+        <group> 
+            <transform> 
+                <rotate angle="180" x="0" y ="1" z = "0" />
+                <translate x="15" y="0" z="0" />
+            </transform>
+			<models> 
+				<model file="aneis_sat.3d" /> <!-- generator sphere 1 10 10 anel155.3d -->
+			</models>
+        </group>
+        <group> 
+            <transform> 
+                <rotate angle="225" x="0" y ="1" z = "0" />
+                <translate x="20" y="0" z="0" />
+            </transform>
+			<models> 
+				<model file="aneis_sat.3d" /> <!-- generator sphere 1 10 10 anel155.3d -->
+			</models>
+        </group>
+        <group> 
+            <transform> 
+                <rotate angle="270" x="0" y ="1" z = "0" />
+                <translate x="25" y="0" z="0" />
+            </transform>
+			<models> 
+				<model file="aneis_sat.3d" /> <!-- generator sphere 1 10 10 anel155.3d -->
+			</models>
+        </group>
+        <group> 
+            <transform> 
+                <rotate angle="315" x="0" y ="1" z = "0" />
+                <translate x="30" y="0" z="0" />
+            </transform>
+			<models> 
+				<model file="aneis_sat.3d" /> <!-- generator sphere 1 10 10 anel155.3d -->
+			</models>
+        </group>
+        <group> 
+            <transform> 
+                <rotate angle="360" x="0" y ="1" z = "0" />
+                <translate x="35" y="0" z="0" />
+            </transform>
+			<models> 
+				<model file="aneis_sat.3d" /> <!-- generator sphere 1 10 10 anel155.3d -->
+			</models>
+        </group>
+    </group>
+</world>
