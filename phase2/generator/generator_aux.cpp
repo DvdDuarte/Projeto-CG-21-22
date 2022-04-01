@@ -6,7 +6,9 @@
 int sizeArray = 100;
 Triangle *triangles;
 //Vertex * vertices;
+void createRing(std::string filename){
 
+}
 void createSphere(float radius, int slices, int stacks, std::string filename) {
 
     int triangle_nmr = 0;

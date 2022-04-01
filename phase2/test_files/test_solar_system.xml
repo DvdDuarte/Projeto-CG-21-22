@@ -17,8 +17,8 @@
 			</models>
         <group> 
             <transform> 
-                <rotate angle="45" x="0" y ="1" z = "0" />
-                <translate x="9" y="0" z="0" />
+                <rotate angle="0" x="0" y ="1" z = "0" />
+                <translate x="10" y="0" z="0" />
             </transform>
 			<models> 
 				<model file="mercurio.3d" /> <!-- generator sphere 1 10 10 mercurio.3d -->
@@ -26,8 +26,8 @@
         </group>
         <group> 
             <transform> 
-                <rotate angle="90" x="0" y ="1" z = "0" />
-                <translate x="17" y="0" z="0" />
+                <rotate angle="0" x="0" y ="1" z = "0" />
+                <translate x="20" y="0" z="0" />
             </transform>
 			<models> 
 				<model file="venus.3d" /> <!-- generator sphere 1.5 10 10 venus.3d -->
@@ -35,8 +35,8 @@
         </group>
         <group> 
             <transform> 
-                <rotate angle="135" x="0" y ="1" z = "0" />
-                <translate x="27" y="0" z="0" />
+                <rotate angle="0" x="0" y ="1" z = "0" />
+                <translate x="35" y="0" z="0" />
             </transform>
 			<models> 
 				<model file="terra.3d" /> <!-- generator sphere 2 10 10 terra.3d -->
@@ -54,8 +54,8 @@
         </group>
         <group> 
             <transform> 
-                <rotate angle="180" x="0" y ="1" z = "0" />
-                <translate x="34" y="0" z="0" />
+                <rotate angle="0" x="0" y ="1" z = "0" />
+                <translate x="48" y="0" z="0" />
             </transform>
 			<models> 
 				<model file="marte.3d" /> <!-- generator sphere 2 10 10 marte.3d -->
@@ -80,40 +80,322 @@
             </group>
         </group>
         <group> 
-            <transform> 
-                <rotate angle="225" x="0" y ="1" z = "0" />
-                <translate x="47" y="0" z="0" />
-            </transform>
-			<models> 
-				<model file="jupiter.3d" /> <!-- generator sphere 4 10 10 jupiter.3d -->
-			</models>
+        	<transform> 
+        	        <rotate angle="0" x="0" y ="1" z = "0" />
+        	        <translate x="70" y="0" z="0" />
+        	</transform>
+		<models> 
+			<model file="jupiter.3d" /> <!-- generator sphere 4 10 10 jupiter.3d -->
+		</models>
+		
+		<group> 
+                	<transform> 
+                	       <rotate angle="45" x="0" y ="1" z = "0" />
+               		<translate x="5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+            	<group> 
+                 <transform> 
+                        <rotate angle="90" x="0" y ="1" z = "0" />
+                    <translate x="5" y="0" z="0" />
+                </transform>
+                        <!-- adicionar cor??-->
+                <models> 
+                    <model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+		    <group> 
+                 <transform> 
+                        <rotate angle="135" x="0" y ="1" z = "0" />
+                    <translate x="5" y="0" z="0" />
+                </transform>
+                        <!-- adicionar cor??-->
+                <models> 
+                    <model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            </group>
+            <group> 
+                	<transform> 
+                	       <rotate angle="180" x="0" y ="1" z = "0" />
+               		<translate x="5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            </group>
+            <group> 
+                	<transform> 
+                	       <rotate angle="180" x="0" y ="1" z = "0" />
+               		<translate x="5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            </group>
+            <group> 
+                	<transform> 
+                	       <rotate angle="160" x="0" y ="1" z = "0" />
+                		<translate x="5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+                <group> 
+                	<transform> 
+                	       <rotate angle="160" x="0" y ="1" z = "0" />
+                		<translate x="5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+                <group> 
+                	<transform> 
+                	       <rotate angle="160" x="0" y ="1" z = "0" />
+                		<translate x="5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+        </group>
+        <group> 
+        	<transform> 
+        	        <rotate angle="0" x="0" y ="1" z = "0" />
+        	        <translate x="90" y="0" z="0" />
+            	</transform>
+		<models> 
+			<model file="saturno.3d" /> <!-- generator sphere 3 10 10 saturno.3d -->
+		</models>
+		<group> 
+                	<transform> 
+                	       <rotate angle="20" x="0" y ="1" z = "0" />
+               		<translate x="5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+            	<group> 
+               	<transform> 
+               	        <rotate angle="50" x="0" y ="1" z = "0" />
+               	     	<translate x="5" y="0" z="0" />
+               	</transform>
+                        <!-- adicionar cor??-->
+               	<models> 
+               		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+		<group> 
+               	<transform> 
+             			<rotate angle="80" x="0" y ="1" z = "0" />
+                    		<translate x="5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+		<group> 
+                	<transform> 
+               		<rotate angle="110" x="0" y ="1" z = "0" />
+               		<translate x="5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+            	<group> 
+                	<transform> 
+                	       <rotate angle="140" x="0" y ="1" z = "0" />
+                		<translate x="5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+		<group> 
+                	<transform> 
+                	       <rotate angle="170" x="0" y ="1" z = "0" />
+                    		<translate x="5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+            	<group> 
+                	<transform> 
+                	       <rotate angle="200" x="0" y ="1" z = "0" />
+               		<translate x="5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d --> 
+                    	</models>
+            	</group>
+                <group> 
+                	<transform> 
+                	       <rotate angle="230" x="0" y ="1" z = "0" />
+                		<translate x="5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+                <group> 
+                	<transform> 
+                	       <rotate angle="260" x="0" y ="1" z = "0" />
+                		<translate x="5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+                <group> 
+                	<transform> 
+                	       <rotate angle="290" x="0" y ="1" z = "0" />
+                		<translate x="5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+        
         </group>
         <group> 
             <transform> 
-                <rotate angle="270" x="0" y ="1" z = "0" />
-                <translate x="60" y="0" z="0" />
+                <rotate angle="0" x="0" y ="1" z = "0" />
+                <translate x="110" y="0" z="0" />
             </transform>
 			<models> 
-				<model file="saturno.3d" /> <!-- generator sphere 3 10 10 saturno.3d -->
+				<model file="urano.3d" /> <!-- generator sphere 2.3 10 10 urano.3d -->
 			</models>
+            <group> 
+                	<transform> 
+                	       <rotate angle="40" x="0" y ="1" z = "0" />
+                		<translate x="5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+                <group> 
+                	<transform> 
+                	       <rotate angle="80" x="0" y ="1" z = "0" />
+                		<translate x="5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+                <group> 
+                	<transform> 
+                	       <rotate angle="120" x="0" y ="1" z = "0" />
+                		<translate x="5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+                <group> 
+                	<transform> 
+                	       <rotate angle="160" x="0" y ="1" z = "0" />
+                		<translate x="5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+                <group> 
+                	<transform> 
+                	       <rotate angle="200" x="0" y ="1" z = "0" />
+                		<translate x="5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+                <group> 
+                	<transform> 
+                	       <rotate angle="240" x="0" y ="1" z = "0" />
+                		<translate x="5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
         </group>
         <group> 
             <transform> 
-                <rotate angle="315" x="0" y ="1" z = "0" />
-                <translate x="70" y="0" z="0" />
-            </transform>
-			<models> 
-				<model file="urano.3d" /> <!-- generator sphere 2.5 10 10 urano.3d -->
-			</models>
-        </group>
-        <group> 
-            <transform> 
-                <rotate angle="360" x="0" y ="1" z = "0" />
-                <translate x="79" y="0" z="0" />
+                <rotate angle="0" x="0" y ="1" z = "0" />
+                <translate x="130" y="0" z="0" />
             </transform>
 			<models> 
 				<model file="netuno.3d" /> <!-- generator sphere 2.5 10 10 netuno.3d -->
 			</models>
+            <group> 
+                	<transform> 
+                	       <rotate angle="0" x="0" y ="1" z = "0" />
+                		<translate x="5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+                <group> 
+                	<transform> 
+                	       <rotate angle="50" x="0" y ="1" z = "0" />
+                		<translate x="5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+                <group> 
+                	<transform> 
+                	       <rotate angle="100" x="0" y ="1" z = "0" />
+                		<translate x="5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+                <group> 
+                	<transform> 
+                	       <rotate angle="150" x="0" y ="1" z = "0" />
+                		<translate x="5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+                <group> 
+                	<transform> 
+                	       <rotate angle="200" x="0" y ="1" z = "0" />
+                		<translate x="5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+        </group>
+        <group> 
+            <transform> 
+                <rotate angle="0" x="0" y ="1" z = "0" />
+                <translate x="150" y="0" z="0" />
+            </transform>
+			<models> 
+				<model file="plutao.3d" /> <!-- generator sphere 0.9 10 10 netuno.3d -->
+			</models>
+            <group> 
+                	<transform> 
+                	       <rotate angle="0" x="0" y ="1" z = "0" />
+                		<translate x="5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
         </group>
     </group>
 </world>

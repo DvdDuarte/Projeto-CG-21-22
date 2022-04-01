@@ -27,6 +27,16 @@
 
 using namespace std;
 /**
+ * @brief Create a Ring object
+ * 
+ * @param radius The radius of the ring
+ * @param slices The number of
+ * @param stacks The number of
+ * @param filename The name of the file where the data is going to be stored (Preferably ring.3d)
+ */
+void createRing(std::string filename);
+
+/**
  * @brief Create a Sphere object
  * 
  * @param radius The radius of the Sphere
