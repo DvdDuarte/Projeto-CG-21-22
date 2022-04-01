@@ -7,7 +7,7 @@
         <projection fov="60" near="1" far="1000" /> <!-- optional, use these values as default-->
     </camera>
 
-    <!-- aneis-->
+    <!-- planetas-->
     <group>
         <transform> 
             <translate x="0" y="1" z="0" />
@@ -18,28 +18,28 @@
         <group> 
             <transform> 
                 <rotate angle="45" x="0" y ="1" z = "0" />
-                <translate x="40" y="0" z="0" />
+                <translate x="3.5" y="0" z="0" />
             </transform>
 			<models> 
-				<model file="aneis_sat.3d" /> <!-- generator sphere 1 10 10 anel155.3d mudar nome para os planetas!-->
+				<model file="mercurio.3d" /> <!-- generator sphere 1 10 10 mercurio.3d -->
 			</models>
         </group>
         <group> 
             <transform> 
                 <rotate angle="90" x="0" y ="1" z = "0" />
-                <translate x="5" y="0" z="0" />
+                <translate x="8" y="0" z="0" />
             </transform>
 			<models> 
-				<model file="aneis_sat.3d" /> <!-- generator sphere 1 10 10 anel155.3d -->
+				<model file="venus.3d" /> <!-- generator sphere 1.5 10 10 venus.3d -->
 			</models>
         </group>
         <group> 
             <transform> 
                 <rotate angle="135" x="0" y ="1" z = "0" />
-                <translate x="10" y="0" z="0" />
+                <translate x="12" y="0" z="0" />
             </transform>
 			<models> 
-				<model file="aneis_sat.3d" /> <!-- generator sphere 1 10 10 anel155.3d -->
+				<model file="terra.3d" /> <!-- generator sphere 2 10 10 anel155.3d -->
 			</models>
         </group>
         <group> 
@@ -48,7 +48,7 @@
                 <translate x="15" y="0" z="0" />
             </transform>
 			<models> 
-				<model file="aneis_sat.3d" /> <!-- generator sphere 1 10 10 anel155.3d -->
+				<model file="marte.3d" /> <!-- generator sphere 2 10 10 marte.3d -->
 			</models>
         </group>
         <group> 
@@ -57,7 +57,7 @@
                 <translate x="20" y="0" z="0" />
             </transform>
 			<models> 
-				<model file="aneis_sat.3d" /> <!-- generator sphere 1 10 10 anel155.3d -->
+				<model file="jupiter.3d" /> <!-- generator sphere 4 10 10 jupiter.3d -->
 			</models>
         </group>
         <group> 
@@ -66,7 +66,7 @@
                 <translate x="25" y="0" z="0" />
             </transform>
 			<models> 
-				<model file="aneis_sat.3d" /> <!-- generator sphere 1 10 10 anel155.3d -->
+				<model file="saturno.3d" /> <!-- generator sphere 3 10 10 saturno.3d -->
 			</models>
         </group>
         <group> 
@@ -75,7 +75,7 @@
                 <translate x="30" y="0" z="0" />
             </transform>
 			<models> 
-				<model file="aneis_sat.3d" /> <!-- generator sphere 1 10 10 anel155.3d -->
+				<model file="urano.3d" /> <!-- generator sphere 2.5 10 10 urano.3d -->
 			</models>
         </group>
         <group> 
@@ -84,7 +84,7 @@
                 <translate x="35" y="0" z="0" />
             </transform>
 			<models> 
-				<model file="aneis_sat.3d" /> <!-- generator sphere 1 10 10 anel155.3d -->
+				<model file="netuno.3d" /> <!-- generator sphere 2.5 10 10 netuno.3d -->
 			</models>
         </group>
     </group>
