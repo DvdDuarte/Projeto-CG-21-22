@@ -69,10 +69,6 @@ void renderScene(void) {
     glScalef(scalex, scaley, scalez);
 
 // put the geometric transformations here
- 
-
-// put drawing instructions here
- 
     glBegin(GL_LINES);
     // X axis in red
     glColor3f(1.0f, 0.0f, 0.0f);
@@ -101,6 +97,11 @@ void renderScene(void) {
         glEnd();
     }
     
+
+
+// put drawing instructions here
+
+
     // End of frame
     glutSwapBuffers();
 }
@@ -108,6 +109,8 @@ void renderScene(void) {
 
 
 // write function to process keyboard events
+
+
 
 void keyboardFunc(unsigned char key, int x, int y) {
     switch(key) {

@@ -1,0 +1,3 @@
+/home/ema/Projeto-CG-21-22/phase2/engine/CMakeFiles/rebuild_cache.dir
+/home/ema/Projeto-CG-21-22/phase2/engine/CMakeFiles/edit_cache.dir
+/home/ema/Projeto-CG-21-22/phase2/engine/CMakeFiles/engine.dir
