@@ -7,6 +7,7 @@ CMakeFiles/generator.dir/generator.cpp.o: generator.cpp
 CMakeFiles/generator.dir/generator.cpp.o: generator.h
 CMakeFiles/generator.dir/generator.cpp.o: generator_aux.h
 
+CMakeFiles/generator.dir/generator_aux.cpp.o: Torus.h
 CMakeFiles/generator.dir/generator_aux.cpp.o: Triangle.h
 CMakeFiles/generator.dir/generator_aux.cpp.o: Vertex.h
 CMakeFiles/generator.dir/generator_aux.cpp.o: generator_aux.cpp

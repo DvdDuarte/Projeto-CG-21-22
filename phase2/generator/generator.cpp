@@ -32,7 +32,6 @@ int main(int argc, char *argv[]) {
         createPlane(atof(argv[2]), atoi(argv[3]), filename);
     } else if(model == "ring"){
         //filename += argv[4];
-        createRing( filename);
     }
     else perror("No Valid Input!");
 

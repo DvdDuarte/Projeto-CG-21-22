@@ -24,18 +24,6 @@ math.h
 generator_aux.h
 /home/sdaslira/Projeto-CG-21-22/phase2/generator/generator_aux.h
 
-/home/sdaslira/Projeto-CG-21-22/phase2/generator/generator_aux.cpp
-generator_aux.h
-/home/sdaslira/Projeto-CG-21-22/phase2/generator/generator_aux.h
-iostream
--
-cstring
--
-stdlib.h
--
-vector
--
-
 /home/sdaslira/Projeto-CG-21-22/phase2/generator/generator_aux.h
 GL/glut.h
 -
