@@ -77,6 +77,7 @@ void renderScene(void) {
               lx,ly,lz,
               up_x,up_y,up_z);
  
+    
     glBegin(GL_LINES);
     // X axis in red
     glColor3f(1.0f, 0.0f, 0.0f);
@@ -91,6 +92,7 @@ void renderScene(void) {
     glVertex3f(0.0f, 0.0f,-100.0f);
     glVertex3f(0.0f, 0.0f, 100.0f);
     glEnd();
+    
     int i;
 
 
@@ -336,11 +338,11 @@ void draw (Group g) {
     for (int i = 0; i <  triangle_vector.size(); i++) {
         // glPolygonMode(GL_FRONT,  GL_LINE);
         glBegin(GL_TRIANGLES);
-        glColor3f(1.0f, 0.0f, 0.0f);
+        glColor3f(0,0.5,1.5);
         glVertex3f( triangle_vector[i].v1.x,  triangle_vector[i].v1.y,  triangle_vector[i].v1.z);
-        glColor3f(0.0f, 0.0f, 1.0f);
+        glColor3f(0.0f, 0.0f, 0.5f);
         glVertex3f( triangle_vector[i].v2.x,  triangle_vector[i].v2.y,  triangle_vector[i].v2.z);
-        glColor3f(0.0f, 0.0f, 1.0f);
+        glColor3f(0, 0, 1.5f);
         glVertex3f( triangle_vector[i].v3.x,  triangle_vector[i].v3.y, triangle_vector[i].v3.z);
         glEnd();
     }

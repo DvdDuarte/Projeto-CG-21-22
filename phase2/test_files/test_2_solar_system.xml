@@ -11,8 +11,8 @@
     
 	<group>
         <transform> 
-            <translate x="0" y="1" z="0" />
-			<scale x="10" y="10" z="10" />
+            <translate x="0" y="0" z="0" />
+			<scale x="1" y="1" z="1" />
         </transform>
         <models> <!-- sol-->
 				<model file="sphere.3d" /> <!-- generator sphere 1 15 15 sphere.3d -->
@@ -20,8 +20,8 @@
         <group> 
             <transform> 
                 <rotate angle="0" x="0" y ="1" z = "0" />
-                <translate x="15" y="0" z="0" />
-				<scale x="0.5" y="0.5" z="0.5" />
+                <translate x="5" y="0" z="0" />
+				<scale x="0.1" y="0.1" z="0.1" />
             </transform>
 			<models> <!-- mercurio-->
 				<model file="sphere.3d" /> <!-- generator sphere 1 15 15 sphere.3d -->
@@ -31,6 +31,7 @@
             <transform> 
                 <rotate angle="40" x="0" y ="1" z = "0" />
                 <translate x="25" y="0" z="0" />
+				<scale x="0.3" y="0.3" z="0.3" />
             </transform>
 			<models> <!-- venus-->
 				<model file="sphere.3d" /> <!-- generator sphere 1 15 15 sphere.3d -->
@@ -40,6 +41,7 @@
             <transform> 
                 <rotate angle="80" x="0" y ="1" z = "0" />
                 <translate x="40" y="0" z="0" />
+				<scale x="0.3" y="0.3" z="0.3" />
             </transform>
 			<models> <!-- terra-->
 				<model file="sphere.3d" /> <!-- generator sphere 1 15 15 sphere.3d -->
@@ -48,6 +50,7 @@
                 <transform> 
                     <!--<rotate angle="135" x="0" y ="1" z = "0" />-->
                     <translate x="3" y="0" z="0" />
+					<scale x="0.3" y="0.3" z="0.3" />
                 </transform>
                     <!-- adicionar cor??-->
                 <models> <!-- lua da terra-->
@@ -59,6 +62,7 @@
             <transform> 
                 <rotate angle="120" x="0" y ="1" z = "0" />
                 <translate x="55" y="0" z="0" />
+				<scale x="0.2" y="0.2" z="0.2" />
             </transform>
 			<models> <!-- marte-->
 				<model file="sphere.3d" /> <!-- generator sphere 1 15 15 sphere.3d -->
@@ -67,6 +71,7 @@
                  <transform> 
                         <!--<rotate angle="135" x="0" y ="1" z = "0" />-->
                     <translate x="3" y="2" z="0" />
+					<scale x="0.3" y="0.3" z="0.3" />
                 </transform>
                         <!-- adicionar cor??-->
                 <models> <!-- lua de marte-->
@@ -77,6 +82,7 @@
                  <transform> 
                         <rotate angle="135" x="0" y ="1" z = "0" />
                     <translate x="3" y="-1" z="0" />
+					<scale x="0.2" y="0.2" z="0.2" />
                 </transform>
                         <!-- adicionar cor??-->
                 <models> <!-- lua de marte-->
@@ -84,10 +90,10 @@
 				</models>
             </group>
         </group>
-        <group> 
-        	<transform> 
+        <group>
+    <transform> 
         	        <rotate angle="160" x="0" y ="1" z = "0" />
-        	        <translate x="80" y="0" z="0" />
+                    <translate x="80" y="0" z="0" />
         	</transform>
 		<models> <!-- jupiter-->
 			<model file="sphere.3d" /> <!-- generator sphere 1 15 15 sphere.3d -->
@@ -96,7 +102,8 @@
 		<group> 
                 	<transform> 
                 	       <rotate angle="45" x="0" y ="1" z = "0" />
-               		<translate x="5" y="0" z="0" />
+               		<translate x="2" y="0" z="0" />
+					   <scale x="0.1" y="0.1" z="0.1" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- lua de jupiter-->
@@ -106,7 +113,8 @@
             	<group> 
                  <transform> 
                         <rotate angle="90" x="0" y ="1" z = "0" />
-                    <translate x="5" y="0" z="0" />
+                    <translate x="1.5" y="0" z="0" />
+					<scale x="0.1" y="0.1" z="0.1" />
                 </transform>
                         <!-- adicionar cor??-->
                 <models> <!-- lua de jupiter-->
@@ -116,7 +124,8 @@
 		    <group> 
                  <transform> 
                         <rotate angle="135" x="0" y ="1" z = "0" />
-                    <translate x="5" y="0" z="0" />
+                    <translate x="2" y="0" z="0" />
+					<scale x="0.15" y="0.15" z="0.15" />
                 </transform>
                         <!-- adicionar cor??-->
                 <models> <!-- lua de jupiter-->
@@ -126,7 +135,8 @@
             <group> 
                 	<transform> 
                 	       <rotate angle="170" x="0" y ="1" z = "0" />
-               		<translate x="5" y="-1" z="0" />
+               		<translate x="1.5" y="-0.5" z="0" />
+					   <scale x="0.15" y="0.15" z="0.15" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- lua de jupiter-->
@@ -136,7 +146,8 @@
             <group> 
                 	<transform> 
                 	       <rotate angle="220" x="0" y ="1" z = "0" />
-               		<translate x="5" y="1" z="0" />
+               		<translate x="2" y="0.5" z="0" />
+					   <scale x="0.15" y="0.15" z="0.15" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- lua de jupiter-->
@@ -146,7 +157,8 @@
             <group> 
                 	<transform> 
                 	       <rotate angle="260" x="0" y ="1" z = "0" />
-                		<translate x="5" y="-3" z="0" />
+                		<translate x="1.5" y="-0.5" z="0" />
+						<scale x="0.15" y="0.15" z="0.15" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- lua de jupiter-->
@@ -156,7 +168,8 @@
                 <group> 
                 	<transform> 
                 	       <rotate angle="300" x="0" y ="1" z = "0" />
-                		<translate x="5" y="3" z="0" />
+                		<translate x="2" y="0.5" z="0" />
+						<scale x="0.15" y="0.15" z="0.15" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- lua de jupiter-->
@@ -166,18 +179,21 @@
                 <group> 
                 	<transform> 
                 	       <rotate angle="340" x="0" y ="1" z = "0" />
-                		<translate x="5" y="4" z="0" />
+                		<translate x="1.5" y="0.5" z="0" />
+						<scale x="0.15" y="0.15" z="0.15" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- lua de jupiter-->
                     	<model file="sphere.3d" /> <!-- generator sphere 1 15 15 sphere.3d -->                   
 					</models>
             	</group>
-        </group>
+    </group>
+
         <group> 
         	<transform> 
         	        <rotate angle="200" x="0" y ="1" z = "0" />
         	        <translate x="105" y="0" z="0" />
+					<scale x="0.5" y="0.5" z="0.5" />
             	</transform>
 			<models> <!-- saturno-->
 				<model file="sphere.3d" /> <!-- generator sphere 1 15 15 sphere.3d --> 
@@ -188,6 +204,7 @@
                 <transform> 
                      <rotate angle="0" x="0" y ="1" z = "0" />
                		<translate x="4" y="0" z="0" />
+					   <scale x="0.1" y="0.1" z="0.1" />
                 </transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis de saturno-->
@@ -198,6 +215,7 @@
                 	<transform> 
                 	       <rotate angle="10" x="0" y ="1" z = "0" />
         		       		<translate x="4" y="0" z="0" />
+							   <scale x="0.1" y="0.1" z="0.1" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis de saturno-->
@@ -208,6 +226,7 @@
                 	<transform> 
                 	       <rotate angle="20" x="0" y ="1" z = "0" />
                		<translate x="4" y="0" z="0" />
+					   <scale x="0.1" y="0.1" z="0.1" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis de saturno-->
@@ -218,6 +237,7 @@
                 	<transform> 
                 	       <rotate angle="30" x="0" y ="1" z = "0" />
                		<translate x="4" y="0" z="0" />
+					   <scale x="0.2" y="0.2" z="0.2" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis de saturno-->
@@ -228,6 +248,7 @@
                 	<transform> 
                 	       <rotate angle="40" x="0" y ="1" z = "0" />
                		<translate x="4" y="0" z="0" />
+					   <scale x="0.2" y="0.2" z="0.2" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis de saturno-->
@@ -238,6 +259,7 @@
                 	<transform> 
                 	       <rotate angle="50" x="0" y ="1" z = "0" />
                		<translate x="4" y="0" z="0" />
+					   <scale x="0.2" y="0.2" z="0.2" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis de saturno-->
@@ -248,6 +270,7 @@
                 	<transform> 
                 	       <rotate angle="60" x="0" y ="1" z = "0" />
                		<translate x="4" y="0" z="0" />
+					   <scale x="0.2" y="0.2" z="0.2" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis de saturno-->
@@ -258,6 +281,7 @@
                 	<transform> 
                 	       <rotate angle="70" x="0" y ="1" z = "0" />
                		<translate x="4" y="0" z="0" />
+					   <scale x="0.2" y="0.2" z="0.2" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis de saturno-->
@@ -268,6 +292,7 @@
                 	<transform> 
                 	       <rotate angle="80" x="0" y ="1" z = "0" />
                		<translate x="4" y="0" z="0" />
+					   <scale x="0.2" y="0.2" z="0.2" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis de saturno-->
@@ -278,6 +303,7 @@
                 	<transform> 
                 	       <rotate angle="90" x="0" y ="1" z = "0" />
                		<translate x="4" y="0" z="0" />
+					   <scale x="0.2" y="0.2" z="0.2" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis de saturno-->
@@ -288,6 +314,7 @@
                 	<transform> 
                 	       <rotate angle="100" x="0" y ="1" z = "0" />
                		<translate x="4" y="0" z="0" />
+					   <scale x="0.2" y="0.2" z="0.2" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis de saturno-->
@@ -298,6 +325,7 @@
                 	<transform> 
                 	       <rotate angle="110" x="0" y ="1" z = "0" />
                		<translate x="4" y="0" z="0" />
+					   <scale x="0.2" y="0.2" z="0.2" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis de saturno-->
@@ -308,6 +336,7 @@
                 	<transform> 
                 	       <rotate angle="120" x="0" y ="1" z = "0" />
                		<translate x="4" y="0" z="0" />
+					   <scale x="0.2" y="0.2" z="0.2" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis de saturno-->
@@ -318,6 +347,7 @@
                 	<transform> 
                 	       <rotate angle="130" x="0" y ="1" z = "0" />
                		<translate x="4" y="0" z="0" />
+					   <scale x="0.2" y="0.2" z="0.2" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis de saturno-->
@@ -328,6 +358,7 @@
                 	<transform> 
                 	       <rotate angle="140" x="0" y ="1" z = "0" />
                		<translate x="4" y="0" z="0" />
+					   <scale x="0.2" y="0.2" z="0.2" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis de saturno-->
@@ -338,6 +369,7 @@
                 	<transform> 
                 	       <rotate angle="150" x="0" y ="1" z = "0" />
                		<translate x="4" y="0" z="0" />
+					   <scale x="0.2" y="0.2" z="0.2" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis de saturno-->
@@ -348,6 +380,7 @@
                 	<transform> 
                 	       <rotate angle="160" x="0" y ="1" z = "0" />
                		<translate x="4" y="0" z="0" />
+					   <scale x="0.2" y="0.2" z="0.2" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis de saturno-->
@@ -358,6 +391,7 @@
                 	<transform> 
                 	       <rotate angle="170" x="0" y ="1" z = "0" />
                		<translate x="4" y="0" z="0" />
+					   <scale x="0.2" y="0.2" z="0.2" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis de saturno-->
@@ -368,6 +402,7 @@
                 	<transform> 
                 	       <rotate angle="180" x="0" y ="1" z = "0" />
                		<translate x="4" y="0" z="0" />
+					   <scale x="0.2" y="0.2" z="0.2" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis de saturno-->
@@ -378,6 +413,7 @@
                 	<transform> 
                 	       <rotate angle="190" x="0" y ="1" z = "0" />
                		<translate x="4" y="0" z="0" />
+					   <scale x="0.2" y="0.2" z="0.2" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis de saturno-->
@@ -388,6 +424,7 @@
                 	<transform> 
                 	       <rotate angle="200" x="0" y ="1" z = "0" />
                		<translate x="4" y="0" z="0" />
+					   <scale x="0.2" y="0.2" z="0.2" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis de saturno-->
@@ -398,6 +435,7 @@
                 	<transform> 
                 	       <rotate angle="210" x="0" y ="1" z = "0" />
                		<translate x="4" y="0" z="0" />
+					   <scale x="0.2" y="0.2" z="0.2" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis de saturno-->
@@ -408,6 +446,7 @@
                 	<transform> 
                 	       <rotate angle="220" x="0" y ="1" z = "0" />
                		<translate x="4" y="0" z="0" />
+					   <scale x="0.2" y="0.2" z="0.2" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis de saturno-->
@@ -418,6 +457,7 @@
                 	<transform> 
                 	       <rotate angle="230" x="0" y ="1" z = "0" />
                		<translate x="4" y="0" z="0" />
+					   <scale x="0.2" y="0.2" z="0.2" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis de saturno-->
@@ -428,6 +468,7 @@
                 	<transform> 
                 	       <rotate angle="240" x="0" y ="1" z = "0" />
                		<translate x="4" y="0" z="0" />
+					   <scale x="0.2" y="0.2" z="0.2" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis de saturno-->
@@ -438,6 +479,7 @@
                 	<transform> 
                 	       <rotate angle="260" x="0" y ="1" z = "0" />
                		<translate x="4" y="0" z="0" />
+					   <scale x="0.2" y="0.2" z="0.2" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis de saturno-->
@@ -448,6 +490,7 @@
                 	<transform> 
                 	       <rotate angle="270" x="0" y ="1" z = "0" />
                		<translate x="4" y="0" z="0" />
+					   <scale x="0.2" y="0.2" z="0.2" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis de saturno-->
@@ -458,6 +501,7 @@
                 	<transform> 
                 	       <rotate angle="280" x="0" y ="1" z = "0" />
                				<translate x="4" y="0" z="0" />
+							   <scale x="0.2" y="0.2" z="0.2" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis de saturno-->
@@ -468,6 +512,7 @@
                 	<transform> 
                 	       <rotate angle="290" x="0" y ="1" z = "0" />
                		<translate x="4" y="0" z="0" />
+					   <scale x="0.2" y="0.2" z="0.2" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis de saturno-->
@@ -478,6 +523,7 @@
                 	<transform> 
                 	       <rotate angle="300" x="0" y ="1" z = "0" />
                		<translate x="4" y="0" z="0" />
+					   <scale x="0.2" y="0.2" z="0.2" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis de saturno-->
@@ -488,6 +534,7 @@
                 	<transform> 
                 	       <rotate angle="310" x="0" y ="1" z = "0" />
                		<translate x="4" y="0" z="0" />
+					   <scale x="0.2" y="0.2" z="0.2" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis de saturno-->
@@ -498,6 +545,7 @@
                 	<transform> 
                 	       <rotate angle="320" x="0" y ="1" z = "0" />
                		<translate x="4" y="0" z="0" />
+					   <scale x="0.2" y="0.2" z="0.2" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis de saturno-->
@@ -508,6 +556,7 @@
                 	<transform> 
                 	       <rotate angle="330" x="0" y ="1" z = "0" />
                		<translate x="4" y="0" z="0" />
+					   <scale x="0.2" y="0.2" z="0.2" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis de saturno-->
@@ -518,6 +567,7 @@
                 	<transform> 
                 	       <rotate angle="340" x="0" y ="1" z = "0" />
                		<translate x="4" y="0" z="0" />
+					   <scale x="0.2" y="0.2" z="0.2" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis de saturno-->
@@ -528,6 +578,7 @@
                 	<transform> 
                 	       <rotate angle="350" x="0" y ="1" z = "0" />
                		<translate x="4" y="0" z="0" />
+					   <scale x="0.2" y="0.2" z="0.2" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis de saturno-->
@@ -538,6 +589,7 @@
                 	<transform> 
                 	       <rotate angle="360" x="0" y ="1" z = "0" />
                		<translate x="4" y="0" z="0" />
+					   <scale x="0.2" y="0.2" z="0.2" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis de saturno-->
@@ -548,6 +600,7 @@
                 	<transform> 
                 	       <rotate angle="5" x="0" y ="1" z = "0" />
                		<translate x="4.5" y="0" z="0" />
+					   <scale x="0.25" y="0.25" z="0.25" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis2 de saturno-->
@@ -558,6 +611,7 @@
                 	<transform> 
                 	       <rotate angle="15" x="0" y ="1" z = "0" />
                		<translate x="4.5" y="0" z="0" />
+					   <scale x="0.25" y="0.25" z="0.25" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis2 de saturno-->
@@ -568,6 +622,7 @@
                 	<transform> 
                 	       <rotate angle="25" x="0" y ="1" z = "0" />
                		<translate x="4.5" y="0" z="0" />
+					   <scale x="0.25" y="0.25" z="0.25" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis2 de saturno-->
@@ -578,6 +633,7 @@
                 	<transform> 
                 	    <rotate angle="35" x="0" y ="1" z = "0" />
                			<translate x="4.5" y="0" z="0" />
+						   <scale x="0.25" y="0.25" z="0.25" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis2 de saturno-->
@@ -588,6 +644,7 @@
                 	<transform> 
                 	       <rotate angle="45" x="0" y ="1" z = "0" />
                		<translate x="4.5" y="0" z="0" />
+					   <scale x="0.25" y="0.25" z="0.25" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis2 de saturno-->
@@ -598,6 +655,7 @@
                 	<transform> 
                 	       <rotate angle="55" x="0" y ="1" z = "0" />
                		<translate x="4.5" y="0" z="0" />
+					   <scale x="0.25" y="0.25" z="0.25" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis2 de saturno-->
@@ -608,6 +666,7 @@
                 	<transform> 
                 	       <rotate angle="65" x="0" y ="1" z = "0" />
                		<translate x="4.5" y="0" z="0" />
+					   <scale x="0.25" y="0.25" z="0.25" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis2 de saturno-->
@@ -618,6 +677,7 @@
                 	<transform> 
                 	       <rotate angle="75" x="0" y ="1" z = "0" />
                		<translate x="4.5" y="0" z="0" />
+					   <scale x="0.25" y="0.25" z="0.25" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis2 de saturno-->
@@ -628,6 +688,7 @@
                 	<transform> 
                 	       <rotate angle="85" x="0" y ="1" z = "0" />
                		<translate x="4.5" y="0" z="0" />
+					   <scale x="0.25" y="0.25" z="0.25" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis2 de saturno-->
@@ -638,6 +699,7 @@
                 	<transform> 
                 	       <rotate angle="95" x="0" y ="1" z = "0" />
                		<translate x="4.5" y="0" z="0" />
+					   <scale x="0.25" y="0.25" z="0.25" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis2 de saturno-->
@@ -648,6 +710,7 @@
                 	<transform> 
                 	       <rotate angle="105" x="0" y ="1" z = "0" />
                		<translate x="4.5" y="0" z="0" />
+					   <scale x="0.25" y="0.25" z="0.25" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis2 de saturno-->
@@ -658,6 +721,7 @@
                 	<transform> 
                 	       <rotate angle="115" x="0" y ="1" z = "0" />
                		<translate x="4.5" y="0" z="0" />
+					   <scale x="0.25" y="0.25" z="0.25" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis2 de saturno-->
@@ -668,6 +732,7 @@
                 	<transform> 
                 	       <rotate angle="125" x="0" y ="1" z = "0" />
                		<translate x="4.5" y="0" z="0" />
+					   <scale x="0.25" y="0.25" z="0.25" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis2 de saturno-->
@@ -678,6 +743,7 @@
                 	<transform> 
                 	       <rotate angle="135" x="0" y ="1" z = "0" />
                		<translate x="4.5" y="0" z="0" />
+					   <scale x="0.25" y="0.25" z="0.25" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis2 de saturno-->
@@ -688,6 +754,7 @@
                 	<transform> 
                 	       <rotate angle="145" x="0" y ="1" z = "0" />
                		<translate x="4.5" y="0" z="0" />
+					   <scale x="0.25" y="0.25" z="0.25" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis2 de saturno-->
@@ -698,6 +765,7 @@
                 	<transform> 
                 	       <rotate angle="155" x="0" y ="1" z = "0" />
                		<translate x="4.5" y="0" z="0" />
+					   <scale x="0.25" y="0.25" z="0.25" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis2 de saturno-->
@@ -708,6 +776,7 @@
                 	<transform> 
                 	       <rotate angle="165" x="0" y ="1" z = "0" />
                		<translate x="4.5" y="0" z="0" />
+					   <scale x="0.25" y="0.25" z="0.25" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis2 de saturno-->
@@ -718,6 +787,7 @@
                 	<transform> 
                 	       <rotate angle="175" x="0" y ="1" z = "0" />
                		<translate x="4.5" y="0" z="0" />
+					   <scale x="0.25" y="0.25" z="0.25" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis2 de saturno-->
@@ -728,6 +798,7 @@
                 	<transform> 
                 	       <rotate angle="185" x="0" y ="1" z = "0" />
                		<translate x="4.5" y="0" z="0" />
+					   <scale x="0.25" y="0.25" z="0.25" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis2 de saturno-->
@@ -738,6 +809,7 @@
                 	<transform> 
                 	       <rotate angle="195" x="0" y ="1" z = "0" />
                		<translate x="4.5" y="0" z="0" />
+					   <scale x="0.25" y="0.25" z="0.25" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis2 de saturno-->
@@ -748,6 +820,7 @@
                 	<transform> 
                 	       <rotate angle="205" x="0" y ="1" z = "0" />
                		<translate x="4.5" y="0" z="0" />
+					   <scale x="0.25" y="0.25" z="0.25" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis2 de saturno-->
@@ -758,6 +831,7 @@
                 	<transform> 
                 	       <rotate angle="215" x="0" y ="1" z = "0" />
                		<translate x="4.5" y="0" z="0" />
+					   <scale x="0.25" y="0.25" z="0.25" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis2 de saturno-->
@@ -768,6 +842,7 @@
                 	<transform> 
                 	       <rotate angle="225" x="0" y ="1" z = "0" />
                		<translate x="4.5" y="0" z="0" />
+					   <scale x="0.25" y="0.25" z="0.25" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis2 de saturno-->
@@ -778,6 +853,7 @@
                 	<transform> 
                 	       <rotate angle="235" x="0" y ="1" z = "0" />
                		<translate x="4.5" y="0" z="0" />
+					   <scale x="0.25" y="0.25" z="0.25" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis2 de saturno-->
@@ -788,6 +864,7 @@
                 	<transform> 
                 	       <rotate angle="245" x="0" y ="1" z = "0" />
                		<translate x="4.5" y="0" z="0" />
+					   <scale x="0.25" y="0.25" z="0.25" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis2 de saturno-->
@@ -798,6 +875,7 @@
                 	<transform> 
                 	       <rotate angle="255" x="0" y ="1" z = "0" />
                		<translate x="4.5" y="0" z="0" />
+					   <scale x="0.25" y="0.25" z="0.25" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis2 de saturno-->
@@ -808,6 +886,7 @@
                 	<transform> 
                 	       <rotate angle="265" x="0" y ="1" z = "0" />
                		<translate x="4.5" y="0" z="0" />
+					   <scale x="0.25" y="0.25" z="0.25" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis2 de saturno-->
@@ -818,6 +897,7 @@
                 	<transform> 
                 	       <rotate angle="275" x="0" y ="1" z = "0" />
                		<translate x="4.5" y="0" z="0" />
+					   <scale x="0.25" y="0.25" z="0.25" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis2 de saturno-->
@@ -828,6 +908,7 @@
                 	<transform> 
                 	       <rotate angle="285" x="0" y ="1" z = "0" />
                		<translate x="4.5" y="0" z="0" />
+					   <scale x="0.25" y="0.25" z="0.25" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis2 de saturno-->
@@ -838,6 +919,7 @@
                 	<transform> 
                 	       <rotate angle="295" x="0" y ="1" z = "0" />
                		<translate x="4.5" y="0" z="0" />
+					   <scale x="0.25" y="0.25" z="0.25" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis2 de saturno-->
@@ -848,6 +930,7 @@
                 	<transform> 
                 	       <rotate angle="305" x="0" y ="1" z = "0" />
                		<translate x="4.5" y="0" z="0" />
+					   <scale x="0.25" y="0.25" z="0.25" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis2 de saturno-->
@@ -858,6 +941,7 @@
                 	<transform> 
                 	       <rotate angle="315" x="0" y ="1" z = "0" />
                		<translate x="4.5" y="0" z="0" />
+					   <scale x="0.25" y="0.25" z="0.25" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis2 de saturno-->
@@ -868,6 +952,7 @@
                 	<transform> 
                 	       <rotate angle="325" x="0" y ="1" z = "0" />
                		<translate x="4.5" y="0" z="0" />
+					   <scale x="0.25" y="0.25" z="0.25" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis2 de saturno-->
@@ -878,6 +963,7 @@
                 	<transform> 
                 	       <rotate angle="335" x="0" y ="1" z = "0" />
                				<translate x="4.5" y="0" z="0" />
+							   <scale x="0.25" y="0.25" z="0.25" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis2 de saturno-->
@@ -888,6 +974,7 @@
                 	<transform> 
                 	       <rotate angle="345" x="0" y ="1" z = "0" />
                		<translate x="4.5" y="0" z="0" />
+					   <scale x="0.25" y="0.25" z="0.25" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis2 de saturno-->
@@ -898,6 +985,7 @@
                 	<transform> 
                 	       <rotate angle="355" x="0" y ="1" z = "0" />
                		<translate x="4.5" y="0" z="0" />
+					   <scale x="0.25" y="0.25" z="0.25" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- aneis2 de saturno-->
@@ -911,6 +999,7 @@
                 	<transform> 
                 	       <rotate angle="20" x="0" y ="1" z = "0" />
                		<translate x="5" y="2" z="0" />
+					   <scale x="0.4" y="0.4" z="0.4" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- lua de saturno-->
@@ -921,6 +1010,7 @@
                	<transform> 
                	        <rotate angle="50" x="0" y ="1" z = "0" />
                	     	<translate x="5" y="-2" z="0" />
+							<scale x="0.4" y="0.4" z="0.4" />
                	</transform>
                         <!-- adicionar cor??-->
                	<models> <!-- lua de saturno-->
@@ -931,6 +1021,7 @@
                	<transform> 
              			<rotate angle="80" x="0" y ="1" z = "0" />
                     		<translate x="5" y="2" z="0" />
+							<scale x="0.4" y="0.4" z="0.4" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- lua de saturno-->
@@ -941,6 +1032,7 @@
                 	<transform> 
                		<rotate angle="110" x="0" y ="1" z = "0" />
                		<translate x="5" y="-2" z="0" />
+					   <scale x="0.4" y="0.4" z="0.4" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- lua de saturno-->
@@ -951,6 +1043,7 @@
                 	<transform> 
                 	       <rotate angle="140" x="0" y ="1" z = "0" />
                 		<translate x="5" y="2" z="0" />
+						<scale x="0.4" y="0.4" z="0.4" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- lua de saturno-->
@@ -961,6 +1054,7 @@
                 	<transform> 
                 	       <rotate angle="170" x="0" y ="1" z = "0" />
                     		<translate x="5" y="-2" z="0" />
+							<scale x="0.4" y="0.4" z="0.4" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- lua de saturno-->
@@ -971,6 +1065,7 @@
                 	<transform> 
                 	       <rotate angle="200" x="0" y ="1" z = "0" />
                		<translate x="5" y="2" z="0" />
+					   <scale x="0.4" y="0.4" z="0.4" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- lua de saturno-->
@@ -981,6 +1076,7 @@
                 	<transform> 
                 	       <rotate angle="230" x="0" y ="1" z = "0" />
                 		<translate x="5" y="-2" z="0" />
+						<scale x="0.4" y="0.4" z="0.4" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- lua de saturno-->
@@ -991,6 +1087,7 @@
                 	<transform> 
                 	       <rotate angle="260" x="0" y ="1" z = "0" />
                 		<translate x="5" y="2" z="0" />
+						<scale x="0.4" y="0.4" z="0.4" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- lua de saturno-->
@@ -1001,6 +1098,7 @@
                 	<transform> 
                 	       <rotate angle="290" x="0" y ="1" z = "0" />
                 		<translate x="5" y="-2" z="0" />
+						<scale x="0.4" y="0.4" z="0.4" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- lua de saturno-->
@@ -1013,6 +1111,7 @@
             <transform> 
                 <rotate angle="240" x="0" y ="1" z = "0" />
                 <translate x="130" y="0" z="0" />
+				<scale x="0.4" y="0.4" z="0.4" />
             </transform>
 			<models> <!-- urano-->
                     		<model file="sphere.3d" /> <!-- generator sphere 1 15 15 sphere.3d -->
@@ -1021,6 +1120,7 @@
                 	<transform> 
                 	       <rotate angle="40" x="0" y ="1" z = "0" />
                 		<translate x="5" y="3" z="0" />
+						<scale x="0.3" y="0.3" z="0.3" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- lua de urano-->
@@ -1031,6 +1131,7 @@
                 	<transform> 
                 	       <rotate angle="80" x="0" y ="1" z = "0" />
                 		<translate x="5" y="-3" z="0" />
+						<scale x="0.3" y="0.3" z="0.3" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- lua de urano-->
@@ -1041,6 +1142,7 @@
                 	<transform> 
                 	       <rotate angle="120" x="0" y ="1" z = "0" />
                 		<translate x="5" y="-1" z="0" />
+						<scale x="0.3" y="0.3" z="0.3" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- lua de urano-->
@@ -1051,6 +1153,7 @@
                 	<transform> 
                 	       <rotate angle="160" x="0" y ="1" z = "0" />
                 		<translate x="5" y="2" z="0" />
+						<scale x="0.3" y="0.3" z="0.3" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- lua de urano-->
@@ -1061,6 +1164,7 @@
                 	<transform> 
                 	       <rotate angle="200" x="0" y ="1" z = "0" />
                 		<translate x="5" y="1" z="0" />
+						<scale x="0.3" y="0.3" z="0.3" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- lua de urano-->
@@ -1071,6 +1175,7 @@
                 	<transform> 
                 	       <rotate angle="240" x="0" y ="1" z = "0" />
                 		<translate x="5" y="-1" z="0" />
+						<scale x="0.3" y="0.3" z="0.3" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- lua de urano-->
@@ -1082,6 +1187,7 @@
             <transform> 
                 <rotate angle="280" x="0" y ="1" z = "0" />
                 <translate x="150" y="0" z="0" />
+				<scale x="0.45" y="0.45" z="0.45" />
             </transform>
 			<models> <!-- netuno-->
                 <model file="sphere.3d" /> <!-- generator sphere 1 15 15 sphere.3d -->
@@ -1090,6 +1196,7 @@
                 	<transform> 
                 	       <rotate angle="0" x="0" y ="1" z = "0" />
                 		<translate x="5" y="0" z="0" />
+						<scale x="0.3" y="0.3" z="0.3" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- lua de netuno-->
@@ -1100,6 +1207,7 @@
                 	<transform> 
                 	       <rotate angle="50" x="0" y ="1" z = "0" />
                 		<translate x="5" y="0" z="0" />
+						<scale x="0.3" y="0.3" z="0.3" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- lua de netuno-->
@@ -1110,6 +1218,7 @@
                 	<transform> 
                 	       <rotate angle="100" x="0" y ="1" z = "0" />
                 		<translate x="5" y="2" z="0" />
+						<scale x="0.3" y="0.3" z="0.3" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- lua de netuno-->
@@ -1120,6 +1229,7 @@
                 	<transform> 
                 	       <rotate angle="150" x="0" y ="1" z = "0" />
                 		<translate x="5" y="-3" z="0" />
+						<scale x="0.3" y="0.3" z="0.3" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- lua de netuno-->
@@ -1130,6 +1240,7 @@
                 	<transform> 
                 	       <rotate angle="200" x="0" y ="1" z = "0" />
                 		<translate x="5" y="1" z="0" />
+						<scale x="0.3" y="0.3" z="0.3" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- lua de netuno-->
@@ -1141,6 +1252,7 @@
             <transform> 
                 <rotate angle="320" x="0" y ="1" z = "0" />
                 <translate x="170" y="0" z="0" />
+				<scale x="0.1" y="0.1" z="0.1" />
             </transform>
 			<models> <!-- plutao-->
                     		<model file="sphere.3d" /> <!-- generator sphere 1 15 15 sphere.3d -->
@@ -1149,6 +1261,7 @@
                 	<transform> 
                 	       <rotate angle="0" x="0" y ="1" z = "0" />
                 		<translate x="2" y="1" z="0" />
+						<scale x="0.5" y="0.5" z="0.5" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- lua de plutao-->
@@ -1159,6 +1272,7 @@
                 	<transform> 
                 	       <rotate angle="80" x="0" y ="1" z = "0" />
                 		<translate x="2" y="1" z="0" />
+						<scale x="0.1" y="0.1" z="0.1" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- lua de plutao-->
@@ -1169,6 +1283,7 @@
                 	<transform> 
                 	       <rotate angle="180" x="0" y ="1" z = "0" />
                 		<translate x="2" y="1" z="0" />
+						<scale x="0.1" y="0.1" z="0.1" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- lua de plutao-->
@@ -1179,6 +1294,7 @@
                 	<transform> 
                 	       <rotate angle="260" x="0" y ="1" z = "0" />
                 		<translate x="2" y="1" z="0" />
+						<scale x="0.1" y="0.1" z="0.1" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- lua de plutao-->
@@ -1189,6 +1305,7 @@
                 	<transform> 
                 	       <rotate angle="310" x="0" y ="1" z = "0" />
                 		<translate x="2" y="1" z="0" />
+						<scale x="0.1" y="0.1" z="0.1" />
                 	</transform>
                         <!-- adicionar cor??-->
                 	<models> <!-- lua de plutao-->
