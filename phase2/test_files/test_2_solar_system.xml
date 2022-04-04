@@ -20,7 +20,7 @@
         <group> 
             <transform> 
                 <rotate angle="0" x="0" y ="1" z = "0" />
-                <translate x="5" y="0" z="0" />
+                <translate x="2.5" y="0" z="0" />
 				<scale x="0.1" y="0.1" z="0.1" />
             </transform>
 			<models> <!-- mercurio-->
@@ -30,7 +30,7 @@
         <group> 
             <transform> 
                 <rotate angle="40" x="0" y ="1" z = "0" />
-                <translate x="25" y="0" z="0" />
+                <translate x="12.5" y="0" z="0" />
 				<scale x="0.3" y="0.3" z="0.3" />
             </transform>
 			<models> <!-- venus-->
@@ -40,7 +40,7 @@
         <group> 
             <transform> 
                 <rotate angle="80" x="0" y ="1" z = "0" />
-                <translate x="40" y="0" z="0" />
+                <translate x="20" y="0" z="0" />
 				<scale x="0.3" y="0.3" z="0.3" />
             </transform>
 			<models> <!-- terra-->
@@ -61,7 +61,7 @@
         <group> 
             <transform> 
                 <rotate angle="120" x="0" y ="1" z = "0" />
-                <translate x="55" y="0" z="0" />
+                <translate x="27.5" y="0" z="0" />
 				<scale x="0.2" y="0.2" z="0.2" />
             </transform>
 			<models> <!-- marte-->
@@ -93,7 +93,7 @@
         <group>
     <transform> 
         	        <rotate angle="160" x="0" y ="1" z = "0" />
-                    <translate x="80" y="0" z="0" />
+                    <translate x="40" y="0" z="0" />
         	</transform>
 		<models> <!-- jupiter-->
 			<model file="sphere.3d" /> <!-- generator sphere 1 15 15 sphere.3d -->
@@ -192,7 +192,7 @@
         <group> 
         	<transform> 
         	        <rotate angle="200" x="0" y ="1" z = "0" />
-        	        <translate x="105" y="0" z="0" />
+        	        <translate x="55" y="0" z="0" />
 					<scale x="0.5" y="0.5" z="0.5" />
             	</transform>
 			<models> <!-- saturno-->
@@ -1110,7 +1110,7 @@
         <group> 
             <transform> 
                 <rotate angle="240" x="0" y ="1" z = "0" />
-                <translate x="130" y="0" z="0" />
+                <translate x="65" y="0" z="0" />
 				<scale x="0.4" y="0.4" z="0.4" />
             </transform>
 			<models> <!-- urano-->
@@ -1186,7 +1186,7 @@
         <group> 
             <transform> 
                 <rotate angle="280" x="0" y ="1" z = "0" />
-                <translate x="150" y="0" z="0" />
+                <translate x="75" y="0" z="0" />
 				<scale x="0.45" y="0.45" z="0.45" />
             </transform>
 			<models> <!-- netuno-->
@@ -1251,7 +1251,7 @@
         <group> 
             <transform> 
                 <rotate angle="320" x="0" y ="1" z = "0" />
-                <translate x="170" y="0" z="0" />
+                <translate x="85" y="0" z="0" />
 				<scale x="0.1" y="0.1" z="0.1" />
             </transform>
 			<models> <!-- plutao-->
