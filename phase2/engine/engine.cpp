@@ -99,7 +99,7 @@ void renderScene(void) {
     for (int iteratorBrothers=0; iteratorBrothers<iBrothers; iteratorBrothers++) { //for each brother
         glPushMatrix();
         glTranslatef(posx,0.0,posz);
-        glRotatef(angle, 1.0, 0.0, .0);
+        glRotatef(angle, 0.0, 1.0, .0);
         glScalef(scalex, scaley, scalez);
         draw(groupbrothers[iteratorBrothers]);
         glPopMatrix();
