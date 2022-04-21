@@ -1,0 +1,1091 @@
+<world> <!-- a world can have a camera, a set of lights, and a single group -->
+	
+    <camera> 
+	    <position x="3" y="10" z="4" />
+	    <lookAt x="0" y="0" z="0" />
+	    <up x="0" y="1" z="0" /> <!-- optional, use these values as default-->
+        <projection fov="60" near="1" far="1000" /> <!-- optional, use these values as default-->
+    </camera>
+
+    <!-- planetas-->
+    <!-- generator sphere 0.5 10 10 lua.3d-->
+	<group>
+        <transform> 
+            <translate x="0" y="1" z="0" />
+        </transform>
+        <models> 
+				<model file="sun.3d" /> <!-- generator sphere 10 15 15 sun.3d -->
+			</models>
+        <group> 
+            <transform> 
+                <rotate angle="0" x="0" y ="1" z = "0" />
+                <translate x="15" y="0" z="0" />
+            </transform>
+			<models> 
+				<model file="mercurio.3d" /> <!-- generator sphere 1.2 10 10 mercurio.3d -->
+			</models>
+        </group>
+        <group> 
+            <transform> 
+                <rotate angle="40" x="0" y ="1" z = "0" />
+                <translate x="25" y="0" z="0" />
+            </transform>
+			<models> 
+				<model file="venus.3d" /> <!-- generator sphere 1.5 10 10 venus.3d -->
+			</models>
+        </group>
+        <group> 
+            <transform> 
+                <rotate angle="80" x="0" y ="1" z = "0" />
+                <translate x="40" y="0" z="0" />
+            </transform>
+			<models> 
+				<model file="terra.3d" /> <!-- generator sphere 2 10 10 terra.3d -->
+			</models>
+            <group> 
+                <transform> 
+                    <!--<rotate angle="135" x="0" y ="1" z = "0" />-->
+                    <translate x="3" y="0" z="0" />
+                </transform>
+                    <!-- adicionar cor??-->
+                <models> 
+                    <model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->
+                </models>
+            </group>
+        </group>
+        <group> 
+            <transform> 
+                <rotate angle="120" x="0" y ="1" z = "0" />
+                <translate x="55" y="0" z="0" />
+            </transform>
+			<models> 
+				<model file="marte.3d" /> <!-- generator sphere 2 10 10 marte.3d -->
+			</models>
+            <group> 
+                 <transform> 
+                        <!--<rotate angle="135" x="0" y ="1" z = "0" />-->
+                    <translate x="3" y="2" z="0" />
+                </transform>
+                        <!-- adicionar cor??-->
+                <models> 
+                    <model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            </group>
+            <group> 
+                 <transform> 
+                        <rotate angle="135" x="0" y ="1" z = "0" />
+                    <translate x="3" y="-1" z="0" />
+                </transform>
+                        <!-- adicionar cor??-->
+                <models> 
+                    <model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            </group>
+        </group>
+        <group> 
+        	<transform> 
+        	        <rotate angle="160" x="0" y ="1" z = "0" />
+        	        <translate x="80" y="0" z="0" />
+        	</transform>
+		<models> 
+			<model file="jupiter.3d" /> <!-- generator sphere 4 10 10 jupiter.3d -->
+		</models>
+		
+		<group> 
+                	<transform> 
+                	       <rotate angle="45" x="0" y ="1" z = "0" />
+               		<translate x="5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+            	<group> 
+                 <transform> 
+                        <rotate angle="90" x="0" y ="1" z = "0" />
+                    <translate x="5" y="0" z="0" />
+                </transform>
+                        <!-- adicionar cor??-->
+                <models> 
+                    <model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+		    <group> 
+                 <transform> 
+                        <rotate angle="135" x="0" y ="1" z = "0" />
+                    <translate x="5" y="0" z="0" />
+                </transform>
+                        <!-- adicionar cor??-->
+                <models> 
+                    <model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            </group>
+            <group> 
+                	<transform> 
+                	       <rotate angle="170" x="0" y ="1" z = "0" />
+               		<translate x="5" y="-1" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            </group>
+            <group> 
+                	<transform> 
+                	       <rotate angle="220" x="0" y ="1" z = "0" />
+               		<translate x="5" y="1" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            </group>
+            <group> 
+                	<transform> 
+                	       <rotate angle="260" x="0" y ="1" z = "0" />
+                		<translate x="5" y="-3" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+                <group> 
+                	<transform> 
+                	       <rotate angle="300" x="0" y ="1" z = "0" />
+                		<translate x="5" y="3" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+                <group> 
+                	<transform> 
+                	       <rotate angle="340" x="0" y ="1" z = "0" />
+                		<translate x="5" y="4" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+        </group>
+        <group> 
+        	<transform> 
+        	        <rotate angle="200" x="0" y ="1" z = "0" />
+        	        <translate x="105" y="0" z="0" />
+            	</transform>
+		<models> 
+			<model file="saturno.3d" /> <!-- generator sphere 3 10 10 saturno.3d -->
+		</models>
+
+		<!-- aneis de saturno begin-->
+		<group> 
+                <transform> 
+                     <rotate angle="0" x="0" y ="1" z = "0" />
+               		<translate x="4" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis1.3d" /> <!-- generator sphere 0.1 5 5 aneis1.3d -->                    </models>
+        </group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="10" x="0" y ="1" z = "0" />
+        		       		<translate x="4" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis1.3d" /> <!-- generator sphere 0.1 5 5 aneis1.3d -->                   </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="20" x="0" y ="1" z = "0" />
+               		<translate x="4" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis1.3d" /> <!-- generator sphere 0.1 5 5 aneis1.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="30" x="0" y ="1" z = "0" />
+               		<translate x="4" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis1.3d" /> <!-- generator sphere 0.1 5 5 aneis1.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="40" x="0" y ="1" z = "0" />
+               		<translate x="4" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis1.3d" /> <!-- generator sphere 0.1 5 5 aneis1.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="50" x="0" y ="1" z = "0" />
+               		<translate x="4" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis1.3d" /> <!-- generator sphere 0.1 5 5 aneis1.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="60" x="0" y ="1" z = "0" />
+               		<translate x="4" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis1.3d" /> <!-- generator sphere 0.1 5 5 aneis1.3d -->                   </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="70" x="0" y ="1" z = "0" />
+               		<translate x="4" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis1.3d" /> <!-- generator sphere 0.1 5 5 aneis1.3d -->                   </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="80" x="0" y ="1" z = "0" />
+               		<translate x="4" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis1.3d" /> <!-- generator sphere 0.1 5 5 aneis1.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="90" x="0" y ="1" z = "0" />
+               		<translate x="4" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis1.3d" /> <!-- generator sphere 0.1 5 5 aneis1.3d -->                   </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="100" x="0" y ="1" z = "0" />
+               		<translate x="4" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis1.3d" /> <!-- generator sphere 0.1 5 5 aneis1.3d -->                   </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="110" x="0" y ="1" z = "0" />
+               		<translate x="4" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis1.3d" /> <!-- generator sphere 0.1 5 5 aneis1.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="120" x="0" y ="1" z = "0" />
+               		<translate x="4" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis1.3d" /> <!-- generator sphere 0.1 5 5 aneis1.3d -->                   </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="130" x="0" y ="1" z = "0" />
+               		<translate x="4" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis1.3d" /> <!-- generator sphere 0.1 5 5 aneis1.3d -->                   </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="140" x="0" y ="1" z = "0" />
+               		<translate x="4" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis1.3d" /> <!-- generator sphere 0.1 5 5 aneis1.3d -->                  </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="150" x="0" y ="1" z = "0" />
+               		<translate x="4" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis1.3d" /> <!-- generator sphere 0.1 5 5 aneis1.3d -->                   </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="160" x="0" y ="1" z = "0" />
+               		<translate x="4" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis1.3d" /> <!-- generator sphere 0.1 5 5 aneis1.3d -->                   </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="170" x="0" y ="1" z = "0" />
+               		<translate x="4" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis1.3d" /> <!-- generator sphere 0.1 5 5 aneis1.3d -->                   </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="180" x="0" y ="1" z = "0" />
+               		<translate x="4" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis1.3d" /> <!-- generator sphere 0.1 5 5 aneis1.3d -->                   </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="190" x="0" y ="1" z = "0" />
+               		<translate x="4" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis1.3d" /> <!-- generator sphere 0.1 5 5 aneis1.3d -->                   </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="200" x="0" y ="1" z = "0" />
+               		<translate x="4" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis1.3d" /> <!-- generator sphere 0.1 5 5 aneis1.3d -->                   </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="210" x="0" y ="1" z = "0" />
+               		<translate x="4" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis1.3d" /> <!-- generator sphere 0.1 5 5 aneis1.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="220" x="0" y ="1" z = "0" />
+               		<translate x="4" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis1.3d" /> <!-- generator sphere 0.1 5 5 aneis1.3d -->                   </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="230" x="0" y ="1" z = "0" />
+               		<translate x="4" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis1.3d" /> <!-- generator sphere 0.1 5 5 aneis1.3d -->                   </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="240" x="0" y ="1" z = "0" />
+               		<translate x="4" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis1.3d" /> <!-- generator sphere 0.1 5 5 aneis1.3d -->                   </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="260" x="0" y ="1" z = "0" />
+               		<translate x="4" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis1.3d" /> <!-- generator sphere 0.1 5 5 aneis1.3d -->                  </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="270" x="0" y ="1" z = "0" />
+               		<translate x="4" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis1.3d" /> <!-- generator sphere 0.1 5 5 aneis1.3d -->                  </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="280" x="0" y ="1" z = "0" />
+               				<translate x="4" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis1.3d" /> <!-- generator sphere 0.1 5 5 aneis1.3d -->                   </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="290" x="0" y ="1" z = "0" />
+               		<translate x="4" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis1.3d" /> <!-- generator sphere 0.1 5 5 aneis1.3d -->                   </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="300" x="0" y ="1" z = "0" />
+               		<translate x="4" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis1.3d" /> <!-- generator sphere 0.1 5 5 aneis1.3d -->                  </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="310" x="0" y ="1" z = "0" />
+               		<translate x="4" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis1.3d" /> <!-- generator sphere 0.1 5 5 aneis1.3d -->                  </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="320" x="0" y ="1" z = "0" />
+               		<translate x="4" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis1.3d" /> <!-- generator sphere 0.1 5 5 aneis1.3d -->                 </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="330" x="0" y ="1" z = "0" />
+               		<translate x="4" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis1.3d" /> <!-- generator sphere 0.1 5 5 aneis1.3d -->                   </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="340" x="0" y ="1" z = "0" />
+               		<translate x="4" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis1.3d" /> <!-- generator sphere 0.1 5 5 aneis1.3d -->                   </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="350" x="0" y ="1" z = "0" />
+               		<translate x="4" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis1.3d" /> <!-- generator sphere 0.1 5 5 aneis1.3d -->                  </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="360" x="0" y ="1" z = "0" />
+               		<translate x="4" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis1.3d" /> <!-- generator sphere 0.1 5 5 aneis1.3d -->                  </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="5" x="0" y ="1" z = "0" />
+               		<translate x="4.5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis2.3d" /> <!-- generator sphere 0.15 5 5 aneis2.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="15" x="0" y ="1" z = "0" />
+               		<translate x="4.5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis2.3d" /> <!-- generator sphere 0.15 5 5 aneis2.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="25" x="0" y ="1" z = "0" />
+               		<translate x="4.5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis2.3d" /> <!-- generator sphere 0.15 5 5 aneis2.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="35" x="0" y ="1" z = "0" />
+               		<translate x="4.5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis2.3d" /> <!-- generator sphere 0.15 5 5 aneis2.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="45" x="0" y ="1" z = "0" />
+               		<translate x="4.5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis2.3d" /> <!-- generator sphere 0.15 5 5 aneis2.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="55" x="0" y ="1" z = "0" />
+               		<translate x="4.5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis2.3d" /> <!-- generator sphere 0.15 5 5 aneis2.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="65" x="0" y ="1" z = "0" />
+               		<translate x="4.5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis2.3d" /> <!-- generator sphere 0.15 5 5 aneis2.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="75" x="0" y ="1" z = "0" />
+               		<translate x="4.5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis2.3d" /> <!-- generator sphere 0.15 5 5 aneis2.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="85" x="0" y ="1" z = "0" />
+               		<translate x="4.5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis2.3d" /> <!-- generator sphere 0.15 5 5 aneis2.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="95" x="0" y ="1" z = "0" />
+               		<translate x="4.5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis2.3d" /> <!-- generator sphere 0.15 5 5 aneis2.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="105" x="0" y ="1" z = "0" />
+               		<translate x="4.5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis2.3d" /> <!-- generator sphere 0.15 5 5 aneis2.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="115" x="0" y ="1" z = "0" />
+               		<translate x="4.5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis2.3d" /> <!-- generator sphere 0.15 5 5 aneis2.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="125" x="0" y ="1" z = "0" />
+               		<translate x="4.5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis2.3d" /> <!-- generator sphere 0.15 5 5 aneis2.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="135" x="0" y ="1" z = "0" />
+               		<translate x="4.5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis2.3d" /> <!-- generator sphere 0.15 5 5 aneis2.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="145" x="0" y ="1" z = "0" />
+               		<translate x="4.5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis2.3d" /> <!-- generator sphere 0.15 5 5 aneis2.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="155" x="0" y ="1" z = "0" />
+               		<translate x="4.5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis2.3d" /> <!-- generator sphere 0.15 5 5 aneis2.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="165" x="0" y ="1" z = "0" />
+               		<translate x="4.5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis2.3d" /> <!-- generator sphere 0.15 5 5 aneis2.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="175" x="0" y ="1" z = "0" />
+               		<translate x="4.5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis2.3d" /> <!-- generator sphere 0.15 5 5 aneis2.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="185" x="0" y ="1" z = "0" />
+               		<translate x="4.5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis2.3d" /> <!-- generator sphere 0.15 5 5 aneis2.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="195" x="0" y ="1" z = "0" />
+               		<translate x="4.5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis2.3d" /> <!-- generator sphere 0.15 5 5 aneis2.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="205" x="0" y ="1" z = "0" />
+               		<translate x="4.5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis2.3d" /> <!-- generator sphere 0.15 5 5 aneis2.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="215" x="0" y ="1" z = "0" />
+               		<translate x="4.5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis2.3d" /> <!-- generator sphere 0.15 5 5 aneis2.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="225" x="0" y ="1" z = "0" />
+               		<translate x="4.5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis2.3d" /> <!-- generator sphere 0.15 5 5 aneis2.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="235" x="0" y ="1" z = "0" />
+               		<translate x="4.5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis2.3d" /> <!-- generator sphere 0.15 5 5 aneis2.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="245" x="0" y ="1" z = "0" />
+               		<translate x="4.5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis2.3d" /> <!-- generator sphere 0.15 5 5 aneis2.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="255" x="0" y ="1" z = "0" />
+               		<translate x="4.5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis2.3d" /> <!-- generator sphere 0.15 5 5 aneis2.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="265" x="0" y ="1" z = "0" />
+               		<translate x="4.5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis2.3d" /> <!-- generator sphere 0.15 5 5 aneis2.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="275" x="0" y ="1" z = "0" />
+               		<translate x="4.5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis2.3d" /> <!-- generator sphere 0.15 5 5 aneis2.3d -->                    </models>
+            	</group>
+			<group> 
+                	<transform> 
+                	       <rotate angle="285" x="0" y ="1" z = "0" />
+               		<translate x="4.5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis2.3d" /> <!-- generator sphere 0.15 5 5 aneis2.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="295" x="0" y ="1" z = "0" />
+               		<translate x="4.5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis2.3d" /> <!-- generator sphere 0.15 5 5 aneis2.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="305" x="0" y ="1" z = "0" />
+               		<translate x="4.5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis2.3d" /> <!-- generator sphere 0.15 5 5 aneis2.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="315" x="0" y ="1" z = "0" />
+               		<translate x="4.5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis2.3d" /> <!-- generator sphere 0.15 5 5 aneis2.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="325" x="0" y ="1" z = "0" />
+               		<translate x="4.5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis2.3d" /> <!-- generator sphere 0.15 5 5 aneis2.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="335" x="0" y ="1" z = "0" />
+               		<translate x="4.5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis2.3d" /> <!-- generator sphere 0.15 5 5 aneis2.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="345" x="0" y ="1" z = "0" />
+               		<translate x="4.5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis2.3d" /> <!-- generator sphere 0.15 5 5 aneis2.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="355" x="0" y ="1" z = "0" />
+               		<translate x="4.5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis2.3d" /> <!-- generator sphere 0.15 5 5 aneis2.3d -->                    </models>
+            	</group>
+				
+	<!-- aneis de saturno end-->
+
+		<group> 
+                	<transform> 
+                	       <rotate angle="20" x="0" y ="1" z = "0" />
+               		<translate x="5" y="2" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+            	<group> 
+               	<transform> 
+               	        <rotate angle="50" x="0" y ="1" z = "0" />
+               	     	<translate x="5" y="-2" z="0" />
+               	</transform>
+                        <!-- adicionar cor??-->
+               	<models> 
+               		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+		<group> 
+               	<transform> 
+             			<rotate angle="80" x="0" y ="1" z = "0" />
+                    		<translate x="5" y="2" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+		<group> 
+                	<transform> 
+               		<rotate angle="110" x="0" y ="1" z = "0" />
+               		<translate x="5" y="-2" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+            	<group> 
+                	<transform> 
+                	       <rotate angle="140" x="0" y ="1" z = "0" />
+                		<translate x="5" y="2" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+		<group> 
+                	<transform> 
+                	       <rotate angle="170" x="0" y ="1" z = "0" />
+                    		<translate x="5" y="-2" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+            	<group> 
+                	<transform> 
+                	       <rotate angle="200" x="0" y ="1" z = "0" />
+               		<translate x="5" y="2" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d --> 
+                    	</models>
+            	</group>
+                <group> 
+                	<transform> 
+                	       <rotate angle="230" x="0" y ="1" z = "0" />
+                		<translate x="5" y="-2" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+                <group> 
+                	<transform> 
+                	       <rotate angle="260" x="0" y ="1" z = "0" />
+                		<translate x="5" y="2" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+                <group> 
+                	<transform> 
+                	       <rotate angle="290" x="0" y ="1" z = "0" />
+                		<translate x="5" y="-2" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+        
+        </group>
+        <group> 
+            <transform> 
+                <rotate angle="240" x="0" y ="1" z = "0" />
+                <translate x="130" y="0" z="0" />
+            </transform>
+			<models> 
+				<model file="urano.3d" /> <!-- generator sphere 2.3 10 10 urano.3d -->
+			</models>
+            <group> 
+                	<transform> 
+                	       <rotate angle="40" x="0" y ="1" z = "0" />
+                		<translate x="5" y="3" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+                <group> 
+                	<transform> 
+                	       <rotate angle="80" x="0" y ="1" z = "0" />
+                		<translate x="5" y="-3" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+                <group> 
+                	<transform> 
+                	       <rotate angle="120" x="0" y ="1" z = "0" />
+                		<translate x="5" y="-1" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+                <group> 
+                	<transform> 
+                	       <rotate angle="160" x="0" y ="1" z = "0" />
+                		<translate x="5" y="2" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+                <group> 
+                	<transform> 
+                	       <rotate angle="200" x="0" y ="1" z = "0" />
+                		<translate x="5" y="1" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+                <group> 
+                	<transform> 
+                	       <rotate angle="240" x="0" y ="1" z = "0" />
+                		<translate x="5" y="-1" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+        </group>
+        <group> 
+            <transform> 
+                <rotate angle="280" x="0" y ="1" z = "0" />
+                <translate x="150" y="0" z="0" />
+            </transform>
+			<models> 
+				<model file="netuno.3d" /> <!-- generator sphere 2.5 10 10 netuno.3d -->
+			</models>
+                <group> 
+                	<transform> 
+                	       <rotate angle="0" x="0" y ="1" z = "0" />
+                		<translate x="5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+                <group> 
+                	<transform> 
+                	       <rotate angle="50" x="0" y ="1" z = "0" />
+                		<translate x="5" y="0" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+                <group> 
+                	<transform> 
+                	       <rotate angle="100" x="0" y ="1" z = "0" />
+                		<translate x="5" y="2" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+                <group> 
+                	<transform> 
+                	       <rotate angle="150" x="0" y ="1" z = "0" />
+                		<translate x="5" y="-3" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+                <group> 
+                	<transform> 
+                	       <rotate angle="200" x="0" y ="1" z = "0" />
+                		<translate x="5" y="1" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+        </group>
+        <group> 
+            <transform> 
+                <rotate angle="320" x="0" y ="1" z = "0" />
+                <translate x="170" y="0" z="0" />
+            </transform>
+			<models> 
+				<model file="plutao.3d" /> <!-- generator sphere 1 10 10 plutao.3d -->
+			</models>
+            <group> 
+                	<transform> 
+                	       <rotate angle="0" x="0" y ="1" z = "0" />
+                		<translate x="2" y="1" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="80" x="0" y ="1" z = "0" />
+                		<translate x="2" y="1" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="180" x="0" y ="1" z = "0" />
+                		<translate x="2" y="1" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="lua.3d" /> <!-- generator sphere 0.8 10 10 lua.3d -->                    </models>
+            	</group>
+				<group> 
+                	<transform> 
+                	       <rotate angle="260" x="0" y ="1" z = "0" />
+                		<translate x="2" y="1" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis1.3d" /> <!-- generator sphere 0.1 5 5 aneis1.3d -->                    </models>
+            	</group>
+                <group> 
+                	<transform> 
+                	       <rotate angle="310" x="0" y ="1" z = "0" />
+                		<translate x="2" y="1" z="0" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> 
+                    		<model file="aneis2.3d" /> <!-- generator sphere 0.15 5 5 aneis2.3d -->                    </models>
+            	</group>
+        </group>
+    </group>
+</world>

@@ -1,0 +1,98 @@
+<group>
+    <transform> 
+        	        <rotate angle="160" x="0" y ="1" z = "0" />
+                    <translate x="80" y="0" z="0" />
+        	</transform>
+		<models> <!-- jupiter-->
+			<model file="sphere.3d" /> <!-- generator sphere 1 15 15 sphere.3d -->
+		</models>
+		
+		<group> 
+                	<transform> 
+                	       <rotate angle="45" x="0" y ="1" z = "0" />
+               		<translate x="2" y="0" z="0" />
+					   <scale x="0.1" y="0.1" z="0.1" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> <!-- lua de jupiter-->
+                    		<model file="sphere.3d" /> <!-- generator sphere 1 15 15 sphere.3d -->
+					</models>
+            	</group>
+            	<group> 
+                 <transform> 
+                        <rotate angle="90" x="0" y ="1" z = "0" />
+                    <translate x="1.5" y="0" z="0" />
+					<scale x="0.1" y="0.1" z="0.1" />
+                </transform>
+                        <!-- adicionar cor??-->
+                <models> <!-- lua de jupiter-->
+                    		<model file="sphere.3d" /> <!-- generator sphere 1 15 15 sphere.3d -->
+					</models>
+            	</group>
+		    <group> 
+                 <transform> 
+                        <rotate angle="135" x="0" y ="1" z = "0" />
+                    <translate x="2" y="0" z="0" />
+					<scale x="0.15" y="0.15" z="0.15" />
+                </transform>
+                        <!-- adicionar cor??-->
+                <models> <!-- lua de jupiter-->
+                    <model file="sphere.3d" /> <!-- generator sphere 1 15 15 sphere.3d -->                   
+				</models>
+            </group>
+            <group> 
+                	<transform> 
+                	       <rotate angle="170" x="0" y ="1" z = "0" />
+               		<translate x="1.5" y="-0.5" z="0" />
+					   <scale x="0.15" y="0.15" z="0.15" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> <!-- lua de jupiter-->
+                    	<model file="sphere.3d" /> <!-- generator sphere 1 15 15 sphere.3d -->                   
+					</models>
+            </group>
+            <group> 
+                	<transform> 
+                	       <rotate angle="220" x="0" y ="1" z = "0" />
+               		<translate x="2" y="0.5" z="0" />
+					   <scale x="0.15" y="0.15" z="0.15" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> <!-- lua de jupiter-->
+                    	<model file="sphere.3d" /> <!-- generator sphere 1 15 15 sphere.3d -->                   
+					</models>
+            </group>
+            <group> 
+                	<transform> 
+                	       <rotate angle="260" x="0" y ="1" z = "0" />
+                		<translate x="1.5" y="-0.5" z="0" />
+						<scale x="0.15" y="0.15" z="0.15" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> <!-- lua de jupiter-->
+                    	<model file="sphere.3d" /> <!-- generator sphere 1 15 15 sphere.3d -->                   
+					</models>
+            	</group>
+                <group> 
+                	<transform> 
+                	       <rotate angle="300" x="0" y ="1" z = "0" />
+                		<translate x="2" y="0.5" z="0" />
+						<scale x="0.15" y="0.15" z="0.15" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> <!-- lua de jupiter-->
+                    	<model file="sphere.3d" /> <!-- generator sphere 1 15 15 sphere.3d -->                   
+					</models>
+            	</group>
+                <group> 
+                	<transform> 
+                	       <rotate angle="340" x="0" y ="1" z = "0" />
+                		<translate x="1.5" y="0.5" z="0" />
+						<scale x="0.15" y="0.15" z="0.15" />
+                	</transform>
+                        <!-- adicionar cor??-->
+                	<models> <!-- lua de jupiter-->
+                    	<model file="sphere.3d" /> <!-- generator sphere 1 15 15 sphere.3d -->                   
+					</models>
+            	</group>
+    </group>
