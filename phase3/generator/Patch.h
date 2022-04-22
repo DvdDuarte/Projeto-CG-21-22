@@ -20,12 +20,12 @@ public:
     /**
      * @brief Construct a new Patch object
      * 
-     * @param num_patches Number of patches in the file.   Triangle
-     * @param indices Matrix of indices of the control points (columns) related to each patch (rows).    of the Triangle
-     * @param num_control_points Number of patches in the file.       Vertex of the Triangle
+     * @param num_patches Number of patches in the file.
+     * @param indices Array of indices of the control points ,every 16 indices relate to each patch.
+     * @param num_control_points Number of patches in the file.
      * @param control_points Array of the control points.
      */
-    Patch(int nPatches,int **ind,int nControlPoints,float **controlPoints) {
+    Patch(int nPatches,int *ind,int nControlPoints,float *controlPoints) {
         num_patches=nPatches;
         indices=ind;//por referencia?
         num_control_points=nControlPoints;
@@ -39,9 +39,9 @@ public:
     };
     
     int num_patches;
-    int **indices;//inidces of control points by patch
+    int *indices;//inidces of control points by patch
     int num_control_points;
-    float **control_points;
+    float *control_points;
     
 };
 

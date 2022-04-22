@@ -27,13 +27,11 @@
 
 using namespace std;
 /**
- * @brief Create a Ring object
+ * @brief Create a read a patch file
  * 
- * @param radius The radius of the ring
- * @param slices The number of
- * @param stacks The number of
- * @param filename The name of the file where the data is going to be stored (Preferably ring.3d)
+ * @param filename The name of the file where the control points are.
  */
+//void read_patch(string filename,Patch* p);
 
 /**
  * @brief Create an Object
