@@ -101,5 +101,5 @@ std::string vertexToString(Vertex v);
  */
 std::string triangleToString(Triangle t);
 
-void creatBezierPatch(int niveltess,std::string controlFile , std::string filename);
+void createBezier(int niveltess,std::string controlFile , std::string filename);
 #endif //PHASE1_GENERATOR_AUX_H

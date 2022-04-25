@@ -18,6 +18,7 @@
  */
 class Patch {
 public:
+
     /**
      * @brief Construct a new Patch object
      * 
@@ -34,10 +35,19 @@ public:
         cp = p->cp;
     };
 
+     Patch(){
 
+     };
+
+    void addVertex(Vertex* v){
+        cp.push_back(v);
+    }
     std::vector<Vertex*> cp;
-    
+
+
 };
+
+
 
 
 #endif //PHASE3_PATCH_H

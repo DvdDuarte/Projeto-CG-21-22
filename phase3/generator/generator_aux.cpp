@@ -4,15 +4,12 @@
 #include <stdlib.h>
 #include <vector>
 #include "Torus.h"
-
+#include "Patch.h"
 int sizeArray = 100;
 Triangle *triangles;
 //Vertex * vertices;
 
-float bezierM[4][4] = {{ -1.0f, 3.0f, -3.0f, 1.0f },
-                              { 3.0f, -6.0f, 3.0f, 0.0f },
-                              { -3.0f, 3.0f, 0.0f, 0.0f },
-                              { 1.0f,  0.0f, 0.0f, 0.0f }};
+
 void createSphere(float radius, int slices, int stacks, std::string filename) {
 
     int triangle_nmr = 0;
@@ -389,14 +386,14 @@ Vertex* calculatePatchPoints(float u, float v, vector<Vertex*> controlPoints) {
 }
 
 
-vector<Vertex*> renderPatches(int tesselation, vector<Patch*> patch){
+vector<Vertex*> renderPatches(int tesselation, vector<Patch*> patches){
 
     vector<Vertex*> result;
     float u, u2, v, v2;
     float add = 1.0/ tesselation;
 
-    for(int numberOfPatches = 0; numberOfPatches < patch.size(); numberOfPatches++){ //for each patch
-        vector<Vertex*> controlPoints = patch[numberOfPatches]->cp;
+    for(int numberOfPatches = 0; numberOfPatches < patches.size(); numberOfPatches++){ //for each patch
+        vector<Vertex*> controlPoints = patches[numberOfPatches]->cp;
 
         for(int j=0; j <= tesselation ; j++){ //for v
             for(int i=0; i <= tesselation; i++){ //for u
@@ -425,7 +422,224 @@ vector<Vertex*> renderPatches(int tesselation, vector<Patch*> patch){
     return result;
 }
 
-void creatBezierPatch(int tess,string controlFile, string filename) {
+void normalize(float *a) {
+
+    float l = sqrt(a[0]*a[0] + a[1] * a[1] + a[2] * a[2]);
+    a[0] = a[0]/l;
+    a[1] = a[1]/l;
+    a[2] = a[2]/l;
+}
+
+void multMatVet(float* a, float *b, float *res) {
+    for (int i = 0; i < 4; ++i) {
+        res[i] = 0;
+        for (int j = 0; j < 4; ++j) {
+            int pos = i * 4 + j;
+            res[i] += a[pos] * b[j];
+        }
+    }
+}
+
+float BezierWithDerivadasForU(float u, float v, float p[4][4]) {
+    float result= 0;
+    float matrixaux[4], matrixaux2[4];
+    //matriz de bezier
+    float m[4][4] =  {{ -1.0f, 3.0f, -3.0f, 1.0f },
+                            { 3.0f, -6.0f, 3.0f, 0.0f },
+                            { -3.0f, 3.0f, 0.0f, 0.0f },
+                            { 1.0f,  0.0f, 0.0f, 0.0f }};
+    // derivada de u = derivada de p por u = [ 3 u² 2u 1 0]
+    // derivada * matriz de bezier * pontos
+    for(int i = 0; i<4; i++){
+        matrixaux[i] = (3 * powf(u,2.0)*m[0][i]) + (2*u*m[1][i]) + (1*m[2][i]);
+    }
+
+    for(int i = 0; i<4; i++){
+        matrixaux2[i] = (matrixaux[0]*p[0][i]) + (matrixaux[1]*p[1][i]) + (matrixaux[2]*p[2][i]) + (matrixaux[3]*p[3][i]);
+    }
+
+    // matriz transposta = matriz (simetria)
+    for(int i = 0; i<4; i++){
+        matrixaux[i] = (matrixaux2[0]*m[0][i]) + (matrixaux2[1]*m[1][i]) + (matrixaux2[2]*m[2][i]) + (matrixaux2[3]*m[3][i]);
+    }
+
+    //  multiplicar por [v³ v² v 1]
+    result = matrixaux[0] * powf(v,3.0);
+    result += matrixaux[1] * powf(v,2.0);
+    result += matrixaux[2] * v;
+    result += matrixaux[3];
+
+    return result;
 
 }
+
+float BezierWithDerivadasForV(float u, float v, float p[4][4]) {
+    float result= 0;
+    float matrixaux[4], matrixaux2[4];
+    //matriz de bezier
+    float m[4][4] =  {{ -1.0f, 3.0f, -3.0f, 1.0f },
+                            { 3.0f, -6.0f, 3.0f, 0.0f },
+                            { -3.0f, 3.0f, 0.0f, 0.0f },
+                            { 1.0f,  0.0f, 0.0f, 0.0f }};
+    //u * m * pontos * m * derivada u
+    for(int i = 0; i<4; i++){
+        matrixaux[i] = (powf(u,3.0)*m[0][i]) + (powf(u,2.0)*m[1][i]) + (u*m[2][i]) + m[3][i];
+    }
+    for(int i = 0; i<4; i++){
+        matrixaux2[i] = (matrixaux[0]*p[0][i]) + (matrixaux[1]*p[1][i]) + (matrixaux[2]*p[2][i]) + (matrixaux[3]*p[3][i]);
+    }
+    for(int i = 0; i<4; i++){
+        matrixaux[i] = (matrixaux2[0]*m[0][i]) + (matrixaux2[1]*m[1][i]) + (matrixaux2[2]*m[2][i]) + (matrixaux2[3]*m[3][i]);
+    }
+
+    // multiplicar por derivada de v = [3v² 2v 1 0 ] 4*1
+    result= matrixaux[0] * (3 * powf(v,2.0));
+    result += matrixaux[1] * (2 * v);
+    result += matrixaux[2];
+    return result;
+}
+
+
+vector<Vertex*> creatBezierNormasVector(int tessellation, vector<Patch*>patches) {
+    vector<Vertex*> normas;
+    int i, j, aux;
+    float  px[4][4], py[4][4], pz[4][4], derivadaU[3], derivadaV[3], norma[3];
+    float u1, v1, u2, v2, tess = (float)1.0/(float)tessellation;
+
+    for(int npatches = 0; npatches < patches.size(); npatches++){
+        vector<Vertex*> controlP= patches[npatches]->cp;
+       float pointaux = 0;
+
+        for(int i = 0; i < 4; i++){
+            for(int j = 0; j < 4; j++){
+                while(pointaux<4) {
+                    //16 pontos P00,P01,P02,P03,P10,P11,P12,P13,P21,P22,P23,P23,P30,P31,P32,P33
+                    // 3 pontos de controlo, com 3 coordenadas
+                    px[i][j] = controlP[pointaux]->x;
+                    py[i][j] = controlP[pointaux]->y;
+                    pz[i][j] = controlP[pointaux]->z;
+                    pointaux++;
+                }
+            }
+        }
+
+        for(i = 0; i<=tessellation ; i++){
+            u1 = i * tess;
+            u2 = (i+1) * tess;
+
+            for(j = 0; j<=tessellation ; j++){
+                v1 = j * tess;
+                v2 = (j+1) * tess;
+
+                //for u and v
+                derivadaU[0] = BezierWithDerivadasForU(u1,v1,px);
+                derivadaU[1] = BezierWithDerivadasForU(u1,v1,py);
+                derivadaU[2] = BezierWithDerivadasForU(u1,v1,pz);
+
+                derivadaV[0] = BezierWithDerivadasForV(u1,v1,px);
+                derivadaV[1] = BezierWithDerivadasForV(u1, v1,py);
+                derivadaV[2] = BezierWithDerivadasForV(u1, v1, pz);
+                normalize(derivadaU);
+                normalize(derivadaV);
+                multMatVet(derivadaV,derivadaU,norma);
+                normas.push_back(new Vertex(norma[0],norma[1],norma[2]));
+
+
+                // for u2 and v
+                derivadaU[0] = BezierWithDerivadasForU(u2,v1,px);
+                derivadaU[1] = BezierWithDerivadasForU(u2,v1,py);
+                derivadaU[2] = BezierWithDerivadasForU(u2,v1,pz);
+
+                derivadaV[0] = BezierWithDerivadasForV(u2,v1,px);
+                derivadaV[1] = BezierWithDerivadasForV(u2, v1,py);
+                derivadaV[2] = BezierWithDerivadasForV(u2, v1, pz);
+                normalize(derivadaU);
+                normalize(derivadaV);
+                multMatVet(derivadaV,derivadaU,norma);
+                normas.push_back(new Vertex(norma[0],norma[1],norma[2]));
+
+                // for u1 and v2
+                derivadaU[0] = BezierWithDerivadasForU(u1,v2,px);
+                derivadaU[1] = BezierWithDerivadasForU(u1,v2,py);
+                derivadaU[2] = BezierWithDerivadasForU(u1,v2,pz);
+
+                derivadaV[0] = BezierWithDerivadasForV(u1,v2,px);
+                derivadaV[1] = BezierWithDerivadasForV(u1, v2,py);
+                derivadaV[2] = BezierWithDerivadasForV(u1, v2, pz);
+                normalize(derivadaU);
+                normalize(derivadaV);
+                multMatVet(derivadaV,derivadaU,norma);
+                normas.push_back(new Vertex(norma[0],norma[1],norma[2]));
+
+                // for u2 and v2
+                derivadaU[0] = BezierWithDerivadasForU(u2,v2,px);
+                derivadaU[1] = BezierWithDerivadasForU(u2,v2,py);
+                derivadaU[2] = BezierWithDerivadasForU(u2,v2,pz);
+
+                derivadaV[0] = BezierWithDerivadasForV(u2,v2,px);
+                derivadaV[1] = BezierWithDerivadasForV(u2, v2,py);
+                derivadaV[2] = BezierWithDerivadasForV(u2, v2, pz);
+                normalize(derivadaU);
+                normalize(derivadaV);
+                multMatVet(derivadaV,derivadaU,norma);
+                normas.push_back(new Vertex(norma[0],norma[1],norma[2]));
+
+
+            }
+        }
+    }
+    return normas;
+}
+
+void createBezier(int t, string filename, string output){
+    int npatches;
+    float f1, f2,f3;
+    vector<Patch*> patches;
+    char * char_aux;
+    string s = "../generator/" + filename;
+    char_aux = const_cast<char*> (s.c_str());
+
+    FILE * fp;
+    cout<< "Ficheiro " << s << endl;
+    fscanf(fp, "%d", &npatches);
+
+
+        // Parsing patches
+        for(int i=0; i<npatches; i++){
+
+            Patch* patch = new Patch();
+
+
+            for(int j=0; j<16; j++){
+               fscanf(fp, "%f %f %f", &f1,&f2,&f3);
+                patch->addVertex(new Vertex(f1,f2,f3));
+            }
+            patches.push_back(patch);
+
+            }
+
+        vector<Vertex*> res = renderPatches(t,patches);
+        vector<Vertex*> normais = creatBezierNormasVector(t,patches);
+        fclose(fp);
+        cout << "antes de escrever " << endl;
+
+       ofstream myFile_Handler;
+       myFile_Handler.open(output);
+       if(myFile_Handler.is_open()){
+        int i = 0;
+        while(i < res.size()){
+            myFile_Handler<<res.at(i)<< endl;
+            i++;
+        }
+        i = 0;
+        myFile_Handler << normais.size() << endl;
+        while(i < normais.size()){
+            myFile_Handler<<normais.at(i)<< endl;
+            i++;
+        }
+        myFile_Handler.close();
+    }
+
+}
+
 

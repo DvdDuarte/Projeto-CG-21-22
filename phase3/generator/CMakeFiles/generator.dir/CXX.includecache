@@ -22,18 +22,6 @@ Vertex.h
 
 /home/ema/Projeto-CG-21-22/phase3/generator/Vertex.h
 
-/home/ema/Projeto-CG-21-22/phase3/generator/generator.cpp
-generator.h
-/home/ema/Projeto-CG-21-22/phase3/generator/generator.h
-
-/home/ema/Projeto-CG-21-22/phase3/generator/generator.h
-GL/glut.h
--
-math.h
--
-generator_aux.h
-/home/ema/Projeto-CG-21-22/phase3/generator/generator_aux.h
-
 /home/ema/Projeto-CG-21-22/phase3/generator/generator_aux.cpp
 generator_aux.h
 /home/ema/Projeto-CG-21-22/phase3/generator/generator_aux.h
@@ -47,6 +35,8 @@ vector
 -
 Torus.h
 /home/ema/Projeto-CG-21-22/phase3/generator/Torus.h
+Patch.h
+/home/ema/Projeto-CG-21-22/phase3/generator/Patch.h
 
 /home/ema/Projeto-CG-21-22/phase3/generator/generator_aux.h
 GL/glut.h

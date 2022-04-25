@@ -9,7 +9,7 @@
  * 
  */
 #include "generator.h"
-
+#include "Patch.h"
 int main(int argc, char *argv[]) {
 
     string model = argv[1];
@@ -34,7 +34,7 @@ int main(int argc, char *argv[]) {
         //filename += argv[4];
     }
     else if (model=="bezier"){
-        creatBezierPatch(atoi(argv[2]),argv[3],filename); //nivel de tesselacao,ficheiro dos control points, filename do ficheiro para triangulos
+        createBezier(atoi(argv[2]),argv[3],filename); //nivel de tesselacao,ficheiro dos control points, filename do ficheiro para triangulos
     }
     else perror("No Valid Input!");
 
