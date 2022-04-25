@@ -24,6 +24,7 @@
 #include <cstdlib>
 
 #include "Triangle.h"
+#include "Patch.h"
 
 using namespace std;
 /**
@@ -100,4 +101,5 @@ std::string vertexToString(Vertex v);
  */
 std::string triangleToString(Triangle t);
 
+void creatBezierPatch(int niveltess,std::string controlFile , std::string filename);
 #endif //PHASE1_GENERATOR_AUX_H

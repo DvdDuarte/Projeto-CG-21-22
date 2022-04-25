@@ -11,6 +11,7 @@
 #ifndef PHASE3_PATCH_H
 #define PHASE3_PATCH_H
 #include "Vertex.h"
+#include <vector>
 /**
  * @brief class Patch used to generate all kinds of Objects
  * 
@@ -25,23 +26,16 @@ public:
      * @param num_control_points Number of patches in the file.
      * @param control_points Array of the control points.
      */
-    Patch(int nPatches,int *ind,int nControlPoints,float *controlPoints) {
-        num_patches=nPatches;
-        indices=ind;//por referencia?
-        num_control_points=nControlPoints;
-        control_points=controlPoints;
+    Patch(std::vector<Vertex*> controlPoints) {
+        cp = controlPoints;
     };
+
     Patch(Patch* p){
-        num_patches= p->num_patches;
-        indices=p->indices;//por referencia?
-        num_control_points=p->num_control_points;
-        control_points=p->control_points;
+        cp = p->cp;
     };
-    
-    int num_patches;
-    int *indices;//inidces of control points by patch
-    int num_control_points;
-    float *control_points;
+
+
+    std::vector<Vertex*> cp;
     
 };
 

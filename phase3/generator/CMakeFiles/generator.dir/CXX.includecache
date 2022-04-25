@@ -6,31 +6,37 @@
 
 #IncludeRegexTransform: 
 
-/home/sdaslira/Projeto-CG-21-22/phase3/generator/Patch.h
+/home/ema/Projeto-CG-21-22/phase3/generator/Patch.h
 Vertex.h
-/home/sdaslira/Projeto-CG-21-22/phase3/generator/Vertex.h
+/home/ema/Projeto-CG-21-22/phase3/generator/Vertex.h
+vector
+-
 
-/home/sdaslira/Projeto-CG-21-22/phase3/generator/Triangle.h
+/home/ema/Projeto-CG-21-22/phase3/generator/Torus.h
 Vertex.h
-/home/sdaslira/Projeto-CG-21-22/phase3/generator/Vertex.h
+/home/ema/Projeto-CG-21-22/phase3/generator/Vertex.h
 
-/home/sdaslira/Projeto-CG-21-22/phase3/generator/Vertex.h
+/home/ema/Projeto-CG-21-22/phase3/generator/Triangle.h
+Vertex.h
+/home/ema/Projeto-CG-21-22/phase3/generator/Vertex.h
 
-/home/sdaslira/Projeto-CG-21-22/phase3/generator/generator.cpp
+/home/ema/Projeto-CG-21-22/phase3/generator/Vertex.h
+
+/home/ema/Projeto-CG-21-22/phase3/generator/generator.cpp
 generator.h
-/home/sdaslira/Projeto-CG-21-22/phase3/generator/generator.h
+/home/ema/Projeto-CG-21-22/phase3/generator/generator.h
 
-/home/sdaslira/Projeto-CG-21-22/phase3/generator/generator.h
+/home/ema/Projeto-CG-21-22/phase3/generator/generator.h
 GL/glut.h
 -
 math.h
 -
 generator_aux.h
-/home/sdaslira/Projeto-CG-21-22/phase3/generator/generator_aux.h
+/home/ema/Projeto-CG-21-22/phase3/generator/generator_aux.h
 
-/home/sdaslira/Projeto-CG-21-22/phase3/generator/generator_aux.cpp
+/home/ema/Projeto-CG-21-22/phase3/generator/generator_aux.cpp
 generator_aux.h
-/home/sdaslira/Projeto-CG-21-22/phase3/generator/generator_aux.h
+/home/ema/Projeto-CG-21-22/phase3/generator/generator_aux.h
 iostream
 -
 cstring
@@ -39,10 +45,10 @@ stdlib.h
 -
 vector
 -
-Patch.h
-/home/sdaslira/Projeto-CG-21-22/phase3/generator/Patch.h
+Torus.h
+/home/ema/Projeto-CG-21-22/phase3/generator/Torus.h
 
-/home/sdaslira/Projeto-CG-21-22/phase3/generator/generator_aux.h
+/home/ema/Projeto-CG-21-22/phase3/generator/generator_aux.h
 GL/glut.h
 -
 math.h
@@ -66,5 +72,7 @@ string
 cstdlib
 -
 Triangle.h
-/home/sdaslira/Projeto-CG-21-22/phase3/generator/Triangle.h
+/home/ema/Projeto-CG-21-22/phase3/generator/Triangle.h
+Patch.h
+/home/ema/Projeto-CG-21-22/phase3/generator/Patch.h
 
