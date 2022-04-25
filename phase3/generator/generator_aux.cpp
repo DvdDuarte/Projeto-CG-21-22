@@ -382,6 +382,9 @@ Vertex* calculatePatchPoints(float u, float v, vector<Vertex*> controlPoints) {
                            new Vertex(matrix[1][0],matrix[1][1],matrix[1][2]),
                            new Vertex(matrix[2][0],matrix[2][1],matrix[2][2]),
                            new Vertex(matrix[3][0],matrix[3][1],matrix[3][2]));
+
+
+
     return curveForV;
 }
 
@@ -394,7 +397,8 @@ vector<Vertex*> renderPatches(int tesselation, vector<Patch*> patches){
 
     for(int numberOfPatches = 0; numberOfPatches < patches.size(); numberOfPatches++){ //for each patch
         vector<Vertex*> controlPoints = patches[numberOfPatches]->cp;
-
+        cout << numberOfPatches << endl;
+        cout << patches[numberOfPatches]->cp.size() << endl;
         for(int j=0; j <= tesselation ; j++){ //for v
             for(int i=0; i <= tesselation; i++){ //for u
 
@@ -419,6 +423,7 @@ vector<Vertex*> renderPatches(int tesselation, vector<Patch*> patches){
         }
     }
 
+    cout << "end" << endl;
     return result;
 }
 
@@ -591,55 +596,75 @@ vector<Vertex*> creatBezierNormasVector(int tessellation, vector<Patch*>patches)
     return normas;
 }
 
-void createBezier(int t, string filename, string output){
-    int npatches;
-    float f1, f2,f3;
-    vector<Patch*> patches;
-    char * char_aux;
+void createBezier(int t, string filename, string output) {
+    int number,numberpoints;
+    float f1, f2, f3;
+    float l1,l2,l3,l4,l5,l6,l7,l8,l9,l10,l11,l12,l13,l14,l15,l16;
+    vector < Patch * > patches;
+    char *char_aux;
     string s = "../generator/" + filename;
-    char_aux = const_cast<char*> (s.c_str());
+    char_aux = const_cast<char *> (s.c_str());
 
-    FILE * fp;
-    cout<< "Ficheiro " << s << endl;
-    fscanf(fp, "%d", &npatches);
+    FILE *fp;
+    if ((fp = fopen(char_aux, "r")) == NULL)
+    {
+        cout << s << endl;
+        cout << "error in open" << endl;
 
+    }
+    else {
+        cout << "Ficheiro de pontos de controlo " << s << endl;
+        cout << "antes do fscanf" << endl;
+        char *c;
+        fscanf(fp, "%d", &number);
+        cout << "n de patches " << number << endl;
 
         // Parsing patches
-        for(int i=0; i<npatches; i++){
+        cout << "antes do parse" << endl;
+        for (int k=0; k<number;k++) {
+            fscanf(fp, "%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f", &l1, &l2,&l3,&l4,&l5,&l6,&l7, &l8, &l9,&l10,&l11,&l12,&l13,&l14, &l15, &l16);
+        }
+        fscanf(fp, "%d", &numberpoints);
+        for (int i = 0; i < number; i++) {
 
-            Patch* patch = new Patch();
+            Patch *patch = new Patch();
+                int nr =0;
 
-
-            for(int j=0; j<16; j++){
-               fscanf(fp, "%f %f %f", &f1,&f2,&f3);
-                patch->addVertex(new Vertex(f1,f2,f3));
-            }
+                while (fscanf(fp, "%f,%f,%f", &f1, &f2, &f3)>0 && nr<=16) { ;
+                    patch->addVertex(new Vertex(f1, f2, f3));
+                    nr++;
+                }
+            int j=0;
             patches.push_back(patch);
 
-            }
+        }
 
-        vector<Vertex*> res = renderPatches(t,patches);
-        vector<Vertex*> normais = creatBezierNormasVector(t,patches);
+        cout << "render patches" << endl;
+        vector < Vertex * > res = renderPatches(t, patches);
+        cout << "normais" << endl;
+        vector < Vertex * > normais = creatBezierNormasVector(t, patches);
         fclose(fp);
-        cout << "antes de escrever " << endl;
+        cout << "antes de escrever " << output<< endl;
 
-       ofstream myFile_Handler;
-       myFile_Handler.open(output);
-       if(myFile_Handler.is_open()){
-        int i = 0;
-        while(i < res.size()){
-            myFile_Handler<<res.at(i)<< endl;
-            i++;
+        ofstream myFile_Handler;
+        myFile_Handler.open(output);
+        if (myFile_Handler.is_open()) {
+            int i = 0;
+            while (i < res.size()) {
+                myFile_Handler << res[i]->x << " " <<res[i]->y <<" "<< res[i]->z << endl;
+                i++;
+            }
+            i = 0;
+            myFile_Handler << normais.size() << endl;
+            while (i < normais.size()) {
+                myFile_Handler << normais[i]->x <<" " <<normais[i]->y << " " << normais[i]->z << endl;
+                i++;
+            }
+            myFile_Handler.close();
         }
-        i = 0;
-        myFile_Handler << normais.size() << endl;
-        while(i < normais.size()){
-            myFile_Handler<<normais.at(i)<< endl;
-            i++;
-        }
-        myFile_Handler.close();
+        cout << "fim " <<endl;
+
     }
-
 }
 
 
