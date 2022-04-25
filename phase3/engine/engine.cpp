@@ -10,9 +10,10 @@ float posx = 0, posz = 0, angle = 0, scalex = 1, scaley = 1, scalez = 1;
 float position_x=0, position_y=0, position_z=0, lx=0, ly=0 , lz=0, up_x=0, up_y=0, up_z=0, projfov=0, projnear=0, projfar=0;
 vector<Group> groupbrothers;
 int iBrothers= 0;
-float rangle = 0,tx = 0,ty = 0, tz = 0,rx = 0,ry = 0,rz = 0;
+float rangle = 0,rtime=0,ttime= 0,rx = 0,ry = 0,rz = 0;
+bool brtime=false,talign=false;
 float sx=1, sy=1, sz=1;
-
+float px=0,py=0,pz=0;//coordenadas de um ponto
 float alpha = 0.0f, beta = 0.5f, r = 20.0;
 int nrTriangles = 0;
 bool wh;
@@ -77,7 +78,7 @@ void renderScene(void) {
               lx,ly,lz,
               up_x,up_y,up_z);
  
-    
+    //draw axis
     glBegin(GL_LINES);
     // X axis in red
     glColor3f(1.0f, 0.0f, 0.0f);
@@ -298,6 +299,7 @@ void draw (Group g) {
     int iForTranslate = 0;
     int iForRotate = 0;
     int iForScale = 0;
+    int iForPoint=0;
     c1 = 0, c2 = 1, c3 = 1;
     for (int z = 0; z < g.orderTransform.size(); z++) {
 
@@ -305,23 +307,38 @@ void draw (Group g) {
         string t = "translate";
         string r = "rotate";
         string s = "scale";
-
+        string p = "point";
 
         if (transform == t) {
-            tx = g.t[iForTranslate].x;
-            ty = g.t[iForTranslate].y;
-            tz = g.t[iForTranslate].z;
-            iForTranslate++;
-            glTranslated(tx, ty, tz);
+            
+                talign = g.t[iForTranslate].align;
+                ttime = g.t[iForTranslate].time;
+                
+                iForTranslate++;
+                //glTranslated(tx, ty, tz);
+            
         }
 
         if (transform == r) {
-            rangle = g.r[iForRotate].angle;
-            rx = g.r[iForRotate].x;
-            ry = g.r[iForRotate].y;
-            rz = g.r[iForRotate].z;
-            iForRotate++;
-            glRotated(rangle, rx, ry, rz);
+            brtime=g.r[iForRotate].rtime;
+            if(brtime){
+                //nao completo
+                //rotate according to rtime value
+                rtime=g.r[iForRotate].angle;
+                rangle = 0;//varia entre 0 e 360
+                rx = g.r[iForRotate].x;
+                ry = g.r[iForRotate].y;
+                rz = g.r[iForRotate].z;
+                iForRotate++;
+                glRotated(rangle, rx, ry, rz);
+            }else{
+                rangle = g.r[iForRotate].angle;
+                rx = g.r[iForRotate].x;
+                ry = g.r[iForRotate].y;
+                rz = g.r[iForRotate].z;
+                iForRotate++;
+                glRotated(rangle, rx, ry, rz);
+            }
         }
         if (transform== s) {
             sx = g.s[iForScale].x;
@@ -329,7 +346,16 @@ void draw (Group g) {
             sz = g.s[iForScale].z;
             glScalef(sx, sy, sz);
         }
+        if(transform==p){
+            px=g.p[iForPoint].x;
+            py=g.p[iForPoint].y;
+            pz=g.p[iForPoint].z;
+            //algo
+        }
 
+    }
+    if(iForPoint<4){
+        cout<<"erro"<<endl;//da erro
     }
 
     nrTriangles = 0;
@@ -361,22 +387,25 @@ void draw (Group g) {
 }
 
 Group readGroup (XMLElement *group) {
-
+    Point *points=(Point*)(malloc(20 * sizeof(Point)));
     Translate *translates= (Translate *)(malloc(20 * sizeof(Translate)));
     Rotate *rotates= (Rotate *)(malloc(20 * sizeof(Rotate)));
     Scale *scales= (Scale*)(malloc(20 * sizeof(Scale)));
     int iFiles=0;
     vector<string> filesNames;
     vector<string> listOfTransform;
-    int  iChilds=0, iTranslate = 0, iRotate=0, iScale=0, iTransform=0;
+    int  iChilds=0, iTranslate = 0, iRotate=0, iScale=0, iTransform=0,iPoint=0;
     vector<Group> childs;
     XMLElement *scale ;
     XMLElement *rotate;
     XMLElement *translate;
     XMLElement *transform;
+    XMLElement *xml_point;
     XMLElement *transformElement;
+    XMLElement *translateElement;
 
     char *debug = (char*) group->FirstChildElement()->Name();
+    char *aux;//debug para o translate element
 
     vector<Triangle> triangleVec;
     char *name;
@@ -394,32 +423,65 @@ Group readGroup (XMLElement *group) {
                 listOfTransform.push_back("rotate");
                 iTransform++;
                 rangle = 0, rx = 0, ry = 0, rz = 0;
-                if (rotate->Attribute("angle") != nullptr)
+                brtime=false;
+                if (rotate->Attribute("angle") != nullptr){
                     rangle = stof(rotate->Attribute("angle"));
+                    brtime=false;
+                }
+                else if(rotate->Attribute("time") != nullptr){
+                    rangle = stof(rotate->Attribute("time"));
+                    brtime=true;
+                }
                 if (rotate->Attribute("x") != nullptr)
                     rx = stof(rotate->Attribute("x"));
                 if (rotate->Attribute("y") != nullptr)
                     ry = stof(rotate->Attribute("y"));
                 if (rotate->Attribute("z"))
                     rz = stof(rotate->Attribute("z"));
-                rotates[iRotate] = Rotate(rangle, rx, ry, rz);
+                
+                rotates[iRotate] = Rotate(brtime,rangle, rx, ry, rz);
                 iRotate++;
 
             }
             if (strcmp(name, "translate") == 0) {
+                float ttime=0;
+                bool talign=false;
                 translate = transformElement;
+                if (translate->Attribute("time")!=nullptr)
+                    ttime=stof(translate->Attribute("time"));
+                if(translate->Attribute("align")!=nullptr)
+                    talign=stof(translate->Attribute("align"));
+                    
+                translateElement=translate->FirstChildElement();
+                name = (char *) (translateElement->Name());
+                int i_points=0;
+                XMLElement *xml_points=translate->FirstChildElement();
+                while(translateElement != nullptr){ //Percorrers os points irmaos no translate
+                    if (strcmp(name, "point") == 0) {
+                        //points
+                        xml_point=translateElement;
+                        listOfTransform.push_back("point");//?
+                        iTransform++;//?
+                        
+                        float tx = 0, ty = 0, tz = 0;
+                        if (xml_point->Attribute("x") != nullptr)
+                            tx = stof(translate->Attribute("x"));
+                        if (xml_point->Attribute("y") != nullptr)
+                            ty = stof(translate->Attribute("y"));
+                        if (xml_point->Attribute("z") != nullptr)
+                            tz = stof(translate->Attribute("z"));
 
-                listOfTransform.push_back("translate");
-                iTransform++;
-                float tx = 0, ty = 0, tz = 0;
-                if (translate->Attribute("x") != nullptr)
-                    tx = stof(translate->Attribute("x"));
-                if (translate->Attribute("y") != nullptr)
-                    ty = stof(translate->Attribute("y"));
-                if (translate->Attribute("z") != nullptr)
-                    tz = stof(translate->Attribute("z"));
-                translates[iTranslate] = Translate(tx, ty, tz);
-                iTranslate++;
+                        translateElement = translateElement->NextSiblingElement();
+                        if (translateElement!= nullptr) {
+                        name = (char *) (translateElement->Name());
+                        }
+                        //sem restricao de 4 pontos
+                        points[iPoint] = Point(tx, ty, tz);
+                        iPoint++;
+                        
+                    }
+                }
+                
             }
 
             if (strcmp(name, "scale") == 0) {
@@ -470,11 +532,12 @@ Group readGroup (XMLElement *group) {
             iChilds++;
         }
 
-    Group g = Group(translates,rotates,scales, triangleVec,childs,iChilds,listOfTransform);
+    Group g = Group(translates,rotates,scales,points, triangleVec,childs,iChilds,listOfTransform);
 
     return g;
 
 }
+
 void readCamera(XMLElement *world) {
     XMLElement *camera = world->FirstChildElement("camera");
     XMLElement *position = camera->FirstChildElement("position");

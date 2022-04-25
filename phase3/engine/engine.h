@@ -39,22 +39,20 @@ vector<Triangle> read3dFiles (vector<string >files, int nmr_files, vector<Triang
 void readTri(int index, string file);
 #endif //PHASE1_GENERATOR_H
 
-
-class Translate {
-public:
-    Translate(float x1, float y1, float z1){
-
+class Point{
+    public:
+    Point(float x1,float y1, float z1){
         x = x1;
         y = y1;
         z = z1;
-        cout << " translate x: " << x1 << " y: " << y1 << " z: " << z1 << endl;
+        cout << " point x: " << x1 << " y: " << y1 << " z: " << z1 << endl;
     }
-    Translate(Translate *t) {
-        x = t->x;
-        y = t->y;
-        z = t->z;
+    Point(Point *p){
+        x = p->x;
+        y = p->y;
+        z = p->z;
     }
-    Translate() {
+    Point(){
         x=0;
         y=0;
         z=0;
@@ -62,11 +60,43 @@ public:
     float x;
     float y;
     float z;
+    
+};
+
+class Translate {
+public:
+    Translate(float time1,bool align1, vector<Point> p1){
+
+        time=time1;
+        align=align1;
+        cout << " translate time: " <<time1 << " align: " << align1 << endl;
+        for (int i=0; i<p1.size(); i++){
+            p.push_back(p1[i]);
+        }
+        
+    }
+    Translate(Translate *t) {
+        time = t->time;
+        align = t->align;
+        for (int i=0; i<t->p.size(); i++){
+            p.push_back(t->p[i]);
+        }
+    }
+    /*
+    Translate() {
+        x=0;
+        y=0;
+        z=0;
+    }*/
+    float time;
+    vector<Point> p;//?
+    bool align;
 };
 
 class Rotate {
 public:
-    Rotate (float angle1, float axisX, float axisY, float axisZ) {
+    Rotate (bool rtime1,float angle1, float axisX, float axisY, float axisZ) {
+        rtime=rtime1;
 
         angle = angle1;
 
@@ -75,22 +105,27 @@ public:
         y = axisY;
 
         z = axisZ;
+        if(rtime)
+        cout << " rotate: time: " << angle << " x: " << x <<" y: " << y << " z: " << z << endl;
+        else
         cout << " rotate: angle: " << angle << " x: " << x <<" y: " << y << " z: " << z << endl;
-
 
     }
     Rotate (Rotate *r) {
+        rtime=r->rtime;
         x = r->x;
         y= r-> y;
         z = r->z;
         angle = r->angle;
     }
     Rotate () {
+        rtime=false;
         x= 0;
         y= 0;
         z = 0;
         angle = 0;
     }
+    bool rtime;
     float x;
     float y;
     float z;
@@ -124,10 +159,11 @@ public:
 
 class Group{
 public:
-    Group(Translate* x, Rotate* y, Scale* z, vector<Triangle> filesAux, vector<Group>groupchildsAux, int nrchildsAux,vector<string> transforms){
+    Group(Translate* x, Rotate* y, Scale* z,Point *p1, vector<Triangle> filesAux, vector<Group>groupchildsAux, int nrchildsAux,vector<string> transforms){
         t = x;
         r = y;
         s = z;
+        p= p1;
         files = filesAux;
         groupchilds = groupchildsAux;
         nrchilds = nrchildsAux;
@@ -139,6 +175,7 @@ public:
         t = group->t;
         r = group->r;
         s = group->s;
+        p = group->p;
         groupchilds = group->groupchilds;
         nrchilds = group->nrchilds;
         orderTransform= group->orderTransform;
@@ -150,6 +187,7 @@ public:
     Translate* t;
     Rotate* r;
     Scale* s;
+    Point* p;
     int nrchilds;
     vector<string> orderTransform;
 
