@@ -3,6 +3,9 @@
 using namespace tinyxml2;
 int triangle_nmr;
 
+#define POINT_COUNT 5//tem de variar
+
+float p[POINT_COUNT][3];//tem de variar
 //Triangle *tr_arr;
 float c1=1.0, c2=0, c3=1.0;
 int size = 10;
@@ -10,10 +13,13 @@ float posx = 0, posz = 0, angle = 0, scalex = 1, scaley = 1, scalez = 1;
 float position_x=0, position_y=0, position_z=0, lx=0, ly=0 , lz=0, up_x=0, up_y=0, up_z=0, projfov=0, projnear=0, projfar=0;
 vector<Group> groupbrothers;
 int iBrothers= 0;
-float rangle = 0,rtime=0,ttime= 0,rx = 0,ry = 0,rz = 0;
+
+float rangle = 0,rtangle=0,delta_rtangle=0,rtime=0,taux=0,ttime= 0,rx = 0,ry = 0,rz = 0;
+
 bool brtime=false,talign=false;
 float sx=1, sy=1, sz=1;
 float px=0,py=0,pz=0;//coordenadas de um ponto
+
 float alpha = 0.0f, beta = 0.5f, r = 20.0;
 int nrTriangles = 0;
 bool wh;
@@ -39,6 +45,81 @@ void cart2spherical (){
     position_y = r * sin(beta);
     position_z = r * cos(beta) * cos(alpha); */
 }
+
+void prepareVBO(){
+//por fazer
+}
+
+void multMatrixVector(float *m, float *v, float *res) {
+
+	for (int j = 0; j < 4; ++j) {
+		res[j] = 0;
+		for (int k = 0; k < 4; ++k) {
+			res[j] += v[k] * m[j * 4 + k];
+		}
+	}
+
+}
+void getCatmullRomPoint(float t, float *p0, float *p1, float *p2, float *p3, float *pos, float *deriv) {
+
+	// catmull-rom matrix
+	float m[4][4] = {	{-0.5f,  1.5f, -1.5f,  0.5f},
+						{ 1.0f, -2.5f,  2.0f, -0.5f},
+						{-0.5f,  0.0f,  0.5f,  0.0f},
+						{ 0.0f,  1.0f,  0.0f,  0.0f}};
+    float T[4]={(t*t*t),(t*t),t,1};
+    float T_linha[4]={(3*t*t),2*t,1,0};
+
+    //for each component x,y,z
+    for(int i=0;i<3;i++){
+        // Compute A = M * P
+        float res[4];
+        float paux[4];
+        paux[0]=p0[i], paux[1]=p1[i], paux[2]=p2[i],paux[3]=p3[i];
+
+        multMatrixVector((float *)m,paux,res);
+        // Compute pos = T * A
+        pos[i]=T[0]*res[0]+T[1]*res[1]+T[2]*res[2]+T[3]*res[3];
+        // compute deriv = T' * A
+        deriv[i]=T_linha[0]*res[0]+T_linha[1]*res[1]+T_linha[2]*res[2]+T_linha[3]*res[3];
+
+    }
+
+}
+
+// given  global t, returns the point in the curve
+void getGlobalCatmullRomPoint(float gt, float *pos, float *deriv) {
+    //rever em relacao a variacao dos pontos de controle
+	float t = gt * POINT_COUNT; // this is the real global t
+	int index = floor(t);  // which segment
+	t = t - index; // where within  the segment
+
+	// indices store the points
+	int indices[4]; 
+	indices[0] = (index + POINT_COUNT-1)%POINT_COUNT;	
+	indices[1] = (indices[0]+1)%POINT_COUNT;
+	indices[2] = (indices[1]+1)%POINT_COUNT; 
+	indices[3] = (indices[2]+1)%POINT_COUNT;
+
+	getCatmullRomPoint(t, p[indices[0]], p[indices[1]], p[indices[2]], p[indices[3]], pos, deriv);
+}
+
+void renderCatmullRomCurve() {
+    //varia nao pode ser assim exatamente
+// draw curve using line segments with GL_LINE_LOOP
+    float t=0;
+    glBegin(GL_LINE_LOOP);
+    float pos[3],deriv[3];
+    while(t<1){
+        getGlobalCatmullRomPoint(t,pos,deriv);
+        glVertex3fv(pos);
+        t+=0.01;
+    }
+    glEnd();
+}
+
+
+
 void changeSize(int w, int h) {
 
     // Prevent a divide by zero, when window is too short
@@ -323,20 +404,18 @@ void draw (Group g) {
                 //nao completo
                 //rotate according to rtime value
                 rtime=g.r[iForRotate].angle;
+                delta_rtangle=360/rtime;
                 rangle = 0;//varia entre 0 e 360
-                rx = g.r[iForRotate].x;
-                ry = g.r[iForRotate].y;
-                rz = g.r[iForRotate].z;
-                iForRotate++;
-                glRotated(rangle, rx, ry, rz);
+                delta_rtangle++;
             }else{
-                rangle = g.r[iForRotate].angle;
-                rx = g.r[iForRotate].x;
+                rangle = g.r[iForRotate].angle;    
+            }
+            rx = g.r[iForRotate].x;
                 ry = g.r[iForRotate].y;
                 rz = g.r[iForRotate].z;
                 iForRotate++;
-                glRotated(rangle, rx, ry, rz);
-            }
+                glRotated(rtangle, rx, ry, rz);
+
         }
         if (transform== s) {
             sx = g.s[iForScale].x;
