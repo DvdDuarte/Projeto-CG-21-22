@@ -348,6 +348,16 @@ Vertex* BezierCurveCalculate(float t, Vertex* p0, Vertex* p1, Vertex* p2, Vertex
  Vertex* result = new Vertex(x,y,z);
  return result;
 }
+void multMatVet(float* a, float *b, float *res) {
+    for (int i = 0; i < 4; ++i) {
+        res[i] = 0;
+        for (int j = 0; j < 4; ++j) {
+            int pos = i * 4 + j;
+            res[i] += a[pos] * b[j];
+        }
+    }
+}
+
 
 Vertex* calculatePatchPoints(float u, float v, vector<Vertex*> controlPoints) {
     float auxmatrix[4][3]; // 4 points x,y,z
@@ -355,20 +365,16 @@ Vertex* calculatePatchPoints(float u, float v, vector<Vertex*> controlPoints) {
     int point, j = 0, k=0;
 
     for (point = 0; point < 16; point ++) { //each patch has 16 points
-        // for point we need x,y,z
-        //pontos de controlo dão nos os pontos iniciais para a curva
         auxmatrix[j][0] = controlPoints[point]->x;
         auxmatrix[j][1] = controlPoints[point]->y;
         auxmatrix[j][2] = controlPoints[point]->z;
 
         j++;
-        // com os 4 pontos, podemos calcular a curva de u
-        if (j == 4) {
+        if (j % 4==0) {
             Vertex* curveForU = BezierCurveCalculate(u, new Vertex(auxmatrix[0][0],auxmatrix[0][1],auxmatrix[0][2]),
-                                         new Vertex(auxmatrix[1][0],auxmatrix[1][1],auxmatrix[1][2]),
-                                         new Vertex(auxmatrix[2][0],auxmatrix[2][1],auxmatrix[2][2]),
-                                         new Vertex(auxmatrix[3][0],auxmatrix[3][1],auxmatrix[3][2]));
-            //obtido o ponto da curva, colocamos numa nova matriz
+                                                     new Vertex(auxmatrix[1][0],auxmatrix[1][1],auxmatrix[1][2]),
+                                                     new Vertex(auxmatrix[2][0],auxmatrix[2][1],auxmatrix[2][2]),
+                                                     new Vertex(auxmatrix[3][0],auxmatrix[3][1],auxmatrix[3][2]));
             matrix[k][0] = curveForU->x;
             matrix[k][1] = curveForU->y;
             matrix[k][2] = curveForU->z;
@@ -377,16 +383,18 @@ Vertex* calculatePatchPoints(float u, float v, vector<Vertex*> controlPoints) {
             j = 0;
         }
     }
-    // com os pontos de u
-    Vertex* curveForV =    BezierCurveCalculate(v,new Vertex(matrix[0][0],matrix[0][1],matrix[0][2]),
-                           new Vertex(matrix[1][0],matrix[1][1],matrix[1][2]),
-                           new Vertex(matrix[2][0],matrix[2][1],matrix[2][2]),
-                           new Vertex(matrix[3][0],matrix[3][1],matrix[3][2]));
+
+    Vertex* curveForV = BezierCurveCalculate(v,new Vertex(matrix[0][0],matrix[0][1],matrix[0][2]),
+                                                new Vertex(matrix[1][0],matrix[1][1],matrix[1][2]),
+                                                new Vertex(matrix[2][0],matrix[2][1],matrix[2][2]),
+                                                new Vertex(matrix[3][0],matrix[3][1],matrix[3][2]));
 
 
 
     return curveForV;
 }
+
+
 
 
 vector<Vertex*> renderPatches(int tesselation, vector<Patch*> patches){
@@ -435,15 +443,6 @@ void normalize(float *a) {
     a[2] = a[2]/l;
 }
 
-void multMatVet(float* a, float *b, float *res) {
-    for (int i = 0; i < 4; ++i) {
-        res[i] = 0;
-        for (int j = 0; j < 4; ++j) {
-            int pos = i * 4 + j;
-            res[i] += a[pos] * b[j];
-        }
-    }
-}
 
 float BezierWithDerivadasForU(float u, float v, float p[4][4]) {
     float result= 0;
@@ -504,7 +503,7 @@ float BezierWithDerivadasForV(float u, float v, float p[4][4]) {
     return result;
 }
 
-
+/*
 vector<Vertex*> creatBezierNormasVector(int tessellation, vector<Patch*>patches) {
     vector<Vertex*> normas;
     int i, j, aux;
@@ -595,76 +594,94 @@ vector<Vertex*> creatBezierNormasVector(int tessellation, vector<Patch*>patches)
     }
     return normas;
 }
+*/
+void printFileBezier(vector<Vertex*> v, string filename){
+    ofstream myFile_Handler;
+    myFile_Handler.open(filename);
+    if(myFile_Handler.is_open()){
+        int i = 0;
+        while(i < v.size()){
+            myFile_Handler<<v.at(i)->print() << endl;
+            i++;
+        }
 
-void createBezier(int t, string filename, string output) {
-    int number,numberpoints;
-    float f1, f2, f3;
-    float l1,l2,l3,l4,l5,l6,l7,l8,l9,l10,l11,l12,l13,l14,l15,l16;
-    vector < Patch * > patches;
-    char *char_aux;
-    string s = "../generator/" + filename;
-    char_aux = const_cast<char *> (s.c_str());
-
-    FILE *fp;
-    if ((fp = fopen(char_aux, "r")) == NULL)
-    {
-        cout << s << endl;
-        cout << "error in open" << endl;
-
+        myFile_Handler.close();
     }
-    else {
-        cout << "Ficheiro de pontos de controlo " << s << endl;
-        cout << "antes do fscanf" << endl;
-        char *c;
-        fscanf(fp, "%d", &number);
-        cout << "n de patches " << number << endl;
-
-        // Parsing patches
-        cout << "antes do parse" << endl;
-        for (int k=0; k<number;k++) {
-            fscanf(fp, "%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f", &l1, &l2,&l3,&l4,&l5,&l6,&l7, &l8, &l9,&l10,&l11,&l12,&l13,&l14, &l15, &l16);
-        }
-        fscanf(fp, "%d", &numberpoints);
-        for (int i = 0; i < number; i++) {
-
-            Patch *patch = new Patch();
-                int nr =0;
-
-                while (fscanf(fp, "%f,%f,%f", &f1, &f2, &f3)>0 && nr<=16) { ;
-                    patch->addVertex(new Vertex(f1, f2, f3));
-                    nr++;
-                }
-            int j=0;
-            patches.push_back(patch);
-
-        }
-
-        cout << "render patches" << endl;
-        vector < Vertex * > res = renderPatches(t, patches);
-        cout << "normais" << endl;
-        vector < Vertex * > normais = creatBezierNormasVector(t, patches);
-        fclose(fp);
-        cout << "antes de escrever " << output<< endl;
-
-        ofstream myFile_Handler;
-        myFile_Handler.open(output);
-        if (myFile_Handler.is_open()) {
-            int i = 0;
-            while (i < res.size()) {
-                myFile_Handler << res[i]->x << " " <<res[i]->y <<" "<< res[i]->z << endl;
-                i++;
-            }
-            i = 0;
-            myFile_Handler << normais.size() << endl;
-            while (i < normais.size()) {
-                myFile_Handler << normais[i]->x <<" " <<normais[i]->y << " " << normais[i]->z << endl;
-                i++;
-            }
-            myFile_Handler.close();
-        }
-        cout << "fim " <<endl;
-
-    }
+    else cout << "Error opening file" << endl;
 }
 
+string getLineNumber(string filename, int n_line){
+
+    string line;
+
+    ifstream file;
+    file.open(filename);
+
+    if(file.is_open()){
+        for(int i=0; i < n_line; i++)
+            getline(file,line);
+        file.close();
+    }
+    else cout << "Unable to open patch file: " << filename << "." << endl;
+
+
+    return line;
+}
+
+void createBezier(int t, string filename, string output){
+
+    string line, token, line_cpy, n_line;
+    int numberofp, cont;
+    int index;
+    float value;
+    float vertex[3];
+
+    vector<Patch*> patches;
+
+    ifstream file;
+    file.open(filename);
+
+    if(file.is_open()){
+
+        // Number of patches
+        getline(file,line);
+
+        stringstream ss(line);
+
+        for(int i=0; i<n_patches; i++){
+
+            getline(file,line);
+
+            Patch* patch = new Patch();
+            patches.push_back(patch);
+
+            for(int j=0; j<16; j++){
+                cont = line.find(",");
+                token = line.substr(0, cont);
+                index = atoi(token.c_str());
+                line.erase(0, cont + 1);
+
+                n_line = getLineNumber(filename, numberofp + 3 + index);
+                line_cpy = n_line;
+
+                for(int j=0; j<3; j++){
+                    cont = n_line.find(",");
+                    token = n_line.substr(0, cont);
+                    c[j] = atof(token.c_str());
+                    n_line.erase(0, cont + 1);
+                }
+
+                n_line = line_cpy;
+                patch->addVertex(new Vertex(vertex[0],vertex[1],vertex[2]));
+            }
+        }
+        vector<Vertex*> res = renderPatches(t,patches);
+        printFileBezier(res,output);
+
+        file.close();
+    }
+
+    else cout << "Unable to open patch file: " << filename << "." << endl;
+
+}
 
