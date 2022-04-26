@@ -294,7 +294,7 @@ int main(int argc, char **argv) {
 }
 
 
-
+//como desenhar?
 void draw (Group g) {
     int iForTranslate = 0;
     int iForRotate = 0;
@@ -310,13 +310,11 @@ void draw (Group g) {
         string p = "point";
 
         if (transform == t) {
-            
                 talign = g.t[iForTranslate].align;
                 ttime = g.t[iForTranslate].time;
                 
                 iForTranslate++;
                 //glTranslated(tx, ty, tz);
-            
         }
 
         if (transform == r) {
@@ -382,7 +380,6 @@ void draw (Group g) {
         triangle_vector.clear();
         glPopMatrix();
         iterateChildren++;
-
     }
 }
 
@@ -449,9 +446,14 @@ Group readGroup (XMLElement *group) {
                 translate = transformElement;
                 if (translate->Attribute("time")!=nullptr)
                     ttime=stof(translate->Attribute("time"));
-                if(translate->Attribute("align")!=nullptr)
-                    talign=stof(translate->Attribute("align"));
-                    
+                if(translate->Attribute("align")!=nullptr){
+                    const char* aux=(translate->Attribute("align"));
+                    if(strcmp(aux,"False")){
+                        talign=false;
+                    }else {
+                        talign=true;//casos de erro nao tratados
+                    }
+                }
                 translateElement=translate->FirstChildElement();
                 name = (char *) (translateElement->Name());
                 int i_points=0;
@@ -462,7 +464,6 @@ Group readGroup (XMLElement *group) {
                         xml_point=translateElement;
                         listOfTransform.push_back("point");//?
                         iTransform++;//?
-                        
                         float tx = 0, ty = 0, tz = 0;
                         if (xml_point->Attribute("x") != nullptr)
                             tx = stof(translate->Attribute("x"));
@@ -478,10 +479,8 @@ Group readGroup (XMLElement *group) {
                         //sem restricao de 4 pontos
                         points[iPoint] = Point(tx, ty, tz);
                         iPoint++;
-                        
                     }
                 }
-                
             }
 
             if (strcmp(name, "scale") == 0) {
@@ -567,7 +566,6 @@ vector<Triangle> read3dFiles (vector<string >files, int nmr_files, vector<Triang
     int i = 0;
     while(i < nmr_files) {
 
-
         char * char_aux;
         string s = "../generator/build/" + files[i];
         char_aux = const_cast<char*> (s.c_str());
@@ -596,13 +594,11 @@ vector<Triangle> read3dFiles (vector<string >files, int nmr_files, vector<Triang
                 Triangle *tr1 = new Triangle(vv1,vv2,vv3);
                 tr_arr.push_back(tr1);
             }
-
         fclose(fp);
         i++;
     }
     return tr_arr;
 }
-
 
 int engine (int argc, char **argv) {
    // groupbrothers = (Group *) malloc(size * sizeof(Group));
@@ -629,6 +625,5 @@ int engine (int argc, char **argv) {
         groupbrothers.push_back(readGroup(group));
         iBrothers++;
     }
-
     return 0;
 }
