@@ -10,6 +10,7 @@
  */
 #ifndef PHASE3_VERTEX_H
 #define PHASE3_VERTEX_H
+#include <cstdio>
 
 /**
  * @brief class Vertex used to define the Triangle Object
@@ -50,6 +51,11 @@ public:
     float x;
     float y;
     float z;
+    std ::string write(){
+        std::string res = std::to_string(x) + " " + std::to_string(y) + " " + std::to_string(z);
+        return res;
+    }
 };
+
 
 #endif //PHASE1_VERTEX_H

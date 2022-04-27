@@ -368,71 +368,85 @@ Vertex* calculatePatchPoints(float u, float v, vector<Vertex*> controlPoints) {
         auxmatrix[j][0] = controlPoints[point]->x;
         auxmatrix[j][1] = controlPoints[point]->y;
         auxmatrix[j][2] = controlPoints[point]->z;
+       // cout << "control P " << controlPoints[point]->x << " " << controlPoints[point]->y << " " << controlPoints[point]->z<<endl;
 
         j++;
         if (j % 4==0) {
-            Vertex* curveForU = BezierCurveCalculate(u, new Vertex(auxmatrix[0][0],auxmatrix[0][1],auxmatrix[0][2]),
+            Vertex* cal= BezierCurveCalculate(u, new Vertex(auxmatrix[0][0],auxmatrix[0][1],auxmatrix[0][2]),
                                                      new Vertex(auxmatrix[1][0],auxmatrix[1][1],auxmatrix[1][2]),
                                                      new Vertex(auxmatrix[2][0],auxmatrix[2][1],auxmatrix[2][2]),
                                                      new Vertex(auxmatrix[3][0],auxmatrix[3][1],auxmatrix[3][2]));
-            matrix[k][0] = curveForU->x;
-            matrix[k][1] = curveForU->y;
-            matrix[k][2] = curveForU->z;
+            matrix[k][0] = cal->x;
+            matrix[k][1] = cal->y;
+            matrix[k][2] = cal->z;
 
             k++;
             j = 0;
         }
     }
 
-    Vertex* curveForV = BezierCurveCalculate(v,new Vertex(matrix[0][0],matrix[0][1],matrix[0][2]),
+    Vertex* cal2 = BezierCurveCalculate(v,new Vertex(matrix[0][0],matrix[0][1],matrix[0][2]),
                                                 new Vertex(matrix[1][0],matrix[1][1],matrix[1][2]),
                                                 new Vertex(matrix[2][0],matrix[2][1],matrix[2][2]),
                                                 new Vertex(matrix[3][0],matrix[3][1],matrix[3][2]));
 
 
-
-    return curveForV;
+    return cal2;
 }
 
 
 
 
-vector<Vertex*> renderPatches(int tesselation, vector<Patch*> patches){
-
+void renderPatches(int tesselation, vector<Patch*> patches, string output){
+    vector <Triangle* > ts;
+    ofstream myFile_Handler;
+    myFile_Handler.open(output);
+    Triangle *t1, *t2;
+    Vertex *p0, *p1,*p2,*p3;
+    int triangle_nmr=0, tN=0;
     vector<Vertex*> result;
     float u, u2, v, v2;
     float add = 1.0/ tesselation;
-
+    triangles = (Triangle *) malloc(sizeArray* sizeof(Triangle));
+    cout << "n Patches :: "<< patches.size() << endl;
     for(int numberOfPatches = 0; numberOfPatches < patches.size(); numberOfPatches++){ //for each patch
         vector<Vertex*> controlPoints = patches[numberOfPatches]->cp;
-        cout << numberOfPatches << endl;
-        cout << patches[numberOfPatches]->cp.size() << endl;
+        cout <<"control Points  :: "  <<  controlPoints.size()<< endl;
         for(int j=0; j <= tesselation ; j++){ //for v
-            for(int i=0; i <= tesselation; i++){ //for u
+            for(int i=0; i <= tesselation; i++) { //for u
 
                 u = i * add;
                 v = j * add;
-                u2 = (i+1) * add;
-                v2 = (j+1) * add;
+                u2 = (i + 1) * add;
+                v2 = (j + 1) * add;
 
-                Vertex* p0 = calculatePatchPoints(u, v, controlPoints);
-                Vertex* p1 = calculatePatchPoints(u, v2, controlPoints);
-                Vertex* p2 = calculatePatchPoints(u2, v, controlPoints);
-                Vertex* p3 = calculatePatchPoints(u2, v2, controlPoints);
+                p0 = calculatePatchPoints(u, v, controlPoints);
+                p1 = calculatePatchPoints(u, v2, controlPoints);
+                p2 = calculatePatchPoints(u2, v, controlPoints);
+                p3 = calculatePatchPoints(u2, v2, controlPoints);
 
-                result.push_back(p0);
-                result.push_back(p2);
-                result.push_back(p3);
+                t1 = new Triangle(p0, p2, p3);
+                t2 = new Triangle(p0, p3, p1);
 
-                result.push_back(p0);
-                result.push_back(p3);
-                result.push_back(p1);
+                ts.push_back(t1);
+                ts.push_back(t2);
+                triangle_nmr += 2;
+
+
             }
         }
+
+
+    }
+
+    while (tN<triangle_nmr) {
+        cout << tN << endl;
+        string info = triangleToString(ts.at(tN));
+        tN++;
+        myFile_Handler << info;
     }
 
     cout << "end" << endl;
-    return result;
 }
 
 void normalize(float *a) {
@@ -595,13 +609,14 @@ vector<Vertex*> creatBezierNormasVector(int tessellation, vector<Patch*>patches)
     return normas;
 }
 */
+
 void printFileBezier(vector<Vertex*> v, string filename){
     ofstream myFile_Handler;
     myFile_Handler.open(filename);
     if(myFile_Handler.is_open()){
         int i = 0;
         while(i < v.size()){
-            myFile_Handler<<v.at(i)->print() << endl;
+            myFile_Handler<< v.at(i)->write()<< endl;
             i++;
         }
 
@@ -629,12 +644,11 @@ string getLineNumber(string filename, int n_line){
 }
 
 void createBezier(int t, string filename, string output){
-
     string line, token, line_cpy, n_line;
-    int numberofp, cont;
+    int n_patches, n_points, cont;
     int index;
     float value;
-    float vertex[3];
+    float c[3];
 
     vector<Patch*> patches;
 
@@ -647,13 +661,16 @@ void createBezier(int t, string filename, string output){
         getline(file,line);
 
         stringstream ss(line);
+        ss >> n_patches;
+        // n_patches = atoi(line.c_str());
 
+        // Parsing indexes
         for(int i=0; i<n_patches; i++){
 
             getline(file,line);
 
             Patch* patch = new Patch();
-            patches.push_back(patch);
+
 
             for(int j=0; j<16; j++){
                 cont = line.find(",");
@@ -661,7 +678,7 @@ void createBezier(int t, string filename, string output){
                 index = atoi(token.c_str());
                 line.erase(0, cont + 1);
 
-                n_line = getLineNumber(filename, numberofp + 3 + index);
+                n_line = getLineNumber(filename, n_patches + 3 + index);
                 line_cpy = n_line;
 
                 for(int j=0; j<3; j++){
@@ -672,11 +689,12 @@ void createBezier(int t, string filename, string output){
                 }
 
                 n_line = line_cpy;
-                patch->addVertex(new Vertex(vertex[0],vertex[1],vertex[2]));
+                patch->addVertex(new Vertex(c[0],c[1],c[2]));
             }
+            patches.push_back(patch);
         }
-        vector<Vertex*> res = renderPatches(t,patches);
-        printFileBezier(res,output);
+            renderPatches(t,patches,output);
+             //printFileBezier(res,output);
 
         file.close();
     }
