@@ -610,45 +610,27 @@ vector<Vertex*> creatBezierNormasVector(int tessellation, vector<Patch*>patches)
 }
 */
 
-void printFileBezier(vector<Vertex*> v, string filename){
-    ofstream myFile_Handler;
-    myFile_Handler.open(filename);
-    if(myFile_Handler.is_open()){
-        int i = 0;
-        while(i < v.size()){
-            myFile_Handler<< v.at(i)->write()<< endl;
-            i++;
-        }
 
-        myFile_Handler.close();
-    }
-    else cout << "Error opening file" << endl;
-}
-
-string getLineNumber(string filename, int n_line){
-
+string getLine(string filename, int nline){
     string line;
-
     ifstream file;
     file.open(filename);
 
     if(file.is_open()){
-        for(int i=0; i < n_line; i++)
+        for(int j=0; j < nline; j++)
             getline(file,line);
         file.close();
     }
-    else cout << "Unable to open patch file: " << filename << "." << endl;
-
-
+    else cout << "error: " << filename<< endl;
     return line;
 }
 
 void createBezier(int t, string filename, string output){
-    string line, token, line_cpy, n_line;
-    int n_patches, n_points, cont;
+    string line, token, line2, nline;
+    int nPatches, i;
     int index;
     float value;
-    float c[3];
+    float vertex[3];
 
     vector<Patch*> patches;
 
@@ -657,49 +639,43 @@ void createBezier(int t, string filename, string output){
 
     if(file.is_open()){
 
-        // Number of patches
+
         getline(file,line);
-
         stringstream ss(line);
-        ss >> n_patches;
-        // n_patches = atoi(line.c_str());
-
-        // Parsing indexes
-        for(int i=0; i<n_patches; i++){
+        ss >> nPatches;
+        for(int k=0; k<nPatches; k++){
 
             getline(file,line);
-
             Patch* patch = new Patch();
 
 
             for(int j=0; j<16; j++){
-                cont = line.find(",");
-                token = line.substr(0, cont);
+                i = line.find(",");
+                token = line.substr(0, i);
                 index = atoi(token.c_str());
-                line.erase(0, cont + 1);
+                line.erase(0, i + 1);
 
-                n_line = getLineNumber(filename, n_patches + 3 + index);
-                line_cpy = n_line;
+                nline = getLine(filename, nPatches + 3 + index);
+                line2 = nline;
 
                 for(int j=0; j<3; j++){
-                    cont = n_line.find(",");
-                    token = n_line.substr(0, cont);
-                    c[j] = atof(token.c_str());
-                    n_line.erase(0, cont + 1);
+                    i = nline.find(",");
+                    token = nline.substr(0, i);
+                    vertex[j] = atof(token.c_str());
+                    nline.erase(0, i + 1);
                 }
 
-                n_line = line_cpy;
-                patch->addVertex(new Vertex(c[0],c[1],c[2]));
+                nline = line2;
+                patch->addVertex(new Vertex(vertex[0],vertex[1],vertex[2]));
             }
             patches.push_back(patch);
         }
             renderPatches(t,patches,output);
-             //printFileBezier(res,output);
 
         file.close();
     }
 
-    else cout << "Unable to open patch file: " << filename << "." << endl;
+    else cout << "error: " << filename <<  endl;
 
 }
 

@@ -34,7 +34,9 @@ int main(int argc, char *argv[]) {
         //filename += argv[4];
     }
     else if (model=="bezier"){
-        createBezier(atoi(argv[2]),argv[3],argv[4]); //nivel de tesselacao,ficheiro dos control points, filename do ficheiro para triangulos
+        cout << filename+argv[4] << endl;
+        createBezier(atoi(argv[2]),argv[3],filename+argv[4]); //nivel de tesselacao,ficheiro dos control points, filename do ficheiro para triangulos
+
     }
     else perror("No Valid Input!");
 
