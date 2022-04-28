@@ -82,12 +82,12 @@ public:
             p.push_back(t->p[i]);
         }
     }
-    /*
+    
     Translate() {
-        x=0;
-        y=0;
-        z=0;
-    }*/
+        time=0;
+        align=false;
+        p= vector<Point>();
+    }
     float time;
     vector<Point> p;//?
     bool align;
@@ -159,7 +159,7 @@ public:
 
 class Group{
 public:
-    Group(Translate* x, Rotate* y, Scale* z,Point *p1, vector<Triangle> filesAux, vector<Group>groupchildsAux, int nrchildsAux,vector<string> transforms){
+    Group(Translate* x, Rotate* y, Scale* z,vector<Point>p1, vector<Triangle> filesAux, vector<Group>groupchildsAux, int nrchildsAux,vector<string> transforms){
         t = x;
         r = y;
         s = z;
@@ -187,7 +187,7 @@ public:
     Translate* t;
     Rotate* r;
     Scale* s;
-    Point* p;
+    vector<Point> p;
     int nrchilds;
     vector<string> orderTransform;
 

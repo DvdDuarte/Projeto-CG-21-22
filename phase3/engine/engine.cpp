@@ -3,9 +3,6 @@
 using namespace tinyxml2;
 int triangle_nmr;
 
-#define POINT_COUNT 5//tem de variar
-
-float p[POINT_COUNT][3];//tem de variar
 //Triangle *tr_arr;
 float c1=1.0, c2=0, c3=1.0;
 int size = 10;
@@ -534,7 +531,8 @@ void draw (Group g) {
 }
 
 Group readGroup (XMLElement *group) {
-    Point *points=(Point*)(malloc(20 * sizeof(Point)));//20?
+    cout<<"Entro readgroup"<<endl;
+    vector<Point> points;
     Translate *translates= (Translate *)(malloc(20 * sizeof(Translate)));
     Rotate *rotates= (Rotate *)(malloc(20 * sizeof(Rotate)));
     Scale *scales= (Scale*)(malloc(20 * sizeof(Scale)));
@@ -543,16 +541,10 @@ Group readGroup (XMLElement *group) {
     vector<string> listOfTransform;
     int  iChilds=0, iTranslate = 0, iRotate=0, iScale=0, iTransform=0,iPoint=0;
     vector<Group> childs;
-    XMLElement *scale ;
-    XMLElement *rotate;
-    XMLElement *translate;
-    XMLElement *transform;
-    XMLElement *xml_point;
-    XMLElement *transformElement;
-    XMLElement *translateElement;
+    XMLElement *scale,*rotate, *translate, *transform, *xml_point, *transformElement, *translateElement;
 
     char *debug = (char*) group->FirstChildElement()->Name();
-    char *aux;//debug para o translate element
+    cout<<debug<<endl;
 
     vector<Triangle> triangleVec;
     char *name;
@@ -560,25 +552,28 @@ Group readGroup (XMLElement *group) {
         transform = group->FirstChildElement("transform");
         transformElement = transform->FirstChildElement();
         name = (char *) (transformElement->Name());
+        
     }
     else {
         name = (char *) "end";
     }
+    cout<<name<<endl;
         while (strcmp(name, "end") != 0) {
             if (strcmp(name, "rotate") == 0) {
                 rotate = transformElement;
                 listOfTransform.push_back("rotate");
                 iTransform++;
-                rangle = 0, rx = 0, ry = 0, rz = 0;
-                brtime=false;
+                
                 if (rotate->Attribute("angle") != nullptr){
                     rangle = stof(rotate->Attribute("angle"));
+                    cout<<"rangle :"<<rangle<<endl;
                     brtime=false;
                 }
-                else if(rotate->Attribute("time") != nullptr){
+                if(rotate->Attribute("time") != nullptr){
                     rangle = stof(rotate->Attribute("time"));
                     brtime=true;
                 }
+
                 if (rotate->Attribute("x") != nullptr)
                     rx = stof(rotate->Attribute("x"));
                 if (rotate->Attribute("y") != nullptr)
@@ -587,13 +582,17 @@ Group readGroup (XMLElement *group) {
                     rz = stof(rotate->Attribute("z"));
                 
                 rotates[iRotate] = Rotate(brtime,rangle, rx, ry, rz);
+                cout<<"EnGine"<<brtime<<" "<<endl;
                 iRotate++;
+                rangle = 0, rx = 0, ry = 0, rz = 0;
+                brtime=false;
 
             }
             if (strcmp(name, "translate") == 0) {
                 float ttime=0;
                 bool talign=false;
                 translate = transformElement;
+                iTransform++;
                 if (translate->Attribute("time")!=nullptr)
                     ttime=stof(translate->Attribute("time"));
                 if(translate->Attribute("align")!=nullptr){
@@ -614,8 +613,8 @@ Group readGroup (XMLElement *group) {
                     if (strcmp(name, "point") == 0) {
                         //points
                         xml_point=translateElement;
-                        listOfTransform.push_back("point");//?
-                        iTransform++;//?
+                        
+                        
                         float tx = 0, ty = 0, tz = 0;
                         if (xml_point->Attribute("x") != nullptr)
                             tx = stof(translate->Attribute("x"));
@@ -625,12 +624,9 @@ Group readGroup (XMLElement *group) {
                             tz = stof(translate->Attribute("z"));
 
                         translateElement = translateElement->NextSiblingElement();
-                        if (translateElement!= nullptr) {
-                        name = (char *) (translateElement->Name());
-                        }
-                        //sem restricao de 4 pontos
-                        points[iPoint] = Point(tx, ty, tz);
-                        iPoint++;
+                        
+                        Point pAux=new Point(tx,ty,tz);
+                        points.push_back(pAux);
                     }
                 }
             }
