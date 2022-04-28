@@ -17,7 +17,7 @@ float m[16],r_x[3],r_y[3]={0,1,0},r_z[3];
 bool brtime=false,talign=false;
 float sx=1, sy=1, sz=1;
 //float px=0,py=0,pz=0;//coordenadas de um ponto
-vector<Point> t_points;//pontos de controlo por translate
+
 
 float alpha = 0.0f, beta = 0.5f, r = 20.0;
 int nrTriangles = 0;
@@ -118,7 +118,7 @@ void getCatmullRomPoint(float t, float *p0, float *p1, float *p2, float *p3, flo
 }
 
 // given  global t, returns the point in the curve
-void getGlobalCatmullRomPoint(float gt, float *pos, float *deriv) {
+void getGlobalCatmullRomPoint(float gt, float *pos, float *deriv,vector<Point>t_points) {
     //rever em relacao a variacao dos pontos de controle
 	float t = gt * t_points.size(); // this is the real global t
 	int index = floor(t);  // which segment
@@ -141,7 +141,7 @@ void getGlobalCatmullRomPoint(float gt, float *pos, float *deriv) {
 
 	getCatmullRomPoint(t, p_temp[indices[0]], p_temp[indices[1]], p_temp[indices[2]], p_temp[indices[3]], pos, deriv);
 }
-
+/*
 void renderCatmullRomCurve() {
     //alterar para a fase de desenhar
 // draw curve using line segments with GL_LINE_LOOP
@@ -149,14 +149,14 @@ void renderCatmullRomCurve() {
     glBegin(GL_LINE_LOOP);
     float pos[3],deriv[3];
     while(t<1){
-        getGlobalCatmullRomPoint(t,pos,deriv);
+        getGlobalCatmullRomPoint(t,pos,deriv,);
         glVertex3fv(pos);
         t+=0.01;
     }
     glEnd();
 }
 //codigo
-
+*/
 
 void changeSize(int w, int h) {
 
@@ -215,7 +215,7 @@ void renderScene(void) {
     
     int i;
 
-    renderCatmullRomCurve();
+    //renderCatmullRomCurve();
 
 
     for (int iteratorBrothers=0; iteratorBrothers<iBrothers; iteratorBrothers++) { //for each brother
@@ -428,14 +428,13 @@ void draw (Group g) {
         string t = "translate";
         string r = "rotate";
         string s = "scale";
-        string p = "point";
 
         if (transform == t) {
             //rever
-                talign = g.t[iForTranslate].align;
-                ttime = g.t[iForTranslate].time;
+                talign = g.t.at(iForTranslate).align;
+                ttime = g.t.at(iForTranslate).time;
                 
-                if(t_points.size()>=4){
+                if(g.t.at(iForTranslate).p.size()>=4){
                     //achar ponto na curva, usando os pontos
                     /*
                     for (int i=0; i<g.t[iForTranslate].p.size(); i++){
@@ -443,7 +442,7 @@ void draw (Group g) {
                     }*/
                     float pos[3],deriv[3];
 
-                    getGlobalCatmullRomPoint(ttime,pos,deriv);
+                    getGlobalCatmullRomPoint(ttime,pos,deriv,g.t.at(iForTranslate).p);
                     glTranslatef(pos[0],pos[1],pos[3]);
                     if(talign){
                     r_x[0]=deriv[0],r_x[1]=deriv[1],r_x[2]=deriv[2];
@@ -455,14 +454,14 @@ void draw (Group g) {
                     }
 
                 }
-                t_points.clear();
+                
     
                 iForTranslate++;
                 //glTranslated(tx, ty, tz);
         }
 
         if (transform == r) {
-            brtime=g.r[iForRotate].rtime;
+            brtime=g.r.at(iForRotate).rtime;
             if(brtime){
                 //falta testar
                 //rotate according to rtime value
@@ -471,30 +470,22 @@ void draw (Group g) {
                 rangle = 0;//varia entre 0 e 360
                 delta_rtangle++;
             }else{
-                rangle = g.r[iForRotate].angle;    
+                rangle = g.r.at(iForRotate).angle;    
             }
-            rx = g.r[iForRotate].x;
-                ry = g.r[iForRotate].y;
-                rz = g.r[iForRotate].z;
+            rx = g.r.at(iForRotate).x;
+                ry = g.r.at(iForRotate).y;
+                rz = g.r.at(iForRotate).z;
                 iForRotate++;
                 glRotated(rtangle, rx, ry, rz);
 
         }
         if (transform== s) {
-            sx = g.s[iForScale].x;
-            sy = g.s[iForScale].y;
-            sz = g.s[iForScale].z;
+            sx = g.s.at(iForScale).x;
+            sy = g.s.at(iForScale).y;
+            sz = g.s.at(iForScale).z;
             glScalef(sx, sy, sz);
         }
-        if(transform==p){
-            float px=0,py=0,pz=0;
-            px=g.p[iForPoint].x;
-            py=g.p[iForPoint].y;
-            pz=g.p[iForPoint].z;
-            Point aux_p=Point(px,py,pz);
-            t_points.push_back(aux_p);
-            //guardar os pontos
-        }
+       
 
     }
     if(iForPoint<4){
@@ -643,7 +634,7 @@ Group readGroup (XMLElement *group) {
                 if (scale->Attribute("z") != nullptr)
                     sz = stof(scale->Attribute("z"));
                 scales.push_back(Scale(sx, sy, sz));
-                
+                iScale++;
             }
 
             if (transformElement->NextSiblingElement() != nullptr) {
