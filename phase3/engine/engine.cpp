@@ -70,18 +70,14 @@ void cart2spherical (){
     float X1 = lx;
     float Y1 = ly;
     float Z1 = lz;
-    // r = sqrt(X* X + Y*Y + Z*Z);
+    
     r = sqrt((X-X1) * (X-X1) + (Y-Y1) * (Y-Y1) + (Z-Z1) * (Z-Z1));
     alpha = atan2(X/r, Z/r);
     beta = asin(Y / r);
     alpha = alpha/3.14 * 180;
     beta = beta/ 3.14 * 180;
-  /*  position_x = r * cos(beta) * sin (alpha);
-    position_y = r * sin(beta);
-    position_z = r * cos(beta) * cos(alpha); */
+ 
 }
-
-
 void prepareVBO(){
 //por fazer
 
@@ -365,7 +361,10 @@ void processMouseButtons(int button, int state, int xx, int yy)
         else { // Middle button
             tracking = 0;
             picked = picking(xx,yy);
-           
+            if (picked)
+                printf("Picked Snowman number %d\n", picked);
+            else
+                printf("Nothing selected\n");
             glutPostRedisplay();
         }
     }
