@@ -533,9 +533,9 @@ void draw (Group g) {
 Group readGroup (XMLElement *group) {
     cout<<"Entro readgroup"<<endl;
     vector<Point> points;
-    Translate *translates= (Translate *)(malloc(20 * sizeof(Translate)));
-    Rotate *rotates= (Rotate *)(malloc(20 * sizeof(Rotate)));
-    Scale *scales= (Scale*)(malloc(20 * sizeof(Scale)));
+    vector<Translate> translates;
+    vector<Rotate> rotates;
+    vector<Scale> scales;
     int iFiles=0;
     vector<string> filesNames;
     vector<string> listOfTransform;
@@ -581,9 +581,8 @@ Group readGroup (XMLElement *group) {
                 if (rotate->Attribute("z"))
                     rz = stof(rotate->Attribute("z"));
                 
-                rotates[iRotate] = Rotate(brtime,rangle, rx, ry, rz);
-                cout<<"EnGine"<<brtime<<" "<<endl;
-                iRotate++;
+                rotates.push_back(Rotate(brtime,rangle, rx, ry, rz));
+              
                 rangle = 0, rx = 0, ry = 0, rz = 0;
                 brtime=false;
 
@@ -592,11 +591,12 @@ Group readGroup (XMLElement *group) {
                 float ttime=0;
                 bool talign=false;
                 translate = transformElement;
+                listOfTransform.push_back("translate");
                 iTransform++;
                 if (translate->Attribute("time")!=nullptr)
                     ttime=stof(translate->Attribute("time"));
                 if(translate->Attribute("align")!=nullptr){
-                    const char* aux=(translate->Attribute("align"));
+                    char* aux=(char*)translate->Attribute("align");
                     if(strcmp(aux,"False")){
                         talign=false;
                     }else {
@@ -605,30 +605,30 @@ Group readGroup (XMLElement *group) {
                         //o que fazer
                     }
                 }
-                translateElement=translate->FirstChildElement();
-                name = (char *) (translateElement->Name());
+              
                 int i_points=0;
-                XMLElement *xml_points=translate->FirstChildElement();
-                while(translateElement != nullptr){ //Percorrers os points irmaos no translate
-                    if (strcmp(name, "point") == 0) {
+                for( translateElement=translate->FirstChildElement();translateElement!=nullptr; translateElement = translateElement->NextSiblingElement())
+                { //Percorrers os points irmaos no translate
+                    cout << "ponto"<< endl;
+                    char *name2= (char *) (translateElement->Name());
+                    if (strcmp(name2, "point") == 0) {
                         //points
-                        xml_point=translateElement;
-                        
-                        
+                     
                         float tx = 0, ty = 0, tz = 0;
-                        if (xml_point->Attribute("x") != nullptr)
-                            tx = stof(translate->Attribute("x"));
-                        if (xml_point->Attribute("y") != nullptr)
-                            ty = stof(translate->Attribute("y"));
-                        if (xml_point->Attribute("z") != nullptr)
-                            tz = stof(translate->Attribute("z"));
+                        if (translateElement->Attribute("x") != nullptr)
+                            tx = stof(translateElement->Attribute("x"));
+                        if (translateElement->Attribute("y") != nullptr)
+                            ty = stof(translateElement->Attribute("y"));
+                        if (translateElement->Attribute("z") != nullptr)
+                            tz = stof(translateElement->Attribute("z"));
 
-                        translateElement = translateElement->NextSiblingElement();
-                        
                         Point pAux=new Point(tx,ty,tz);
+                        cout << "ponto alocado" <<endl;
                         points.push_back(pAux);
                     }
                 }
+                translates.push_back( Translate(ttime,talign,points)) ;
+                
             }
 
             if (strcmp(name, "scale") == 0) {
@@ -642,8 +642,8 @@ Group readGroup (XMLElement *group) {
                     sy = stof(scale->Attribute("y"));
                 if (scale->Attribute("z") != nullptr)
                     sz = stof(scale->Attribute("z"));
-                scales[iScale] = Scale(sx, sy, sz);
-                iScale++;
+                scales.push_back(Scale(sx, sy, sz));
+                
             }
 
             if (transformElement->NextSiblingElement() != nullptr) {
@@ -680,7 +680,7 @@ Group readGroup (XMLElement *group) {
         }
 
     Group g = Group(translates,rotates,scales,points, triangleVec,childs,iChilds,listOfTransform);
-
+    cout << "fim " << endl;
     return g;
 
 }

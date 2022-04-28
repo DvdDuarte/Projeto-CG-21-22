@@ -159,7 +159,7 @@ public:
 
 class Group{
 public:
-    Group(Translate* x, Rotate* y, Scale* z,vector<Point>p1, vector<Triangle> filesAux, vector<Group>groupchildsAux, int nrchildsAux,vector<string> transforms){
+    Group(vector<Translate> x, vector<Rotate> y, vector <Scale> z,vector<Point>p1, vector<Triangle> filesAux, vector<Group>groupchildsAux, int nrchildsAux,vector<string> transforms){
         t = x;
         r = y;
         s = z;
@@ -184,9 +184,9 @@ public:
     }
     vector<Triangle> files;
     vector<Group>groupchilds;
-    Translate* t;
-    Rotate* r;
-    Scale* s;
+    vector<Translate> t;
+    vector<Rotate> r;
+    vector<Scale> s;
     vector<Point> p;
     int nrchilds;
     vector<string> orderTransform;
