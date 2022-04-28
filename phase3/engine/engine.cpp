@@ -436,14 +436,30 @@ void draw (Group g) {
                 
                 if(g.t.at(iForTranslate).p.size()>=4){
                     //achar ponto na curva, usando os pontos
-                    /*
-                    for (int i=0; i<g.t[iForTranslate].p.size(); i++){
-                        t_points.push_back(g.t[iForTranslate].p[i]);
-                    }*/
                     float pos[3],deriv[3];
+                    renderCatmullRomCurve(g.t.at(iForTranslate).p);
+                    float tempo, g_aux;
+                    
+                    if(ttime!=0){
+                        tempo = glutGet(GLUT_ELAPSED_TIME) % (int)(ttime * 1000);
+                        g_aux = tempo / (ttime * 1000);
+                        renderCatmullRomCurve(g.t.at(iForTranslate).p);
+                        getGlobalCatmullRomPoint(ttime,pos,deriv,g.t.at(iForTranslate).p);
+                        glTranslatef(pos[0],pos[1],pos[2]);
+                        if(talign){
+                        r_x[0]=deriv[0],r_x[1]=deriv[1],r_x[2]=deriv[2];
+                        cross(r_x,r_y,r_z);
+                        cross(r_z,r_x,r_y);
+                        normalize(r_x), normalize(r_y), normalize(r_z);
+                        buildRotMatrix(r_x,r_y,r_z,m);
+                        glMultMatrixf(m);
 
-                    getGlobalCatmullRomPoint(ttime,pos,deriv,g.t.at(iForTranslate).p);
-                    glTranslatef(pos[0],pos[1],pos[3]);
+
+                    }
+                    //else glTranslatef(pos[0],pos[1],pos[2]);
+
+                    /*getGlobalCatmullRomPoint(ttime,pos,deriv,g.t.at(iForTranslate).p);
+                    glTranslatef(pos[0],pos[1],pos[2]);
                     if(talign){
                     r_x[0]=deriv[0],r_x[1]=deriv[1],r_x[2]=deriv[2];
                     cross(r_x,r_y,r_z);
@@ -451,15 +467,12 @@ void draw (Group g) {
                     normalize(r_x), normalize(r_y), normalize(r_z);
                     buildRotMatrix(r_x,r_y,r_z,m);
                     glMultMatrixf(m);
-
+*/
                     }
-                    renderCatmullRomCurve(g.t.at(iForTranslate).p);
+                    
 
                 }
-                
-    
-                iForTranslate++;
-                //glTranslated(tx, ty, tz);
+              iForTranslate++;  
         }
 
         if (transform == r) {
@@ -468,19 +481,28 @@ void draw (Group g) {
             if(brtime){
                 //falta testar
                 //rotate according to rtime value
-                rtime=g.r[iForRotate].angle;
+                rtime=g.r.at(iForRotate).angle;
                 delta_rtangle=360/rtime;
                 rangle = 0;//varia entre 0 e 360
-                delta_rtangle++;
+                //delta_rtangle++;
+                float r,g_aux;
+                if(rtime!=0){
+                        r = glutGet(GLUT_ELAPSED_TIME) % (int)(rtime * 1000);
+                        g_aux = (r*360)/ (rtime * 1000);
+                        rx = g.r.at(iForRotate).x;
+                        ry = g.r.at(iForRotate).y;
+                        rz = g.r.at(iForRotate).z;
+                        glRotated(g_aux, rx, ry, rz);
+                }
+                       
             }else{
-                rangle = g.r.at(iForRotate).angle;    
-            }
-            rx = g.r.at(iForRotate).x;
+                rangle = g.r.at(iForRotate).angle; 
+                rx = g.r.at(iForRotate).x;
                 ry = g.r.at(iForRotate).y;
-                rz = g.r.at(iForRotate).z;
-                iForRotate++;
+                rz = g.r.at(iForRotate).z; 
                 glRotated(rtangle, rx, ry, rz);
-
+            }
+           iForRotate++;
         }
         if (transform== s) {
             cout << "scale" << endl;
@@ -488,8 +510,8 @@ void draw (Group g) {
             sy = g.s.at(iForScale).y;
             sz = g.s.at(iForScale).z;
             glScalef(sx, sy, sz);
+            iForScale++;
         }
-       
 
     }
 
@@ -595,7 +617,6 @@ Group readGroup (XMLElement *group) {
                     }else {
                         talign=true;
                         //casos de erro nao tratados
-                        //o que fazer
                     }
                 }
               

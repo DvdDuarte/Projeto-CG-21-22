@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ema/Projeto-CG-21-22/phase3/engine
+CMAKE_SOURCE_DIR = /home/sdaslira/Projeto-CG-21-22/phase3/engine
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ema/Projeto-CG-21-22/phase3/engine
+CMAKE_BINARY_DIR = /home/sdaslira/Projeto-CG-21-22/phase3/engine
 
 # Include any dependencies generated for this target.
 include CMakeFiles/engine.dir/depend.make
@@ -59,29 +59,29 @@ include CMakeFiles/engine.dir/flags.make
 
 CMakeFiles/engine.dir/engine.cpp.o: CMakeFiles/engine.dir/flags.make
 CMakeFiles/engine.dir/engine.cpp.o: engine.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ema/Projeto-CG-21-22/phase3/engine/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/engine.dir/engine.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/engine.dir/engine.cpp.o -c /home/ema/Projeto-CG-21-22/phase3/engine/engine.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sdaslira/Projeto-CG-21-22/phase3/engine/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/engine.dir/engine.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/engine.dir/engine.cpp.o -c /home/sdaslira/Projeto-CG-21-22/phase3/engine/engine.cpp
 
 CMakeFiles/engine.dir/engine.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/engine.dir/engine.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ema/Projeto-CG-21-22/phase3/engine/engine.cpp > CMakeFiles/engine.dir/engine.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sdaslira/Projeto-CG-21-22/phase3/engine/engine.cpp > CMakeFiles/engine.dir/engine.cpp.i
 
 CMakeFiles/engine.dir/engine.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/engine.dir/engine.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ema/Projeto-CG-21-22/phase3/engine/engine.cpp -o CMakeFiles/engine.dir/engine.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sdaslira/Projeto-CG-21-22/phase3/engine/engine.cpp -o CMakeFiles/engine.dir/engine.cpp.s
 
 CMakeFiles/engine.dir/tinyxml2.cpp.o: CMakeFiles/engine.dir/flags.make
 CMakeFiles/engine.dir/tinyxml2.cpp.o: tinyxml2.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ema/Projeto-CG-21-22/phase3/engine/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/engine.dir/tinyxml2.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/engine.dir/tinyxml2.cpp.o -c /home/ema/Projeto-CG-21-22/phase3/engine/tinyxml2.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sdaslira/Projeto-CG-21-22/phase3/engine/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/engine.dir/tinyxml2.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/engine.dir/tinyxml2.cpp.o -c /home/sdaslira/Projeto-CG-21-22/phase3/engine/tinyxml2.cpp
 
 CMakeFiles/engine.dir/tinyxml2.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/engine.dir/tinyxml2.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ema/Projeto-CG-21-22/phase3/engine/tinyxml2.cpp > CMakeFiles/engine.dir/tinyxml2.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sdaslira/Projeto-CG-21-22/phase3/engine/tinyxml2.cpp > CMakeFiles/engine.dir/tinyxml2.cpp.i
 
 CMakeFiles/engine.dir/tinyxml2.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/engine.dir/tinyxml2.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ema/Projeto-CG-21-22/phase3/engine/tinyxml2.cpp -o CMakeFiles/engine.dir/tinyxml2.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sdaslira/Projeto-CG-21-22/phase3/engine/tinyxml2.cpp -o CMakeFiles/engine.dir/tinyxml2.cpp.s
 
 # Object files for target engine
 engine_OBJECTS = \
@@ -100,7 +100,7 @@ engine: /usr/lib/x86_64-linux-gnu/libglut.so
 engine: /usr/lib/x86_64-linux-gnu/libXmu.so
 engine: /usr/lib/x86_64-linux-gnu/libXi.so
 engine: CMakeFiles/engine.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ema/Projeto-CG-21-22/phase3/engine/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable engine"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/sdaslira/Projeto-CG-21-22/phase3/engine/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable engine"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/engine.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -113,6 +113,6 @@ CMakeFiles/engine.dir/clean:
 .PHONY : CMakeFiles/engine.dir/clean
 
 CMakeFiles/engine.dir/depend:
-	cd /home/ema/Projeto-CG-21-22/phase3/engine && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ema/Projeto-CG-21-22/phase3/engine /home/ema/Projeto-CG-21-22/phase3/engine /home/ema/Projeto-CG-21-22/phase3/engine /home/ema/Projeto-CG-21-22/phase3/engine /home/ema/Projeto-CG-21-22/phase3/engine/CMakeFiles/engine.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/sdaslira/Projeto-CG-21-22/phase3/engine && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sdaslira/Projeto-CG-21-22/phase3/engine /home/sdaslira/Projeto-CG-21-22/phase3/engine /home/sdaslira/Projeto-CG-21-22/phase3/engine /home/sdaslira/Projeto-CG-21-22/phase3/engine /home/sdaslira/Projeto-CG-21-22/phase3/engine/CMakeFiles/engine.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/engine.dir/depend
 
