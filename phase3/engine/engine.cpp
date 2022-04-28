@@ -117,6 +117,9 @@ void getCatmullRomPoint(float t, float *p0, float *p1, float *p2, float *p3, flo
 
 }
 
+
+
+
 // given  global t, returns the point in the curve
 void getGlobalCatmullRomPoint(float gt, float *pos, float *deriv,vector<Point>t_points) {
     //rever em relacao a variacao dos pontos de controle
@@ -141,22 +144,23 @@ void getGlobalCatmullRomPoint(float gt, float *pos, float *deriv,vector<Point>t_
 
 	getCatmullRomPoint(t, p_temp[indices[0]], p_temp[indices[1]], p_temp[indices[2]], p_temp[indices[3]], pos, deriv);
 }
-/*
-void renderCatmullRomCurve() {
+
+
+void renderCatmullRomCurve(vector <Point> pontos) {
     //alterar para a fase de desenhar
 // draw curve using line segments with GL_LINE_LOOP
     float t=0;
     glBegin(GL_LINE_LOOP);
     float pos[3],deriv[3];
     while(t<1){
-        getGlobalCatmullRomPoint(t,pos,deriv,);
+        getGlobalCatmullRomPoint(t,pos,deriv,pontos);
         glVertex3fv(pos);
         t+=0.01;
     }
     glEnd();
 }
-//codigo
-*/
+
+
 
 void changeSize(int w, int h) {
 
@@ -358,10 +362,6 @@ void processMouseButtons(int button, int state, int xx, int yy)
         else { // Middle button
             tracking = 0;
             picked = picking(xx,yy);
-            if (picked)
-                printf("Picked Snowman number %d\n", picked);
-            else
-                printf("Nothing selected\n");
             glutPostRedisplay();
         }
     }
@@ -430,7 +430,7 @@ void draw (Group g) {
         string s = "scale";
 
         if (transform == t) {
-            //rever
+                cout << "translação" << endl;
                 talign = g.t.at(iForTranslate).align;
                 ttime = g.t.at(iForTranslate).time;
                 
@@ -451,7 +451,9 @@ void draw (Group g) {
                     normalize(r_x), normalize(r_y), normalize(r_z);
                     buildRotMatrix(r_x,r_y,r_z,m);
                     glMultMatrixf(m);
+
                     }
+                    renderCatmullRomCurve(g.t.at(iForTranslate).p);
 
                 }
                 
@@ -461,6 +463,7 @@ void draw (Group g) {
         }
 
         if (transform == r) {
+            cout << "rotação" << endl;
             brtime=g.r.at(iForRotate).rtime;
             if(brtime){
                 //falta testar
@@ -480,6 +483,7 @@ void draw (Group g) {
 
         }
         if (transform== s) {
+            cout << "scale" << endl;
             sx = g.s.at(iForScale).x;
             sy = g.s.at(iForScale).y;
             sz = g.s.at(iForScale).z;
@@ -488,9 +492,7 @@ void draw (Group g) {
        
 
     }
-    if(iForPoint<4){
-        cout<<"erro"<<endl;//da erro
-    }
+
 
     nrTriangles = 0;
     vector <Triangle> triangle_vector = g.files;
