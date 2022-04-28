@@ -15,16 +15,49 @@ vector<Group> groupbrothers;
 int iBrothers= 0;
 
 float rangle = 0,rtangle=0,delta_rtangle=0,rtime=0,taux=0,ttime= 0,rx = 0,ry = 0,rz = 0;
+float m[16],r_x[3],r_y[3]={0,1,0},r_z[3];
 
 bool brtime=false,talign=false;
 float sx=1, sy=1, sz=1;
-float px=0,py=0,pz=0;//coordenadas de um ponto
+//float px=0,py=0,pz=0;//coordenadas de um ponto
+vector<Point> t_points;//pontos de controlo por translate
 
 float alpha = 0.0f, beta = 0.5f, r = 20.0;
 int nrTriangles = 0;
 bool wh;
 int startX, startY, tracking = 0;
 unsigned int picked = 0;
+
+void buildRotMatrix(float *x, float *y, float *z, float *m) {
+
+	m[0] = x[0]; m[1] = x[1]; m[2] = x[2]; m[3] = 0;
+	m[4] = y[0]; m[5] = y[1]; m[6] = y[2]; m[7] = 0;
+	m[8] = z[0]; m[9] = z[1]; m[10] = z[2]; m[11] = 0;
+	m[12] = 0; m[13] = 0; m[14] = 0; m[15] = 1;
+}
+
+
+void cross(float *a, float *b, float *res) {
+
+	res[0] = a[1]*b[2] - a[2]*b[1];
+	res[1] = a[2]*b[0] - a[0]*b[2];
+	res[2] = a[0]*b[1] - a[1]*b[0];
+}
+
+
+void normalize(float *a) {
+
+	float l = sqrt(a[0]*a[0] + a[1] * a[1] + a[2] * a[2]);
+	a[0] = a[0]/l;
+	a[1] = a[1]/l;
+	a[2] = a[2]/l;
+}
+
+
+
+
+
+
 string vertexToString(Vertex v){
     string vertex_info = to_string(v.x) + ";" + to_string(v.y) + ";" + to_string(v.z);
     return vertex_info;
@@ -48,8 +81,9 @@ void cart2spherical (){
 
 void prepareVBO(){
 //por fazer
-}
 
+}
+//codigo curvas catmull-rom
 void multMatrixVector(float *m, float *v, float *res) {
 
 	for (int j = 0; j < 4; ++j) {
@@ -90,22 +124,30 @@ void getCatmullRomPoint(float t, float *p0, float *p1, float *p2, float *p3, flo
 // given  global t, returns the point in the curve
 void getGlobalCatmullRomPoint(float gt, float *pos, float *deriv) {
     //rever em relacao a variacao dos pontos de controle
-	float t = gt * POINT_COUNT; // this is the real global t
+	float t = gt * t_points.size(); // this is the real global t
 	int index = floor(t);  // which segment
 	t = t - index; // where within  the segment
 
 	// indices store the points
+    //talvez tenha de se mudar
 	int indices[4]; 
-	indices[0] = (index + POINT_COUNT-1)%POINT_COUNT;	
-	indices[1] = (indices[0]+1)%POINT_COUNT;
-	indices[2] = (indices[1]+1)%POINT_COUNT; 
-	indices[3] = (indices[2]+1)%POINT_COUNT;
+	indices[0] = (index + t_points.size()-1)%t_points.size();	
+	indices[1] = (indices[0]+1)%t_points.size();
+	indices[2] = (indices[1]+1)%t_points.size(); 
+	indices[3] = (indices[2]+1)%t_points.size();
 
-	getCatmullRomPoint(t, p[indices[0]], p[indices[1]], p[indices[2]], p[indices[3]], pos, deriv);
+    float p_temp[t_points.size()][3];
+    for(int i=0;i<t_points.size();i++){
+        p_temp[i][0]=t_points[i].x;
+        p_temp[i][1]=t_points[i].y;
+        p_temp[i][2]=t_points[i].z;
+    }
+
+	getCatmullRomPoint(t, p_temp[indices[0]], p_temp[indices[1]], p_temp[indices[2]], p_temp[indices[3]], pos, deriv);
 }
 
 void renderCatmullRomCurve() {
-    //varia nao pode ser assim exatamente
+    //alterar para a fase de desenhar
 // draw curve using line segments with GL_LINE_LOOP
     float t=0;
     glBegin(GL_LINE_LOOP);
@@ -117,7 +159,7 @@ void renderCatmullRomCurve() {
     }
     glEnd();
 }
-
+//codigo
 
 
 void changeSize(int w, int h) {
@@ -176,6 +218,8 @@ void renderScene(void) {
     glEnd();
     
     int i;
+
+    renderCatmullRomCurve();
 
 
     for (int iteratorBrothers=0; iteratorBrothers<iBrothers; iteratorBrothers++) { //for each brother
@@ -391,9 +435,32 @@ void draw (Group g) {
         string p = "point";
 
         if (transform == t) {
+            //rever
                 talign = g.t[iForTranslate].align;
                 ttime = g.t[iForTranslate].time;
                 
+                if(t_points.size()>=4){
+                    //achar ponto na curva, usando os pontos
+                    /*
+                    for (int i=0; i<g.t[iForTranslate].p.size(); i++){
+                        t_points.push_back(g.t[iForTranslate].p[i]);
+                    }*/
+                    float pos[3],deriv[3];
+
+                    getGlobalCatmullRomPoint(ttime,pos,deriv);
+                    glTranslatef(pos[0],pos[1],pos[3]);
+                    if(talign){
+                    r_x[0]=deriv[0],r_x[1]=deriv[1],r_x[2]=deriv[2];
+                    cross(r_x,r_y,r_z);
+                    cross(r_z,r_x,r_y);
+                    normalize(r_x), normalize(r_y), normalize(r_z);
+                    buildRotMatrix(r_x,r_y,r_z,m);
+                    glMultMatrixf(m);
+                    }
+
+                }
+                t_points.clear();
+    
                 iForTranslate++;
                 //glTranslated(tx, ty, tz);
         }
@@ -401,7 +468,7 @@ void draw (Group g) {
         if (transform == r) {
             brtime=g.r[iForRotate].rtime;
             if(brtime){
-                //nao completo
+                //falta testar
                 //rotate according to rtime value
                 rtime=g.r[iForRotate].angle;
                 delta_rtangle=360/rtime;
@@ -424,10 +491,13 @@ void draw (Group g) {
             glScalef(sx, sy, sz);
         }
         if(transform==p){
+            float px=0,py=0,pz=0;
             px=g.p[iForPoint].x;
             py=g.p[iForPoint].y;
             pz=g.p[iForPoint].z;
-            //algo
+            Point aux_p=Point(px,py,pz);
+            t_points.push_back(aux_p);
+            //guardar os pontos
         }
 
     }
@@ -437,7 +507,9 @@ void draw (Group g) {
 
     nrTriangles = 0;
     vector <Triangle> triangle_vector = g.files;
-
+    
+    //utilizar vbo para desenhar
+    
     for (int i = 0; i <  triangle_vector.size(); i++) {
         // glPolygonMode(GL_FRONT,  GL_LINE);
         glBegin(GL_TRIANGLES);
@@ -463,7 +535,7 @@ void draw (Group g) {
 }
 
 Group readGroup (XMLElement *group) {
-    Point *points=(Point*)(malloc(20 * sizeof(Point)));
+    Point *points=(Point*)(malloc(20 * sizeof(Point)));//20?
     Translate *translates= (Translate *)(malloc(20 * sizeof(Translate)));
     Rotate *rotates= (Rotate *)(malloc(20 * sizeof(Rotate)));
     Scale *scales= (Scale*)(malloc(20 * sizeof(Scale)));
@@ -530,7 +602,9 @@ Group readGroup (XMLElement *group) {
                     if(strcmp(aux,"False")){
                         talign=false;
                     }else {
-                        talign=true;//casos de erro nao tratados
+                        talign=true;
+                        //casos de erro nao tratados
+                        //o que fazer
                     }
                 }
                 translateElement=translate->FirstChildElement();
