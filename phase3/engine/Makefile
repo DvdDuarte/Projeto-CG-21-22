@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/sdaslira/Projeto-CG-21-22/phase3/engine
+CMAKE_SOURCE_DIR = /home/ema/Projeto-CG-21-22/phase3/engine
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/sdaslira/Projeto-CG-21-22/phase3/engine
+CMAKE_BINARY_DIR = /home/ema/Projeto-CG-21-22/phase3/engine
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sdaslira/Projeto-CG-21-22/phase3/engine/CMakeFiles /home/sdaslira/Projeto-CG-21-22/phase3/engine/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ema/Projeto-CG-21-22/phase3/engine/CMakeFiles /home/ema/Projeto-CG-21-22/phase3/engine/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sdaslira/Projeto-CG-21-22/phase3/engine/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ema/Projeto-CG-21-22/phase3/engine/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -177,6 +177,33 @@ tinyxml2.cpp.s:
 	$(MAKE) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/tinyxml2.cpp.s
 .PHONY : tinyxml2.cpp.s
 
+translate.o: translate.cpp.o
+
+.PHONY : translate.o
+
+# target to build an object file
+translate.cpp.o:
+	$(MAKE) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/translate.cpp.o
+.PHONY : translate.cpp.o
+
+translate.i: translate.cpp.i
+
+.PHONY : translate.i
+
+# target to preprocess a source file
+translate.cpp.i:
+	$(MAKE) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/translate.cpp.i
+.PHONY : translate.cpp.i
+
+translate.s: translate.cpp.s
+
+.PHONY : translate.s
+
+# target to generate assembly for a file
+translate.cpp.s:
+	$(MAKE) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/translate.cpp.s
+.PHONY : translate.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -192,6 +219,9 @@ help:
 	@echo "... tinyxml2.o"
 	@echo "... tinyxml2.i"
 	@echo "... tinyxml2.s"
+	@echo "... translate.o"
+	@echo "... translate.i"
+	@echo "... translate.s"
 .PHONY : help
 
 

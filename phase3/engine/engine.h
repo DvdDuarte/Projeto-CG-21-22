@@ -1,6 +1,3 @@
-//
-// Created by sleiman on 23/02/22.
-//
 
 #ifndef PHASE1_GENERATOR_H
 #define PHASE1_GENERATOR_H
@@ -10,14 +7,12 @@
 #include <string>
 #include <fstream>
 #include <math.h>
-
 using namespace std;
-
 #include <iostream>
 #include "tinyxml2.h"
-
 #include "engine_aux.h"
 #include "colors.h"
+#include "translate.h"
 
 int engine (int argc, char **argv);
 void readXML(string filename);
@@ -39,59 +34,6 @@ vector<Triangle> read3dFiles (vector<string >files, int nmr_files, vector<Triang
 void readTri(int index, string file);
 #endif //PHASE1_GENERATOR_H
 
-class Point{
-    public:
-    Point(float x1,float y1, float z1){
-        x = x1;
-        y = y1;
-        z = z1;
-        cout << " point x: " << x1 << " y: " << y1 << " z: " << z1 << endl;
-    }
-    Point(Point *p){
-        x = p->x;
-        y = p->y;
-        z = p->z;
-    }
-    Point(){
-        x=0;
-        y=0;
-        z=0;
-    }
-    float x;
-    float y;
-    float z;
-    
-};
-
-class Translate {
-public:
-    Translate(float time1,bool align1, vector<Point> p1){
-
-        time=time1;
-        align=align1;
-        cout << " translate time: " <<time1 << " align: " << align1 << endl;
-        for (int i=0; i<p1.size(); i++){
-            p.push_back(p1[i]);
-        }
-        
-    }
-    Translate(Translate *t) {
-        time = t->time;
-        align = t->align;
-        for (int i=0; i<t->p.size(); i++){
-            p.push_back(t->p[i]);
-        }
-    }
-    
-    Translate() {
-        time=0;
-        align=false;
-        p= vector<Point>();
-    }
-    float time;
-    vector<Point> p;//?
-    bool align;
-};
 
 class Rotate {
 public:

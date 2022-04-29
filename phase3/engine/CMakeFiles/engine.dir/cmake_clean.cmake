@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/engine.dir/engine.cpp.o"
   "CMakeFiles/engine.dir/tinyxml2.cpp.o"
+  "CMakeFiles/engine.dir/translate.cpp.o"
   "engine"
   "engine.pdb"
 )

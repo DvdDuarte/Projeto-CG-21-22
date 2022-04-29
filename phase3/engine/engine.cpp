@@ -1,58 +1,24 @@
 #include "engine.h"
 #include "tinyxml2.h"
+
 using namespace tinyxml2;
 int triangle_nmr;
 
-//Triangle *tr_arr;
 float c1=1.0, c2=0, c3=1.0;
 int size = 10;
 float posx = 0, posz = 0, angle = 0, scalex = 1, scaley = 1, scalez = 1;
 float position_x=0, position_y=0, position_z=0, lx=0, ly=0 , lz=0, up_x=0, up_y=0, up_z=0, projfov=0, projnear=0, projfar=0;
 vector<Group> groupbrothers;
 int iBrothers= 0;
-
 float rangle = 0,rtangle=0,delta_rtangle=0,rtime=0,taux=0,ttime= 0,rx = 0,ry = 0,rz = 0;
 float m[16],r_x[3],r_y[3]={0,1,0},r_z[3];
-
 bool brtime=false,talign=false;
 float sx=1, sy=1, sz=1;
-//float px=0,py=0,pz=0;//coordenadas de um ponto
-
-
 float alpha = 0.0f, beta = 0.5f, r = 20.0;
 int nrTriangles = 0;
 bool wh;
 int startX, startY, tracking = 0;
 unsigned int picked = 0;
-
-void buildRotMatrix(float *x, float *y, float *z, float *m) {
-
-	m[0] = x[0]; m[1] = x[1]; m[2] = x[2]; m[3] = 0;
-	m[4] = y[0]; m[5] = y[1]; m[6] = y[2]; m[7] = 0;
-	m[8] = z[0]; m[9] = z[1]; m[10] = z[2]; m[11] = 0;
-	m[12] = 0; m[13] = 0; m[14] = 0; m[15] = 1;
-}
-
-
-void cross(float *a, float *b, float *res) {
-
-	res[0] = a[1]*b[2] - a[2]*b[1];
-	res[1] = a[2]*b[0] - a[0]*b[2];
-	res[2] = a[0]*b[1] - a[1]*b[0];
-}
-
-
-void normalize(float *a) {
-
-	float l = sqrt(a[0]*a[0] + a[1] * a[1] + a[2] * a[2]);
-	a[0] = a[0]/l;
-	a[1] = a[1]/l;
-	a[2] = a[2]/l;
-}
-
-
-
-
 
 
 string vertexToString(Vertex v){
@@ -79,89 +45,6 @@ void prepareVBO(){
 //por fazer
 
 }
-//codigo curvas catmull-rom
-void multMatrixVector(float *m, float *v, float *res) {
-
-	for (int j = 0; j < 4; ++j) {
-		res[j] = 0;
-		for (int k = 0; k < 4; ++k) {
-			res[j] += v[k] * m[j * 4 + k];
-		}
-	}
-
-}
-void getCatmullRomPoint(float t, float *p0, float *p1, float *p2, float *p3, float *pos, float *deriv) {
-
-	// catmull-rom matrix
-	float m[4][4] = {	{-0.5f,  1.5f, -1.5f,  0.5f},
-						{ 1.0f, -2.5f,  2.0f, -0.5f},
-						{-0.5f,  0.0f,  0.5f,  0.0f},
-						{ 0.0f,  1.0f,  0.0f,  0.0f}};
-    float T[4]={(t*t*t),(t*t),t,1};
-    float T_linha[4]={(3*t*t),2*t,1,0};
-
-    //for each component x,y,z
-    for(int i=0;i<3;i++){
-        // Compute A = M * P
-        float res[4];
-        float paux[4];
-        paux[0]=p0[i], paux[1]=p1[i], paux[2]=p2[i],paux[3]=p3[i];
-
-        multMatrixVector((float *)m,paux,res);
-        // Compute pos = T * A
-        pos[i]=T[0]*res[0]+T[1]*res[1]+T[2]*res[2]+T[3]*res[3];
-        // compute deriv = T' * A
-        deriv[i]=T_linha[0]*res[0]+T_linha[1]*res[1]+T_linha[2]*res[2]+T_linha[3]*res[3];
-
-    }
-
-}
-
-
-
-
-// given  global t, returns the point in the curve
-void getGlobalCatmullRomPoint(float gt, float *pos, float *deriv,vector<Point>t_points) {
-    //rever em relacao a variacao dos pontos de controle
-	float t = gt * t_points.size(); // this is the real global t
-	int index = floor(t);  // which segment
-	t = t - index; // where within  the segment
-
-	// indices store the points
-    //talvez tenha de se mudar
-	int indices[4]; 
-	indices[0] = (index + t_points.size()-1)%t_points.size();	
-	indices[1] = (indices[0]+1)%t_points.size();
-	indices[2] = (indices[1]+1)%t_points.size(); 
-	indices[3] = (indices[2]+1)%t_points.size();
-
-    float p_temp[t_points.size()][3];
-    for(int i=0;i<t_points.size();i++){
-        p_temp[i][0]=t_points[i].x;
-        p_temp[i][1]=t_points[i].y;
-        p_temp[i][2]=t_points[i].z;
-    }
-
-	getCatmullRomPoint(t, p_temp[indices[0]], p_temp[indices[1]], p_temp[indices[2]], p_temp[indices[3]], pos, deriv);
-}
-
-
-void renderCatmullRomCurve(vector <Point> pontos) {
-    //alterar para a fase de desenhar
-// draw curve using line segments with GL_LINE_LOOP
-    float t=0;
-    glBegin(GL_LINE_LOOP);
-    float pos[3],deriv[3];
-    while(t<1){
-        getGlobalCatmullRomPoint(t,pos,deriv,pontos);
-        glVertex3fv(pos);
-        t+=0.01;
-    }
-    glEnd();
-}
-
-
-
 void changeSize(int w, int h) {
 
     // Prevent a divide by zero, when window is too short
@@ -382,8 +265,6 @@ void processMouseButtons(int button, int state, int xx, int yy)
 }
 
 
-
-
 int main(int argc, char **argv) {
     engine (argc,argv);
 // init GLUT and the window
@@ -415,14 +296,13 @@ int main(int argc, char **argv) {
 }
 
 
-//como desenhar?
 void draw (Group g) {
     int iForTranslate = 0;
     int iForRotate = 0;
     int iForScale = 0;
     int iForPoint=0;
     c1 = 0, c2 = 1, c3 = 1;
-    for (int z = 0; z < g.orderTransform.size(); z++) {
+    for (int z = 0; z < g.orderTransform.size(); z++) { // for each transform of group
 
         string transform = g.orderTransform[z];
         string t = "translate";
@@ -437,43 +317,15 @@ void draw (Group g) {
                 if(g.t.at(iForTranslate).p.size()>=4){
                     //achar ponto na curva, usando os pontos
                     float pos[3],deriv[3];
-                    renderCatmullRomCurve(g.t.at(iForTranslate).p);
+                   // Translate t;
+                   // renderCatmullRomCurve(g.t.at(iForTranslate).p);
                     float tempo, g_aux;
-                    
-                    if(ttime!=0){
-                        tempo = glutGet(GLUT_ELAPSED_TIME) % (int)(ttime * 1000);
-                        g_aux = tempo / (ttime * 1000);
-                        renderCatmullRomCurve(g.t.at(iForTranslate).p);
-                        getGlobalCatmullRomPoint(ttime,pos,deriv,g.t.at(iForTranslate).p);
-                        glTranslatef(pos[0],pos[1],pos[2]);
-                        if(talign){
-                        r_x[0]=deriv[0],r_x[1]=deriv[1],r_x[2]=deriv[2];
-                        cross(r_x,r_y,r_z);
-                        cross(r_z,r_x,r_y);
-                        normalize(r_x), normalize(r_y), normalize(r_z);
-                        buildRotMatrix(r_x,r_y,r_z,m);
-                        glMultMatrixf(m);
-
-
-                    }
-                    //else glTranslatef(pos[0],pos[1],pos[2]);
-
-                    /*getGlobalCatmullRomPoint(ttime,pos,deriv,g.t.at(iForTranslate).p);
-                    glTranslatef(pos[0],pos[1],pos[2]);
-                    if(talign){
-                    r_x[0]=deriv[0],r_x[1]=deriv[1],r_x[2]=deriv[2];
-                    cross(r_x,r_y,r_z);
-                    cross(r_z,r_x,r_y);
-                    normalize(r_x), normalize(r_y), normalize(r_z);
-                    buildRotMatrix(r_x,r_y,r_z,m);
-                    glMultMatrixf(m);
-*/
-                    }
-                    
-
+                    apply(ttime,g.t.at(iForTranslate).p,talign);
                 }
-              iForTranslate++;  
+            iForTranslate++;
         }
+
+
 
         if (transform == r) {
             cout << "rotação" << endl;
@@ -546,20 +398,17 @@ void draw (Group g) {
 }
 
 Group readGroup (XMLElement *group) {
-    cout<<"Entro readgroup"<<endl;
     vector<Point> points;
     vector<Translate> translates;
     vector<Rotate> rotates;
     vector<Scale> scales;
     int iFiles=0;
-    vector<string> filesNames;
-    vector<string> listOfTransform;
-    int  iChilds=0, iTranslate = 0, iRotate=0, iScale=0, iTransform=0,iPoint=0;
+    vector<string> filesNames,listOfTransform;
+    int  iChilds=0, iTransform=0;
     vector<Group> childs;
-    XMLElement *scale,*rotate, *translate, *transform, *xml_point, *transformElement, *translateElement;
+    XMLElement *scale,*rotate, *translate, *transform, *transformElement, *translateElement;
 
     char *debug = (char*) group->FirstChildElement()->Name();
-    cout<<debug<<endl;
 
     vector<Triangle> triangleVec;
     char *name;
@@ -567,12 +416,9 @@ Group readGroup (XMLElement *group) {
         transform = group->FirstChildElement("transform");
         transformElement = transform->FirstChildElement();
         name = (char *) (transformElement->Name());
-        
     }
-    else {
-        name = (char *) "end";
-    }
-    cout<<name<<endl;
+    else {name = (char *) "end";}
+
         while (strcmp(name, "end") != 0) {
             if (strcmp(name, "rotate") == 0) {
                 rotate = transformElement;
@@ -581,7 +427,6 @@ Group readGroup (XMLElement *group) {
                 
                 if (rotate->Attribute("angle") != nullptr){
                     rangle = stof(rotate->Attribute("angle"));
-                    cout<<"rangle :"<<rangle<<endl;
                     brtime=false;
                 }
                 if(rotate->Attribute("time") != nullptr){
@@ -623,11 +468,9 @@ Group readGroup (XMLElement *group) {
                 int i_points=0;
                 for( translateElement=translate->FirstChildElement();translateElement!=nullptr; translateElement = translateElement->NextSiblingElement())
                 { //Percorrers os points irmaos no translate
-                    cout << "ponto"<< endl;
                     char *name2= (char *) (translateElement->Name());
                     if (strcmp(name2, "point") == 0) {
                         //points
-                     
                         float tx = 0, ty = 0, tz = 0;
                         if (translateElement->Attribute("x") != nullptr)
                             tx = stof(translateElement->Attribute("x"));
@@ -637,7 +480,6 @@ Group readGroup (XMLElement *group) {
                             tz = stof(translateElement->Attribute("z"));
 
                         Point pAux=new Point(tx,ty,tz);
-                        cout << "ponto alocado" <<endl;
                         points.push_back(pAux);
                     }
                 }
@@ -657,7 +499,6 @@ Group readGroup (XMLElement *group) {
                 if (scale->Attribute("z") != nullptr)
                     sz = stof(scale->Attribute("z"));
                 scales.push_back(Scale(sx, sy, sz));
-                iScale++;
             }
 
             if (transformElement->NextSiblingElement() != nullptr) {
@@ -681,9 +522,7 @@ Group readGroup (XMLElement *group) {
                 iFiles++;
             }
             triangleVec = read3dFiles(filesNames, iFiles,  triangleVec);
-
         }
-
 
     XMLElement *groupchild2;
 
