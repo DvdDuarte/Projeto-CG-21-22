@@ -7,6 +7,7 @@ int triangle_nmr;
 
 int i=0;
 float c1=1.0, c2=0, c3=1.0;
+float timeprec = 0, time = 0, timediff = 0, seconds = 1;
 int size = 10;
 float posx = 0, posz = 0, angle = 0, scalex = 1, scaley = 1, scalez = 1;
 float position_x=0, position_y=0, position_z=0, lx=0, ly=0 , lz=0, up_x=0, up_y=0, up_z=0, projfov=0, projnear=0, projfar=0;
@@ -81,7 +82,7 @@ void renderScene(void) {
     // set the camera
     glLoadIdentity();
 
-    
+    beta
     gluLookAt(position_x,position_y,position_z,
               lx,ly,lz,
               up_x,up_y,up_z);
@@ -102,6 +103,15 @@ void renderScene(void) {
     glVertex3f(0.0f, 0.0f, 100.0f);
     glEnd();
     
+
+    /* 
+    Este codigo necessita de saber quais os segundos de cada rotação caso haja mais que uma rotação dependente do tempo
+    time = glutGet(GLUT_ELAPSED_TIME);
+    timediff = time - timeprec;
+    timeprec = time;
+    angle += 360/(timediff/seconds);
+
+    */
 
     //renderCatmullRomCurve();
     i*=2;
@@ -277,6 +287,9 @@ void processMouseButtons(int button, int state, int xx, int yy)
 
 int main(int argc, char **argv) {
     engine (argc,argv);
+
+    timeprec = glutGet(GLUT_ELAPSED_TIME);
+
 // init GLUT and the window
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DEPTH|GLUT_DOUBLE|GLUT_RGBA);
