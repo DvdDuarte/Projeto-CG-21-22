@@ -1,7 +1,7 @@
-CMakeFiles/engine.dir/src/engine.cpp.o: \
- /home/sleiman/Projeto-CG-21-22/phase3/engine/src/engine.cpp \
+CMakeFiles/engine.dir/src/engine_aux.cpp.o: \
+ /home/sleiman/Projeto-CG-21-22/phase3/engine/src/engine_aux.cpp \
  /usr/include/stdc-predef.h \
- /home/sleiman/Projeto-CG-21-22/phase3/engine/src/../include/engine.h \
+ /home/sleiman/Projeto-CG-21-22/phase3/engine/src/../include/engine_aux.h \
  /usr/include/GL/glut.h /usr/include/GL/freeglut_std.h \
  /usr/include/GL/gl.h /usr/include/GL/glext.h \
  /usr/include/KHR/khrplatform.h \
@@ -182,23 +182,7 @@ CMakeFiles/engine.dir/src/engine.cpp.o: \
  /usr/include/c++/11/tr1/poly_hermite.tcc \
  /usr/include/c++/11/tr1/poly_laguerre.tcc \
  /usr/include/c++/11/tr1/riemann_zeta.tcc /usr/include/c++/11/iostream \
- /home/sleiman/Projeto-CG-21-22/phase3/engine/src/../include/../src/XMLParser/tinyxml2.h \
- /usr/include/c++/11/climits \
- /usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h \
- /usr/lib/gcc/x86_64-linux-gnu/11/include/syslimits.h \
- /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
- /usr/include/x86_64-linux-gnu/bits/local_lim.h \
- /usr/include/linux/limits.h \
- /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
- /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
- /usr/include/x86_64-linux-gnu/bits/uio_lim.h /usr/include/c++/11/cstring \
- /usr/include/string.h /usr/include/strings.h \
- /home/sleiman/Projeto-CG-21-22/phase3/engine/src/../include/engine_aux.h \
  /home/sleiman/Projeto-CG-21-22/phase3/engine/src/../include/colors.h \
  /home/sleiman/Projeto-CG-21-22/phase3/engine/src/../include/../../generator/include/Vertex.h \
  /home/sleiman/Projeto-CG-21-22/phase3/engine/src/../include/../../generator/include/Triangle.h \
- /home/sleiman/Projeto-CG-21-22/phase3/engine/src/../include/../../generator/include/Vertex.h \
- /home/sleiman/Projeto-CG-21-22/phase3/engine/src/../include/translate.h \
- /home/sleiman/Projeto-CG-21-22/phase3/engine/src/../include/Point.h \
- /home/sleiman/Projeto-CG-21-22/phase3/engine/src/../include/rotate.h \
- /home/sleiman/Projeto-CG-21-22/phase3/engine/src/XMLParser/tinyxml2.h
+ /home/sleiman/Projeto-CG-21-22/phase3/engine/src/../include/../../generator/include/Vertex.h

@@ -5,7 +5,7 @@ PROJECT(generator)
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
-add_executable(${PROJECT_NAME} generator.cpp generator.h  generator_aux.cpp Vertex.h Triangle.h)
+add_executable(${PROJECT_NAME} ../generator/src/generator.cpp ../generator/include/generator.h  ../generator/src/generator_aux.cpp ../generator/include/generator_aux.h ../generator/include/Vertex.h ../generator/include/Triangle.h ../generator/include/Patch.h ../generator/include/Torus.h)
 
 find_package(OpenGL REQUIRED)
 include_directories(${OpenGL_INCLUDE_DIRS})

@@ -7,7 +7,7 @@ int triangle_nmr;
 
 int i=0;
 float c1=1.0, c2=0, c3=1.0;
-float timeprec = 0, time = 0, timediff = 0, seconds = 1;
+float timeprec = 0, timeinstant = 0, timediff = 0, seconds = 1;
 int size = 10;
 float posx = 0, posz = 0, angle = 0, scalex = 1, scaley = 1, scalez = 1;
 float position_x=0, position_y=0, position_z=0, lx=0, ly=0 , lz=0, up_x=0, up_y=0, up_z=0, projfov=0, projnear=0, projfar=0;

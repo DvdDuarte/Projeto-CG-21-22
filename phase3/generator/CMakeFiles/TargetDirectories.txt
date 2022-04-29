@@ -1,0 +1,3 @@
+/home/sleiman/Projeto-CG-21-22/phase3/generator/CMakeFiles/generator.dir
+/home/sleiman/Projeto-CG-21-22/phase3/generator/CMakeFiles/edit_cache.dir
+/home/sleiman/Projeto-CG-21-22/phase3/generator/CMakeFiles/rebuild_cache.dir

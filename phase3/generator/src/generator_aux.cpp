@@ -1,10 +1,10 @@
-#include "generator_aux.h"
+#include "../include/generator_aux.h"
 #include <iostream>
 #include <cstring>
 #include <stdlib.h>
 #include <vector>
-#include "Torus.h"
-#include "Patch.h"
+#include "../include/Torus.h"
+#include "../include/Patch.h"
 int sizeArray = 100;
 Triangle *triangles;
 //Vertex * vertices;

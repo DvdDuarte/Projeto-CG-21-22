@@ -8,8 +8,8 @@
  * @copyright Copyright (c) 2022
  * 
  */
-#include "generator.h"
-#include "Patch.h"
+#include "../include/generator.h"
+#include "../include/Patch.h"
 int main(int argc, char *argv[]) {
 
     string model = argv[1];
