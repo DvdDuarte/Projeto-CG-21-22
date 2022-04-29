@@ -2,6 +2,7 @@
 #include "tinyxml2.h"
 
 using namespace tinyxml2;
+
 int triangle_nmr;
 
 int i=0;
@@ -15,7 +16,7 @@ float rangle = 0,rtangle=0,delta_rtangle=0,rtime=0,taux=0,ttime= 0,rx = 0,ry = 0
 float m[16],r_x[3],r_y[3]={0,1,0},r_z[3];
 bool brtime=false,talign=false;
 float sx=1, sy=1, sz=1;
-float alpha = 0.0f, beta = 0.5f, r = 20.0;
+float alpha = 0.0f, omega = 0.5f, r = 20.0;
 int nrTriangles = 0;
 bool wh;
 int startX, startY, tracking = 0;
@@ -37,9 +38,9 @@ void cart2spherical (){
     
     r = sqrt((X-X1) * (X-X1) + (Y-Y1) * (Y-Y1) + (Z-Z1) * (Z-Z1));
     alpha = atan2(X/r, Z/r);
-    beta = asin(Y / r);
+    omega = asin(Y / r);
     alpha = alpha/3.14 * 180;
-    beta = beta/ 3.14 * 180;
+    omega = omega/ 3.14 * 180;
  
 }
 void prepareVBO(){
@@ -202,7 +203,7 @@ void processMouseMotion(int xx, int yy)
 
 
         alphaAux = alpha + deltaX;
-        betaAux = beta + deltaY;
+        betaAux = omega + deltaY;
 
         if (betaAux > 85.0)
             betaAux = 85.0;
@@ -214,7 +215,7 @@ void processMouseMotion(int xx, int yy)
     else if (tracking == 2) {
 
         alphaAux = alpha;
-        betaAux = beta;
+        betaAux = omega;
         rAux = r - deltaY;
         if (rAux < 3)
             rAux = 3;
@@ -260,7 +261,7 @@ void processMouseButtons(int button, int state, int xx, int yy)
     else if (state == GLUT_UP) {
         if (tracking == 1) {
             alpha += (xx - startX);
-            beta += (yy - startY);
+            omega += (yy - startY);
         }
         else if (tracking == 2) {
 
