@@ -41,5 +41,5 @@ void multMatrixVector(float *m, float *v, float *res);
 void getCatmullRomPoint(float t, float *p0, float *p1, float *p2, float *p3, float *pos, float *deriv);
 void getGlobalCatmullRomPoint(float gt, float *pos, float *deriv,vector<Point>t_points);
 void renderCatmullRomCurve(vector <Point> pontos);
-void apply(float time, vector <Point> points, bool talign);
+void apply(float time, vector <Point> points, bool talign, int i);
 #endif //PROJETO_CG_21_22_TRANSLATE_H

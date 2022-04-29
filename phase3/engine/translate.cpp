@@ -8,7 +8,6 @@ using namespace std;
 #include <GL/glut.h>
 #include <iostream>
 
-
 void buildRotMatrix(float *x, float *y, float *z, float *m) {
 
     m[0] = x[0]; m[1] = x[1]; m[2] = x[2]; m[3] = 0;
@@ -76,7 +75,6 @@ void getCatmullRomPoint(float t, float *p0, float *p1, float *p2, float *p3, flo
 
 // given  global t, returns the point in the curve
 void getGlobalCatmullRomPoint(float gt, float *pos, float *deriv,vector<Point>t_points) {
-    //rever em relacao a variacao dos pontos de controle
     float t = gt * t_points.size(); // this is the real global t
     int index = floor(t);  // which segment
     t = t - index; // where within  the segment
@@ -131,7 +129,7 @@ void curveRotation(float *der, float *up){
     };
     glMultMatrixf((float*)m);
 }
-void apply(float time, vector <Point> points, bool talign) {
+void apply(float time, vector <Point> points, bool talign, int i) {
     float t, g;
     float res[3];
     float derivada[3];
@@ -139,10 +137,13 @@ void apply(float time, vector <Point> points, bool talign) {
     up[0] = 0;
     up[1] = 1;
     up[2] = 0;
+    float inicial=0;
     float *r_x, *r_y, *r_z, *m;
+
     if (time != 0) {
         t = glutGet(GLUT_ELAPSED_TIME) % (int) (time * 1000);
-        g = t / (time * 1000);
+        //g = t / (time * 1000);
+        g = inicial + i;
         renderCatmullRomCurve(points);
         getGlobalCatmullRomPoint(g, res, derivada, points);
         glTranslatef(res[0], res[1], res[2]);
@@ -154,8 +155,8 @@ void apply(float time, vector <Point> points, bool talign) {
             normalize(r_x), normalize(r_y), normalize(r_z);
             buildRotMatrix(r_x, r_y, r_z, m);
             glMultMatrixf(m);
-
         }
     } //else glTranslatef(getX(), getY(), getZ());
+    cout << i<< " i "<<endl;
 }
 

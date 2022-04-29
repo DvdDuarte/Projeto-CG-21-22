@@ -6,6 +6,7 @@ CMakeFiles/engine.dir/engine.cpp.o: colors.h
 CMakeFiles/engine.dir/engine.cpp.o: engine.cpp
 CMakeFiles/engine.dir/engine.cpp.o: engine.h
 CMakeFiles/engine.dir/engine.cpp.o: engine_aux.h
+CMakeFiles/engine.dir/engine.cpp.o: rotate.h
 CMakeFiles/engine.dir/engine.cpp.o: tinyxml2.h
 CMakeFiles/engine.dir/engine.cpp.o: translate.h
 CMakeFiles/engine.dir/engine.cpp.o: /home/ema/Projeto-CG-21-22/phase3/generator/Triangle.h

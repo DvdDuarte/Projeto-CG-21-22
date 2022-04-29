@@ -4,6 +4,7 @@
 using namespace tinyxml2;
 int triangle_nmr;
 
+int i=0;
 float c1=1.0, c2=0, c3=1.0;
 int size = 10;
 float posx = 0, posz = 0, angle = 0, scalex = 1, scaley = 1, scalez = 1;
@@ -100,10 +101,9 @@ void renderScene(void) {
     glVertex3f(0.0f, 0.0f, 100.0f);
     glEnd();
     
-    int i;
 
     //renderCatmullRomCurve();
-
+    i*=2;
 
     for (int iteratorBrothers=0; iteratorBrothers<iBrothers; iteratorBrothers++) { //for each brother
         glPushMatrix();
@@ -231,6 +231,15 @@ void processMouseMotion(int xx, int yy)
     glutPostRedisplay();
 }
 
+
+void calcPoint(float *m, float*p, float *res) {
+    res[0] = res[1] = res[2] = 0;
+    for(int i = 0; i < 4; i++) {
+        for(int j = 0; j < 4; j++) {
+            res[i] += m[i*4+j] * p[j];
+        }
+    }
+}
 void processMouseButtons(int button, int state, int xx, int yy)
 {
 
@@ -316,16 +325,12 @@ void draw (Group g) {
                 
                 if(g.t.at(iForTranslate).p.size()>=4){
                     //achar ponto na curva, usando os pontos
-                    float pos[3],deriv[3];
-                   // Translate t;
-                   // renderCatmullRomCurve(g.t.at(iForTranslate).p);
-                    float tempo, g_aux;
-                    apply(ttime,g.t.at(iForTranslate).p,talign);
+
+                    apply(ttime,g.t.at(iForTranslate).p,talign,i);
+                    
                 }
             iForTranslate++;
         }
-
-
 
         if (transform == r) {
             cout << "rotação" << endl;

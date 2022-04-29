@@ -13,6 +13,7 @@ using namespace std;
 #include "engine_aux.h"
 #include "colors.h"
 #include "translate.h"
+#include "rotate.h"
 
 int engine (int argc, char **argv);
 void readXML(string filename);
@@ -33,46 +34,6 @@ vector<Triangle> read3dFiles (vector<string >files, int nmr_files, vector<Triang
  */
 void readTri(int index, string file);
 #endif //PHASE1_GENERATOR_H
-
-
-class Rotate {
-public:
-    Rotate (bool rtime1,float angle1, float axisX, float axisY, float axisZ) {
-        rtime=rtime1;
-
-        angle = angle1;
-
-        x = axisX;
-
-        y = axisY;
-
-        z = axisZ;
-        if(rtime)
-        cout << " rotate: time: " << angle << " x: " << x <<" y: " << y << " z: " << z << endl;
-        else
-        cout << " rotate: angle: " << angle << " x: " << x <<" y: " << y << " z: " << z << endl;
-
-    }
-    Rotate (Rotate *r) {
-        rtime=r->rtime;
-        x = r->x;
-        y= r-> y;
-        z = r->z;
-        angle = r->angle;
-    }
-    Rotate () {
-        rtime=false;
-        x= 0;
-        y= 0;
-        z = 0;
-        angle = 0;
-    }
-    bool rtime;
-    float x;
-    float y;
-    float z;
-    float angle;
-};
 
 class Scale {
 public:
