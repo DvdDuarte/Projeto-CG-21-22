@@ -1,4 +1,4 @@
-#include "engine_aux.h"
+#include "../include/engine_aux.h"
 
 void draw_axis(){
     glBegin(GL_LINES);

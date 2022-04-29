@@ -5,7 +5,7 @@ PROJECT(engine)
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
-add_executable(${PROJECT_NAME}  ../engine/engine.cpp ../engine/engine.h ../engine/engine_aux.h ../engine/engine_aux.h tinyxml2.h tinyxml2.cpp ../engine/translate.cpp ../engine/translate.h)
+add_executable(${PROJECT_NAME}  ../engine/src/engine.cpp ../engine/include/engine.h ../engine/src/engine_aux.cpp ../engine/include/engine_aux.h ../engine/src/XMLParser/tinyxml2.h ../engine/src/XMLParser/tinyxml2.cpp ../engine/src/translate.cpp ../engine/include/translate.h)
 
 find_package(OpenGL REQUIRED)
 include_directories(${OpenGL_INCLUDE_DIRS})

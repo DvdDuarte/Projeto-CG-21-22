@@ -2,7 +2,7 @@
 // Created by ema on 29/04/22.
 //
 
-#include "translate.h"
+#include "../include/translate.h"
 using namespace std;
 #include <string>
 #include <GL/glut.h>

@@ -1,5 +1,5 @@
-#include "engine.h"
-#include "tinyxml2.h"
+#include "../include/engine.h"
+#include "XMLParser/tinyxml2.h"
 
 using namespace tinyxml2;
 
@@ -82,26 +82,13 @@ void renderScene(void) {
     // set the camera
     glLoadIdentity();
 
-    beta
+    
     gluLookAt(position_x,position_y,position_z,
               lx,ly,lz,
               up_x,up_y,up_z);
  
     //draw axis
-    glBegin(GL_LINES);
-    // X axis in red
-    glColor3f(1.0f, 0.0f, 0.0f);
-    glVertex3f(-100.0f, 0.0f, 0.0f);
-    glVertex3f( 100.0f, 0.0f, 0.0f);
-    // Y Axis in Green
-    glColor3f(0.0f, 1.0f, 0.0f);
-    glVertex3f(0.0f, -100.0f, 0.0f);
-    glVertex3f(0.0f, 100.0f, 0.0f);
-    // Z Axis in Blue
-    glColor3f(0.0f, 0.0f, 1.0f);
-    glVertex3f(0.0f, 0.0f,-100.0f);
-    glVertex3f(0.0f, 0.0f, 100.0f);
-    glEnd();
+    draw_axis();
     
 
     /* 

@@ -12,8 +12,8 @@ using namespace std;
 #include <iostream>
 
 #include "colors.h"
-#include "../generator/Vertex.h"
-#include "../generator/Triangle.h"
+#include "../../generator/Vertex.h"
+#include "../../generator/Triangle.h"
 
 /**
  * Function that draws the axis

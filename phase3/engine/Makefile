@@ -129,77 +129,101 @@ engine/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/build
 .PHONY : engine/fast
 
-engine.o: engine.cpp.o
-.PHONY : engine.o
+src/XMLParser/tinyxml2.o: src/XMLParser/tinyxml2.cpp.o
+.PHONY : src/XMLParser/tinyxml2.o
 
 # target to build an object file
-engine.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/engine.cpp.o
-.PHONY : engine.cpp.o
+src/XMLParser/tinyxml2.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/XMLParser/tinyxml2.cpp.o
+.PHONY : src/XMLParser/tinyxml2.cpp.o
 
-engine.i: engine.cpp.i
-.PHONY : engine.i
+src/XMLParser/tinyxml2.i: src/XMLParser/tinyxml2.cpp.i
+.PHONY : src/XMLParser/tinyxml2.i
 
 # target to preprocess a source file
-engine.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/engine.cpp.i
-.PHONY : engine.cpp.i
+src/XMLParser/tinyxml2.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/XMLParser/tinyxml2.cpp.i
+.PHONY : src/XMLParser/tinyxml2.cpp.i
 
-engine.s: engine.cpp.s
-.PHONY : engine.s
+src/XMLParser/tinyxml2.s: src/XMLParser/tinyxml2.cpp.s
+.PHONY : src/XMLParser/tinyxml2.s
 
 # target to generate assembly for a file
-engine.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/engine.cpp.s
-.PHONY : engine.cpp.s
+src/XMLParser/tinyxml2.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/XMLParser/tinyxml2.cpp.s
+.PHONY : src/XMLParser/tinyxml2.cpp.s
 
-tinyxml2.o: tinyxml2.cpp.o
-.PHONY : tinyxml2.o
+src/engine.o: src/engine.cpp.o
+.PHONY : src/engine.o
 
 # target to build an object file
-tinyxml2.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/tinyxml2.cpp.o
-.PHONY : tinyxml2.cpp.o
+src/engine.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/engine.cpp.o
+.PHONY : src/engine.cpp.o
 
-tinyxml2.i: tinyxml2.cpp.i
-.PHONY : tinyxml2.i
+src/engine.i: src/engine.cpp.i
+.PHONY : src/engine.i
 
 # target to preprocess a source file
-tinyxml2.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/tinyxml2.cpp.i
-.PHONY : tinyxml2.cpp.i
+src/engine.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/engine.cpp.i
+.PHONY : src/engine.cpp.i
 
-tinyxml2.s: tinyxml2.cpp.s
-.PHONY : tinyxml2.s
+src/engine.s: src/engine.cpp.s
+.PHONY : src/engine.s
 
 # target to generate assembly for a file
-tinyxml2.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/tinyxml2.cpp.s
-.PHONY : tinyxml2.cpp.s
+src/engine.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/engine.cpp.s
+.PHONY : src/engine.cpp.s
 
-translate.o: translate.cpp.o
-.PHONY : translate.o
+src/engine_aux.o: src/engine_aux.cpp.o
+.PHONY : src/engine_aux.o
 
 # target to build an object file
-translate.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/translate.cpp.o
-.PHONY : translate.cpp.o
+src/engine_aux.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/engine_aux.cpp.o
+.PHONY : src/engine_aux.cpp.o
 
-translate.i: translate.cpp.i
-.PHONY : translate.i
+src/engine_aux.i: src/engine_aux.cpp.i
+.PHONY : src/engine_aux.i
 
 # target to preprocess a source file
-translate.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/translate.cpp.i
-.PHONY : translate.cpp.i
+src/engine_aux.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/engine_aux.cpp.i
+.PHONY : src/engine_aux.cpp.i
 
-translate.s: translate.cpp.s
-.PHONY : translate.s
+src/engine_aux.s: src/engine_aux.cpp.s
+.PHONY : src/engine_aux.s
 
 # target to generate assembly for a file
-translate.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/translate.cpp.s
-.PHONY : translate.cpp.s
+src/engine_aux.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/engine_aux.cpp.s
+.PHONY : src/engine_aux.cpp.s
+
+src/translate.o: src/translate.cpp.o
+.PHONY : src/translate.o
+
+# target to build an object file
+src/translate.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/translate.cpp.o
+.PHONY : src/translate.cpp.o
+
+src/translate.i: src/translate.cpp.i
+.PHONY : src/translate.i
+
+# target to preprocess a source file
+src/translate.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/translate.cpp.i
+.PHONY : src/translate.cpp.i
+
+src/translate.s: src/translate.cpp.s
+.PHONY : src/translate.s
+
+# target to generate assembly for a file
+src/translate.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/translate.cpp.s
+.PHONY : src/translate.cpp.s
 
 # Help Target
 help:
@@ -210,15 +234,18 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... engine"
-	@echo "... engine.o"
-	@echo "... engine.i"
-	@echo "... engine.s"
-	@echo "... tinyxml2.o"
-	@echo "... tinyxml2.i"
-	@echo "... tinyxml2.s"
-	@echo "... translate.o"
-	@echo "... translate.i"
-	@echo "... translate.s"
+	@echo "... src/XMLParser/tinyxml2.o"
+	@echo "... src/XMLParser/tinyxml2.i"
+	@echo "... src/XMLParser/tinyxml2.s"
+	@echo "... src/engine.o"
+	@echo "... src/engine.i"
+	@echo "... src/engine.s"
+	@echo "... src/engine_aux.o"
+	@echo "... src/engine_aux.i"
+	@echo "... src/engine_aux.s"
+	@echo "... src/translate.o"
+	@echo "... src/translate.i"
+	@echo "... src/translate.s"
 .PHONY : help
 
 

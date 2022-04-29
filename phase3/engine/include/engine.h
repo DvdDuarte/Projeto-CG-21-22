@@ -9,7 +9,7 @@
 #include <math.h>
 using namespace std;
 #include <iostream>
-#include "tinyxml2.h"
+#include "../src/XMLParser/tinyxml2.h"
 #include "engine_aux.h"
 #include "colors.h"
 #include "translate.h"
