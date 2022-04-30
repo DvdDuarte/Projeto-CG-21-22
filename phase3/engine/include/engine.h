@@ -25,7 +25,7 @@ void readXML(string filename);
  * 
  * @param files The files to read
  */
-float* read3dFiles (vector<string >files, int nmr_files, float* tr_arr);
+tuple <float*,int>read3dFiles (vector<string >files, int nmr_files, float* tr_arr);
 
 /**
  * @brief 

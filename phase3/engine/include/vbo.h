@@ -27,8 +27,9 @@ public:
         indexB = (GLint)z;
         indexC= (GLint) z2;
 
-
     }
+
+
     GLuint vertices;
     unsigned int indexB;
     unsigned int indexC;

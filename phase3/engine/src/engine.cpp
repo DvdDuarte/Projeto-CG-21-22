@@ -3,7 +3,7 @@
 
 #include "../include/engine.h"
 #include "XMLParser/tinyxml2.h"
-
+#include <tuple>
 using namespace tinyxml2;
 
 int triangle_nmr;
@@ -314,6 +314,7 @@ int main(int argc, char **argv) {
 }
 
 
+
 void draw (Group g, int itera, bool child) {
     int iForTranslate = 0;
     int iForRotate = 0;
@@ -383,20 +384,13 @@ void draw (Group g, int itera, bool child) {
 
 
     nrTriangles = 0;
+
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, itera);
     glVertexPointer(3, GL_FLOAT, 0, NULL);
     glEnableClientState(GL_VERTEX_ARRAY);
+    glDrawArrays(GL_TRIANGLES, 0, g.numberOfVertices / 3);
+    glFlush();
 
-
-   if(child){
-       glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,itera);
-       cout <<  "draw Filho " << itera << endl;
-   }
-   else {
-       glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,itera);
-       cout << "draw pai" << itera << endl;
-   }
-   glDrawArrays(GL_TRIANGLES, 0, g.numberOfVertices / sizeof(float) / 3);
-   glFlush();
 
 
     int iterateChildren= 0;
@@ -411,6 +405,7 @@ void draw (Group g, int itera, bool child) {
 Group readGroup (XMLElement *group, int x, bool child) {
     vbo v;
     float* vertices;
+    vertices = {nullptr};
     vector<Point> points;
     vector<Translate> translates;
     vector<Rotate> rotates;
@@ -535,34 +530,33 @@ Group readGroup (XMLElement *group, int x, bool child) {
                 iFiles++;
             }
         }
-    cout << "BOOL " << child << endl;
+    int tamanho;
     if (child==0) {
+        v.indexB = x;
         glGenBuffers(1, &v.indexB);
         glBindBuffer(GL_ARRAY_BUFFER, v.indexB);
-        v.indexB = x;
+        tie(vertices,tamanho) = read3dFiles(filesNames, iFiles, vertices);
         if(!filesNames.empty()) {
-            vertices = read3dFiles(filesNames, iFiles, vertices);
-            cout << "inserir PARA PAI   " << x << "vert " << sizeof(vertices) << endl;
-            glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+              glBufferData(GL_ARRAY_BUFFER, tamanho*sizeof(float), vertices, GL_STATIC_DRAW);
             glBindBuffer(GL_ARRAY_BUFFER, v.indexB);
         }
         else {
-            glBufferData(GL_ARRAY_BUFFER, 0, vertices, GL_STATIC_DRAW);
+           glBufferData(GL_ARRAY_BUFFER, 0, nullptr, GL_STATIC_DRAW);
             glBindBuffer(GL_ARRAY_BUFFER, v.indexB);
         }
     }
+
     if (child==1) {
         v.indexC = x;
         glGenBuffers(1, &v.indexC);
         glBindBuffer(GL_ARRAY_BUFFER, v.indexC);
-        if(!filesNames.empty()) {
-            vertices = read3dFiles(filesNames, iFiles, vertices);
-            cout << "inserir PAARA FILHO " << x << "vert " << sizeof(vertices) << endl;
-            glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+        tie(vertices, tamanho) = read3dFiles(filesNames, iFiles, vertices);
+        if (!filesNames.empty()) {
+            glBufferData(GL_ARRAY_BUFFER, tamanho * sizeof(float), vertices, GL_STATIC_DRAW);
             glBindBuffer(GL_ARRAY_BUFFER, v.indexC);
         }
         else {
-            glBufferData(GL_ARRAY_BUFFER, 0, vertices, GL_STATIC_DRAW);
+            glBufferData(GL_ARRAY_BUFFER, 0, nullptr, GL_STATIC_DRAW);
             glBindBuffer(GL_ARRAY_BUFFER, v.indexC);
         }
     }
@@ -576,9 +570,9 @@ Group readGroup (XMLElement *group, int x, bool child) {
             iChilds++;
             z2++;
         }
-
-    Group g = Group(translates,rotates,scales,points,v,sizeof(vertices),childs,iChilds,listOfTransform);
     free(vertices);
+    Group g = Group(translates,rotates,scales,points,v,tamanho,childs,iChilds,listOfTransform);
+
     return g;
 
 }
@@ -608,7 +602,7 @@ void readXML(string filename){
 
 
 }
-float* read3dFiles (vector<string >files, int nmr_files, float* vertices){
+tuple <float*,int> read3dFiles (vector<string >files, int nmr_files, float* vertices){
     int i = 0;
     int previous=9;
     vertices= (float*)malloc(9*sizeof(float));
@@ -639,6 +633,12 @@ float* read3dFiles (vector<string >files, int nmr_files, float* vertices){
         iterator=0;
         int value;
         while(fscanf(fp, "%f;%f;%f,%f;%f;%f,%f;%f;%f",&v1,&v2,&v3,&v4,&v5,&v6,&v7,&v8,&v9)>0 ){
+            if(iterator==previous) {
+                value = previous +9;
+                vertices= (float*)realloc(vertices,value*sizeof(float));
+                previous=previous+9;
+            }
+
             vertices[iterator] = v1;
             vertices[iterator+1] = v2;
             vertices[iterator+2]  = v3;
@@ -649,17 +649,13 @@ float* read3dFiles (vector<string >files, int nmr_files, float* vertices){
             vertices[iterator+7] = v8;
             vertices[iterator+8] = v9;
             iterator+=9;
-            if(iterator==previous) {
-                value = previous +9;
-                vertices= (float*)realloc(vertices,value*sizeof(float));
+           }
 
-                previous=previous+9;
-            }}
         fclose(fp);
         i++;
     }
-    cout << "numero " << iterator << endl;
-    return vertices;
+
+    return make_tuple(vertices,iterator);
 }
 
 int engine (int argc, char **argv) {
