@@ -129,6 +129,7 @@ void curveRotation(float *der, float *up){
     };
     glMultMatrixf((float*)m);
 }
+
 void apply(float time, vector <Point> points, bool talign, int i) {
     float t, g;
     float res[3];
@@ -142,15 +143,15 @@ void apply(float time, vector <Point> points, bool talign, int i) {
 
     if (time != 0) {
         t = glutGet(GLUT_ELAPSED_TIME) % (int) (time * 1000);
-        //g = t / (time * 1000);
+        
         g = inicial + i;
         renderCatmullRomCurve(points);
         getGlobalCatmullRomPoint(g, res, derivada, points);
         glTranslatef(res[0], res[1], res[2]);
         curveRotation(derivada, up);
         if (talign) {
-            r_x[0] = derivada[0], r_x[1] = derivada[1], r_x[2] = derivada[2];
-            cross(r_x, r_y, r_z);
+            r_z[0] = derivada[0], r_z[1] = derivada[1], r_z[2] = derivada[2];
+            cross(r_y, r_z, r_x);
             cross(r_z, r_x, r_y);
             normalize(r_x), normalize(r_y), normalize(r_z);
             buildRotMatrix(r_x, r_y, r_z, m);

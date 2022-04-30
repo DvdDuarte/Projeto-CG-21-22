@@ -1,4 +1,4 @@
-# Install script for directory: /home/ema/Projeto-CG-21-22/phase3/engine
+# Install script for directory: /home/sdaslira/Projeto-CG-21-22/phase3/engine
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/ema/Projeto-CG-21-22/phase3/engine/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/sdaslira/Projeto-CG-21-22/phase3/engine/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

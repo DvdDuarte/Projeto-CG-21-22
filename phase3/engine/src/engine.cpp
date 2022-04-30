@@ -10,7 +10,6 @@ int triangle_nmr;
 
 int i=0;
 float c1=1.0, c2=0, c3=1.0;
-float timeprec = 0, timeinstant = 0, timediff = 0, seconds = 1;
 int size = 10;
 float posx = 0, posz = 0, angle = 0, scalex = 1, scaley = 1, scalez = 1;
 float position_x=0, position_y=0, position_z=0, lx=0, ly=0 , lz=0, up_x=0, up_y=0, up_z=0, projfov=0, projnear=0, projfar=0;
@@ -25,6 +24,8 @@ int nrTriangles = 0;
 bool wh;
 int startX, startY, tracking = 0;
 unsigned int picked = 0;
+
+float tess=0,delta_tess=0.001;
 
 
 string vertexToString(Vertex v){
@@ -47,10 +48,7 @@ void cart2spherical (){
     omega = omega/ 3.14 * 180;
  
 }
-void prepareVBO(){
-//por fazer
 
-}
 void changeSize(int w, int h) {
 
     // Prevent a divide by zero, when window is too short
@@ -94,15 +92,6 @@ void renderScene(void) {
     draw_axis();
     
 
-    /* 
-    Este codigo necessita de saber quais os segundos de cada rotação caso haja mais que uma rotação dependente do tempo
-    time = glutGet(GLUT_ELAPSED_TIME);
-    timediff = time - timeprec;
-    timeprec = time;
-    angle += 360/(timediff/seconds);
-
-    */
-
     //renderCatmullRomCurve();
     i*=2;
 
@@ -112,10 +101,11 @@ void renderScene(void) {
         glRotatef(angle, 1.0, 0.0, .0);
         glScalef(scalex, scaley, scalez);
         draw(groupbrothers[iteratorBrothers],iteratorBrothers,false);
+        
         glPopMatrix();
     }
 
-
+    
     glutSwapBuffers();
 }
 
@@ -278,8 +268,6 @@ void processMouseButtons(int button, int state, int xx, int yy)
 int main(int argc, char **argv) {
 
 
-    timeprec = glutGet(GLUT_ELAPSED_TIME);
-
 // init GLUT and the window
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DEPTH|GLUT_DOUBLE|GLUT_RGBA);
@@ -289,6 +277,7 @@ int main(int argc, char **argv) {
 
 // Required callback registry
     glutDisplayFunc(renderScene);
+    glutIdleFunc(renderScene);
     glutReshapeFunc(changeSize);
 
 
@@ -313,7 +302,29 @@ int main(int argc, char **argv) {
     return 1;
 }
 
-
+void t_apply_aux(float time, vector <Point> points, bool talign, int i){
+    float up[3]={0,1,0};
+    //up[0] = 0;
+    //up[1] = 1;
+    //up[2] = 0;
+    float pos[3],deriv[3];
+    renderCatmullRomCurve(points);
+    
+    getGlobalCatmullRomPoint(tess,pos,deriv,points);
+    cout<<tess<<" "<<pos[0]<<" "<<pos[1]<<" "<<pos[2]<<endl;
+    glTranslatef(pos[0],pos[1],pos[2]);
+    curveRotation(deriv, up);
+    if(talign){
+    
+        r_z[0]=deriv[0],r_z[1]=deriv[1],r_z[2]=deriv[2];
+        cross(r_y,r_z,r_x);
+        cross(r_z,r_x,r_y);
+        normalize(r_x), normalize(r_y), normalize(r_z);
+        buildRotMatrix(r_x, r_y, r_z, m);
+        glMultMatrixf(m);
+    }
+    tess+=delta_tess;
+}
 
 void draw (Group g, int itera, bool child) {
     int iForTranslate = 0;
@@ -335,8 +346,8 @@ void draw (Group g, int itera, bool child) {
                 
                 if(g.t.at(iForTranslate).p.size()>=4){
                     //achar ponto na curva, usando os pontos
-
-                    apply(ttime,g.t.at(iForTranslate).p,talign,i);
+                    t_apply_aux(ttime,g.t.at(iForTranslate).p,talign,i);
+                   // apply(ttime,g.t.at(iForTranslate).p,talign,i);
                     
                 }
             iForTranslate++;
@@ -356,10 +367,12 @@ void draw (Group g, int itera, bool child) {
                 if(rtime!=0){
                         r = glutGet(GLUT_ELAPSED_TIME) % (int)(rtime * 1000);
                         g_aux = (r*360)/ (rtime * 1000);
+                        
                         rx = g.r.at(iForRotate).x;
                         ry = g.r.at(iForRotate).y;
                         rz = g.r.at(iForRotate).z;
                         glRotated(g_aux, rx, ry, rz);
+                       
                 }
                        
             }else{
