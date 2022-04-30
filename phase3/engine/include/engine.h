@@ -1,7 +1,7 @@
 
 #ifndef PHASE1_GENERATOR_H
 #define PHASE1_GENERATOR_H
-#include "vbo.h"
+
 #include <GL/glut.h>
 #include <vector>
 #include <string>
@@ -14,6 +14,7 @@ using namespace std;
 #include "colors.h"
 #include "translate.h"
 #include "rotate.h"
+#include "vbo.h"
 
 
 int engine (int argc, char **argv);
@@ -100,5 +101,5 @@ public:
 };
 
 void readCamera(tinyxml2::XMLElement *world);
-Group readGroup(tinyxml2::XMLElement *group);
-void draw (Group g);
+Group readGroup (tinyxml2::XMLElement *group, int x, bool child);
+void draw (Group g, int x, bool t);

@@ -111,7 +111,7 @@ void renderScene(void) {
         glTranslatef(posx,0.0,posz);
         glRotatef(angle, 1.0, 0.0, .0);
         glScalef(scalex, scaley, scalez);
-        draw(groupbrothers[iteratorBrothers]);
+        draw(groupbrothers[iteratorBrothers],iteratorBrothers,false);
         glPopMatrix();
     }
 
@@ -305,7 +305,7 @@ int main(int argc, char **argv) {
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
     glewInit();
-    glEnableClientState(GL_VERTEX_ARRAY);
+  //  glEnableClientState(GL_VERTEX_ARRAY);
     ilInit();
     engine (argc,argv);
 // enter GLUT's main cycle
@@ -314,7 +314,7 @@ int main(int argc, char **argv) {
 }
 
 
-void draw (Group g) {
+void draw (Group g, int itera, bool child) {
     int iForTranslate = 0;
     int iForRotate = 0;
     int iForScale = 0;
@@ -383,41 +383,34 @@ void draw (Group g) {
 
 
     nrTriangles = 0;
-  //  vector <Triangle> triangle_vector = g.files;
-    cout << "chegou ao draw" << endl;
-   glVertexPointer(3, GL_FLOAT, 0, NULL);
-   glEnableClientState(GL_VERTEX_ARRAY);
-   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,g.files.vertices );
+    glVertexPointer(3, GL_FLOAT, 0, NULL);
+    glEnableClientState(GL_VERTEX_ARRAY);
+
+
+   if(child){
+       glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,itera);
+       cout <<  "draw Filho " << itera << endl;
+   }
+   else {
+       glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,itera);
+       cout << "draw pai" << itera << endl;
+   }
    glDrawArrays(GL_TRIANGLES, 0, g.numberOfVertices / sizeof(float) / 3);
    glFlush();
-    /*for (int i = 0; i <  triangle_vector.size(); i++) {
-        // glPolygonMode(GL_FRONT,  GL_LINE);
-        glBegin(GL_TRIANGLES);
-        glColor3f(0,0.5,1.5);
-        glVertex3f( triangle_vector[i].v1.x,  triangle_vector[i].v1.y,  triangle_vector[i].v1.z);
-        glColor3f(0.0f, 0.0f, 0.5f);
-        glVertex3f( triangle_vector[i].v2.x,  triangle_vector[i].v2.y,  triangle_vector[i].v2.z);
-        glColor3f(0, 0, 1.5f);
-        glVertex3f( triangle_vector[i].v3.x,  triangle_vector[i].v3.y, triangle_vector[i].v3.z);
-        glEnd();
-    }
 
-    triangle_vector.clear();*/
 
     int iterateChildren= 0;
     while (iterateChildren< g.nrchilds) {
         glPushMatrix();
-        draw(g.groupchilds[iterateChildren]);
-     //   triangle_vector.clear();
+        draw(g.groupchilds[iterateChildren],iterateChildren,true);
         glPopMatrix();
         iterateChildren++;
     }
 }
 
-Group readGroup (XMLElement *group) {
-
+Group readGroup (XMLElement *group, int x, bool child) {
+    vbo v;
     float* vertices;
-    GLuint verticesForVBO;
     vector<Point> points;
     vector<Translate> translates;
     vector<Rotate> rotates;
@@ -541,37 +534,51 @@ Group readGroup (XMLElement *group) {
                 filesNames.push_back(model->Attribute("file"));
                 iFiles++;
             }
-            vector<Vertex> result;
-
-            vertices = read3dFiles(filesNames, iFiles,  vertices);
-            cout << "fim do read files " << endl;
-            cout << "result size " << sizeof(vertices)<< endl;
-
-            cout << "fim de ciclo " << endl;
-            cout << verticesForVBO << endl;
-            glGenBuffers(1,&verticesForVBO);
-            cout << "1" << endl;
-            glBindBuffer(GL_ARRAY_BUFFER, verticesForVBO);
-            cout << "2" << endl;
-            glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-            cout << "3" << endl;
-            glBindBuffer(GL_ARRAY_BUFFER, verticesForVBO);
-            cout << "antes de inserir group" << endl;
-
-
         }
+    cout << "BOOL " << child << endl;
+    if (child==0) {
+        glGenBuffers(1, &v.indexB);
+        glBindBuffer(GL_ARRAY_BUFFER, v.indexB);
+        v.indexB = x;
+        if(!filesNames.empty()) {
+            vertices = read3dFiles(filesNames, iFiles, vertices);
+            cout << "inserir PARA PAI   " << x << "vert " << sizeof(vertices) << endl;
+            glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+            glBindBuffer(GL_ARRAY_BUFFER, v.indexB);
+        }
+        else {
+            glBufferData(GL_ARRAY_BUFFER, 0, vertices, GL_STATIC_DRAW);
+            glBindBuffer(GL_ARRAY_BUFFER, v.indexB);
+        }
+    }
+    if (child==1) {
+        v.indexC = x;
+        glGenBuffers(1, &v.indexC);
+        glBindBuffer(GL_ARRAY_BUFFER, v.indexC);
+        if(!filesNames.empty()) {
+            vertices = read3dFiles(filesNames, iFiles, vertices);
+            cout << "inserir PAARA FILHO " << x << "vert " << sizeof(vertices) << endl;
+            glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+            glBindBuffer(GL_ARRAY_BUFFER, v.indexC);
+        }
+        else {
+            glBufferData(GL_ARRAY_BUFFER, 0, vertices, GL_STATIC_DRAW);
+            glBindBuffer(GL_ARRAY_BUFFER, v.indexC);
+        }
+    }
+
 
     XMLElement *groupchild2;
-
+        int z2=0;
         for (groupchild2 = group->FirstChildElement("group");groupchild2 != nullptr; groupchild2 = groupchild2->NextSiblingElement("group")) //for each brother, see the child
         {
-            childs.push_back(readGroup(groupchild2));
+            childs.push_back(readGroup(groupchild2,z2,true));
             iChilds++;
+            z2++;
         }
-    vbo v;
-    v.vertices =verticesForVBO;
+
     Group g = Group(translates,rotates,scales,points,v,sizeof(vertices),childs,iChilds,listOfTransform);
-    cout << "fim " << endl;
+    free(vertices);
     return g;
 
 }
@@ -605,7 +612,7 @@ float* read3dFiles (vector<string >files, int nmr_files, float* vertices){
     int i = 0;
     int previous=9;
     vertices= (float*)malloc(9*sizeof(float));
-
+    int iterator;
     while(i < nmr_files) {
         char * char_aux;
         string s = "../generator/build/" + files[i];
@@ -621,7 +628,7 @@ float* read3dFiles (vector<string >files, int nmr_files, float* vertices){
         string line;
         int nextSize;
 
-        cout << "PREV " << previous<< endl;
+
         if ((fp = fopen(char_aux, "r")) == NULL)
         {
             cout << s << endl;
@@ -629,10 +636,9 @@ float* read3dFiles (vector<string >files, int nmr_files, float* vertices){
             break;
         }
 
-        int iterator=0;
+        iterator=0;
         int value;
         while(fscanf(fp, "%f;%f;%f,%f;%f;%f,%f;%f;%f",&v1,&v2,&v3,&v4,&v5,&v6,&v7,&v8,&v9)>0 ){
-            cout << iterator << endl;
             vertices[iterator] = v1;
             vertices[iterator+1] = v2;
             vertices[iterator+2]  = v3;
@@ -644,19 +650,15 @@ float* read3dFiles (vector<string >files, int nmr_files, float* vertices){
             vertices[iterator+8] = v9;
             iterator+=9;
             if(iterator==previous) {
-                cout << "iterator " << iterator<<endl;
-                cout << "previous " << previous<< endl;
                 value = previous +9;
                 vertices= (float*)realloc(vertices,value*sizeof(float));
 
                 previous=previous+9;
-
-            }
-            }
-        cout << "fim " << endl;
+            }}
         fclose(fp);
         i++;
     }
+    cout << "numero " << iterator << endl;
     return vertices;
 }
 
@@ -683,7 +685,7 @@ int engine (int argc, char **argv) {
 
     for (group = camera->NextSiblingElement("group");group != nullptr; group = group->NextSiblingElement("group")) //iterator for brother
     {
-        groupbrothers.push_back(readGroup(group));
+        groupbrothers.push_back(readGroup(group,iBrothers,false));
         iBrothers++;
     }
     return 0;
