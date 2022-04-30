@@ -1,3 +1,6 @@
+#include <IL/il.h>
+#include <GL/glew.h>
+
 #include "../include/engine.h"
 #include "XMLParser/tinyxml2.h"
 
@@ -273,7 +276,7 @@ void processMouseButtons(int button, int state, int xx, int yy)
 
 
 int main(int argc, char **argv) {
-    engine (argc,argv);
+
 
     timeprec = glutGet(GLUT_ELAPSED_TIME);
 
@@ -294,12 +297,17 @@ int main(int argc, char **argv) {
     glutMotionFunc(processMouseMotion);
 
 
+
+
 // put here the registration of the keyboard callbacks
 
 //  OpenGL settings
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
-
+    glewInit();
+    glEnableClientState(GL_VERTEX_ARRAY);
+    ilInit();
+    engine (argc,argv);
 // enter GLUT's main cycle
     glutMainLoop();
     return 1;
@@ -375,11 +383,14 @@ void draw (Group g) {
 
 
     nrTriangles = 0;
-    vector <Triangle> triangle_vector = g.files;
-    
-    //utilizar vbo para desenhar
-    
-    for (int i = 0; i <  triangle_vector.size(); i++) {
+  //  vector <Triangle> triangle_vector = g.files;
+    cout << "chegou ao draw" << endl;
+   glVertexPointer(3, GL_FLOAT, 0, NULL);
+   glEnableClientState(GL_VERTEX_ARRAY);
+   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,g.files.vertices );
+   glDrawArrays(GL_TRIANGLES, 0, g.numberOfVertices / sizeof(float) / 3);
+   glFlush();
+    /*for (int i = 0; i <  triangle_vector.size(); i++) {
         // glPolygonMode(GL_FRONT,  GL_LINE);
         glBegin(GL_TRIANGLES);
         glColor3f(0,0.5,1.5);
@@ -391,19 +402,22 @@ void draw (Group g) {
         glEnd();
     }
 
-    triangle_vector.clear();
+    triangle_vector.clear();*/
 
     int iterateChildren= 0;
     while (iterateChildren< g.nrchilds) {
         glPushMatrix();
         draw(g.groupchilds[iterateChildren]);
-        triangle_vector.clear();
+     //   triangle_vector.clear();
         glPopMatrix();
         iterateChildren++;
     }
 }
 
 Group readGroup (XMLElement *group) {
+
+    float* vertices;
+    GLuint verticesForVBO;
     vector<Point> points;
     vector<Translate> translates;
     vector<Rotate> rotates;
@@ -527,7 +541,24 @@ Group readGroup (XMLElement *group) {
                 filesNames.push_back(model->Attribute("file"));
                 iFiles++;
             }
-            triangleVec = read3dFiles(filesNames, iFiles,  triangleVec);
+            vector<Vertex> result;
+
+            vertices = read3dFiles(filesNames, iFiles,  vertices);
+            cout << "fim do read files " << endl;
+            cout << "result size " << sizeof(vertices)<< endl;
+
+            cout << "fim de ciclo " << endl;
+            cout << verticesForVBO << endl;
+            glGenBuffers(1,&verticesForVBO);
+            cout << "1" << endl;
+            glBindBuffer(GL_ARRAY_BUFFER, verticesForVBO);
+            cout << "2" << endl;
+            glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+            cout << "3" << endl;
+            glBindBuffer(GL_ARRAY_BUFFER, verticesForVBO);
+            cout << "antes de inserir group" << endl;
+
+
         }
 
     XMLElement *groupchild2;
@@ -537,8 +568,9 @@ Group readGroup (XMLElement *group) {
             childs.push_back(readGroup(groupchild2));
             iChilds++;
         }
-
-    Group g = Group(translates,rotates,scales,points, triangleVec,childs,iChilds,listOfTransform);
+    vbo v;
+    v.vertices =verticesForVBO;
+    Group g = Group(translates,rotates,scales,points,v,sizeof(vertices),childs,iChilds,listOfTransform);
     cout << "fim " << endl;
     return g;
 
@@ -569,10 +601,12 @@ void readXML(string filename){
 
 
 }
-vector<Triangle> read3dFiles (vector<string >files, int nmr_files, vector<Triangle> tr_arr){
+float* read3dFiles (vector<string >files, int nmr_files, float* vertices){
     int i = 0;
-    while(i < nmr_files) {
+    int previous=9;
+    vertices= (float*)malloc(9*sizeof(float));
 
+    while(i < nmr_files) {
         char * char_aux;
         string s = "../generator/build/" + files[i];
         char_aux = const_cast<char*> (s.c_str());
@@ -584,30 +618,50 @@ vector<Triangle> read3dFiles (vector<string >files, int nmr_files, vector<Triang
 
         int index = 1;
         float v1, v2, v3, v4,v5,v6,v7,v8,v9;
-
         string line;
+        int nextSize;
 
+        cout << "PREV " << previous<< endl;
         if ((fp = fopen(char_aux, "r")) == NULL)
         {
             cout << s << endl;
             printf("Error %d \n", errno);
-         //   cout << "error in open" << endl;
             break;
         }
+
+        int iterator=0;
+        int value;
         while(fscanf(fp, "%f;%f;%f,%f;%f;%f,%f;%f;%f",&v1,&v2,&v3,&v4,&v5,&v6,&v7,&v8,&v9)>0 ){
-                Vertex *vv1 = new Vertex(v1,v2,v3);
-                Vertex *vv2 = new Vertex(v4,v5,v6);
-                Vertex *vv3 = new Vertex(v7,v8,v9);
-                Triangle *tr1 = new Triangle(vv1,vv2,vv3);
-                tr_arr.push_back(tr1);
+            cout << iterator << endl;
+            vertices[iterator] = v1;
+            vertices[iterator+1] = v2;
+            vertices[iterator+2]  = v3;
+            vertices[iterator+3] = v4;
+            vertices[iterator+4] = v5;
+            vertices[iterator+5] = v6;
+            vertices[iterator+6] = v7;
+            vertices[iterator+7] = v8;
+            vertices[iterator+8] = v9;
+            iterator+=9;
+            if(iterator==previous) {
+                cout << "iterator " << iterator<<endl;
+                cout << "previous " << previous<< endl;
+                value = previous +9;
+                vertices= (float*)realloc(vertices,value*sizeof(float));
+
+                previous=previous+9;
+
             }
+            }
+        cout << "fim " << endl;
         fclose(fp);
         i++;
     }
-    return tr_arr;
+    return vertices;
 }
 
 int engine (int argc, char **argv) {
+
    // groupbrothers = (Group *) malloc(size * sizeof(Group));
     ifstream file;
     string name;

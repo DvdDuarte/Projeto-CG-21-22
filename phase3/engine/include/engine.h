@@ -1,7 +1,7 @@
 
 #ifndef PHASE1_GENERATOR_H
 #define PHASE1_GENERATOR_H
-
+#include "vbo.h"
 #include <GL/glut.h>
 #include <vector>
 #include <string>
@@ -15,6 +15,7 @@ using namespace std;
 #include "translate.h"
 #include "rotate.h"
 
+
 int engine (int argc, char **argv);
 void readXML(string filename);
 
@@ -23,7 +24,7 @@ void readXML(string filename);
  * 
  * @param files The files to read
  */
-vector<Triangle> read3dFiles (vector<string >files, int nmr_files, vector<Triangle> tr_arr);
+float* read3dFiles (vector<string >files, int nmr_files, float* tr_arr);
 
 /**
  * @brief 
@@ -62,7 +63,7 @@ public:
 
 class Group{
 public:
-    Group(vector<Translate> x, vector<Rotate> y, vector <Scale> z,vector<Point>p1, vector<Triangle> filesAux, vector<Group>groupchildsAux, int nrchildsAux,vector<string> transforms){
+    Group(vector<Translate> x, vector<Rotate> y, vector <Scale> z,vector<Point>p1, vbo filesAux, int numberV, vector<Group>groupchildsAux, int nrchildsAux,vector<string> transforms){
         t = x;
         r = y;
         s = z;
@@ -71,6 +72,7 @@ public:
         groupchilds = groupchildsAux;
         nrchilds = nrchildsAux;
         orderTransform = transforms;
+        numberOfVertices = numberV;
     }
 
     Group(Group *group) {
@@ -79,13 +81,14 @@ public:
         r = group->r;
         s = group->s;
         p = group->p;
+        numberOfVertices = group->numberOfVertices;
         groupchilds = group->groupchilds;
         nrchilds = group->nrchilds;
         orderTransform= group->orderTransform;
 
 
     }
-    vector<Triangle> files;
+    vbo files;
     vector<Group>groupchilds;
     vector<Translate> t;
     vector<Rotate> r;
@@ -93,7 +96,7 @@ public:
     vector<Point> p;
     int nrchilds;
     vector<string> orderTransform;
-
+    int numberOfVertices;
 };
 
 void readCamera(tinyxml2::XMLElement *world);
