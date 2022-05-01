@@ -128,7 +128,7 @@ void curveRotation(float *der, float *up){
     };
     glMultMatrixf((float*)m);
 }
-
+/*
 void apply(float time, vector <Point> points, bool talign, int i) {
     float t, g;
     float res[3];
@@ -159,4 +159,4 @@ void apply(float time, vector <Point> points, bool talign, int i) {
     } //else glTranslatef(getX(), getY(), getZ());
     cout << i<< " i "<<endl;
 }
-
+*/
