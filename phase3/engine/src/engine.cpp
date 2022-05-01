@@ -403,9 +403,10 @@ void draw (Group g, int itera, bool child) {
 
 
     int iterateChildren= 0;
+    int iterateChildren2= 1;
     while (iterateChildren< g.nrchilds) {
         glPushMatrix();
-        draw(g.groupchilds[iterateChildren],iterateChildren,true);
+        draw(g.groupchilds[iterateChildren],iBrothers + iterateChildren2,true);
         glPopMatrix();
         iterateChildren++;
     }
@@ -572,7 +573,7 @@ Group readGroup (XMLElement *group, int x, bool child) {
 
 
     XMLElement *groupchild2;
-        int z2=0;
+        int z2=1;
         for (groupchild2 = group->FirstChildElement("group");groupchild2 != nullptr; groupchild2 = groupchild2->NextSiblingElement("group")) //for each brother, see the child
         {
             childs.push_back(readGroup(groupchild2,z2,true));
