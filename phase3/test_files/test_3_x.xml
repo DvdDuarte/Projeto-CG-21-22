@@ -1,0 +1,85 @@
+<world> <!-- a world can have a camera, a set of lights, and a single group -->
+	
+    <camera> 
+	    <position x="3" y="10" z="4" />
+	    <lookAt x="0" y="0" z="0" />
+	    <up x="0" y="1" z="0" /> <!-- optional, use these values as default-->
+        <projection fov="60" near="1" far="1000" /> <!-- optional, use these values as default-->
+    </camera>
+    
+    <group> <!-- sol-->
+		<transform>
+			<rotate angle="-90" x = "1" y="0" z = "0" /> 
+			<!-- <scale X="30" Y="30" Z="30" /> -->
+		</transform>
+  		<models> 
+			<model file="bezier.3d" /> <!-- generator bezier teapot.patch 10 bezier.3d -->
+ 		</models>
+ 		<group> <!-- mercurio-->
+            		<transform> <!-- alterar pontos de controle-->
+                		<translate time = "10" align="True" > <!-- O campo orient diz se o objecto deve ser orientado na curva -->
+					<point x = "6" y = "0" z = "0" />
+					<point x = "0" y = "6" z = "0" />
+					<point x = "-6" y = "0" z = "0" />
+					<point x = "0" y = "-6" z = "0" />
+					
+				</translate>
+				<rotate time="6" x="0" y="0" z="1" />
+				
+            		</transform>
+			<models> 
+				<model file="bezier.3d" /> <!-- generator bezier teapot.patch 10 bezier.3d -->
+				<!-- <model file="sphere.3d" /> --> <!-- generator sphere 1 15 15 sphere.3d -->
+			</models>
+        	</group>
+        	<group> <!-- mercurio-->
+            		<transform> <!-- alterar pontos de controle-->
+                		<translate time = "10" align="True" > <!-- O campo orient diz se o objecto deve ser orientado na curva -->
+					<point x = "-10" y = "10" z = "0" />
+					<point x = "-5" y = "15" z = "0" />
+					<point x = "5" y = "15" z = "0" />
+					<point x = "10" y = "10" z = "0" />
+					<point x = "15" y = "5" z = "0" />
+					<point x = "15" y = "-5" z = "0" />
+					<point x = "10" y = "-10" z = "0" />
+					<point x = "5" y = "-15" z = "0" />
+					<point x = "-5" y = "-15" z = "0" />
+					<point x = "-10" y = "-10" z = "0" />
+					<point x = "-15" y = "-5" z = "0" />
+					<point x = "-15" y = "5" z = "0" />
+				</translate>
+				<rotate time="6" x="0" y="0" z="1" />
+				
+            		</transform>
+			<models> 
+				<model file="bezier.3d" /> <!-- generator bezier teapot.patch 10 bezier.3d -->
+				<!-- <model file="sphere.3d" /> --> <!-- generator sphere 1 15 15 sphere.3d -->
+			</models>
+        	</group>
+        	<group> <!-- venus-->
+            		<transform> <!-- alterar pontos de controle-->
+                		<translate time = "10" align="True" > <!-- O campo orient diz se o objecto deve ser orientado na curva -->
+					<point x = "-15" y = "15" z = "0" />
+					<point x = "-15" y = "20" z = "0" />
+					<point x = "10" y = "20" z = "0" />
+					<point x = "15" y = "15" z = "0" />
+					<point x = "20" y = "10" z = "0" />
+					<point x = "20" y = "-10" z = "0" />
+					<point x = "15" y = "-15" z = "0" />
+					<point x = "10" y = "-20" z = "0" />
+					<point x = "-10" y = "-20" z = "0" />
+					<point x = "-15" y = "-20" z = "0" />
+					<point x = "-20" y = "-10" z = "0" />
+					<point x = "-20" y = "10" z = "0" />
+				</translate>
+				<rotate time="8" x="0" y="0" z="1" />
+				
+            		</transform>
+			<models> 
+				<model file="bezier.3d" /> <!-- generator bezier teapot.patch 10 bezier.3d -->
+				<!-- <model file="sphere.3d" /> --> <!-- generator sphere 1 15 15 sphere.3d -->
+			</models>
+        	</group>
+            </group>
+    <!-- planetas-->
+    </world>

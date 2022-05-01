@@ -18,14 +18,10 @@
  		<group> <!-- cometa-->
             		<transform> <!-- alterar pontos de controle-->
                 		<translate time = "10" align="True" > <!-- O campo orient diz se o objecto deve ser orientado na curva -->
-					<point x = "10" y = "0" z = "0" />
-					<point x = "5" y = "5" z = "0" />
-					<point x = "0" y = "10" z = "0" />
-					<point x = "-5" y = "5" z = "0" />
-					<point x = "-10" y = "0" z = "0" />
-					<point x = "-5" y = "-5" z = "0" />
-					<point x = "0" y = "-10" z = "0" />
-					<point x = "5" y = "-5" z = "0" />
+					<point x = "48" y = "42" z = "0" />
+					<point x = "42" y = "48" z = "0" />
+					<point x = "-48" y = "42" z = "0" />
+					<point x = "42" y = "-48" z = "0" />
 				</translate>
 				<rotate time="3" x="0" y="0" z="1" />
 				
@@ -37,15 +33,15 @@
         	</group>
         	<group> <!-- mercurio-->
             		<transform> <!-- alterar pontos de controle-->
-                		<translate time = "10" align="True" > <!-- O campo orient diz se o objecto deve ser orientado na curva -->
-					<point x = "20" y = "0" z = "0" />
-					<point x = "10" y = "10" z = "0" />
-					<point x = "0" y = "20" z = "0" />
-					<point x = "-10" y = "10" z = "0" />
-					<point x = "-20" y = "0" z = "0" />
-					<point x = "-10" y = "-10" z = "0" />
-					<point x = "0" y = "-20" z = "0" />
-					<point x = "10" y = "-10" z = "0" />
+                		<translate time = "10" align="True" > <!-- O campo orient diz se o objecto deve ser orientado na curva -->			
+					<point x = "10" y = "0" z = "0" />
+					<point x = "5" y = "5" z = "0" />
+					<point x = "0" y = "10" z = "0" />
+					<point x = "-5" y = "5" z = "0" />
+					<point x = "-10" y = "0" z = "0" />
+					<point x = "-5" y = "-5" z = "0" />
+					<point x = "0" y = "-10" z = "0" />
+					<point x = "5" y = "-5" z = "0" />
 				</translate>
 				<rotate time="6" x="0" y="0" z="1" />
 				
@@ -58,16 +54,16 @@
         	<group> <!-- venus-->
             		<transform> <!-- alterar pontos de controle-->
                 		<translate time = "10" align="True" > <!-- O campo orient diz se o objecto deve ser orientado na curva -->
-					<point x = "30" y = "0" z = "0" />
+					<point x = "20" y = "10" z = "0" />
 					<point x = "15" y = "15" z = "0" />
-					<point x = "0" y = "30" z = "0" />
+					<point x = "10" y = "20" z = "0" />
 					<point x = "-15" y = "15" z = "0" />
-					<point x = "-30" y = "0" z = "0" />
+					<point x = "-20" y = "10" z = "0" />
 					<point x = "-15" y = "-15" z = "0" />
-					<point x = "0" y = "-30" z = "0" />
+					<point x = "10" y = "-20" z = "0" />
 					<point x = "15" y = "-15" z = "0" />
-				</translate>
-				<rotate time="8" x="0" y="0" z="1" />
+					</translate>
+					<rotate time="7" x="0" y="0" z="1" />
 				
             		</transform>
 			<models> 
@@ -78,14 +74,14 @@
         	<group> <!-- terra-->
             		<transform> <!-- alterar pontos de controle-->
                 		<translate time = "10" align="True" > <!-- O campo orient diz se o objecto deve ser orientado na curva -->
-					<point x = "40" y = "0" z = "0" />
-					<point x = "20" y = "20" z = "0" />
-					<point x = "0" y = "40" z = "0" />
-					<point x = "-20" y = "20" z = "0" />
-					<point x = "-40" y = "0" z = "0" />
-					<point x = "-20" y = "-20" z = "0" />
-					<point x = "0" y = "-40" z = "0" />
-					<point x = "20" y = "-20" z = "0" />
+					<point x = "30" y = "20" z = "0" />
+					<point x = "25" y = "25" z = "0" />
+					<point x = "20" y = "30" z = "0" />
+					<point x = "-25" y = "25" z = "0" />
+					<point x = "-30" y = "20" z = "0" />
+					<point x = "-25" y = "-25" z = "0" />
+					<point x = "20" y = "-30" z = "0" />
+					<point x = "25" y = "-25" z = "0" />
 				</translate>
 				<rotate time="10" x="0" y="0" z="1" />
 				
@@ -98,14 +94,14 @@
         	<group> <!-- marte-->
             		<transform> <!-- alterar pontos de controle-->
                 		<translate time = "10" align="True" > <!-- O campo orient diz se o objecto deve ser orientado na curva -->
-					<point x = "50" y = "0" z = "0" />
-					<point x = "25" y = "25" z = "0" />
-					<point x = "0" y = "25" z = "0" />
-					<point x = "-25" y = "25" z = "0" />
-					<point x = "-50" y = "0" z = "0" />
-					<point x = "-25" y = "-25" z = "0" />
-					<point x = "0" y = "-50" z = "0" />
-					<point x = "25" y = "-25" z = "0" />
+					<point x = "40" y = "30" z = "0" />
+					<point x = "35" y = "35" z = "0" />
+					<point x = "30" y = "40" z = "0" />
+					<point x = "-35" y = "35" z = "0" />
+					<point x = "-40" y = "30" z = "0" />
+					<point x = "-35" y = "-35" z = "0" />
+					<point x = "30" y = "-40" z = "0" />
+					<point x = "35" y = "-35" z = "0" />
 				</translate>
 				<rotate time="15" x="0" y="0" z="1" />
 				
@@ -118,14 +114,14 @@
         	<group> <!-- jupiter-->
             		<transform> <!-- alterar pontos de controle-->
                 		<translate time = "30000" align="True" > <!-- O campo orient diz se o objecto deve ser orientado na curva -->
-					<point x = "80" y = "0" z = "0" />
-					<point x = "40" y = "40" z = "0" />
-					<point x = "0" y = "80" z = "0" />
-					<point x = "-40" y = "40" z = "0" />
-					<point x = "-80" y = "0" z = "0" />
-					<point x = "-40" y = "-40" z = "0" />
-					<point x = "0" y = "-80" z = "0" />
-					<point x = "40" y = "-40" z = "0" />
+					<point x = "50" y = "40" z = "0" />
+					<point x = "45" y = "45" z = "0" />
+					<point x = "40" y = "50" z = "0" />
+					<point x = "-45" y = "45" z = "0" />
+					<point x = "-50" y = "40" z = "0" />
+					<point x = "-45" y = "-45" z = "0" />
+					<point x = "40" y = "-50" z = "0" />
+					<point x = "45" y = "-45" z = "0" />
 				</translate>
 				<rotate time="20" x="0" y="0" z="1" />
 				
@@ -138,14 +134,14 @@
         	<group> <!-- saturno-->
             		<transform> <!-- alterar pontos de controle-->
                 		<translate time = "20" align="True" > <!-- O campo orient diz se o objecto deve ser orientado na curva -->
-					<point x = "20" y = "0" z = "0" />
-					<point x = "10" y = "10" z = "0" />
-					<point x = "0" y = "20" z = "0" />
-					<point x = "-10" y = "10" z = "0" />
-					<point x = "-20" y = "0" z = "0" />
-					<point x = "-10" y = "-10" z = "0" />
-					<point x = "0" y = "-20" z = "0" />
-					<point x = "10" y = "-10" z = "0" />
+					<point x = "60" y = "50" z = "0" />
+					<point x = "55" y = "55" z = "0" />
+					<point x = "50" y = "60" z = "0" />
+					<point x = "-55" y = "55" z = "0" />
+					<point x = "-60" y = "50" z = "0" />
+					<point x = "-55" y = "-55" z = "0" />
+					<point x = "50" y = "-60" z = "0" />
+					<point x = "55" y = "-55" z = "0" />
 				</translate>
 				<rotate time="6" x="0" y="0" z="1" />
 				
@@ -158,14 +154,14 @@
         	<group> <!-- urano-->
             		<transform> <!-- alterar pontos de controle-->
                 		<translate time = "20" align="True" > <!-- O campo orient diz se o objecto deve ser orientado na curva -->
-					<point x = "20" y = "0" z = "0" />
-					<point x = "10" y = "10" z = "0" />
-					<point x = "0" y = "20" z = "0" />
-					<point x = "-10" y = "10" z = "0" />
-					<point x = "-20" y = "0" z = "0" />
-					<point x = "-10" y = "-10" z = "0" />
-					<point x = "0" y = "-20" z = "0" />
-					<point x = "10" y = "-10" z = "0" />
+					<point x = "70" y = "60" z = "0" />
+					<point x = "65" y = "65" z = "0" />
+					<point x = "60" y = "70" z = "0" />
+					<point x = "-65" y = "65" z = "0" />
+					<point x = "-70" y = "60" z = "0" />
+					<point x = "-65" y = "-65" z = "0" />
+					<point x = "60" y = "-70" z = "0" />
+					<point x = "65" y = "-65" z = "0" />
 				</translate>
 				<rotate time="6" x="0" y="0" z="1" />
 				
@@ -178,14 +174,14 @@
         	<group> <!-- netuno-->
             		<transform> <!-- alterar pontos de controle-->
                 		<translate time = "20" align="True" > <!-- O campo orient diz se o objecto deve ser orientado na curva -->
-					<point x = "20" y = "0" z = "0" />
-					<point x = "10" y = "10" z = "0" />
-					<point x = "0" y = "20" z = "0" />
-					<point x = "-10" y = "10" z = "0" />
-					<point x = "-20" y = "0" z = "0" />
-					<point x = "-10" y = "-10" z = "0" />
-					<point x = "0" y = "-20" z = "0" />
-					<point x = "10" y = "-10" z = "0" />
+					<point x = "80" y = "70" z = "0" />
+					<point x = "75" y = "75" z = "0" />
+					<point x = "70" y = "80" z = "0" />
+					<point x = "-75" y = "75" z = "0" />
+					<point x = "-80" y = "70" z = "0" />
+					<point x = "-75" y = "-75" z = "0" />
+					<point x = "70" y = "-80" z = "0" />
+					<point x = "75" y = "-75" z = "0" />
 				</translate>
 				<rotate time="6" x="0" y="0" z="1" />
 				
