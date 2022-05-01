@@ -576,7 +576,7 @@ Group readGroup (XMLElement *group, int x, bool child) {
         int z2=1;
         for (groupchild2 = group->FirstChildElement("group");groupchild2 != nullptr; groupchild2 = groupchild2->NextSiblingElement("group")) //for each brother, see the child
         {
-            childs.push_back(readGroup(groupchild2,z2,true));
+            childs.push_back(readGroup(groupchild2,iBrothers+z2,true));
             iChilds++;
             z2++;
         }
