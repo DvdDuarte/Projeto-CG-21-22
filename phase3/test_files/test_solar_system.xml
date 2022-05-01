@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <world> <!-- a world can have a camera, a set of lights, and a single group -->
 	
     <camera> 

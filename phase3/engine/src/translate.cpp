@@ -80,7 +80,6 @@ void getGlobalCatmullRomPoint(float gt, float *pos, float *deriv,vector<Point>t_
     t = t - index; // where within  the segment
 
     // indices store the points
-    //talvez tenha de se mudar
     int indices[4];
     indices[0] = (index + t_points.size()-1)%t_points.size();
     indices[1] = (indices[0]+1)%t_points.size();

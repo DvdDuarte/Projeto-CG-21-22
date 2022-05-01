@@ -26,7 +26,7 @@ int startX, startY, tracking = 0;
 unsigned int picked = 0;
 
 float tess=0,delta_tess=0.001;
-
+float time_curr=0;
 
 string vertexToString(Vertex v){
     string vertex_info = to_string(v.x) + ";" + to_string(v.y) + ";" + to_string(v.z);
@@ -302,18 +302,20 @@ int main(int argc, char **argv) {
     return 1;
 }
 
-void t_apply_aux(float time, vector <Point> points, bool talign, int i){
+void t_apply_aux(float time, vector <Point> points, bool talign){
     float up[3]={0,1,0};
-    //up[0] = 0;
-    //up[1] = 1;
-    //up[2] = 0;
+    float g=0;
     float pos[3],deriv[3];
     renderCatmullRomCurve(points);
-    
+     if(time!=0){
+        delta_tess=1/ (time * 60);
+        }
     getGlobalCatmullRomPoint(tess,pos,deriv,points);
     cout<<tess<<" "<<pos[0]<<" "<<pos[1]<<" "<<pos[2]<<endl;
     glTranslatef(pos[0],pos[1],pos[2]);
     curveRotation(deriv, up);
+    
+    cout<<delta_tess<<" delta_tess"<<endl;
     if(talign){
     
         r_z[0]=deriv[0],r_z[1]=deriv[1],r_z[2]=deriv[2];
@@ -327,6 +329,7 @@ void t_apply_aux(float time, vector <Point> points, bool talign, int i){
 }
 
 void draw (Group g, int itera, bool child) {
+    time_curr=glutGet(GLUT_ELAPSED_TIME)*1000;
     int iForTranslate = 0;
     int iForRotate = 0;
     int iForScale = 0;
@@ -346,9 +349,7 @@ void draw (Group g, int itera, bool child) {
                 
                 if(g.t.at(iForTranslate).p.size()>=4){
                     //achar ponto na curva, usando os pontos
-                    t_apply_aux(ttime,g.t.at(iForTranslate).p,talign,i);
-                   // apply(ttime,g.t.at(iForTranslate).p,talign,i);
-                    
+                    t_apply_aux(ttime,g.t.at(iForTranslate).p,talign);
                 }
             iForTranslate++;
         }
@@ -380,7 +381,7 @@ void draw (Group g, int itera, bool child) {
                 rx = g.r.at(iForRotate).x;
                 ry = g.r.at(iForRotate).y;
                 rz = g.r.at(iForRotate).z; 
-                glRotated(rtangle, rx, ry, rz);
+                glRotated(rangle, rx, ry, rz);
             }
            iForRotate++;
         }
@@ -662,7 +663,7 @@ tuple <float*,int> read3dFiles (vector<string >files, int nmr_files, float* vert
             vertices[iterator+7] = v8;
             vertices[iterator+8] = v9;
             iterator+=9;
-           }
+        }
 
         fclose(fp);
         i++;
