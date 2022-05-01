@@ -313,17 +313,12 @@ void t_apply_aux(float time, vector <Point> points, bool talign){
     getGlobalCatmullRomPoint(tess,pos,deriv,points);
     cout<<tess<<" "<<pos[0]<<" "<<pos[1]<<" "<<pos[2]<<endl;
     glTranslatef(pos[0],pos[1],pos[2]);
-    curveRotation(deriv, up);
+    //curveRotation(deriv, up);
     
     cout<<delta_tess<<" delta_tess"<<endl;
     if(talign){
-    
-        r_z[0]=deriv[0],r_z[1]=deriv[1],r_z[2]=deriv[2];
-        cross(r_y,r_z,r_x);
-        cross(r_z,r_x,r_y);
-        normalize(r_x), normalize(r_y), normalize(r_z);
-        buildRotMatrix(r_x, r_y, r_z, m);
-        glMultMatrixf(m);
+        curveRotation(deriv, up);
+        
     }
     tess+=delta_tess;
 }

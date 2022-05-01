@@ -10,27 +10,27 @@
     <group> 
 		<transform>
 			<rotate angle="-90" x = "1" y="0" z = "0" /> 
-			<scale X="30" Y="30" Z="30" />
+			<!-- <scale X="30" Y="30" Z="30" /> -->
 		</transform>
   		<models> <!-- sol-->
 			<model file="bezier.3d" /> <!-- generator bezier teapot.patch 10 bezier.3d -->
  		</models>
  		<group> 
-            		<transform> 
+            		<transform> <!-- alterar pontos de controle-->
                 		<translate time = "10" align="True" > <!-- O campo orient diz se o objecto deve ser orientado na curva -->
-					<point x = "4" y = "0" z = "0" />
-					<point x = "2" y = "2" z = "0" />
-					<point x = "0" y = "4" z = "0" />
-					<point x = "-2" y = "2" z = "0" />
-					<point x = "-4" y = "0" z = "0" />
-					<point x = "-2" y = "-2" z = "0" />
-					<point x = "0" y = "-4" z = "0" />
-					<point x = "2" y = "-2" z = "0" />
+					<point x = "10" y = "0" z = "0" />
+					<point x = "5" y = "5" z = "0" />
+					<point x = "0" y = "10" z = "0" />
+					<point x = "-5" y = "5" z = "0" />
+					<point x = "-10" y = "0" z = "0" />
+					<point x = "-5" y = "-5" z = "0" />
+					<point x = "0" y = "-10" z = "0" />
+					<point x = "5" y = "-5" z = "0" />
 				</translate>
 				<rotate time="3" x="0" y="0" z="1" />
 				
             		</transform>
-			<models> <!-- mercurio-->
+			<models> <!-- cometa-->
 				<model file="bezier.3d" /> <!-- generator bezier teapot.patch 10 bezier.3d -->
 				<!-- <model file="sphere.3d" /> --> <!-- generator sphere 1 15 15 sphere.3d -->
 			</models>
