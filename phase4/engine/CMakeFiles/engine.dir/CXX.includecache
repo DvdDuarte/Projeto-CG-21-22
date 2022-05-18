@@ -6,15 +6,15 @@
 
 #IncludeRegexTransform: 
 
-/home/ema/Projeto-CG-21-22/phase3/engine/include/Point.h
+/home/sdaslira/Projeto-CG-21-22/phase4/engine/include/Point.h
 string
 -
 iostream
 -
 
-/home/ema/Projeto-CG-21-22/phase3/engine/include/colors.h
+/home/sdaslira/Projeto-CG-21-22/phase4/engine/include/colors.h
 
-/home/ema/Projeto-CG-21-22/phase3/engine/include/engine.h
+/home/sdaslira/Projeto-CG-21-22/phase4/engine/include/engine.h
 GL/glut.h
 -
 vector
@@ -28,19 +28,19 @@ math.h
 iostream
 -
 ../src/XMLParser/tinyxml2.h
-/home/ema/Projeto-CG-21-22/phase3/engine/src/XMLParser/tinyxml2.h
+/home/sdaslira/Projeto-CG-21-22/phase4/engine/src/XMLParser/tinyxml2.h
 engine_aux.h
-/home/ema/Projeto-CG-21-22/phase3/engine/include/engine_aux.h
+/home/sdaslira/Projeto-CG-21-22/phase4/engine/include/engine_aux.h
 colors.h
-/home/ema/Projeto-CG-21-22/phase3/engine/include/colors.h
+/home/sdaslira/Projeto-CG-21-22/phase4/engine/include/colors.h
 translate.h
-/home/ema/Projeto-CG-21-22/phase3/engine/include/translate.h
+/home/sdaslira/Projeto-CG-21-22/phase4/engine/include/translate.h
 rotate.h
-/home/ema/Projeto-CG-21-22/phase3/engine/include/rotate.h
+/home/sdaslira/Projeto-CG-21-22/phase4/engine/include/rotate.h
 vbo.h
-/home/ema/Projeto-CG-21-22/phase3/engine/include/vbo.h
+/home/sdaslira/Projeto-CG-21-22/phase4/engine/include/vbo.h
 
-/home/ema/Projeto-CG-21-22/phase3/engine/include/engine_aux.h
+/home/sdaslira/Projeto-CG-21-22/phase4/engine/include/engine_aux.h
 GL/glut.h
 -
 vector
@@ -54,27 +54,41 @@ math.h
 iostream
 -
 colors.h
-/home/ema/Projeto-CG-21-22/phase3/engine/include/colors.h
+/home/sdaslira/Projeto-CG-21-22/phase4/engine/include/colors.h
 ../../generator/include/Vertex.h
-/home/ema/Projeto-CG-21-22/phase3/generator/include/Vertex.h
+/home/sdaslira/Projeto-CG-21-22/phase4/generator/include/Vertex.h
 ../../generator/include/Triangle.h
-/home/ema/Projeto-CG-21-22/phase3/generator/include/Triangle.h
+/home/sdaslira/Projeto-CG-21-22/phase4/generator/include/Triangle.h
 
-/home/ema/Projeto-CG-21-22/phase3/engine/include/rotate.h
+/home/sdaslira/Projeto-CG-21-22/phase4/engine/include/rotate.h
 
-/home/ema/Projeto-CG-21-22/phase3/engine/include/translate.h
+/home/sdaslira/Projeto-CG-21-22/phase4/engine/include/translate.h
 Point.h
-/home/ema/Projeto-CG-21-22/phase3/engine/include/Point.h
+/home/sdaslira/Projeto-CG-21-22/phase4/engine/include/Point.h
 vector
 -
 math.h
 -
 
-/home/ema/Projeto-CG-21-22/phase3/engine/include/vbo.h
+/home/sdaslira/Projeto-CG-21-22/phase4/engine/include/vbo.h
 GL/glew.h
 -
 
-/home/ema/Projeto-CG-21-22/phase3/engine/src/XMLParser/tinyxml2.h
+/home/sdaslira/Projeto-CG-21-22/phase4/engine/src/XMLParser/tinyxml2.cpp
+tinyxml2.h
+/home/sdaslira/Projeto-CG-21-22/phase4/engine/src/XMLParser/tinyxml2.h
+new
+-
+stddef.h
+-
+stdarg.h
+-
+cstddef
+-
+cstdarg
+-
+
+/home/sdaslira/Projeto-CG-21-22/phase4/engine/src/XMLParser/tinyxml2.h
 ctype.h
 -
 limits.h
@@ -104,23 +118,37 @@ android/log.h
 assert.h
 -
 
-/home/ema/Projeto-CG-21-22/phase3/engine/src/engine.cpp
+/home/sdaslira/Projeto-CG-21-22/phase4/engine/src/engine.cpp
 IL/il.h
 -
 GL/glew.h
 -
 ../include/engine.h
-/home/ema/Projeto-CG-21-22/phase3/engine/include/engine.h
+/home/sdaslira/Projeto-CG-21-22/phase4/engine/include/engine.h
 XMLParser/tinyxml2.h
-/home/ema/Projeto-CG-21-22/phase3/engine/src/XMLParser/tinyxml2.h
+/home/sdaslira/Projeto-CG-21-22/phase4/engine/src/XMLParser/tinyxml2.h
 tuple
 -
 
-/home/ema/Projeto-CG-21-22/phase3/generator/include/Triangle.h
-Vertex.h
-/home/ema/Projeto-CG-21-22/phase3/generator/include/Vertex.h
+/home/sdaslira/Projeto-CG-21-22/phase4/engine/src/engine_aux.cpp
+../include/engine_aux.h
+/home/sdaslira/Projeto-CG-21-22/phase4/engine/include/engine_aux.h
 
-/home/ema/Projeto-CG-21-22/phase3/generator/include/Vertex.h
+/home/sdaslira/Projeto-CG-21-22/phase4/engine/src/translate.cpp
+../include/translate.h
+/home/sdaslira/Projeto-CG-21-22/phase4/engine/include/translate.h
+string
+-
+GL/glut.h
+-
+iostream
+-
+
+/home/sdaslira/Projeto-CG-21-22/phase4/generator/include/Triangle.h
+Vertex.h
+/home/sdaslira/Projeto-CG-21-22/phase4/generator/include/Vertex.h
+
+/home/sdaslira/Projeto-CG-21-22/phase4/generator/include/Vertex.h
 cstdio
 -
 
