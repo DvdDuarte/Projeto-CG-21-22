@@ -31,5 +31,14 @@ public:
     float x;
     float y;
     float z;
-
+    // Getter
+    int getX() {
+      return x;
+    }
+    int getY() {
+      return y;
+    }
+    int getZ() {
+      return z;
+    }
 };

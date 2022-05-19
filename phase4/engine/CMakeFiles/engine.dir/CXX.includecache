@@ -12,6 +12,14 @@ string
 iostream
 -
 
+/home/sdaslira/Projeto-CG-21-22/phase4/engine/include/color.h
+string
+-
+iostream
+-
+Point.h
+/home/sdaslira/Projeto-CG-21-22/phase4/engine/include/Point.h
+
 /home/sdaslira/Projeto-CG-21-22/phase4/engine/include/colors.h
 
 /home/sdaslira/Projeto-CG-21-22/phase4/engine/include/engine.h
@@ -63,8 +71,8 @@ colors.h
 /home/sdaslira/Projeto-CG-21-22/phase4/engine/include/rotate.h
 
 /home/sdaslira/Projeto-CG-21-22/phase4/engine/include/translate.h
-Point.h
-/home/sdaslira/Projeto-CG-21-22/phase4/engine/include/Point.h
+color.h
+/home/sdaslira/Projeto-CG-21-22/phase4/engine/include/color.h
 vector
 -
 math.h
@@ -72,20 +80,6 @@ math.h
 
 /home/sdaslira/Projeto-CG-21-22/phase4/engine/include/vbo.h
 GL/glew.h
--
-
-/home/sdaslira/Projeto-CG-21-22/phase4/engine/src/XMLParser/tinyxml2.cpp
-tinyxml2.h
-/home/sdaslira/Projeto-CG-21-22/phase4/engine/src/XMLParser/tinyxml2.h
-new
--
-stddef.h
--
-stdarg.h
--
-cstddef
--
-cstdarg
 -
 
 /home/sdaslira/Projeto-CG-21-22/phase4/engine/src/XMLParser/tinyxml2.h
@@ -128,20 +122,6 @@ GL/glew.h
 XMLParser/tinyxml2.h
 /home/sdaslira/Projeto-CG-21-22/phase4/engine/src/XMLParser/tinyxml2.h
 tuple
--
-
-/home/sdaslira/Projeto-CG-21-22/phase4/engine/src/engine_aux.cpp
-../include/engine_aux.h
-/home/sdaslira/Projeto-CG-21-22/phase4/engine/include/engine_aux.h
-
-/home/sdaslira/Projeto-CG-21-22/phase4/engine/src/translate.cpp
-../include/translate.h
-/home/sdaslira/Projeto-CG-21-22/phase4/engine/include/translate.h
-string
--
-GL/glut.h
--
-iostream
 -
 
 /home/sdaslira/Projeto-CG-21-22/phase4/generator/include/Triangle.h

@@ -4,7 +4,7 @@
 
 #ifndef PROJETO_CG_21_22_TRANSLATE_H
 #define PROJETO_CG_21_22_TRANSLATE_H
-#include "Point.h"
+#include "color.h"
 #include <vector>
 #include <math.h>
 class Translate {

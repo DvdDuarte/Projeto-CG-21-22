@@ -16,7 +16,6 @@ using namespace std;
 #include "rotate.h"
 #include "vbo.h"
 
-
 int engine (int argc, char **argv);
 void readXML(string filename);
 

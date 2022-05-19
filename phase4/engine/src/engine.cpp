@@ -1,10 +1,12 @@
 #include <IL/il.h>
 #include <GL/glew.h>
 
+
 #include "../include/engine.h"
 #include "XMLParser/tinyxml2.h"
 #include <tuple>
 using namespace tinyxml2;
+
 
 int triangle_nmr;
 
@@ -24,6 +26,10 @@ int nrTriangles = 0;
 bool wh;
 int startX, startY, tracking = 0;
 unsigned int picked = 0;
+
+
+
+
 
 float tess=0,delta_tess=0.001;
 float time_curr=0;
@@ -420,8 +426,12 @@ Group readGroup (XMLElement *group, int x, bool child) {
     vector<Translate> translates;
     vector<Rotate> rotates;
     vector<Scale> scales;
-    int iFiles=0;
-    vector<string> filesNames,listOfTransform;
+    vector<Color> v_colors;
+    //textura
+    //luz
+
+    int iFiles=0,iText=0;
+    vector<string> filesNames,listOfTransform,filesText;
     int  iChilds=0, iTransform=0;
     vector<Group> childs;
     XMLElement *scale,*rotate, *translate, *transform, *transformElement, *translateElement;
@@ -429,15 +439,19 @@ Group readGroup (XMLElement *group, int x, bool child) {
     char *debug = (char*) group->FirstChildElement()->Name();
 
     vector<Triangle> triangleVec;
-    char *name;
+    char *name,*name2;
     if (strcmp(debug,"models")!=0) {
         transform = group->FirstChildElement("transform");
         transformElement = transform->FirstChildElement();
         name = (char *) (transformElement->Name());
+       
     }
-    else {name = (char *) "end";}
+    else {
+        name = (char *) "end";
+        
+        }
 
-        while (strcmp(name, "end") != 0) {
+        while (strcmp(name, "end") != 0 || strcmp(name2, "end") != 0) {
             if (strcmp(name, "rotate") == 0) {
                 rotate = transformElement;
                 listOfTransform.push_back("rotate");
@@ -524,8 +538,12 @@ Group readGroup (XMLElement *group, int x, bool child) {
                 name = (char *) (transformElement->Name());
 
             } else name = (char *) "end";
+
+
         }
-    XMLElement *models;
+    XMLElement *models,*modelElement,*texture,*color,*diffuse,*ambient,*specular,*emissive,*shininess;
+    Color c;
+    Point d,a,s,e;
     if (strcmp(debug,"models")!=0) {
         models = transform->NextSiblingElement("models");
     }
@@ -535,6 +553,78 @@ Group readGroup (XMLElement *group, int x, bool child) {
         for (models; models != nullptr; models = models->NextSiblingElement()) { //Percorrers os models irmaos no group
             XMLElement *model = models->FirstChildElement("model");
             for (model; model != nullptr; model = model->NextSiblingElement()) {
+                modelElement=model->FirstChildElement();
+                name2= (char*)modelElement->Name();
+                if(strcmp(name2, "texture") == 0){
+                    //
+                    cout << "file de textura " << modelElement->Attribute("file") << endl;
+                    filesText.push_back(modelElement->Attribute("file"));
+                    iText++;
+                    //
+                    
+                }else if(strcmp(name2, "color") == 0){
+                    diffuse=modelElement->FirstChildElement("diffuse");
+                    ambient=modelElement->FirstChildElement("ambient");
+                    specular=modelElement->FirstChildElement("specular");
+                    emissive=modelElement->FirstChildElement("emissive");
+                    shininess=modelElement->FirstChildElement("shininess");
+
+                    
+                    float r=0,g=0,b=0,sh=0;
+                    if(diffuse->Attribute("R")!= nullptr)
+                        r=stof(diffuse->Attribute("R"));
+
+                    if(diffuse->Attribute("G")!= nullptr)
+                        g=stof(diffuse->Attribute("G"));
+
+                    if(diffuse->Attribute("B")!= nullptr)
+                        b=stof(diffuse->Attribute("B"));
+
+                    d=Point(r,g,b);//diffuse
+                    r=0,g=0,b=0;
+                    if(ambient->Attribute("R")!= nullptr)
+                        r=stof(ambient->Attribute("R"));
+                        
+                    if(ambient->Attribute("G")!= nullptr)
+                        g=stof(ambient->Attribute("G"));
+                        
+                    if(ambient->Attribute("B")!= nullptr)
+                        b=stof(ambient->Attribute("B"));
+    
+                    a=Point(r,g,b);//ambient
+                    r=0,g=0,b=0;
+                    if(specular->Attribute("R")!= nullptr)
+                        r=stof(specular->Attribute("R"));
+                        
+                    if(specular->Attribute("G")!= nullptr)
+                        g=stof(specular->Attribute("G"));
+                        
+                    if(specular->Attribute("B")!= nullptr)
+                        b=stof(specular->Attribute("B"));
+                        
+                    s=Point(r,g,b);//specular
+                    r=0,g=0,b=0;
+                    if(emissive->Attribute("R")!= nullptr)
+                        r=stof(emissive->Attribute("R"));
+                        
+                    if(emissive->Attribute("G")!= nullptr)
+                        g=stof(emissive->Attribute("G"));
+                        
+                    if(emissive->Attribute("B")!= nullptr)
+                        b=stof(emissive->Attribute("B"));
+                    
+                    e=Point(r,g,b);//emissive
+                    r=0,g=0,b=0;
+                    if(shininess->Attribute("value")!= nullptr)
+                        sh=stof(shininess->Attribute("value"));
+                    
+                    c = Color(d,a,s,e,sh);
+                    v_colors.push_back(c);
+
+                }else{
+
+                }
+
                 cout << "file do model " << model->Attribute("file") << endl;
                 filesNames.push_back(model->Attribute("file"));
                 iFiles++;
