@@ -27,9 +27,16 @@ bool wh;
 int startX, startY, tracking = 0;
 unsigned int picked = 0;
 
+//lights
+float light_px=1,light_py=1,light_pz=1;
+float light_dx=1,light_dy=1,light_dz=1;
+float light_spx=0,light_spy=0,light_spz=0,light_sdx=1,light_sdy=1,light_sdz=1,cutoff=0;
 
 
-
+float dark[4] = {0.2, 0.2, 0.2, 1.0};
+float white[4] = {1.0, 1.0, 1.0, 1.0};
+float black[4] = {0.0f, 0.0f, 0.0f, 0.0f};
+float yellow[4] = {1.0f,1.0f,0.0f,1.0f};
 
 float tess=0,delta_tess=0.001;
 float time_curr=0;
@@ -89,15 +96,25 @@ void renderScene(void) {
     // set the camera
     glLoadIdentity();
 
-    
+    float pos[4] = {light_px, light_py, light_pz, 0.0};
+    float dir[4] = {light_dx,light_dy,light_dz,1.0};
+
+        //rever material
+    glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, white);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, white);
+    glMaterialf(GL_FRONT, GL_SHININESS, 128);
+
     gluLookAt(position_x,position_y,position_z,
               lx,ly,lz,
               up_x,up_y,up_z);
- 
+
+    glLightfv(GL_LIGHT0,GL_POSITION, pos);
+    //glLightfv(GL_LIGHT0,GL_POSITION,dir);
+
+    
     //draw axis
     draw_axis();
     
-
     //renderCatmullRomCurve();
     i*=2;
 
@@ -106,6 +123,7 @@ void renderScene(void) {
         glTranslatef(posx,0.0,posz);
         glRotatef(angle, 1.0, 0.0, .0);
         glScalef(scalex, scaley, scalez);
+
         draw(groupbrothers[iteratorBrothers],iteratorBrothers,false);
         
         glPopMatrix();
@@ -280,23 +298,38 @@ int main(int argc, char **argv) {
     glutInitWindowPosition(100,100);
     glutInitWindowSize(800,800);
     glutCreateWindow("CG@DI-UM");
+    
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glEnableClientState(GL_NORMAL_ARRAY);
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+    glEnable(GL_TEXTURE_2D);
+    glEnable(GL_NORMALIZE);
+
+    glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHT0);
+
+     // light colors
+    glLightfv(GL_LIGHT0, GL_AMBIENT, dark);
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, white);
+    glLightfv(GL_LIGHT0, GL_SPECULAR, white);
+
+    // controls global ambient light
+    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, black);
 
 // Required callback registry
     glutDisplayFunc(renderScene);
     glutIdleFunc(renderScene);
     glutReshapeFunc(changeSize);
 
-
+// put here the registration of the keyboard callbacks
     glutKeyboardFunc(keyboardFunc);
     glutMouseFunc(processMouseButtons);
     glutMotionFunc(processMouseMotion);
 
 
 
-
-// put here the registration of the keyboard callbacks
-
 //  OpenGL settings
+   
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
     glewInit();
@@ -335,6 +368,7 @@ void draw (Group g, int itera, bool child) {
     int iForRotate = 0;
     int iForScale = 0;
     int iForPoint=0;
+
     c1 = 0, c2 = 1, c3 = 1;
     for (int z = 0; z < g.orderTransform.size(); z++) { // for each transform of group
 
@@ -394,7 +428,7 @@ void draw (Group g, int itera, bool child) {
             glScalef(sx, sy, sz);
             iForScale++;
         }
-
+     
     }
 
 
@@ -406,7 +440,7 @@ void draw (Group g, int itera, bool child) {
     glDrawArrays(GL_TRIANGLES, 0, g.numberOfVertices / 3);
     glFlush();
 
-
+   
 
     int iterateChildren= 0;
     int iterateChildren2= 1;
@@ -416,6 +450,7 @@ void draw (Group g, int itera, bool child) {
         glPopMatrix();
         iterateChildren++;
     }
+
 }
 
 Group readGroup (XMLElement *group, int x, bool child) {
@@ -427,8 +462,7 @@ Group readGroup (XMLElement *group, int x, bool child) {
     vector<Rotate> rotates;
     vector<Scale> scales;
     vector<Color> v_colors;
-    //textura
-    //luz
+   
 
     int iFiles=0,iText=0;
     vector<string> filesNames,listOfTransform,filesText;
@@ -451,7 +485,7 @@ Group readGroup (XMLElement *group, int x, bool child) {
         
         }
 
-        while (strcmp(name, "end") != 0 || strcmp(name2, "end") != 0) {
+        while (strcmp(name, "end") != 0) {
             if (strcmp(name, "rotate") == 0) {
                 rotate = transformElement;
                 listOfTransform.push_back("rotate");
@@ -550,11 +584,13 @@ Group readGroup (XMLElement *group, int x, bool child) {
     else {
         models = group->FirstChildElement("models");
     }
+
         for (models; models != nullptr; models = models->NextSiblingElement()) { //Percorrers os models irmaos no group
             XMLElement *model = models->FirstChildElement("model");
             for (model; model != nullptr; model = model->NextSiblingElement()) {
                 modelElement=model->FirstChildElement();
-                name2= (char*)modelElement->Name();
+               name2= (char*)modelElement->Name();
+              
                 if(strcmp(name2, "texture") == 0){
                     //
                     cout << "file de textura " << modelElement->Attribute("file") << endl;
@@ -563,6 +599,7 @@ Group readGroup (XMLElement *group, int x, bool child) {
                     //
                     
                 }else if(strcmp(name2, "color") == 0){
+                    cout << "color" <<endl;
                     diffuse=modelElement->FirstChildElement("diffuse");
                     ambient=modelElement->FirstChildElement("ambient");
                     specular=modelElement->FirstChildElement("specular");
@@ -622,12 +659,13 @@ Group readGroup (XMLElement *group, int x, bool child) {
                     v_colors.push_back(c);
 
                 }else{
-
+                    cout << "Problem here" << endl;
                 }
 
                 cout << "file do model " << model->Attribute("file") << endl;
                 filesNames.push_back(model->Attribute("file"));
                 iFiles++;
+
             }
         }
     int tamanho;
@@ -637,7 +675,7 @@ Group readGroup (XMLElement *group, int x, bool child) {
         glBindBuffer(GL_ARRAY_BUFFER, v.indexB);
         tie(vertices,tamanho) = read3dFiles(filesNames, iFiles, vertices);
         if(!filesNames.empty()) {
-              glBufferData(GL_ARRAY_BUFFER, tamanho*sizeof(float), vertices, GL_STATIC_DRAW);
+            glBufferData(GL_ARRAY_BUFFER, tamanho*sizeof(float), vertices, GL_STATIC_DRAW);
             glBindBuffer(GL_ARRAY_BUFFER, v.indexB);
         }
         else {
@@ -697,7 +735,36 @@ void readCamera(XMLElement *world) {
     if(projection->Attribute("near")!= nullptr) projnear= stof(projection->Attribute("near"));
     if(projection->Attribute("far")!= nullptr) projfar= stof(projection->Attribute("far"));
     cart2spherical ();
+    //read the lights
+
+    XMLElement *lights = world->FirstChildElement("lights");
+    XMLElement *light = lights->FirstChildElement("light");
+    char* t=(char*) light->Attribute("type");
+    if(strcmp(t,"point")==0){
+        if(light->Attribute("posX")!=nullptr)light_px=stof(light->Attribute("posX"));
+        if(light->Attribute("posY")!=nullptr)light_py=stof(light->Attribute("posY"));
+        if(light->Attribute("posZ")!=nullptr)light_pz=stof(light->Attribute("posZ"));
+    }
+    if(strcmp(t,"directional")==0){
+        if(light->Attribute("dirX")!=nullptr)light_dx=stof(light->Attribute("dirX"));
+        if(light->Attribute("dirY")!=nullptr)light_dy=stof(light->Attribute("dirY"));
+        if(light->Attribute("dirZ")!=nullptr)light_dz=stof(light->Attribute("dirZ"));
+    }
+    if(strcmp(t,"spotlight")==0){
+        if(light->Attribute("posX")!=nullptr)light_spx=stof(light->Attribute("posX"));
+        if(light->Attribute("posY")!=nullptr)light_spy=stof(light->Attribute("posY"));
+        if(light->Attribute("posZ")!=nullptr)light_spz=stof(light->Attribute("posZ"));
+        if(light->Attribute("dirX")!=nullptr)light_sdx=stof(light->Attribute("dirX"));
+        if(light->Attribute("dirY")!=nullptr)light_sdy=stof(light->Attribute("dirY"));
+        if(light->Attribute("dirZ")!=nullptr)light_sdz=stof(light->Attribute("dirZ"));
+        if(light->Attribute("cutoff")!=nullptr)cutoff=stof(light->Attribute("cutoff"));
+    }
+    cout<<"leu as luzes"<< endl;
 }
+
+
+
+
 void readXML(string filename){
 
 
@@ -770,18 +837,27 @@ int engine (int argc, char **argv) {
     XMLDocument document;
     bool load = document.LoadFile(name.c_str());
     cout << BOLD_RED << "ERROR: " << RESET << load << endl;
+    
     if (load != 0) return -1;
+    
     string *filesNames = (string *) malloc(10000 * sizeof(string));
+    
     int i = 0;
     XMLElement *world = document.FirstChildElement("world");
-
+   
     readCamera(world);
+   
     XMLElement *camera = world->FirstChildElement("camera");
     XMLElement *group;
-
+    
+    
+   
+    
     for (group = camera->NextSiblingElement("group");group != nullptr; group = group->NextSiblingElement("group")) //iterator for brother
     {
+        cout<<"oops"<<endl;
         groupbrothers.push_back(readGroup(group,iBrothers,false));
+         cout<<"oops opps"<<endl;
         iBrothers++;
     }
     return 0;
