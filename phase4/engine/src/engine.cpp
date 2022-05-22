@@ -31,7 +31,7 @@ unsigned int picked = 0;
 float light_px=1,light_py=1,light_pz=1;
 float light_dx=1,light_dy=1,light_dz=1;
 float light_spx=0,light_spy=0,light_spz=0,light_sdx=1,light_sdy=1,light_sdz=1,cutoff=0;
-
+bool l_p=false,l_d=false,l_s=false;
 
 float dark[4] = {0.2, 0.2, 0.2, 1.0};
 float white[4] = {1.0, 1.0, 1.0, 1.0};
@@ -96,22 +96,28 @@ void renderScene(void) {
     // set the camera
     glLoadIdentity();
 
-    float pos[4] = {light_px, light_py, light_pz, 0.0};
-    float dir[4] = {light_dx,light_dy,light_dz,1.0};
+    float pos[4] = {light_px, light_py, light_pz, 1.0};
+    float dir[4] = {light_dx,light_dy,light_dz,0.0};
 
-        //rever material
+    //rever material
     glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, white);
     glMaterialfv(GL_FRONT, GL_SPECULAR, white);
-    glMaterialf(GL_FRONT, GL_SHININESS, 128);
+    glMaterialf(GL_FRONT, GL_SHININESS, 0);
 
     gluLookAt(position_x,position_y,position_z,
               lx,ly,lz,
               up_x,up_y,up_z);
-
-    glLightfv(GL_LIGHT0,GL_POSITION, pos);
-    //glLightfv(GL_LIGHT0,GL_POSITION,dir);
-
-    
+    if(l_p){
+       glLightfv(GL_LIGHT0,GL_POSITION, pos);
+    }else
+    if(l_d){
+       glLightfv(GL_LIGHT0,GL_POSITION,dir);
+    }else 
+    if(l_s){
+       glLightfv(GL_LIGHT0,GL_POSITION, pos);
+       glLightfv(GL_LIGHT0,GL_POSITION,dir);
+       glLightf(GL_LIGHT0,GL_SPOT_CUTOFF,cutoff);
+    }
     //draw axis
     draw_axis();
     
@@ -128,7 +134,6 @@ void renderScene(void) {
         
         glPopMatrix();
     }
-
     
     glutSwapBuffers();
 }
@@ -744,11 +749,13 @@ void readCamera(XMLElement *world) {
         if(light->Attribute("posX")!=nullptr)light_px=stof(light->Attribute("posX"));
         if(light->Attribute("posY")!=nullptr)light_py=stof(light->Attribute("posY"));
         if(light->Attribute("posZ")!=nullptr)light_pz=stof(light->Attribute("posZ"));
+        l_d=false;l_p=true;l_s=false;
     }
     if(strcmp(t,"directional")==0){
         if(light->Attribute("dirX")!=nullptr)light_dx=stof(light->Attribute("dirX"));
         if(light->Attribute("dirY")!=nullptr)light_dy=stof(light->Attribute("dirY"));
         if(light->Attribute("dirZ")!=nullptr)light_dz=stof(light->Attribute("dirZ"));
+        l_d=true;l_p=false;l_s=false;
     }
     if(strcmp(t,"spotlight")==0){
         if(light->Attribute("posX")!=nullptr)light_spx=stof(light->Attribute("posX"));
@@ -758,6 +765,7 @@ void readCamera(XMLElement *world) {
         if(light->Attribute("dirY")!=nullptr)light_sdy=stof(light->Attribute("dirY"));
         if(light->Attribute("dirZ")!=nullptr)light_sdz=stof(light->Attribute("dirZ"));
         if(light->Attribute("cutoff")!=nullptr)cutoff=stof(light->Attribute("cutoff"));
+        l_d=false;l_p=false;l_s=true;
     }
     cout<<"leu as luzes"<< endl;
 }
@@ -850,14 +858,11 @@ int engine (int argc, char **argv) {
     XMLElement *camera = world->FirstChildElement("camera");
     XMLElement *group;
     
-    
    
     
     for (group = camera->NextSiblingElement("group");group != nullptr; group = group->NextSiblingElement("group")) //iterator for brother
     {
-        cout<<"oops"<<endl;
         groupbrothers.push_back(readGroup(group,iBrothers,false));
-         cout<<"oops opps"<<endl;
         iBrothers++;
     }
     return 0;

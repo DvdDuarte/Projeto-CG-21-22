@@ -8,7 +8,7 @@
 	
 	<lights> 
 		<light type="directional" dirx="1" diry="0.7" dirz="0.5"/>
-	</lights>
+	</lights> 
 	<group> 
   		<models> 
 			<model file="box.3d" > <!-- generator box 2 3 box_nt.3d -->
