@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/sdaslira/Projeto-CG-21-22/phase3/generator
+CMAKE_SOURCE_DIR = /home/sdaslira/Projeto-CG-21-22/phase4/generator
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/sdaslira/Projeto-CG-21-22/phase3/generator
+CMAKE_BINARY_DIR = /home/sdaslira/Projeto-CG-21-22/phase4/generator
 
 # Include any dependencies generated for this target.
 include CMakeFiles/generator.dir/depend.make
@@ -59,29 +59,29 @@ include CMakeFiles/generator.dir/flags.make
 
 CMakeFiles/generator.dir/src/generator.cpp.o: CMakeFiles/generator.dir/flags.make
 CMakeFiles/generator.dir/src/generator.cpp.o: src/generator.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sdaslira/Projeto-CG-21-22/phase3/generator/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/generator.dir/src/generator.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/generator.dir/src/generator.cpp.o -c /home/sdaslira/Projeto-CG-21-22/phase3/generator/src/generator.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sdaslira/Projeto-CG-21-22/phase4/generator/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/generator.dir/src/generator.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/generator.dir/src/generator.cpp.o -c /home/sdaslira/Projeto-CG-21-22/phase4/generator/src/generator.cpp
 
 CMakeFiles/generator.dir/src/generator.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/generator.dir/src/generator.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sdaslira/Projeto-CG-21-22/phase3/generator/src/generator.cpp > CMakeFiles/generator.dir/src/generator.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sdaslira/Projeto-CG-21-22/phase4/generator/src/generator.cpp > CMakeFiles/generator.dir/src/generator.cpp.i
 
 CMakeFiles/generator.dir/src/generator.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/generator.dir/src/generator.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sdaslira/Projeto-CG-21-22/phase3/generator/src/generator.cpp -o CMakeFiles/generator.dir/src/generator.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sdaslira/Projeto-CG-21-22/phase4/generator/src/generator.cpp -o CMakeFiles/generator.dir/src/generator.cpp.s
 
 CMakeFiles/generator.dir/src/generator_aux.cpp.o: CMakeFiles/generator.dir/flags.make
 CMakeFiles/generator.dir/src/generator_aux.cpp.o: src/generator_aux.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sdaslira/Projeto-CG-21-22/phase3/generator/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/generator.dir/src/generator_aux.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/generator.dir/src/generator_aux.cpp.o -c /home/sdaslira/Projeto-CG-21-22/phase3/generator/src/generator_aux.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sdaslira/Projeto-CG-21-22/phase4/generator/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/generator.dir/src/generator_aux.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/generator.dir/src/generator_aux.cpp.o -c /home/sdaslira/Projeto-CG-21-22/phase4/generator/src/generator_aux.cpp
 
 CMakeFiles/generator.dir/src/generator_aux.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/generator.dir/src/generator_aux.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sdaslira/Projeto-CG-21-22/phase3/generator/src/generator_aux.cpp > CMakeFiles/generator.dir/src/generator_aux.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sdaslira/Projeto-CG-21-22/phase4/generator/src/generator_aux.cpp > CMakeFiles/generator.dir/src/generator_aux.cpp.i
 
 CMakeFiles/generator.dir/src/generator_aux.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/generator.dir/src/generator_aux.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sdaslira/Projeto-CG-21-22/phase3/generator/src/generator_aux.cpp -o CMakeFiles/generator.dir/src/generator_aux.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sdaslira/Projeto-CG-21-22/phase4/generator/src/generator_aux.cpp -o CMakeFiles/generator.dir/src/generator_aux.cpp.s
 
 # Object files for target generator
 generator_OBJECTS = \
@@ -100,7 +100,7 @@ generator: /usr/lib/x86_64-linux-gnu/libglut.so
 generator: /usr/lib/x86_64-linux-gnu/libXmu.so
 generator: /usr/lib/x86_64-linux-gnu/libXi.so
 generator: CMakeFiles/generator.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/sdaslira/Projeto-CG-21-22/phase3/generator/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable generator"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/sdaslira/Projeto-CG-21-22/phase4/generator/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable generator"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/generator.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -113,6 +113,6 @@ CMakeFiles/generator.dir/clean:
 .PHONY : CMakeFiles/generator.dir/clean
 
 CMakeFiles/generator.dir/depend:
-	cd /home/sdaslira/Projeto-CG-21-22/phase3/generator && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sdaslira/Projeto-CG-21-22/phase3/generator /home/sdaslira/Projeto-CG-21-22/phase3/generator /home/sdaslira/Projeto-CG-21-22/phase3/generator /home/sdaslira/Projeto-CG-21-22/phase3/generator /home/sdaslira/Projeto-CG-21-22/phase3/generator/CMakeFiles/generator.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/sdaslira/Projeto-CG-21-22/phase4/generator && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sdaslira/Projeto-CG-21-22/phase4/generator /home/sdaslira/Projeto-CG-21-22/phase4/generator /home/sdaslira/Projeto-CG-21-22/phase4/generator /home/sdaslira/Projeto-CG-21-22/phase4/generator /home/sdaslira/Projeto-CG-21-22/phase4/generator/CMakeFiles/generator.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/generator.dir/depend
 

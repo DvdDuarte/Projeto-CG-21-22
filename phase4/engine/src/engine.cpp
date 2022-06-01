@@ -91,6 +91,7 @@ void changeSize(int w, int h) {
 void renderScene(void) {
 
     // clear buffers
+    glClearColor(0.0f,0.0f,0.0f,0.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     // set the camera
@@ -102,11 +103,12 @@ void renderScene(void) {
     //rever material
     glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, white);
     glMaterialfv(GL_FRONT, GL_SPECULAR, white);
-    glMaterialf(GL_FRONT, GL_SHININESS, 0);
+    glMaterialf(GL_FRONT, GL_SHININESS, 128);
 
     gluLookAt(position_x,position_y,position_z,
               lx,ly,lz,
               up_x,up_y,up_z);
+    
     if(l_p){
        glLightfv(GL_LIGHT0,GL_POSITION, pos);
     }else
@@ -115,12 +117,11 @@ void renderScene(void) {
     }else 
     if(l_s){
        glLightfv(GL_LIGHT0,GL_POSITION, pos);
-       glLightfv(GL_LIGHT0,GL_POSITION,dir);
+      // glLightfv(GL_LIGHT0,GL_POSITION,dir);
        glLightf(GL_LIGHT0,GL_SPOT_CUTOFF,cutoff);
     }
     //draw axis
     draw_axis();
-    
     //renderCatmullRomCurve();
     i*=2;
 
@@ -240,13 +241,9 @@ void processMouseMotion(int xx, int yy)
             rAux = 3;
     }
 
-
-
     position_x = rAux * sin(alphaAux * 3.14 / 180.0) * cos(betaAux * 3.14 / 180.0);
     position_z = rAux * cos(alphaAux * 3.14 / 180.0) * cos(betaAux * 3.14 / 180.0);
     position_y = rAux * 							     sin(betaAux * 3.14 / 180.0);
-
-
 
     glutPostRedisplay();
 }
@@ -319,7 +316,7 @@ int main(int argc, char **argv) {
     glLightfv(GL_LIGHT0, GL_SPECULAR, white);
 
     // controls global ambient light
-    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, black);
+  //  glLightModelfv(GL_LIGHT_MODEL_AMBIENT, black);
 
 // Required callback registry
     glutDisplayFunc(renderScene);

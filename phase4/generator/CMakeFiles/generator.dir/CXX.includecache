@@ -6,33 +6,25 @@
 
 #IncludeRegexTransform: 
 
-/home/sdaslira/Projeto-CG-21-22/phase3/generator/include/Patch.h
+/home/sdaslira/Projeto-CG-21-22/phase4/generator/include/Patch.h
 Vertex.h
-/home/sdaslira/Projeto-CG-21-22/phase3/generator/include/Vertex.h
+/home/sdaslira/Projeto-CG-21-22/phase4/generator/include/Vertex.h
 vector
 -
 
-/home/sdaslira/Projeto-CG-21-22/phase3/generator/include/Torus.h
+/home/sdaslira/Projeto-CG-21-22/phase4/generator/include/Torus.h
 Vertex.h
-/home/sdaslira/Projeto-CG-21-22/phase3/generator/include/Vertex.h
+/home/sdaslira/Projeto-CG-21-22/phase4/generator/include/Vertex.h
 
-/home/sdaslira/Projeto-CG-21-22/phase3/generator/include/Triangle.h
+/home/sdaslira/Projeto-CG-21-22/phase4/generator/include/Triangle.h
 Vertex.h
-/home/sdaslira/Projeto-CG-21-22/phase3/generator/include/Vertex.h
+/home/sdaslira/Projeto-CG-21-22/phase4/generator/include/Vertex.h
 
-/home/sdaslira/Projeto-CG-21-22/phase3/generator/include/Vertex.h
+/home/sdaslira/Projeto-CG-21-22/phase4/generator/include/Vertex.h
 cstdio
 -
 
-/home/sdaslira/Projeto-CG-21-22/phase3/generator/include/generator.h
-GL/glut.h
--
-math.h
--
-generator_aux.h
-/home/sdaslira/Projeto-CG-21-22/phase3/generator/include/generator_aux.h
-
-/home/sdaslira/Projeto-CG-21-22/phase3/generator/include/generator_aux.h
+/home/sdaslira/Projeto-CG-21-22/phase4/generator/include/generator_aux.h
 GL/glut.h
 -
 math.h
@@ -56,19 +48,13 @@ string
 cstdlib
 -
 Triangle.h
-/home/sdaslira/Projeto-CG-21-22/phase3/generator/include/Triangle.h
+/home/sdaslira/Projeto-CG-21-22/phase4/generator/include/Triangle.h
 Patch.h
-/home/sdaslira/Projeto-CG-21-22/phase3/generator/include/Patch.h
+/home/sdaslira/Projeto-CG-21-22/phase4/generator/include/Patch.h
 
-/home/sdaslira/Projeto-CG-21-22/phase3/generator/src/generator.cpp
-../include/generator.h
-/home/sdaslira/Projeto-CG-21-22/phase3/generator/include/generator.h
-../include/Patch.h
-/home/sdaslira/Projeto-CG-21-22/phase3/generator/include/Patch.h
-
-/home/sdaslira/Projeto-CG-21-22/phase3/generator/src/generator_aux.cpp
+/home/sdaslira/Projeto-CG-21-22/phase4/generator/src/generator_aux.cpp
 ../include/generator_aux.h
-/home/sdaslira/Projeto-CG-21-22/phase3/generator/include/generator_aux.h
+/home/sdaslira/Projeto-CG-21-22/phase4/generator/include/generator_aux.h
 iostream
 -
 cstring
@@ -78,7 +64,7 @@ stdlib.h
 vector
 -
 ../include/Torus.h
-/home/sdaslira/Projeto-CG-21-22/phase3/generator/include/Torus.h
+/home/sdaslira/Projeto-CG-21-22/phase4/generator/include/Torus.h
 ../include/Patch.h
-/home/sdaslira/Projeto-CG-21-22/phase3/generator/include/Patch.h
+/home/sdaslira/Projeto-CG-21-22/phase4/generator/include/Patch.h
 

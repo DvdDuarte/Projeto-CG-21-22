@@ -7,6 +7,7 @@
 #include "../include/Patch.h"
 int sizeArray = 100;
 Triangle *triangles;
+Triangle *normals;
 //Vertex * vertices;
 
 
@@ -65,6 +66,8 @@ void createSphere(float radius, int slices, int stacks, std::string filename) {
 }
 
 void createBox(float units, float grid, string filename) {
+    //falta completar e testar
+
     int triangle_nmr_max = 12 * grid * grid;
 
     int triangle_nmr = 0;
@@ -75,6 +78,9 @@ void createBox(float units, float grid, string filename) {
     halfx = halfz = halfy = units / 2;
 
     Triangle *t1, *t2, *t3, *t4;
+    Triangle *tn1,*tn2,*tn3,*tn4;
+
+    Vertex *n1, *n2, *n3, *n4, *n5, *n6, *n7, *n8;
     Vertex *v1, *v2, *v3, *v4, *v5, *v6, *v7, *v8;
 
     halfx_temp = halfz_temp = halfy_temp =  units / grid;
@@ -89,7 +95,7 @@ void createBox(float units, float grid, string filename) {
     for (int i = 0; -halfx + i * halfx_temp < halfx; i++) {
         for (int j=0; -halfy + j*halfy_temp < halfy; j++) {
             triangles = (Triangle *) malloc(4* sizeof(Triangle));
-
+            normals= (Triangle*)malloc(4* sizeof(Triangle));
             aux_x1 = -halfx + ((i) * halfx_temp);
             aux_x2 = -halfx + ((i + 1) * halfx_temp);
             aux_y1 = -halfy + (j) * halfy_temp;
@@ -106,25 +112,38 @@ void createBox(float units, float grid, string filename) {
             v7 = new Vertex(aux_x1, aux_y2, aux_z1);
             v8 = new Vertex(aux_x2, aux_y2, aux_z1);
 
+
+            n1= new Vertex(0,0,1);
+
             //FRONT
+            n1= new Vertex(0,0,1);
+            tn1=new Triangle(n1,n1,n1);
             t1 = new Triangle(v1,v2,v3);
             t2 = new Triangle(v1,v3,v4);
             triangles[triangle_nmr] = t1;
             triangles[triangle_nmr+1] = t2;
+            normals[triangle_nmr] = tn1;
+            normals[triangle_nmr+1] = tn1;
 
             //BACK
+            n2= new Vertex(0,0,-1);
+            tn2= new Triangle(n2,n2,n2);
             t3 = new Triangle(v5,v6,v7);
             t4 = new Triangle(v5,v7,v8);
             triangles[triangle_nmr+2] = t3;
             triangles[triangle_nmr+3] = t4;
+            normals[triangle_nmr+2] = t2;
+            normals[triangle_nmr+3] = t2;
 
             triangle_nmr+=4;
             for(triangle_nmr = 0; triangle_nmr < 4; triangle_nmr++) {
                 string info = triangleToString(triangles[triangle_nmr]);
+                string norm = triangleToString(normals[triangle_nmr]);
                 file_handler << info;
             }
             triangle_nmr = 0;
             free(triangles);
+            free(normals);
         }
     }
 
@@ -134,6 +153,7 @@ void createBox(float units, float grid, string filename) {
         for (int i=0; -halfx + i*halfx_temp < halfx; i++) {
 
             triangles = (Triangle *) malloc(4* sizeof(Triangle));
+            normals= (Triangle*)malloc(4* sizeof(Triangle));
 
             aux_x1 = -halfx + ((i) * halfx_temp);
             aux_x2 = -halfx + ((i + 1) * halfx_temp);
@@ -152,24 +172,34 @@ void createBox(float units, float grid, string filename) {
             v8 = new Vertex(aux_x2, aux_y2, aux_z1);
 
             //TOP
+            n1= new Vertex(0,1,0);
+            tn1=new Triangle(n1,n1,n1);
             t1 = new Triangle(v4,v3,v7);
             t2 = new Triangle(v3,v8,v7);
+            normals[triangle_nmr]=tn1;
+            normals[triangle_nmr+1]=tn1;
             triangles[triangle_nmr] = t1;
             triangles[triangle_nmr+1] = t2;
 
             //BOTTOM
+            n2=new Vertex(0,-1,0);
+            tn2=new Triangle(n2,n2,n2);
             t3 = new Triangle(v2,v1,v6);
             t4 = new Triangle(v5,v2,v6);
+            normals[triangle_nmr+2] = tn2;
+            normals[triangle_nmr+3] =tn2;
             triangles[triangle_nmr+2] = t3;
             triangles[triangle_nmr+3] = t4;
 
             triangle_nmr+=4;
             for(triangle_nmr = 0; triangle_nmr < 4; triangle_nmr++) {
                 string info = triangleToString(triangles[triangle_nmr]);
+                string norm = triangleToString(normals[triangle_nmr]);
                 file_handler << info;
             }
             triangle_nmr = 0;
             free(triangles);
+            free(normals);
         }
     }
 
@@ -179,6 +209,7 @@ void createBox(float units, float grid, string filename) {
         for (int j = 0; -halfy + j*halfy_temp < halfy; j++) {
 
             triangles = (Triangle *) malloc(4* sizeof(Triangle));
+            normals= (Triangle*)malloc(4* sizeof(Triangle));
 
             aux_z1 = -halfz + ((k) * halfz_temp);
             aux_z2 = -halfz + ((k+ 1) * halfz_temp);
@@ -197,24 +228,35 @@ void createBox(float units, float grid, string filename) {
             v8 = new Vertex(aux_x2, aux_y2, aux_z1);
 
             //RIGHT
+            n1=new Vertex(1,0,0);
+            tn1=new Triangle(n1,n1,n1);
             t1 = new Triangle(v2,v5,v3);
             t2 = new Triangle(v5,v8,v3);
             triangles[triangle_nmr] = t1;
             triangles[triangle_nmr+1] = t2;
+            normals[triangle_nmr] = tn1;
+            normals[triangle_nmr+1] = tn1;
 
             //LEFT
+            n2=new Vertex(-1,0,0);
+            tn2=new Triangle(n2,n2,n2);
             t3= new Triangle(v6,v1,v4);
             t4= new Triangle(v6,v4,v7);
             triangles[triangle_nmr+2] = t3;
             triangles[triangle_nmr+3] = t4;
+            normals[triangle_nmr+2] = tn2;
+            normals[triangle_nmr+3] = tn2;
+
 
             triangle_nmr+=4;
             for(triangle_nmr = 0; triangle_nmr < 4; triangle_nmr++) {
                 string info = triangleToString(triangles[triangle_nmr]);
+                string norm = triangleToString(normals[triangle_nmr]);
                 file_handler << info;
             }
             triangle_nmr = 0;
             free(triangles);
+            free(normals);
         }
     }
 
