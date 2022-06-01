@@ -12,27 +12,30 @@ public:
     }*/
     vbo () {
         vertices=0;
-        indexB=0;
-        indexC=0;
+        index=0;
+
     }
     vbo (vbo *v) {
         vertices = v->vertices;
-        indexB = v->indexB;
-        indexC = v->indexC;
+        index = v->index;
     }
 
 
-    vbo (GLuint v,unsigned int z, unsigned int z2){
+    vbo (GLuint v,unsigned int z){
         vertices=v;
-        indexB = (GLint)z;
-        indexC= (GLint) z2;
+        index = (GLint)z;
 
     }
 
 
     GLuint vertices;
-    unsigned int indexB;
-    unsigned int indexC;
+    GLuint index;
+
+    void set(GLint v){
+        vertices=v;
+        cout << "vertices " << vertices << endl;
+    }
+
 
 };
 

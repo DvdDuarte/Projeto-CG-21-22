@@ -11,28 +11,27 @@ using namespace std;
 #include <iostream>
 #include "../src/XMLParser/tinyxml2.h"
 #include "engine_aux.h"
-#include "colors.h"
+
 #include "translate.h"
 #include "rotate.h"
 #include "vbo.h"
-
 
 int engine (int argc, char **argv);
 void readXML(string filename);
 
 /**
  * @brief Function that read the .3d files
- * 
+ *
  * @param files The files to read
  */
 tuple <float*,int>read3dFiles (vector<string >files, int nmr_files, float* tr_arr);
 
 /**
- * @brief 
- * 
- * @param line 
- * @param delim 
- * @param out 
+ * @brief
+ *
+ * @param line
+ * @param delim
+ * @param out
  */
 void readTri(int index, string file);
 #endif //PHASE1_GENERATOR_H
@@ -44,7 +43,7 @@ public:
         x = x1;
         y = y1;
         z = z1;
-        cout << " scale x: " << x1 << " y: " << y1  << " z: "<< z1 << endl;
+
     }
     Scale (Scale *s) {
         x = s->x;
@@ -100,6 +99,10 @@ public:
     int numberOfVertices;
 };
 
+GLint get(Group g) {
+    return g.files.vertices;
+}
 void readCamera(tinyxml2::XMLElement *world);
-Group readGroup (tinyxml2::XMLElement *group, int x, bool child);
-void draw (Group g, int x, bool t);
+Group readGroup (tinyxml2::XMLElement *group);
+void draw (Group g,int x);
+void renderFigure(Group g);

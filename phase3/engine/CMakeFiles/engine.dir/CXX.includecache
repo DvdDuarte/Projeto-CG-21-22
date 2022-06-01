@@ -31,8 +31,6 @@ iostream
 /home/ema/Projeto-CG-21-22/phase3/engine/src/XMLParser/tinyxml2.h
 engine_aux.h
 /home/ema/Projeto-CG-21-22/phase3/engine/include/engine_aux.h
-colors.h
-/home/ema/Projeto-CG-21-22/phase3/engine/include/colors.h
 translate.h
 /home/ema/Projeto-CG-21-22/phase3/engine/include/translate.h
 rotate.h

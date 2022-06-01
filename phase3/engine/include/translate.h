@@ -13,7 +13,7 @@ public:
 
         time=time1;
         align=align1;
-        cout << " translate time: " <<time1 << " align: " << align1 << endl;
+
         for (int i=0; i<p1.size(); i++){
             p.push_back(p1[i]);
         }

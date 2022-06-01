@@ -19,10 +19,6 @@ public:
         y = axisY;
 
         z = axisZ;
-        if(rtime)
-            cout << " rotate: time: " << angle << " x: " << x <<" y: " << y << " z: " << z << endl;
-        else
-            cout << " rotate: angle: " << angle << " x: " << x <<" y: " << y << " z: " << z << endl;
 
     }
     Rotate (Rotate *r) {

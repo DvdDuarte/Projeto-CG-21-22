@@ -7,8 +7,9 @@
 using namespace tinyxml2;
 
 int triangle_nmr;
-
+GLuint aux;
 int i=0;
+int indexvbo=0;
 float c1=1.0, c2=0, c3=1.0;
 int size = 10;
 float posx = 0, posz = 0, angle = 0, scalex = 1, scaley = 1, scalez = 1;
@@ -24,6 +25,7 @@ int nrTriangles = 0;
 bool wh;
 int startX, startY, tracking = 0;
 unsigned int picked = 0;
+int vboindex=0;
 
 float tess=0,delta_tess=0.001;
 float time_curr=0;
@@ -40,13 +42,13 @@ void cart2spherical (){
     float X1 = lx;
     float Y1 = ly;
     float Z1 = lz;
-    
+
     r = sqrt((X-X1) * (X-X1) + (Y-Y1) * (Y-Y1) + (Z-Z1) * (Z-Z1));
     alpha = atan2(X/r, Z/r);
     omega = asin(Y / r);
     alpha = alpha/3.14 * 180;
     omega = omega/ 3.14 * 180;
- 
+
 }
 
 void changeSize(int w, int h) {
@@ -83,14 +85,14 @@ void renderScene(void) {
     // set the camera
     glLoadIdentity();
 
-    
+
     gluLookAt(position_x,position_y,position_z,
               lx,ly,lz,
               up_x,up_y,up_z);
- 
+
     //draw axis
     draw_axis();
-    
+
 
     //renderCatmullRomCurve();
     i*=2;
@@ -100,12 +102,12 @@ void renderScene(void) {
         glTranslatef(posx,0.0,posz);
         glRotatef(angle, 1.0, 0.0, .0);
         glScalef(scalex, scaley, scalez);
-        draw(groupbrothers[iteratorBrothers],iteratorBrothers,false);
-        
+        draw(groupbrothers[iteratorBrothers],groupbrothers[iteratorBrothers].files.index);
+
         glPopMatrix();
     }
 
-    
+
     glutSwapBuffers();
 }
 
@@ -294,7 +296,8 @@ int main(int argc, char **argv) {
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
     glewInit();
-  //  glEnableClientState(GL_VERTEX_ARRAY);
+    glEnableClientState(GL_VERTEX_ARRAY);
+
     ilInit();
     engine (argc,argv);
 // enter GLUT's main cycle
@@ -311,19 +314,17 @@ void t_apply_aux(float time, vector <Point> points, bool talign){
         delta_tess=1/ (time * 60);
         }
     getGlobalCatmullRomPoint(tess,pos,deriv,points);
-    cout<<tess<<" "<<pos[0]<<" "<<pos[1]<<" "<<pos[2]<<endl;
+
     glTranslatef(pos[0],pos[1],pos[2]);
     //curveRotation(deriv, up);
-    
-    cout<<delta_tess<<" delta_tess"<<endl;
     if(talign){
         curveRotation(deriv, up);
-        
+
     }
     tess+=delta_tess;
 }
 
-void draw (Group g, int itera, bool child) {
+void draw (Group g,int x) {
     time_curr=glutGet(GLUT_ELAPSED_TIME)*1000;
     int iForTranslate = 0;
     int iForRotate = 0;
@@ -338,10 +339,10 @@ void draw (Group g, int itera, bool child) {
         string s = "scale";
 
         if (transform == t) {
-                cout << "translação" << endl;
+
                 talign = g.t.at(iForTranslate).align;
                 ttime = g.t.at(iForTranslate).time;
-                
+
                 if(g.t.at(iForTranslate).p.size()>=4){
                     //achar ponto na curva, usando os pontos
                     t_apply_aux(ttime,g.t.at(iForTranslate).p,talign);
@@ -350,7 +351,7 @@ void draw (Group g, int itera, bool child) {
         }
 
         if (transform == r) {
-            cout << "rotação" << endl;
+
             brtime=g.r.at(iForRotate).rtime;
             if(brtime){
                 //falta testar
@@ -363,25 +364,25 @@ void draw (Group g, int itera, bool child) {
                 if(rtime!=0){
                         r = glutGet(GLUT_ELAPSED_TIME) % (int)(rtime * 1000);
                         g_aux = (r*360)/ (rtime * 1000);
-                        
+
                         rx = g.r.at(iForRotate).x;
                         ry = g.r.at(iForRotate).y;
                         rz = g.r.at(iForRotate).z;
                         glRotated(g_aux, rx, ry, rz);
-                       
+
                 }
-                       
+
             }else{
-                rangle = g.r.at(iForRotate).angle; 
+                rangle = g.r.at(iForRotate).angle;
                 rx = g.r.at(iForRotate).x;
                 ry = g.r.at(iForRotate).y;
-                rz = g.r.at(iForRotate).z; 
+                rz = g.r.at(iForRotate).z;
                 glRotated(rangle, rx, ry, rz);
             }
            iForRotate++;
         }
         if (transform== s) {
-            cout << "scale" << endl;
+
             sx = g.s.at(iForScale).x;
             sy = g.s.at(iForScale).y;
             sz = g.s.at(iForScale).z;
@@ -391,28 +392,35 @@ void draw (Group g, int itera, bool child) {
 
     }
 
-
-    nrTriangles = 0;
-
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, itera);
-    glVertexPointer(3, GL_FLOAT, 0, NULL);
-    glEnableClientState(GL_VERTEX_ARRAY);
-    glDrawArrays(GL_TRIANGLES, 0, g.numberOfVertices / 3);
-    glFlush();
+    renderFigure(g);
 
 
-
-    int iterateChildren= 0;
-    int iterateChildren2= 1;
+    int iterateChildren = 0;
     while (iterateChildren< g.nrchilds) {
+        x=0;
         glPushMatrix();
-        draw(g.groupchilds[iterateChildren],iBrothers + iterateChildren2,true);
+        draw(g.groupchilds[iterateChildren],g.groupchilds[iterateChildren].files.vertices);
         glPopMatrix();
         iterateChildren++;
     }
 }
 
-Group readGroup (XMLElement *group, int x, bool child) {
+void renderFigure(Group g){
+    GLint aux = get(g);
+    nrTriangles = 0;
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,aux);
+    glVertexPointer(3, GL_FLOAT, 0, NULL);
+  //  glDrawElements(GL_TRIANGLES, g.numberOfVertices/3, GL_UNSIGNED_SHORT,NULL);
+    glDrawArrays(GL_TRIANGLES, indexvbo, indexvbo + g.numberOfVertices/3 );
+    glDeleteVertexArrays(1,&g.files.vertices);
+    glFinish();
+    glDisableClientState(GL_VERTEX_ARRAY);
+
+}
+
+Group readGroup (XMLElement *group) {
+    int tamanho;
     vbo v;
     float* vertices;
     vertices = {nullptr};
@@ -442,7 +450,7 @@ Group readGroup (XMLElement *group, int x, bool child) {
                 rotate = transformElement;
                 listOfTransform.push_back("rotate");
                 iTransform++;
-                
+
                 if (rotate->Attribute("angle") != nullptr){
                     rangle = stof(rotate->Attribute("angle"));
                     brtime=false;
@@ -458,9 +466,9 @@ Group readGroup (XMLElement *group, int x, bool child) {
                     ry = stof(rotate->Attribute("y"));
                 if (rotate->Attribute("z"))
                     rz = stof(rotate->Attribute("z"));
-                
+
                 rotates.push_back(Rotate(brtime,rangle, rx, ry, rz));
-              
+
                 rangle = 0, rx = 0, ry = 0, rz = 0;
                 brtime=false;
 
@@ -482,7 +490,7 @@ Group readGroup (XMLElement *group, int x, bool child) {
                         //casos de erro nao tratados
                     }
                 }
-              
+
                 int i_points=0;
                 for( translateElement=translate->FirstChildElement();translateElement!=nullptr; translateElement = translateElement->NextSiblingElement())
                 { //Percorrers os points irmaos no translate
@@ -502,7 +510,7 @@ Group readGroup (XMLElement *group, int x, bool child) {
                     }
                 }
                 translates.push_back( Translate(ttime,talign,points)) ;
-                
+
             }
 
             if (strcmp(name, "scale") == 0) {
@@ -536,49 +544,37 @@ Group readGroup (XMLElement *group, int x, bool child) {
             XMLElement *model = models->FirstChildElement("model");
             for (model; model != nullptr; model = model->NextSiblingElement()) {
                 cout << "file do model " << model->Attribute("file") << endl;
+
                 filesNames.push_back(model->Attribute("file"));
                 iFiles++;
+                tamanho=0;
+                tie(vertices,tamanho) = read3dFiles(filesNames, iFiles, vertices);
+                cout << vertices[0] << " " << vertices[1] <<endl;
+                if (tamanho!=0) {
+                    glEnableClientState(GL_ARRAY_BUFFER);
+                    glGenBuffers(1, &aux);
+                    v.set(aux);
+                    glBindBuffer(GL_ARRAY_BUFFER, aux);
+                    cout << "aux " << aux << endl;
+                    cout << "tamanho " << tamanho << endl;
+                    glBufferStorage(GL_ARRAY_BUFFER, tamanho * sizeof(float), vertices,0);
+                    glDisableClientState(GL_ARRAY_BUFFER);
+
+                }
+
             }
         }
-    int tamanho;
-    if (child==0) {
-        v.indexB = x;
-        glGenBuffers(1, &v.indexB);
-        glBindBuffer(GL_ARRAY_BUFFER, v.indexB);
-        tie(vertices,tamanho) = read3dFiles(filesNames, iFiles, vertices);
-        if(!filesNames.empty()) {
-              glBufferData(GL_ARRAY_BUFFER, tamanho*sizeof(float), vertices, GL_STATIC_DRAW);
-            glBindBuffer(GL_ARRAY_BUFFER, v.indexB);
-        }
-        else {
-           glBufferData(GL_ARRAY_BUFFER, 0, nullptr, GL_STATIC_DRAW);
-            glBindBuffer(GL_ARRAY_BUFFER, v.indexB);
-        }
-    }
 
-    if (child==1) {
-        v.indexC = x;
-        glGenBuffers(1, &v.indexC);
-        glBindBuffer(GL_ARRAY_BUFFER, v.indexC);
-        tie(vertices, tamanho) = read3dFiles(filesNames, iFiles, vertices);
-        if (!filesNames.empty()) {
-            glBufferData(GL_ARRAY_BUFFER, tamanho * sizeof(float), vertices, GL_STATIC_DRAW);
-            glBindBuffer(GL_ARRAY_BUFFER, v.indexC);
-        }
-        else {
-            glBufferData(GL_ARRAY_BUFFER, 0, nullptr, GL_STATIC_DRAW);
-            glBindBuffer(GL_ARRAY_BUFFER, v.indexC);
-        }
-    }
+
 
 
     XMLElement *groupchild2;
-        int z2=1;
+
         for (groupchild2 = group->FirstChildElement("group");groupchild2 != nullptr; groupchild2 = groupchild2->NextSiblingElement("group")) //for each brother, see the child
         {
-            childs.push_back(readGroup(groupchild2,iBrothers+z2,true));
+            childs.push_back(readGroup(groupchild2));
             iChilds++;
-            z2++;
+
         }
     free(vertices);
     Group g = Group(translates,rotates,scales,points,v,tamanho,childs,iChilds,listOfTransform);
@@ -691,7 +687,7 @@ int engine (int argc, char **argv) {
 
     for (group = camera->NextSiblingElement("group");group != nullptr; group = group->NextSiblingElement("group")) //iterator for brother
     {
-        groupbrothers.push_back(readGroup(group,iBrothers,false));
+        groupbrothers.push_back(readGroup(group));
         iBrothers++;
     }
     return 0;
