@@ -9,6 +9,10 @@ using namespace tinyxml2;
 
 
 int triangle_nmr;
+//vbos
+GLuint *vbo_v=(GLuint*) malloc(sizeof(int)*1000000);
+GLuint *vbo_n=(GLuint*) malloc(sizeof(int)*1000000);
+GLuint *vbo_t=(GLuint*) malloc(sizeof(int)*1000000);
 
 int i=0;
 float c1=1.0, c2=0, c3=1.0;
@@ -436,7 +440,7 @@ void draw (Group g, int itera, bool child) {
 
     nrTriangles = 0;
 
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, itera);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo_v[itera]);
     glVertexPointer(3, GL_FLOAT, 0, NULL);
     glEnableClientState(GL_VERTEX_ARRAY);
     glDrawArrays(GL_TRIANGLES, 0, g.numberOfVertices / 3);
@@ -590,80 +594,83 @@ Group readGroup (XMLElement *group, int x, bool child) {
         for (models; models != nullptr; models = models->NextSiblingElement()) { //Percorrers os models irmaos no group
             XMLElement *model = models->FirstChildElement("model");
             for (model; model != nullptr; model = model->NextSiblingElement()) {
-                modelElement=model->FirstChildElement();
-               name2= (char*)modelElement->Name();
-              
-                if(strcmp(name2, "texture") == 0){
-                    //
-                    cout << "file de textura " << modelElement->Attribute("file") << endl;
-                    filesText.push_back(modelElement->Attribute("file"));
-                    iText++;
-                    //
-                    
-                }else if(strcmp(name2, "color") == 0){
-                    cout << "color" <<endl;
-                    diffuse=modelElement->FirstChildElement("diffuse");
-                    ambient=modelElement->FirstChildElement("ambient");
-                    specular=modelElement->FirstChildElement("specular");
-                    emissive=modelElement->FirstChildElement("emissive");
-                    shininess=modelElement->FirstChildElement("shininess");
+                if(model->FirstChildElement()){
+                
+                    modelElement=model->FirstChildElement();
+                    name2= (char*)modelElement->Name();
+                
 
-                    
-                    float r=0,g=0,b=0,sh=0;
-                    if(diffuse->Attribute("R")!= nullptr)
-                        r=stof(diffuse->Attribute("R"));
+                    if(strcmp(name2, "texture") == 0){
+                        //
+                        cout << "file de textura " << modelElement->Attribute("file") << endl;
+                        filesText.push_back(modelElement->Attribute("file"));
+                        iText++;
+                        //
+                        
+                    }else if(strcmp(name2, "color") == 0){
+                        cout << "color" <<endl;
+                        diffuse=modelElement->FirstChildElement("diffuse");
+                        ambient=modelElement->FirstChildElement("ambient");
+                        specular=modelElement->FirstChildElement("specular");
+                        emissive=modelElement->FirstChildElement("emissive");
+                        shininess=modelElement->FirstChildElement("shininess");
 
-                    if(diffuse->Attribute("G")!= nullptr)
-                        g=stof(diffuse->Attribute("G"));
+                        
+                        float r=0,g=0,b=0,sh=0;
+                        if(diffuse->Attribute("R")!= nullptr)
+                            r=stof(diffuse->Attribute("R"));
 
-                    if(diffuse->Attribute("B")!= nullptr)
-                        b=stof(diffuse->Attribute("B"));
+                        if(diffuse->Attribute("G")!= nullptr)
+                            g=stof(diffuse->Attribute("G"));
 
-                    d=Point(r,g,b);//diffuse
-                    r=0,g=0,b=0;
-                    if(ambient->Attribute("R")!= nullptr)
-                        r=stof(ambient->Attribute("R"));
-                        
-                    if(ambient->Attribute("G")!= nullptr)
-                        g=stof(ambient->Attribute("G"));
-                        
-                    if(ambient->Attribute("B")!= nullptr)
-                        b=stof(ambient->Attribute("B"));
-    
-                    a=Point(r,g,b);//ambient
-                    r=0,g=0,b=0;
-                    if(specular->Attribute("R")!= nullptr)
-                        r=stof(specular->Attribute("R"));
-                        
-                    if(specular->Attribute("G")!= nullptr)
-                        g=stof(specular->Attribute("G"));
-                        
-                    if(specular->Attribute("B")!= nullptr)
-                        b=stof(specular->Attribute("B"));
-                        
-                    s=Point(r,g,b);//specular
-                    r=0,g=0,b=0;
-                    if(emissive->Attribute("R")!= nullptr)
-                        r=stof(emissive->Attribute("R"));
-                        
-                    if(emissive->Attribute("G")!= nullptr)
-                        g=stof(emissive->Attribute("G"));
-                        
-                    if(emissive->Attribute("B")!= nullptr)
-                        b=stof(emissive->Attribute("B"));
-                    
-                    e=Point(r,g,b);//emissive
-                    r=0,g=0,b=0;
-                    if(shininess->Attribute("value")!= nullptr)
-                        sh=stof(shininess->Attribute("value"));
-                    
-                    c = Color(d,a,s,e,sh);
-                    v_colors.push_back(c);
+                        if(diffuse->Attribute("B")!= nullptr)
+                            b=stof(diffuse->Attribute("B"));
 
-                }else{
-                    cout << "Problem here" << endl;
-                }
+                        d=Point(r,g,b);//diffuse
+                        r=0,g=0,b=0;
+                        if(ambient->Attribute("R")!= nullptr)
+                            r=stof(ambient->Attribute("R"));
+                            
+                        if(ambient->Attribute("G")!= nullptr)
+                            g=stof(ambient->Attribute("G"));
+                            
+                        if(ambient->Attribute("B")!= nullptr)
+                            b=stof(ambient->Attribute("B"));
+        
+                        a=Point(r,g,b);//ambient
+                        r=0,g=0,b=0;
+                        if(specular->Attribute("R")!= nullptr)
+                            r=stof(specular->Attribute("R"));
+                            
+                        if(specular->Attribute("G")!= nullptr)
+                            g=stof(specular->Attribute("G"));
+                            
+                        if(specular->Attribute("B")!= nullptr)
+                            b=stof(specular->Attribute("B"));
+                            
+                        s=Point(r,g,b);//specular
+                        r=0,g=0,b=0;
+                        if(emissive->Attribute("R")!= nullptr)
+                            r=stof(emissive->Attribute("R"));
+                            
+                        if(emissive->Attribute("G")!= nullptr)
+                            g=stof(emissive->Attribute("G"));
+                            
+                        if(emissive->Attribute("B")!= nullptr)
+                            b=stof(emissive->Attribute("B"));
+                        
+                        e=Point(r,g,b);//emissive
+                        r=0,g=0,b=0;
+                        if(shininess->Attribute("value")!= nullptr)
+                            sh=stof(shininess->Attribute("value"));
+                        
+                        c = Color(d,a,s,e,sh);
+                        v_colors.push_back(c);
 
+                    }else{
+                        cout << "Problem here" << endl;
+                    }
+              }
                 cout << "file do model " << model->Attribute("file") << endl;
                 filesNames.push_back(model->Attribute("file"));
                 iFiles++;
@@ -673,31 +680,31 @@ Group readGroup (XMLElement *group, int x, bool child) {
     int tamanho;
     if (child==0) {
         v.indexB = x;
-        glGenBuffers(1, &v.indexB);
-        glBindBuffer(GL_ARRAY_BUFFER, v.indexB);
+        glGenBuffers(1, (vbo_v+x));
+        glBindBuffer(GL_ARRAY_BUFFER, vbo_v[x]);
         tie(vertices,tamanho) = read3dFiles(filesNames, iFiles, vertices);
         if(!filesNames.empty()) {
             glBufferData(GL_ARRAY_BUFFER, tamanho*sizeof(float), vertices, GL_STATIC_DRAW);
-            glBindBuffer(GL_ARRAY_BUFFER, v.indexB);
+            glBindBuffer(GL_ARRAY_BUFFER, vbo_v[x]);
         }
         else {
            glBufferData(GL_ARRAY_BUFFER, 0, nullptr, GL_STATIC_DRAW);
-            glBindBuffer(GL_ARRAY_BUFFER, v.indexB);
+            glBindBuffer(GL_ARRAY_BUFFER, vbo_v[x]);
         }
     }
 
     if (child==1) {
         v.indexC = x;
-        glGenBuffers(1, &v.indexC);
-        glBindBuffer(GL_ARRAY_BUFFER, v.indexC);
+        glGenBuffers(1, (vbo_v+x));
+        glBindBuffer(GL_ARRAY_BUFFER, vbo_v[x]);
         tie(vertices, tamanho) = read3dFiles(filesNames, iFiles, vertices);
         if (!filesNames.empty()) {
             glBufferData(GL_ARRAY_BUFFER, tamanho * sizeof(float), vertices, GL_STATIC_DRAW);
-            glBindBuffer(GL_ARRAY_BUFFER, v.indexC);
+            glBindBuffer(GL_ARRAY_BUFFER, vbo_v[x]);
         }
         else {
             glBufferData(GL_ARRAY_BUFFER, 0, nullptr, GL_STATIC_DRAW);
-            glBindBuffer(GL_ARRAY_BUFFER, v.indexC);
+            glBindBuffer(GL_ARRAY_BUFFER, vbo_v[x]);
         }
     }
 
@@ -738,33 +745,36 @@ void readCamera(XMLElement *world) {
     if(projection->Attribute("far")!= nullptr) projfar= stof(projection->Attribute("far"));
     cart2spherical ();
     //read the lights
+    XMLElement *lights;
+    if(world->FirstChildElement("lights")){
 
-    XMLElement *lights = world->FirstChildElement("lights");
-    XMLElement *light = lights->FirstChildElement("light");
-    char* t=(char*) light->Attribute("type");
-    if(strcmp(t,"point")==0){
-        if(light->Attribute("posX")!=nullptr)light_px=stof(light->Attribute("posX"));
-        if(light->Attribute("posY")!=nullptr)light_py=stof(light->Attribute("posY"));
-        if(light->Attribute("posZ")!=nullptr)light_pz=stof(light->Attribute("posZ"));
-        l_d=false;l_p=true;l_s=false;
+        lights = world->FirstChildElement("lights");
+        XMLElement *light = lights->FirstChildElement("light");
+        char* t=(char*) light->Attribute("type");
+        if(strcmp(t,"point")==0){
+            if(light->Attribute("posX")!=nullptr)light_px=stof(light->Attribute("posX"));
+            if(light->Attribute("posY")!=nullptr)light_py=stof(light->Attribute("posY"));
+            if(light->Attribute("posZ")!=nullptr)light_pz=stof(light->Attribute("posZ"));
+            l_d=false;l_p=true;l_s=false;
+        }
+        if(strcmp(t,"directional")==0){
+            if(light->Attribute("dirX")!=nullptr)light_dx=stof(light->Attribute("dirX"));
+            if(light->Attribute("dirY")!=nullptr)light_dy=stof(light->Attribute("dirY"));
+            if(light->Attribute("dirZ")!=nullptr)light_dz=stof(light->Attribute("dirZ"));
+            l_d=true;l_p=false;l_s=false;
+        }
+        if(strcmp(t,"spotlight")==0){
+            if(light->Attribute("posX")!=nullptr)light_spx=stof(light->Attribute("posX"));
+            if(light->Attribute("posY")!=nullptr)light_spy=stof(light->Attribute("posY"));
+            if(light->Attribute("posZ")!=nullptr)light_spz=stof(light->Attribute("posZ"));
+            if(light->Attribute("dirX")!=nullptr)light_sdx=stof(light->Attribute("dirX"));
+            if(light->Attribute("dirY")!=nullptr)light_sdy=stof(light->Attribute("dirY"));
+            if(light->Attribute("dirZ")!=nullptr)light_sdz=stof(light->Attribute("dirZ"));
+            if(light->Attribute("cutoff")!=nullptr)cutoff=stof(light->Attribute("cutoff"));
+            l_d=false;l_p=false;l_s=true;
+        }
+        cout<<"leu as luzes"<< endl;
     }
-    if(strcmp(t,"directional")==0){
-        if(light->Attribute("dirX")!=nullptr)light_dx=stof(light->Attribute("dirX"));
-        if(light->Attribute("dirY")!=nullptr)light_dy=stof(light->Attribute("dirY"));
-        if(light->Attribute("dirZ")!=nullptr)light_dz=stof(light->Attribute("dirZ"));
-        l_d=true;l_p=false;l_s=false;
-    }
-    if(strcmp(t,"spotlight")==0){
-        if(light->Attribute("posX")!=nullptr)light_spx=stof(light->Attribute("posX"));
-        if(light->Attribute("posY")!=nullptr)light_spy=stof(light->Attribute("posY"));
-        if(light->Attribute("posZ")!=nullptr)light_spz=stof(light->Attribute("posZ"));
-        if(light->Attribute("dirX")!=nullptr)light_sdx=stof(light->Attribute("dirX"));
-        if(light->Attribute("dirY")!=nullptr)light_sdy=stof(light->Attribute("dirY"));
-        if(light->Attribute("dirZ")!=nullptr)light_sdz=stof(light->Attribute("dirZ"));
-        if(light->Attribute("cutoff")!=nullptr)cutoff=stof(light->Attribute("cutoff"));
-        l_d=false;l_p=false;l_s=true;
-    }
-    cout<<"leu as luzes"<< endl;
 }
 
 
