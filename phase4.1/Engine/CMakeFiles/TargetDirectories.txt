@@ -1,0 +1,4 @@
+/home/sdaslira/Projeto-CG-21-22/phase4.1/Engine/CMakeFiles/engine.dir
+/home/sdaslira/Projeto-CG-21-22/phase4.1/Engine/CMakeFiles/xmlParser.dir
+/home/sdaslira/Projeto-CG-21-22/phase4.1/Engine/CMakeFiles/edit_cache.dir
+/home/sdaslira/Projeto-CG-21-22/phase4.1/Engine/CMakeFiles/rebuild_cache.dir

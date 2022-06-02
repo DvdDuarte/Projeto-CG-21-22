@@ -42,7 +42,7 @@ float white[4] = {1.0, 1.0, 1.0, 1.0};
 float black[4] = {0.0f, 0.0f, 0.0f, 0.0f};
 float yellow[4] = {1.0f,1.0f,0.0f,1.0f};
 
-float tess=0,delta_tess=0.001;
+float tess=0,delta_tess=0.0001;
 float time_curr=0;
 
 string vertexToString(Vertex v){
@@ -353,7 +353,7 @@ void t_apply_aux(float time, vector <Point> points, bool talign){
     float pos[3],deriv[3];
     renderCatmullRomCurve(points);
      if(time!=0){
-        delta_tess=1/ (time * 60);
+        delta_tess=1/ (time * 600);
         }
     getGlobalCatmullRomPoint(tess,pos,deriv,points);
     cout<<tess<<" "<<pos[0]<<" "<<pos[1]<<" "<<pos[2]<<endl;

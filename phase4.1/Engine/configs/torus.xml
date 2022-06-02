@@ -1,0 +1,10 @@
+<scene>
+    <lights>
+        <light type="DIRECTIONAL" dirX="1" dirY="1" dirZ="1" />
+    </lights>
+    <group>
+        <models>
+            <model file="torus.3d" texture="texSaturnRing.png"/>
+        </models>
+    </group>
+</scene>

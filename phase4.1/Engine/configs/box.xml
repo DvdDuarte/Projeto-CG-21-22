@@ -1,0 +1,14 @@
+<scene>
+    <lights>
+        <light type="DIRECTIONAL" dirX="1" dirY="1" dirZ="1" />
+    </lights>
+    <group>
+         <rotate angle="90" z="1"/>
+        <group>
+            <translate x="1" y="0" z="0"/>
+            <models>
+                <model file="box.3d" texture="texToTest.jpg" /> 
+            </models>
+	    </group>
+    </group>
+</scene>

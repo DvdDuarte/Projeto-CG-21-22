@@ -1,0 +1,11 @@
+<scene>
+    <lights>
+        <light type="DIRECTIONAL" dirX="1" dirY="1" dirZ="1" />
+    </lights>
+    <group>
+        <rotate angle="-70" x="0" y="0" z="1" />
+        <models>
+            <model file="plane_s.3d" /> <!-- texture="texToTest.jpg" -->
+        </models>
+    </group>
+</scene>
