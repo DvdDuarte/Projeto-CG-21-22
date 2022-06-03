@@ -34,12 +34,16 @@ float yaw=-155.0f,pitch=0.0f; //yaw horizontal turn//pitch vertical turn
 float sensitivity = 0.3f; //sensibilidade do rato
 float speed=1.0f;
 
+
+float position_x=0, position_y=0, position_z=0, lx=0, ly=0 , lz=0, up_x=0, up_y=0, up_z=0, projfov=0, projnear=0, projfar=0;//tentativa para melhorar camera
+
 vector<Point3D> camera_def;
 Point3D lookingAtPoint(-0.88,0,-0.48);
 Point3D camPosition(200,0,109.5);
 Point3D upVec(0,1,0);
+Point3D proj(45.0f , 1.0f ,10000.0f);//fov,near,far
 bool key_states[256];
-Frustum frustum;
+Frustum frustum;//tentar tirar
 float triangles = 0;
 
 //por ver
@@ -155,14 +159,15 @@ void renderScene(void) {
 	// set the camera
 	glLoadIdentity();
 
-	camPosition=camera_def[0];//.x;
-	lookingAtPoint=camera_def[1];
-	upVec=camera_def[1];
-	
-	
+	/*camPosition = Point3D(camera_def[0]);//.x;
+	lookingAtPoint = Point3D(camera_def[1]);
+	upVec = Point3D(camera_def[2]);
+	proj = Point3D(camera_def[3]);
+	cout<<"nao chega aqui"<<endl;
+	*/
 	gluLookAt(camPosition.x,camPosition.y,camPosition.z, 
 		      lookingAtPoint.x+camPosition.x,lookingAtPoint.y+camPosition.y,lookingAtPoint.z+camPosition.z,
-			  upVec.x,upVec.y,upVec.z);
+			  0,1,0);
 	lights[0]->applyLight();
 // put drawing instructions here
 	if (axis) drawAxis();
@@ -195,8 +200,8 @@ void changeSize(int w, int h) {
 
 	// Set perspective
 	gluPerspective(45.0f ,ratio, 1.0f ,10000.0f);
-
-	frustum.calculatePlanes();
+	
+	frustum.calculatePlanes();//tentar tirar isso
 
 	// return to the model view matrix mode
 	glMatrixMode(GL_MODELVIEW);
@@ -239,7 +244,7 @@ void mouseControls(int x,int y) {
     lookingAtPoint.z = sinf(radians(yaw)) * cosf(radians(pitch));
 }
 
-void readFile3D(std::string filename) {
+void readFile3D(string filename) {
 	VBO vbo = VBO();
 	ifstream fp(filename);
 	int numVertexes, numTriangles;
@@ -253,7 +258,7 @@ void readFile3D(std::string filename) {
 	vector<float> normals;
 	vector<float> textureCoordinates;
 	int i;
-	cout << "file3d aqui"<< endl;
+	
 	// Aquisição dos Pontos de Desenho dos Triangles do ficheiro
 	for(i = 0; i < numVertexes; i++) {
 		getline(fp,line);
@@ -267,6 +272,7 @@ void readFile3D(std::string filename) {
 		vertixes.push_back(y);
 		vertixes.push_back(z);
 	}
+	
 	glBindBuffer(GL_ARRAY_BUFFER,vbo.vertixes); //liga o buffer pontos ao array
 	glBufferData(GL_ARRAY_BUFFER,sizeof(float)*vertixes.size(), vertixes.data(), GL_STATIC_DRAW);
 	vbo.vertixCount=vertixes.size();
@@ -316,11 +322,12 @@ void readFile3D(std::string filename) {
 	glBindBuffer(GL_ARRAY_BUFFER,vbo.texCoords); //liga o buffer indices ao array
 	glBufferData(GL_ARRAY_BUFFER,sizeof(float) * textureCoordinates.size(),textureCoordinates.data(),GL_STATIC_DRAW);
 	buffers[filename]=vbo;
+	cout << "file3d aqui"<< endl;
 }
 
 void readConfig(int argc, char **argv) {
 	
-	std::string name;
+	string name;
 	xmlContent parser;
 	if(argc == 2) {
 		cout<< argv[1]<<endl;
@@ -342,7 +349,9 @@ void readConfig(int argc, char **argv) {
 	lights=parser.getLights();
 	
 	//camera
+	
 	camera_def=parser.getCamera();
+	
 	//camera=parser.getCamera();
 	
 }
@@ -381,7 +390,7 @@ void printCommands() {
 		P - Mostrar PolygonMode
 		R - Retroceder Simulação)
 		V - Ativar/Desativar Frustum)";
-	std::cout << commands << std::endl;
+	cout << commands << endl;
 }
 
 void init() {

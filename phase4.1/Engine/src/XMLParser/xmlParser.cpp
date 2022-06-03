@@ -310,19 +310,19 @@ Group xmlContent::parseGroup(XMLElement * group) {
                     string text_file(f);
                     cout<<text_file<<endl;
                 
-                if(textures.find(text_file) == textures.end()){
+                    if(textures.find(text_file) == textures.end()){
                         
                         loadTexture(text_file);
-                }
+                    }
 
                 texID = textures[text_file];
                 }
 
             }
 
-            cout << "ate aqui esta tudo bem 9" << endl;
+           // cout << "ate aqui esta tudo bem 9" << endl;
             g.addFile(string(model->Attribute("file")),colors,shininess,texID);
-            cout << "ate aqui tudo bem 10" << endl;
+            //cout << "ate aqui tudo bem 10" << endl;
         }
     
     }
@@ -336,20 +336,22 @@ Group xmlContent::parseGroup(XMLElement * group) {
 
 vector<Group> xmlContent::parse() {
     XMLDocument doc;
+    
     int err = doc.LoadFile(filename.c_str());
+    cout << err << endl;
+
     if(err == 0) {
         cout << "Success" << endl;
-        XMLElement * world =doc.FirstChildElement("world");
-        //XMLElement * camera = doc.FirstChildElement("camera");
-        XMLElement * node;
+        XMLElement * first = doc.FirstChildElement("world");
+        XMLElement * node= first->FirstChildElement();
         
-        for(node = world->FirstChildElement();node != NULL;node = node->NextSiblingElement()) {
+        for(node ;node != NULL;node = node->NextSiblingElement()) {
             string name(node->Name());
              cout << "ate aqui tudo bem 1" << endl;
             if(name=="group") {
-                  cout << "ate aqui tudo bem 4" << endl;
+                cout << "ate aqui tudo bem 4" << endl;
                 Group g = parseGroup(node);
-                  cout << "ate aqui tudo bem 5" << endl;
+                cout << "ate aqui tudo bem 5" << endl;
                 groups.push_back(g);
                 
             }
