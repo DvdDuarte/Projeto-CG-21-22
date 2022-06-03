@@ -47,11 +47,13 @@ bool key_states[256];
 Frustum frustum;//tentar tirar
 float triangles = 0;
 
+
 //por ver
 float alpha=0;
 float omega=0.5;
 float r=20;
 
+/*
 void cart2spherical (){
     float X = camPosition.x;
     float Y = camPosition.y;
@@ -67,6 +69,7 @@ void cart2spherical (){
     omega = omega/ 3.14 * 180;
  
 }
+*/
 
 void drawAxis() {
 	glDisable(GL_LIGHTING);
@@ -174,15 +177,9 @@ void renderScene(void) {
 	// set the camera
 	glLoadIdentity();
 
-	/*camPosition = Point3D(camera_def[0]);//.x;
-	lookingAtPoint = Point3D(camera_def[1]);
-	upVec = Point3D(camera_def[2]);
-	proj = Point3D(camera_def[3]);
-	cout<<"nao chega aqui"<<endl;
-	*/
 	gluLookAt(camPosition.x,camPosition.y,camPosition.z, 
-		      lookingAtPoint.x+camPosition.x,lookingAtPoint.y+camPosition.y,lookingAtPoint.z+camPosition.z,
-			  0,1,0);
+		      lookingAtPoint.x,lookingAtPoint.y,lookingAtPoint.z,
+			  upVec.x,upVec.y,upVec.z);
 	lights[0]->applyLight();
 
 // put drawing instructions here
@@ -216,7 +213,7 @@ void changeSize(int w, int h) {
     glViewport(0, 0, w, h);
 
 	// Set perspective
-	gluPerspective(45.0f ,ratio, 1.0f ,10000.0f);
+	gluPerspective(proj.x ,ratio, proj.y ,proj.z);
 	
 	frustum.calculatePlanes();//tentar tirar isso
 
@@ -368,6 +365,10 @@ void readConfig(int argc, char **argv) {
 	//camera
 	
 	camera_def=parser.getCamera();
+	camPosition = Point3D(camera_def[0]);//.x;
+	lookingAtPoint = Point3D(camera_def[1]);
+	upVec = Point3D(camera_def[2]);
+	proj = Point3D(camera_def[3]);
 	
 	//camera=parser.getCamera();
 	
