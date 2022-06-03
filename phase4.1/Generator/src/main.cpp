@@ -49,8 +49,10 @@ int main(int argc, char **argv) {
         else if (type=="box") {
             Box b;
             if(argc==5){
+                cout << "Estou aqui box" << endl;
                 int units=atoi(argv[2]) ,grid = atoi(argv[3]);
                 filename=string(argv[4]);
+                cout << filename << endl;
                 b= Box(units,units,units,grid);
             }else
             if (argc==6 || argc==7) {
@@ -68,8 +70,9 @@ int main(int argc, char **argv) {
         else if (type=="plane") {
             Plane p;
             if (argc==5) {
-                int divisions= atoi(argv[2]);
-                
+                int side = atoi(argv[2]);
+                int divisions= atoi(argv[3]);
+                p = Plane(side,divisions);
                 
             }else if (argc==4){
                 int side=atoi(argv[2]);

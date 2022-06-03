@@ -1,4 +1,4 @@
-<scene>
+<world>
     <lights>
         <light type="directional" dirx="1" diry="1" dirz="1" />
     </lights>
@@ -7,9 +7,10 @@
         <group>
             <translate x="1" y="0" z="0"/>
             <models>
-                <model file="box.3d" /> 
+                <model file="box.3d"> 
                 	<texture file="texToTest.jpg" />
+                </model> 
             </models>
 	    </group>
     </group>
-</scene>
+</world>

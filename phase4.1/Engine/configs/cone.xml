@@ -1,10 +1,12 @@
-<scene>
+<world>
     <lights>
-        <light type="DIRECTIONAL" dirX="1" dirY="-1" dirZ="1" />
+        <light type="directional" dirx="1" diry="-1" dirz="1" />
     </lights>
     <group>
         <models>
-            <model file="cone.3d" texture="texForCone.jpg"/>
+            <model file="cone.3d">
+                <texture file="texForCone.jpg"/>
+            </model>
         </models>
     </group>
-</scene>
+</world>

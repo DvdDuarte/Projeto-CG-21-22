@@ -12,7 +12,7 @@
 	<group>
         <transform> 
             <translate x="0" y="1" z="0" />
-			<scale X="30" Y="30" Z="30" />
+	    <scale X="30" Y="30" Z="30" />
         </transform>
         <models> <!-- sol-->
 				<model file="sphere.3d" /> <!-- generator sphere 1 15 15 sphere.3d -->

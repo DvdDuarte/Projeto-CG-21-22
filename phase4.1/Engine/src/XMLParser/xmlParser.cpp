@@ -16,6 +16,7 @@
 #include "../../include/Lights/DirectionalLight.h"
 #include "../../include/Lights/PointLight.h"
 #include "../../include/Lights/SpotLight.h"
+#include "../../include/colors.h"
 #include "unordered_set"
 
 using namespace std;
@@ -44,45 +45,48 @@ Point3D readPoint(XMLElement* info) {
 void xmlContent:: parseCamera(XMLElement * node){
 
     XMLElement* camera_Elem;
+    cout << node->FirstChildElement()->Name() << endl;
     if(node->FirstChildElement("position")){
         camera_Elem=node->FirstChildElement("position");
-        
+
         float x = atof(camera_Elem->Attribute("x"));
         float y = atof(camera_Elem->Attribute("y"));
         float z = atof(camera_Elem->Attribute("z"));
 
         Point3D c = Point3D(x,y,z);
         camera.push_back(c);
-    }
-    if(node->FirstChildElement("lookAt")){
-        camera_Elem=node->FirstChildElement("lookAt");
+        
+        camera_Elem=camera_Elem->NextSiblingElement();
        
-        float x = atof(camera_Elem->Attribute("x"));
-        float y = atof(camera_Elem->Attribute("y"));
-        float z = atof(camera_Elem->Attribute("z"));
-        Point3D c = Point3D(x,y,z);
-        camera.push_back(c);
+        float x_look_at = atof(camera_Elem->Attribute("x"));
+        float y_look_at = atof(camera_Elem->Attribute("y"));
+        float z_look_at = atof(camera_Elem->Attribute("z"));
+        Point3D c_look_at = Point3D(x_look_at,y_look_at,z_look_at);
+        camera.push_back(c_look_at);
 
-    }if(node->FirstChildElement("up")){
-        camera_Elem=node->FirstChildElement("up");
+        camera_Elem=camera_Elem->NextSiblingElement();
         
-        float x = atof(camera_Elem->Attribute("x"));
-        float y = atof(camera_Elem->Attribute("y"));
-        float z = atof(camera_Elem->Attribute("z"));
+        float x_up = atof(camera_Elem->Attribute("x"));
+        float y_up = atof(camera_Elem->Attribute("y"));
+        float z_up = atof(camera_Elem->Attribute("z"));
+        Point3D c_up = Point3D(x_up,y_up,z_up);
+        camera.push_back(c_up);
 
-        Point3D c = Point3D(x,y,z);
-        camera.push_back(c);
-    }
-    if(node->FirstChildElement("projection")){
-        camera_Elem=node->FirstChildElement("projection");
+        camera_Elem=camera_Elem->NextSiblingElement();
         
-        float x = atof(camera_Elem->Attribute("fov"));
-        float y = atof(camera_Elem->Attribute("near"));
-        float z = atof(camera_Elem->Attribute("far"));
+        float x_projection = atof(camera_Elem->Attribute("fov"));
+        float y_projection = atof(camera_Elem->Attribute("near"));
+        float z_projection = atof(camera_Elem->Attribute("far"));
         
-        Point3D c = Point3D(x,y,z);
-        camera.push_back(c);
+        Point3D c_projection = Point3D(x_projection,y_projection,z_projection);
+        camera.push_back(c_projection);
 
+        /** Debugging porposes
+        cout << "x " << x << " y " << y << " z " << z << endl;
+        cout << "x_look_at " << x_look_at << " y_look_at " << y_look_at << " z_look_at " << z_look_at << endl;
+        cout << "x_up " << x_up << " y_up " << y_up << " z_up " << z_up << endl;
+        cout << "x_projection " << x_projection << " y_projection " << y_projection << " z_projection " << z_projection << endl;
+        */
     }
 }
 
@@ -157,6 +161,7 @@ void xmlContent::parseColor(Point3D colors[],float& shininess, XMLElement * mode
             shin_aux = shin->Attribute("value");
         } 
     }
+    cout << er << endl;
     //diffuse
     double dred   = color_exists ? atof(dr) : 200;
     double dgreen = color_exists ? atof(dg) : 200;
@@ -193,7 +198,9 @@ void xmlContent::loadTexture(string s) {
 	ilOriginFunc(IL_ORIGIN_LOWER_LEFT);
 	ilGenImages(1,&t);
 	ilBindImage(t);
+    cout << "Antes Load Tex"<< endl;
 	ilLoadImage((ILstring)("textures/" + s).c_str());
+    cout << "Apos Load Tex" << endl;
 	tw = ilGetInteger(IL_IMAGE_WIDTH);
 	th = ilGetInteger(IL_IMAGE_HEIGHT);
 	//cout << "Image Width: " << tw << endl;
@@ -302,7 +309,9 @@ Group xmlContent::parseGroup(XMLElement * group) {
             }
             */
             XMLElement * texture_elem;
+            cout << BOLD_CYAN << "Model Name: " << RESET << model->Name() << endl;
             if(model->FirstChildElement("texture")){
+                cout << BOLD_YELLOW << "Aqui" << endl;
                 texture_elem=model->FirstChildElement("texture");
                 if(texture_elem->Attribute("file")){
 

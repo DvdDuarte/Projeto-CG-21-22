@@ -1,10 +1,19 @@
-<scene>
+<world>
     <lights>
-        <light type="DIRECTIONAL" dirX="1" dirY="1" dirZ="1" />
+        <light type="directional" dirx="1" diry="1" dirz="1" />
     </lights>
     <group>
         <models>
-            <model file="sphere.3d" texture="texEarth.jpg" ambR="1" ambG="1" ambB="1"/>
+            <model file="sphere.3d">
+                <texture file="texSun.jpg"/>
+                <color>
+                    <diffuse R="200" G="200" B="200"/>
+                    <ambient R="50" G="50" B="50"/>
+                    <specular R="0" G="0" B="0"/>
+                    <emissive R="0" G="0" B="0"/>
+                    <shininess value = "0"/>
+                </color>
+            </model>
         </models>
     </group>
-</scene>
+</world>

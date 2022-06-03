@@ -33,7 +33,8 @@ int xMouseB4,yMouseB4;
 float yaw=-155.0f,pitch=0.0f; //yaw horizontal turn//pitch vertical turn
 float sensitivity = 0.3f; //sensibilidade do rato
 float speed=1.0f;
-
+int timebase;
+float frames;
 
 float position_x=0, position_y=0, position_z=0, lx=0, ly=0 , lz=0, up_x=0, up_y=0, up_z=0, projfov=0, projnear=0, projfar=0;//tentativa para melhorar camera
 
@@ -148,6 +149,20 @@ void processKeyboardInput() {
 			Transform::time_multiplier-=Transform::time_multiplier>0.02?0.01:0;
 }
 
+void frameRate(){
+    char title[50];
+    frames++;
+    double time = glutGet(GLUT_ELAPSED_TIME);
+    
+    if (time - timebase> 1000) {
+        double fps = frames * 1000.0 / (time - timebase);
+        timebase = time;
+        frames = 0;
+        sprintf(title, "CG@DI-UM | %lf FPS", fps);
+        glutSetWindowTitle(title);
+    }
+}
+
 void renderScene(void) {
 	processKeyboardInput();
 	triangles = 0;
@@ -169,13 +184,15 @@ void renderScene(void) {
 		      lookingAtPoint.x+camPosition.x,lookingAtPoint.y+camPosition.y,lookingAtPoint.z+camPosition.z,
 			  0,1,0);
 	lights[0]->applyLight();
+
 // put drawing instructions here
 	if (axis) drawAxis();
 	for (auto& g : groups) {
 		drawFigures(g);
 	}
-	glutSetWindowTitle(("Triangles: " + std::to_string(triangles)).c_str());
 
+	//glutSetWindowTitle(("Triangles: " + std::to_string(triangles)).c_str());
+	frameRate();
 	// End of frame
 	glutSwapBuffers();
 }

@@ -4,6 +4,7 @@
 #include <string>
 #include <map>
 #include <fstream>
+#include <iostream>
 
 Model::Model(std::vector<Point3D> vertixesG,std::vector<Triangle> facesG,std::vector<Point3D> normals,std::vector<std::pair<float,float>> texCoords, float rad) {
     nVertices=vertixesG.size();
@@ -16,7 +17,7 @@ Model::Model(std::vector<Point3D> vertixesG,std::vector<Triangle> facesG,std::ve
 }
 
 void Model::saveToFile(std::string filename) {
-    std::ofstream fout("../../Engine/models/" + filename, std::ios::out); 
+    std::ofstream fout("../Engine/models/" + filename, std::ios::out); 
     fout<< std::to_string(nVertices) << " " << std::to_string(nTriangulos) << " " << std::to_string(radius) << "\n";
     for (int i=0;i<nVertices;i++) {
         fout << std::to_string(vertixesT[i].x) << " " << std::to_string(vertixesT[i].y) << " " << std::to_string(vertixesT[i].z) << "\n"; 
