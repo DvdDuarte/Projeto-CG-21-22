@@ -5,7 +5,7 @@
     <group>
         <rotate angle="-70" x="0" y="0" z="1" />
         <models>
-            <model file="plane_s.3d" /> <!-- texture="texToTest.jpg" -->
+            <model file="plane.3d" texture="texToTest.jpg" /> <!-- texture="texToTest.jpg" -->
         </models>
     </group>
 </scene>

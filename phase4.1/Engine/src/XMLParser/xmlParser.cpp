@@ -71,40 +71,66 @@ void xmlContent::parseLight(XMLElement * light) {
         lights.push_back(sl);
     }
     else {
-        std::cout << "Error parsing lights\n";
+        cout << "Error parsing lights\n";
         exit(1);
     }
 }
 
 void xmlContent::parseColor(Point3D colors[],float& shininess, XMLElement * model) {
-    const char * dr = model->Attribute("diffR");
-    const char * dg = model->Attribute("diffG");
-    const char * db = model->Attribute("diffB");
-    const char * sr = model->Attribute("specR");
-    const char * sg = model->Attribute("specG");
-    const char * sb = model->Attribute("specB");
-    const char * er = model->Attribute("emissR");
-    const char * eg = model->Attribute("emissG");
-    const char * eb = model->Attribute("emissB");
-    const char * ar = model->Attribute("ambR");
-    const char * ag = model->Attribute("ambG");
-    const char * ab = model->Attribute("ambB");
-    const char * shin = model->Attribute("shin");
+    const char * dr, *dg, *db, *sr, *sg, *sb, *er, *eg, *eb, *ar, *ag ,*ab , *shin_aux;
     
-    double dred   = dr ? atof(dr) : -1;
-    double dgreen = dg ? atof(dg) : -1;
-    double dblue  = db ? atof(db) : -1;
-    double sred   = sr ? atof(sr) : -1;
-    double sgreen = sg ? atof(sg) : -1;
-    double sblue  = sb ? atof(sb) : -1;
-    double ered   = er ? atof(er) : -1;
-    double egreen = eg ? atof(eg) : -1;
-    double eblue  = eb ? atof(eb) : -1;
-    double ared   = ar ? atof(ar) : -1;
-    double agreen = ag ? atof(ag) : -1;
-    double ablue  = ab ? atof(ab) : -1;
+    bool color_exists=false;
+    if(model->FirstChildElement("color")){
+        XMLElement *color,*d,*a,*s,*e,*shin;
+        color_exists=true;
+        color=model->FirstChildElement("color");
+        if(color->FirstChildElement("diffuse")){
+            d=color->FirstChildElement("diffuse");
+            dr = d->Attribute("R");
+            dg = d->Attribute("G");
+            db = d->Attribute("B");
+        }
+        if(color->FirstChildElement("ambient")){
+            a=color->FirstChildElement("ambient");
+            ar = a->Attribute("R");
+            ag = a->Attribute("G");
+            ab = a->Attribute("B");
+        }
+        if(color->FirstChildElement("specular")){
+            s=color->FirstChildElement("specular");
+            sr = s->Attribute("R");
+            sg = s->Attribute("G");
+            sb = s->Attribute("B");
+        }
+        if(color->FirstChildElement("emissive")){
+            e=color->FirstChildElement("emissive");
+            er = e->Attribute("R");
+            eg = e->Attribute("G");
+            eb = e->Attribute("B");
+        }
+        if(color->FirstChildElement("shininess")){
+            shin=color->FirstChildElement("shininess");
+            shin_aux = shin->Attribute("value");
+        } 
+    }
+    //diffuse
+    double dred   = color_exists ? atof(dr) : 200;
+    double dgreen = color_exists ? atof(dg) : 200;
+    double dblue  = color_exists ? atof(db) : 200;
+    //specular
+    double sred   = color_exists ? atof(sr) : 0;
+    double sgreen = color_exists ? atof(sg) : 0;
+    double sblue  = color_exists ? atof(sb) : 0;
+    //emissive
+    double ered   = color_exists ? atof(er) : 0;
+    double egreen = color_exists ? atof(eg) : 0;
+    double eblue  = color_exists ? atof(eb) : 0;
+    //ambient
+    double ared   = color_exists ? atof(ar) : 50;
+    double agreen = color_exists ? atof(ag) : 50;
+    double ablue  = color_exists ? atof(ab) : 50;
     
-    shininess = shin ? atof(shin) : -1;
+    shininess = color_exists ? atof(shin_aux) : 0;
 
     colors[0] = Point3D(dred,dgreen,dblue);
     colors[1] = Point3D(sred,sgreen,sblue);
@@ -112,7 +138,7 @@ void xmlContent::parseColor(Point3D colors[],float& shininess, XMLElement * mode
     colors[3] = Point3D(ered,egreen,eblue);
 }
 
-void xmlContent::loadTexture(std::string s) {
+void xmlContent::loadTexture(string s) {
 
 	unsigned int t,tw,th;
 	unsigned char *texData;
@@ -123,10 +149,10 @@ void xmlContent::loadTexture(std::string s) {
 	ilOriginFunc(IL_ORIGIN_LOWER_LEFT);
 	ilGenImages(1,&t);
 	ilBindImage(t);
-	ilLoadImage((ILstring)("../textures/" + s).c_str());
+	ilLoadImage((ILstring)("textures/" + s).c_str());
 	tw = ilGetInteger(IL_IMAGE_WIDTH);
 	th = ilGetInteger(IL_IMAGE_HEIGHT);
-	//std::cout << "Image Width: " << tw << std::endl;
+	//cout << "Image Width: " << tw << endl;
 	ilConvertImage(IL_RGBA, IL_UNSIGNED_BYTE);
 	texData = ilGetData();
 
@@ -167,7 +193,7 @@ Group xmlContent::parseGroup(XMLElement * group) {
             t = make_shared<Translation>(point.x,point.y,point.z);
         }
         g.addTransform(t);
-        cout << "ate aqui tudo bem 6" << std::endl;
+        cout << "ate aqui tudo bem 6" << endl;
     }
       
     if (rotation) {
@@ -185,17 +211,17 @@ Group xmlContent::parseGroup(XMLElement * group) {
 
         if (readTime=rotation->Attribute("time")) {
             const char * clockwise = rotation->Attribute("clockwise");
-            r = std::make_shared<Rotation>(atof(readTime),std::string(clockwise).size(),axisx,axisy,axisz);
+            r = make_shared<Rotation>(atof(readTime),string(clockwise).size(),axisx,axisy,axisz);
         }
         else {
             readAngle=rotation->Attribute("angle");
             r = make_shared<Rotation>(atof(readAngle),axisx,axisy,axisz);
         }
         g.addTransform(r);
-        cout << "ate aqui tudo bem 7" << std::endl;
+        cout << "ate aqui tudo bem 7" << endl;
     }
     if (scale) {
-        cout << "ate aqui tudo bem 8" << std::endl;
+        cout << "ate aqui tudo bem 8" << endl;
         const char * readX = scale->Attribute("x");
         const char * readY = scale->Attribute("y");
         const char * readZ = scale->Attribute("z");
@@ -209,23 +235,52 @@ Group xmlContent::parseGroup(XMLElement * group) {
 
     XMLElement * models = group->FirstChildElement("models");
     if (models) {
+
         XMLElement * model;
-        for (model=models->FirstChildElement();model;model=model->NextSiblingElement()) {
+        for (model=models->FirstChildElement("model");model;model=model->NextSiblingElement()) {
             Point3D colors[4]; // 1. Diffuse   2. Specular   3. Ambient   4. Emissive
             float shininess;
             parseColor(colors,shininess,model);
             int texID = 0;
-            const char * texture = model->Attribute("texture");
-            if(texture) {
-                string stringTexture(texture);
-                if(textures.find(stringTexture) == textures.end())
-                    loadTexture(stringTexture);
-                texID = textures[stringTexture];
+            /*
+            if(model->Attribute("texture")){
+                
+                const char * texture = model->Attribute("texture");
+                
+                string text_file(texture);
+                if(textures.find(text_file) == textures.end()){
+                    
+                    loadTexture(text_file);
+                    
+                }
+                
+                texID = textures[text_file];
             }
-            
+            */
+            XMLElement * texture_elem;
+            if(model->FirstChildElement("texture")){
+                texture_elem=model->FirstChildElement("texture");
+                if(texture_elem->Attribute("file")){
+
+                    const char* f=texture_elem->Attribute("file");
+                    string text_file(f);
+                    cout<<text_file<<endl;
+                
+                if(textures.find(text_file) == textures.end()){
+                        
+                        loadTexture(text_file);
+                }
+
+                texID = textures[text_file];
+                }
+
+            }
+
+            cout << "ate aqui esta tudo bem 9" << endl;
             g.addFile(string(model->Attribute("file")),colors,shininess,texID);
-            cout << "ate aqui tudo bem 9....." << std::endl;
+            cout << "ate aqui tudo bem 10" << endl;
         }
+    
     }
     XMLElement *groupChild;
     for (groupChild = group->FirstChildElement("group");groupChild;groupChild=groupChild->NextSiblingElement()) {
@@ -239,17 +294,17 @@ vector<Group> xmlContent::parse() {
     XMLDocument doc;
     int err = doc.LoadFile(filename.c_str());
     if(err == 0) {
-        cout << "Success" << std::endl;
+        cout << "Success" << endl;
         XMLElement * scene = doc.FirstChildElement("scene");
         XMLElement * node;
         
         for(node = scene->FirstChildElement();node != NULL;node = node->NextSiblingElement()) {
             string name(node->Name());
-             cout << "ate aqui tudo bem 1" << std::endl;
+             cout << "ate aqui tudo bem 1" << endl;
             if(name=="group") {
-                  cout << "ate aqui tudo bem 4" << std::endl;
+                  cout << "ate aqui tudo bem 4" << endl;
                 Group g = parseGroup(node);
-                  cout << "ate aqui tudo bem 5" << std::endl;
+                  cout << "ate aqui tudo bem 5" << endl;
                 groups.push_back(g);
                 
             }
@@ -260,9 +315,9 @@ vector<Group> xmlContent::parse() {
                 cout << "Error parsing xml!" << "\n";
                 exit(2);
             }
-              cout << "ate aqui tudo bem 2" << std::endl;
+              cout << "ate aqui tudo bem 2" << endl;
         }
-         cout << "ate aqui tudo bem 3" << std::endl;
+         cout << "ate aqui tudo bem 3" << endl;
     }
     else {
         doc.PrintError();

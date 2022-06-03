@@ -31,11 +31,17 @@ void Group::addTransform(shared_ptr<Transform> t) {
 }
 
 void Group::addFile(string filename,Point3D * colors,float shininess, int texture) {
+    
     ifstream fp("models/" + filename);
+    if (!fp.is_open()) {
+        cerr << "Could not open the file - '"
+             << filename << "'" << endl;
+        return;
+    }
     string a,b, radius;
     fp >> a >> b >> radius;
-    float r;
-    r = stof(radius);
+    float r= stof(radius);
+    cout << "ate aqui esta tudo bem ao addFile2" << endl;
     models[filename]=Figure(texture,colors[0],colors[1],shininess,colors[2],colors[3],filename,r);
 }
 
