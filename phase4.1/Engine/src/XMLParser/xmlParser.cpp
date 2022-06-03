@@ -33,39 +33,83 @@ xmlContent::xmlContent(string st) {
 }
 
 Point3D readPoint(XMLElement* info) {
-    const char * readX=info->Attribute("X");
-    const char * readY=info->Attribute("Y");
-    const char * readZ=info->Attribute("Z");
+    const char * readX=info->Attribute("x");
+    const char * readY=info->Attribute("y");
+    const char * readZ=info->Attribute("z");
     float x=readX?atof(readX):0;
     float y=readY?atof(readY):0;
     float z=readZ?atof(readZ):0;
     return Point3D(x,y,z);
 }
+void xmlContent:: parseCamera(XMLElement * node){
+
+    XMLElement* camera_Elem;
+    if(node->FirstChildElement("position")){
+        camera_Elem=node->FirstChildElement("position");
+        
+        float x = atof(camera_Elem->Attribute("x"));
+        float y = atof(camera_Elem->Attribute("y"));
+        float z = atof(camera_Elem->Attribute("z"));
+
+        Point3D c = Point3D(x,y,z);
+        camera.push_back(c);
+    }
+    if(node->FirstChildElement("lookAt")){
+        camera_Elem=node->FirstChildElement("lookAt");
+       
+        float x = atof(camera_Elem->Attribute("x"));
+        float y = atof(camera_Elem->Attribute("y"));
+        float z = atof(camera_Elem->Attribute("z"));
+        Point3D c = Point3D(x,y,z);
+        camera.push_back(c);
+
+    }if(node->FirstChildElement("up")){
+        camera_Elem=node->FirstChildElement("up");
+        
+        float x = atof(camera_Elem->Attribute("x"));
+        float y = atof(camera_Elem->Attribute("y"));
+        float z = atof(camera_Elem->Attribute("z"));
+
+        Point3D c = Point3D(x,y,z);
+        camera.push_back(c);
+    }
+    if(node->FirstChildElement("projection")){
+        camera_Elem=node->FirstChildElement("projection");
+        
+        float x = atof(camera_Elem->Attribute("fov"));
+        float y = atof(camera_Elem->Attribute("near"));
+        float z = atof(camera_Elem->Attribute("far"));
+        
+        Point3D c = Point3D(x,y,z);
+        camera.push_back(c);
+
+    }
+}
 
 void xmlContent::parseLight(XMLElement * light) {
     XMLElement * lightEl = light->FirstChildElement();
     string type(lightEl->Attribute("type"));
-    if(type=="POINT") {
-        float x = atof(lightEl->Attribute("posX"));
-        float y = atof(lightEl->Attribute("posY"));
-        float z = atof(lightEl->Attribute("posZ"));
+    if(type=="point") {
+        float x = atof(lightEl->Attribute("posx"));
+        float y = atof(lightEl->Attribute("posy"));
+        float z = atof(lightEl->Attribute("posz"));
         shared_ptr<PointLight> pl = make_shared<PointLight>(x,y,z);
         lights.push_back(pl);
     }
-    else if(type=="DIRECTIONAL") {
-        float x = atof(lightEl->Attribute("dirX"));
-        float y = atof(lightEl->Attribute("dirY"));
-        float z = atof(lightEl->Attribute("dirZ"));
+    else if(type=="directional") {
+        float x = atof(lightEl->Attribute("dirx"));
+        float y = atof(lightEl->Attribute("diry"));
+        float z = atof(lightEl->Attribute("dirz"));
         shared_ptr<DirectionalLight> dl = make_shared<DirectionalLight>(x,y,z);
         lights.push_back(dl);
     }
-    else if(type=="SPOT") {
-        float x = atof(lightEl->Attribute("posX"));
-        float y = atof(lightEl->Attribute("posY"));
-        float z = atof(lightEl->Attribute("posZ"));
-        float dx = atof(lightEl->Attribute("dirX"));
-        float dy = atof(lightEl->Attribute("dirY"));
-        float dz = atof(lightEl->Attribute("dirZ"));
+    else if(type=="spot") {
+        float x = atof(lightEl->Attribute("posx"));
+        float y = atof(lightEl->Attribute("posy"));
+        float z = atof(lightEl->Attribute("posz"));
+        float dx = atof(lightEl->Attribute("dirx"));
+        float dy = atof(lightEl->Attribute("diry"));
+        float dz = atof(lightEl->Attribute("dirz"));
         float angle = atof(lightEl->Attribute("angle"));
         shared_ptr<SpotLight> sl = make_shared<SpotLight>(x,y,z,dx,dy,dz,angle);
         lights.push_back(sl);
@@ -295,10 +339,11 @@ vector<Group> xmlContent::parse() {
     int err = doc.LoadFile(filename.c_str());
     if(err == 0) {
         cout << "Success" << endl;
-        XMLElement * scene = doc.FirstChildElement("scene");
+        XMLElement * world =doc.FirstChildElement("world");
+        //XMLElement * camera = doc.FirstChildElement("camera");
         XMLElement * node;
         
-        for(node = scene->FirstChildElement();node != NULL;node = node->NextSiblingElement()) {
+        for(node = world->FirstChildElement();node != NULL;node = node->NextSiblingElement()) {
             string name(node->Name());
              cout << "ate aqui tudo bem 1" << endl;
             if(name=="group") {
@@ -310,6 +355,8 @@ vector<Group> xmlContent::parse() {
             }
             else if(name=="lights") {
                 parseLight(node);
+            }else if(name=="camera"){
+                parseCamera(node);
             }
             else {
                 cout << "Error parsing xml!" << "\n";
@@ -323,6 +370,10 @@ vector<Group> xmlContent::parse() {
         doc.PrintError();
     }
     return groups;
+}
+
+vector<Point3D> xmlContent::getCamera() {
+    return camera;
 }
 
 vector<shared_ptr<Light>> xmlContent::getLights() {

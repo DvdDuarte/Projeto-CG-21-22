@@ -26,18 +26,42 @@ bool Transform::paused=false;
 float Transform::time_multiplier=1;
 int Transform::retroceder=1;
 bool axis=false,wire=true,firstCursor=true,enableFrustum = false;
-unordered_map<std::string,VBO> buffers;
+unordered_map<string,VBO> buffers;
 vector<Group> groups;
 vector<shared_ptr<Light>> lights;
 int xMouseB4,yMouseB4;
 float yaw=-155.0f,pitch=0.0f; //yaw horizontal turn//pitch vertical turn
 float sensitivity = 0.3f; //sensibilidade do rato
 float speed=1.0f;
+
+vector<Point3D> camera_def;
 Point3D lookingAtPoint(-0.88,0,-0.48);
 Point3D camPosition(200,0,109.5);
+Point3D upVec(0,1,0);
 bool key_states[256];
 Frustum frustum;
 float triangles = 0;
+
+//por ver
+float alpha=0;
+float omega=0.5;
+float r=20;
+
+void cart2spherical (){
+    float X = camPosition.x;
+    float Y = camPosition.y;
+    float Z = camPosition.z;
+    float X1 = lookingAtPoint.x;
+    float Y1 = lookingAtPoint.y;
+    float Z1 = lookingAtPoint.z;
+    
+    r = sqrt((X-X1) * (X-X1) + (Y-Y1) * (Y-Y1) + (Z-Z1) * (Z-Z1));
+    alpha = atan2(X/r, Z/r);
+    omega = asin(Y / r);
+    alpha = alpha/3.14 * 180;
+    omega = omega/ 3.14 * 180;
+ 
+}
 
 void drawAxis() {
 	glDisable(GL_LIGHTING);
@@ -130,9 +154,15 @@ void renderScene(void) {
 
 	// set the camera
 	glLoadIdentity();
+
+	camPosition=camera_def[0];//.x;
+	lookingAtPoint=camera_def[1];
+	upVec=camera_def[1];
+	
+	
 	gluLookAt(camPosition.x,camPosition.y,camPosition.z, 
 		      lookingAtPoint.x+camPosition.x,lookingAtPoint.y+camPosition.y,lookingAtPoint.z+camPosition.z,
-			  0.0f,1.0f,0.0f);
+			  upVec.x,upVec.y,upVec.z);
 	lights[0]->applyLight();
 // put drawing instructions here
 	if (axis) drawAxis();
@@ -310,6 +340,10 @@ void readConfig(int argc, char **argv) {
 		readFile3D(model);
 	}
 	lights=parser.getLights();
+	
+	//camera
+	camera_def=parser.getCamera();
+	//camera=parser.getCamera();
 	
 }
 

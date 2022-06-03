@@ -50,6 +50,7 @@ string vertexToString(Vertex v){
     return vertex_info;
 }
 
+
 void cart2spherical (){
     float X = position_x;
     float Y = position_y;
