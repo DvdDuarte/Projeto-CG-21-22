@@ -11,7 +11,7 @@
     <group>
         <!-- rotate angle="-70" x="0" y="0" z="1" /-->
         <models>
-            <model file="plane.3d"> <!-- texture="texToTest.jpg" -->
+            <model file="plane_nt.3d"> <!-- texture="texToTest.jpg" -->
             	<texture file="texToTest.jpg"/>
             </model>
         </models>

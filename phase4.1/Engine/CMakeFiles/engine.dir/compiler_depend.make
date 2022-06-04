@@ -2511,6 +2511,7 @@ CMakeFiles/engine.dir/src/main.cpp.o: src/main.cpp \
   /usr/include/strings.h \
   include/Frustum.h \
   include/Plane.h \
+  include/colors.h \
   /usr/include/c++/11/fstream \
   /usr/include/c++/11/bits/codecvt.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
@@ -2519,6 +2520,8 @@ CMakeFiles/engine.dir/src/main.cpp.o: src/main.cpp \
   /usr/include/c++/11/sstream \
   /usr/include/c++/11/bits/sstream.tcc
 
+
+include/colors.h:
 
 /usr/include/x86_64-linux-gnu/bits/xopen_lim.h:
 
