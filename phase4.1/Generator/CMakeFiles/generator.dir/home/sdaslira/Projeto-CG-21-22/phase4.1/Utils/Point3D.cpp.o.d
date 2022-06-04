@@ -1,9 +1,7 @@
-CMakeFiles/generator.dir/src/Bezier.cpp.o: \
- /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/Bezier.cpp \
+CMakeFiles/generator.dir/home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.o: \
+ /home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp \
  /usr/include/stdc-predef.h \
- /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/../include/Bezier.h \
- /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/../include/Triangle.h \
- /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/../include/../../Utils/Point3D.h \
+ /home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.h \
  /usr/include/c++/9/string \
  /usr/include/x86_64-linux-gnu/c++/9/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/9/bits/os_defines.h \
@@ -142,31 +140,7 @@ CMakeFiles/generator.dir/src/Bezier.cpp.o: \
  /usr/include/c++/9/bits/shared_ptr_atomic.h \
  /usr/include/c++/9/bits/atomic_base.h \
  /usr/include/c++/9/bits/atomic_lockfree_defines.h \
- /usr/include/c++/9/backward/auto_ptr.h \
- /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/../include/Model.h \
- /usr/include/c++/9/vector /usr/include/c++/9/bits/stl_vector.h \
- /usr/include/c++/9/bits/stl_bvector.h /usr/include/c++/9/bits/vector.tcc \
- /usr/include/c++/9/map /usr/include/c++/9/bits/stl_tree.h \
- /usr/include/c++/9/bits/stl_map.h /usr/include/c++/9/bits/stl_multimap.h \
- /usr/include/c++/9/bits/erase_if.h \
- /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/../include/Patch.h \
- /usr/include/c++/9/iostream /usr/include/c++/9/ostream \
- /usr/include/c++/9/ios /usr/include/c++/9/bits/ios_base.h \
- /usr/include/c++/9/bits/locale_classes.h \
- /usr/include/c++/9/bits/locale_classes.tcc \
- /usr/include/c++/9/system_error \
- /usr/include/x86_64-linux-gnu/c++/9/bits/error_constants.h \
- /usr/include/c++/9/streambuf /usr/include/c++/9/bits/streambuf.tcc \
- /usr/include/c++/9/bits/basic_ios.h \
- /usr/include/c++/9/bits/locale_facets.h /usr/include/c++/9/cwctype \
- /usr/include/wctype.h /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
- /usr/include/x86_64-linux-gnu/c++/9/bits/ctype_base.h \
- /usr/include/c++/9/bits/streambuf_iterator.h \
- /usr/include/x86_64-linux-gnu/c++/9/bits/ctype_inline.h \
- /usr/include/c++/9/bits/locale_facets.tcc \
- /usr/include/c++/9/bits/basic_ios.tcc \
- /usr/include/c++/9/bits/ostream.tcc /usr/include/c++/9/istream \
- /usr/include/c++/9/bits/istream.tcc /usr/include/c++/9/cmath \
+ /usr/include/c++/9/backward/auto_ptr.h /usr/include/c++/9/cmath \
  /usr/include/math.h /usr/include/x86_64-linux-gnu/bits/math-vector.h \
  /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
  /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h \
@@ -175,9 +149,4 @@ CMakeFiles/generator.dir/src/Bezier.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
  /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
  /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h \
- /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
- /usr/include/c++/9/fstream /usr/include/c++/9/bits/codecvt.h \
- /usr/include/x86_64-linux-gnu/c++/9/bits/basic_file.h \
- /usr/include/x86_64-linux-gnu/c++/9/bits/c++io.h \
- /usr/include/c++/9/bits/fstream.tcc /usr/include/c++/9/sstream \
- /usr/include/c++/9/bits/sstream.tcc /usr/include/c++/9/stdlib.h
+ /usr/include/x86_64-linux-gnu/bits/iscanonical.h

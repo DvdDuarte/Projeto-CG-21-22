@@ -47,25 +47,24 @@ int main(int argc, char **argv) {
             filename=string(argv[6]);
         }
         else if (type=="box") {
-            Box b;
+            Box box;
             if(argc==5){
                 cout << "Estou aqui box" << endl;
                 int units=atoi(argv[2]) ,grid = atoi(argv[3]);
                 filename=string(argv[4]);
                 cout << filename << endl;
-                b= Box(units,units,units,grid);
+                box= Box(units,units,units,grid);
             }else
             if (argc==6 || argc==7) {
                 int width=atoi(argv[2]),depth=atoi(argv[3]),height=atoi(argv[4]);
-                b = Box(width,depth,height,argc==6?0:atoi(argv[5]));
+                box = Box(width,depth,height,argc==6?0:atoi(argv[5]));
                 filename=string(argv[argc==6?5:6]);
                 
             }else {
                 cout<< "Wrong number of arguments\n";
                 return 1;
             }
-            m=b.generate();
-            filename=string(argv[argc==6?5:6]);
+            m=box.generate();
         }
         else if (type=="plane") {
             Plane p;
@@ -97,6 +96,7 @@ int main(int argc, char **argv) {
             filename=string(argv[4]);
         }
 		else return 1;
+        cout<< "erro aqui ??"<< filename << endl;
         m->saveToFile(filename);
     }
 }
