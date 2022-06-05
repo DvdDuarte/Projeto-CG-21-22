@@ -47,15 +47,16 @@ void Box::addXLayer(bool top) {
     float y_increment=1.0*height/(1.0*nDivisions);
     float z_increment=1.0*depth/(1.0*nDivisions);
     float tex_increment = 1.0/(1.0*nDivisions);
-    float aux=((float)width)/2.0;
+    float half_width=((float)width)/2.0; // X
+    float half_height = ((float)height)/2.0; // Y
+    float half_depth=((float)depth)/2.0; // Z
     int x=top?1:0;
-    cout<<"Width/2: "<<aux<<endl;
-
+    
     vector<Point3D> layer;
     // Cálculo dos pontos 
     for(int y=0;y<=nDivisions;y++) {
         for(int z=0;z<=nDivisions;z++) {
-            layer.push_back(Point3D((x*width)-aux,y*y_increment,z*z_increment,index++));
+            layer.push_back(Point3D((x*width)-half_width,(y*y_increment)-half_height,(z*z_increment)-half_depth,index++));
             texCoords.push_back(make_pair<float,float>(z*tex_increment,y*tex_increment));
         }
     }
@@ -80,9 +81,9 @@ void Box::addYLayer(bool top) {
     float x_increment=1.0*width/(1.0*nDivisions);
     float z_increment=1.0*depth/(1.0*nDivisions);
     float tex_increment = 1.0/(1.0*nDivisions);
-
-    float aux=((float)height)/2.0;
-    cout<<"Height/2: "<<aux<<endl;
+    float half_width=((float)width)/2.0; // X
+    float half_height = ((float)height)/2.0; // Y
+    float half_depth=((float)depth)/2.0; // Z
 
     int y=top?1:0;
 
@@ -90,7 +91,7 @@ void Box::addYLayer(bool top) {
     // Cálculo dos pontos 
     for(int x=0;x<=nDivisions;x++) {
         for(int z=0;z<=nDivisions;z++) {
-            layer.push_back(Point3D(x*x_increment,(y*height)-aux,z*z_increment,index++));
+            layer.push_back(Point3D((x*x_increment)-half_width,(y*height)-half_height,(z*z_increment)-half_depth,index++));
             texCoords.push_back(make_pair<float,float>(x*tex_increment,z*tex_increment));
         }
     }
@@ -114,16 +115,16 @@ void Box::addZLayer(bool top) {
     float y_increment=1.0*height/(1.0*nDivisions);
     float x_increment=1.0*width/(1.0*nDivisions);
     float tex_increment = 1.0/(1.0*nDivisions);
-    
-    float aux=((float)depth)/2.0;
-
-    cout<<"Depth/2: "<<aux<<endl;
+    float half_width=((float)width)/2.0; // X
+    float half_height = ((float)height)/2.0; // Y
+    float half_depth=((float)depth)/2.0; // Z
     int z=top?1:0;
+
     vector<Point3D> layer;
     // Cálculo dos pontos
     for(int y=0;y<=nDivisions;y++) {
         for(int x=0;x<=nDivisions;x++) {
-            layer.push_back(Point3D(x*x_increment,y*y_increment,(z*depth)-aux,index++));
+            layer.push_back(Point3D((x*x_increment)-half_width,(y*y_increment)-half_height,(z*depth)-half_depth,index++));
             texCoords.push_back(make_pair<float,float>(x*tex_increment,y*tex_increment));
         }
     }

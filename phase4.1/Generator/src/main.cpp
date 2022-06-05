@@ -41,6 +41,10 @@ int main(int argc, char **argv) {
                 cout<< "Not enough arguments\n";
                 return 1;
             }
+            // 1 - 
+            // 2 -
+            // 3 - slices (torna mais ou menos redondo)
+            // 4 - Altura
             int widenessRadius=atoi(argv[2]), thicknessRadius=atoi(argv[3]),rings=atoi(argv[4]),sides=atoi(argv[5]);
             Torus t = Torus(widenessRadius,thicknessRadius,rings,sides);
             m=t.generate();

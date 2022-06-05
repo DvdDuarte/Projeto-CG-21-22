@@ -44,19 +44,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/sdaslira/.local/lib/python3.8/site-packages/cmake/data/bin/cmake
+CMAKE_COMMAND = /usr/bin/cmake
 
 # The command to remove a file.
-RM = /home/sdaslira/.local/lib/python3.8/site-packages/cmake/data/bin/cmake -E rm -f
+RM = /usr/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/sdaslira/Projeto-CG-21-22/phase4.1/Engine
+CMAKE_SOURCE_DIR = /home/sleiman/Projeto-CG-21-22/phase4.1/Engine
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/sdaslira/Projeto-CG-21-22/phase4.1/Engine
+CMAKE_BINARY_DIR = /home/sleiman/Projeto-CG-21-22/phase4.1/Engine
 
 # Include any dependencies generated for this target.
 include CMakeFiles/xmlParser.dir/depend.make
@@ -72,30 +72,30 @@ include CMakeFiles/xmlParser.dir/flags.make
 CMakeFiles/xmlParser.dir/src/XMLParser/xmlParser.cpp.o: CMakeFiles/xmlParser.dir/flags.make
 CMakeFiles/xmlParser.dir/src/XMLParser/xmlParser.cpp.o: src/XMLParser/xmlParser.cpp
 CMakeFiles/xmlParser.dir/src/XMLParser/xmlParser.cpp.o: CMakeFiles/xmlParser.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sdaslira/Projeto-CG-21-22/phase4.1/Engine/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/xmlParser.dir/src/XMLParser/xmlParser.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/xmlParser.dir/src/XMLParser/xmlParser.cpp.o -MF CMakeFiles/xmlParser.dir/src/XMLParser/xmlParser.cpp.o.d -o CMakeFiles/xmlParser.dir/src/XMLParser/xmlParser.cpp.o -c /home/sdaslira/Projeto-CG-21-22/phase4.1/Engine/src/XMLParser/xmlParser.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sleiman/Projeto-CG-21-22/phase4.1/Engine/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/xmlParser.dir/src/XMLParser/xmlParser.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/xmlParser.dir/src/XMLParser/xmlParser.cpp.o -MF CMakeFiles/xmlParser.dir/src/XMLParser/xmlParser.cpp.o.d -o CMakeFiles/xmlParser.dir/src/XMLParser/xmlParser.cpp.o -c /home/sleiman/Projeto-CG-21-22/phase4.1/Engine/src/XMLParser/xmlParser.cpp
 
 CMakeFiles/xmlParser.dir/src/XMLParser/xmlParser.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/xmlParser.dir/src/XMLParser/xmlParser.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sdaslira/Projeto-CG-21-22/phase4.1/Engine/src/XMLParser/xmlParser.cpp > CMakeFiles/xmlParser.dir/src/XMLParser/xmlParser.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sleiman/Projeto-CG-21-22/phase4.1/Engine/src/XMLParser/xmlParser.cpp > CMakeFiles/xmlParser.dir/src/XMLParser/xmlParser.cpp.i
 
 CMakeFiles/xmlParser.dir/src/XMLParser/xmlParser.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/xmlParser.dir/src/XMLParser/xmlParser.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sdaslira/Projeto-CG-21-22/phase4.1/Engine/src/XMLParser/xmlParser.cpp -o CMakeFiles/xmlParser.dir/src/XMLParser/xmlParser.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sleiman/Projeto-CG-21-22/phase4.1/Engine/src/XMLParser/xmlParser.cpp -o CMakeFiles/xmlParser.dir/src/XMLParser/xmlParser.cpp.s
 
 CMakeFiles/xmlParser.dir/src/XMLParser/tinyxml2.cpp.o: CMakeFiles/xmlParser.dir/flags.make
 CMakeFiles/xmlParser.dir/src/XMLParser/tinyxml2.cpp.o: src/XMLParser/tinyxml2.cpp
 CMakeFiles/xmlParser.dir/src/XMLParser/tinyxml2.cpp.o: CMakeFiles/xmlParser.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sdaslira/Projeto-CG-21-22/phase4.1/Engine/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/xmlParser.dir/src/XMLParser/tinyxml2.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/xmlParser.dir/src/XMLParser/tinyxml2.cpp.o -MF CMakeFiles/xmlParser.dir/src/XMLParser/tinyxml2.cpp.o.d -o CMakeFiles/xmlParser.dir/src/XMLParser/tinyxml2.cpp.o -c /home/sdaslira/Projeto-CG-21-22/phase4.1/Engine/src/XMLParser/tinyxml2.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sleiman/Projeto-CG-21-22/phase4.1/Engine/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/xmlParser.dir/src/XMLParser/tinyxml2.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/xmlParser.dir/src/XMLParser/tinyxml2.cpp.o -MF CMakeFiles/xmlParser.dir/src/XMLParser/tinyxml2.cpp.o.d -o CMakeFiles/xmlParser.dir/src/XMLParser/tinyxml2.cpp.o -c /home/sleiman/Projeto-CG-21-22/phase4.1/Engine/src/XMLParser/tinyxml2.cpp
 
 CMakeFiles/xmlParser.dir/src/XMLParser/tinyxml2.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/xmlParser.dir/src/XMLParser/tinyxml2.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sdaslira/Projeto-CG-21-22/phase4.1/Engine/src/XMLParser/tinyxml2.cpp > CMakeFiles/xmlParser.dir/src/XMLParser/tinyxml2.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sleiman/Projeto-CG-21-22/phase4.1/Engine/src/XMLParser/tinyxml2.cpp > CMakeFiles/xmlParser.dir/src/XMLParser/tinyxml2.cpp.i
 
 CMakeFiles/xmlParser.dir/src/XMLParser/tinyxml2.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/xmlParser.dir/src/XMLParser/tinyxml2.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sdaslira/Projeto-CG-21-22/phase4.1/Engine/src/XMLParser/tinyxml2.cpp -o CMakeFiles/xmlParser.dir/src/XMLParser/tinyxml2.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sleiman/Projeto-CG-21-22/phase4.1/Engine/src/XMLParser/tinyxml2.cpp -o CMakeFiles/xmlParser.dir/src/XMLParser/tinyxml2.cpp.s
 
 # Object files for target xmlParser
 xmlParser_OBJECTS = \
@@ -109,7 +109,7 @@ libxmlParser.a: CMakeFiles/xmlParser.dir/src/XMLParser/xmlParser.cpp.o
 libxmlParser.a: CMakeFiles/xmlParser.dir/src/XMLParser/tinyxml2.cpp.o
 libxmlParser.a: CMakeFiles/xmlParser.dir/build.make
 libxmlParser.a: CMakeFiles/xmlParser.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/sdaslira/Projeto-CG-21-22/phase4.1/Engine/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library libxmlParser.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/sleiman/Projeto-CG-21-22/phase4.1/Engine/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library libxmlParser.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/xmlParser.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/xmlParser.dir/link.txt --verbose=$(VERBOSE)
 
@@ -122,6 +122,6 @@ CMakeFiles/xmlParser.dir/clean:
 .PHONY : CMakeFiles/xmlParser.dir/clean
 
 CMakeFiles/xmlParser.dir/depend:
-	cd /home/sdaslira/Projeto-CG-21-22/phase4.1/Engine && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sdaslira/Projeto-CG-21-22/phase4.1/Engine /home/sdaslira/Projeto-CG-21-22/phase4.1/Engine /home/sdaslira/Projeto-CG-21-22/phase4.1/Engine /home/sdaslira/Projeto-CG-21-22/phase4.1/Engine /home/sdaslira/Projeto-CG-21-22/phase4.1/Engine/CMakeFiles/xmlParser.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/sleiman/Projeto-CG-21-22/phase4.1/Engine && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sleiman/Projeto-CG-21-22/phase4.1/Engine /home/sleiman/Projeto-CG-21-22/phase4.1/Engine /home/sleiman/Projeto-CG-21-22/phase4.1/Engine /home/sleiman/Projeto-CG-21-22/phase4.1/Engine /home/sleiman/Projeto-CG-21-22/phase4.1/Engine/CMakeFiles/xmlParser.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/xmlParser.dir/depend
 
