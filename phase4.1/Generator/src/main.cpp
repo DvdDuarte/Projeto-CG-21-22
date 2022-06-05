@@ -93,7 +93,6 @@ int main(int argc, char **argv) {
                 cout<< "Not enough arguments\n";
                 return 1;
             }
-            cout<<"bezier"<<argc<<endl;
             string patch_file=string(argv[2]);
             int tesselation_level = atoi(argv[3]);
             Bezier b = Bezier(patch_file,tesselation_level);

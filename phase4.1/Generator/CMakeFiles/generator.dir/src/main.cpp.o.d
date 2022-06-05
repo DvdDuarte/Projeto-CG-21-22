@@ -151,50 +151,6 @@ CMakeFiles/generator.dir/src/main.cpp.o: \
  /usr/include/c++/11/bits/basic_ios.h \
  /usr/include/c++/11/bits/locale_facets.h /usr/include/c++/11/cwctype \
  /usr/include/wctype.h /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
-<<<<<<< HEAD
- /usr/include/x86_64-linux-gnu/c++/9/bits/ctype_base.h \
- /usr/include/c++/9/bits/streambuf_iterator.h \
- /usr/include/x86_64-linux-gnu/c++/9/bits/ctype_inline.h \
- /usr/include/c++/9/bits/locale_facets.tcc \
- /usr/include/c++/9/bits/basic_ios.tcc \
- /usr/include/c++/9/bits/ostream.tcc /usr/include/c++/9/istream \
- /usr/include/c++/9/bits/istream.tcc \
- /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/../include/Sphere.h \
- /usr/include/c++/9/vector /usr/include/c++/9/bits/stl_construct.h \
- /usr/include/c++/9/bits/stl_uninitialized.h \
- /usr/include/c++/9/bits/stl_vector.h \
- /usr/include/c++/9/bits/stl_bvector.h /usr/include/c++/9/bits/vector.tcc \
- /usr/include/c++/9/memory /usr/include/c++/9/bits/stl_tempbuf.h \
- /usr/include/c++/9/bits/stl_raw_storage_iter.h \
- /usr/include/c++/9/ext/concurrence.h \
- /usr/include/c++/9/bits/uses_allocator.h \
- /usr/include/c++/9/bits/unique_ptr.h /usr/include/c++/9/utility \
- /usr/include/c++/9/bits/stl_relops.h /usr/include/c++/9/tuple \
- /usr/include/c++/9/array /usr/include/c++/9/bits/invoke.h \
- /usr/include/c++/9/bits/shared_ptr.h \
- /usr/include/c++/9/bits/shared_ptr_base.h \
- /usr/include/c++/9/bits/allocated_ptr.h \
- /usr/include/c++/9/bits/refwrap.h \
- /usr/include/c++/9/ext/aligned_buffer.h \
- /usr/include/c++/9/bits/shared_ptr_atomic.h \
- /usr/include/c++/9/bits/atomic_base.h \
- /usr/include/c++/9/bits/atomic_lockfree_defines.h \
- /usr/include/c++/9/backward/auto_ptr.h /usr/include/c++/9/map \
- /usr/include/c++/9/bits/stl_tree.h /usr/include/c++/9/bits/stl_map.h \
- /usr/include/c++/9/bits/stl_multimap.h \
- /usr/include/c++/9/bits/erase_if.h \
- /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/../include/../../Utils/Point3D.h \
- /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/../include/../../Utils/colors.h \
- /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/../include/Triangle.h \
- /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/../include/Model.h \
- /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/../include/Cone.h \
- /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/../include/Box.h \
- /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/../include/Plane.h \
- /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/../include/Model.h \
- /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/../include/Torus.h \
- /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/../include/Bezier.h \
- /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/../include/Patch.h
-=======
  /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h \
  /usr/include/c++/11/bits/streambuf_iterator.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h \
@@ -236,4 +192,3 @@ CMakeFiles/generator.dir/src/main.cpp.o: \
  /home/sleiman/Projeto-CG-21-22/phase4.1/Generator/src/../include/Torus.h \
  /home/sleiman/Projeto-CG-21-22/phase4.1/Generator/src/../include/Bezier.h \
  /home/sleiman/Projeto-CG-21-22/phase4.1/Generator/src/../include/Patch.h
->>>>>>> 6a6153eeb2b35cc303c6da909331d796cf296728

@@ -73,38 +73,38 @@ private:
      */
     void computeNormal(vector<vector<Point3D>> preCalculatedMatrix, float u, float v, vector<vector<Point3D>> u_matrix, vector<vector<Point3D>> v_matrix);
     /**
-     * @brief 
+     * @brief Funcao que calcula os pontos de Bezier
      * 
-     * @param preCalculatedMatrix 
-     * @param indexPoint 
-     * @param vertixes 
-     * @param triangs 
+     * @param preCalculatedMatrix A matriz pre-calculada
+     * @param indexPoint O indice do ponto
+     * @param vertixes Os vertices
+     * @param triangs Os triangulos
      */
     void calculatePoints(vector<vector<Point3D>> preCalculatedMatrix,int& indexPoint,vector<Point3D>& vertixes,vector<Triangle>& triangs);
     /**
-     * @brief 
+     * @brief Funcao que calcula um ponto de Bezier
      * 
-     * @param preCalculatedMatrix 
-     * @param vertical_level 
-     * @param horizontal_level 
-     * @return Point3D 
+     * @param preCalculatedMatrix A matriz pre-calculada
+     * @param vertical_level O nivel vertical
+     * @param horizontal_level O nivel horizontal
+     * @return Point3D O ponto Calculado
      */
     Point3D calculatePoint(vector<vector<Point3D>> preCalculatedMatrix,int vertical_level,int horizontal_level);
     /**
-     * @brief 
+     * @brief Funcao que multiplica matrizes
      * 
-     * @param m1 
-     * @param m2 
+     * @param m1 A primeira matriz a multiplicar
+     * @param m2 A segunda matriz a multiplicar
      * @return vector<std::vector<Point3D>> 
      */
     vector<vector<Point3D>> multiplyMatrix(vector<vector<Point3D>> m1, vector<vector<Point3D>> m2);
     /**
-     * @brief 
+     * @brief Funcao que calcula a distancia de um ponto
      * 
-     * @param x 
-     * @param y 
-     * @param z 
-     * @return float 
+     * @param x A coordenada x do ponto
+     * @param y A coordenada y do ponto
+     * @param z A coordenada z do ponto
+     * @return float O valor da distancia
      */
     float distance(float x,float y,float z);
 };

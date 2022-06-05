@@ -247,7 +247,6 @@ Group xmlContent::parseGroup(XMLElement * group) {
     XMLElement * transform= group->FirstChildElement("transform");
     if(transform){
 
-        //cout<<"transform: "<< transform->Name()<<endl;
 
         XMLElement * translation = transform->FirstChildElement("translate");
         XMLElement * rotation    = transform->FirstChildElement("rotate");
@@ -305,7 +304,7 @@ Group xmlContent::parseGroup(XMLElement * group) {
             double scalez = readZ ? atof(readZ) : 1;
             shared_ptr<Scale> s = make_shared<Scale>(scalex,scaley,scalez);
 
-            //cout<<"scalex: "<<scalex<<"scaley: "<<scaley<<"scalez: "<<scalez<<endl;
+           //cout<<"scalex: "<<scalex<<"scaley: "<<scaley<<"scalez: "<<scalez<<endl;
 
             g.addTransform(s);
 
@@ -323,7 +322,6 @@ Group xmlContent::parseGroup(XMLElement * group) {
             string fileModel(model->Attribute("file"));
           
             XMLElement * texture_elem;
-            //cout << BOLD_CYAN << "Model Name: " << RESET << model->Name() << endl;
             if(model->FirstChildElement("texture")){
                 texture_elem=model->FirstChildElement("texture");
                 if(texture_elem->Attribute("file")){
@@ -359,7 +357,6 @@ vector<Group> xmlContent::parse() {
     XMLDocument doc;
     
     int err = doc.LoadFile(filename.c_str());
-    cout << err << endl;
 
     if(err == 0) {
         XMLElement * first = doc.FirstChildElement("world");
