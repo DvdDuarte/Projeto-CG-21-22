@@ -111,7 +111,7 @@ void drawFigure(Figure figure) {
  		0);// parâmetro não utilizado
 	glColor3f(0,0,0);
 	triangles += (vbo.indexCount) / 3.0;
-	//figure.reset();
+	figure.reset();
 
 }
 
@@ -189,7 +189,6 @@ void renderScene(void) {
 		drawFigures(g);
 	}
 
-	//glutSetWindowTitle(("Triangles: " + std::to_string(triangles)).c_str());
 	frameRate();
 	// End of frame
 	glutSwapBuffers();
@@ -278,7 +277,7 @@ void readFile3D(string filename) {
 		getline(fp,line);
 		istringstream iss(line);
 		if(!(iss >> x >> y >> z)) {
-			std::cout << "Erro a ler vértices do ficheiro! \n";
+			cout << "Erro a ler vértices do ficheiro! \n";
 			break;
 		}
 		//adição dos valores x y e z de cada ponto a vetor de vértices
@@ -326,7 +325,7 @@ void readFile3D(string filename) {
 		getline(fp,line);
 		istringstream iss(line);
 		if(!(iss >> texX >> texY)) {
-			std::cout << "Erro a ler texturas do ficheiro! \n";
+			cout << "Erro a ler texturas do ficheiro! \n";
 			break;
 		}
 		//adição do índice de cada ponto do triângulo ao vetor de índices
@@ -336,6 +335,7 @@ void readFile3D(string filename) {
 	glBindBuffer(GL_ARRAY_BUFFER,vbo.texCoords); //liga o buffer indices ao array
 	glBufferData(GL_ARRAY_BUFFER,sizeof(float) * textureCoordinates.size(),textureCoordinates.data(),GL_STATIC_DRAW);
 	buffers[filename]=vbo;
+
 }
 
 void readConfig(int argc, char **argv) {
@@ -366,7 +366,6 @@ void readConfig(int argc, char **argv) {
 	lookingAtPoint = Point3D(camera_def[1]);
 	upVec = Point3D(camera_def[2]);
 	proj = Point3D(camera_def[3]);
-	
 	
 }
 

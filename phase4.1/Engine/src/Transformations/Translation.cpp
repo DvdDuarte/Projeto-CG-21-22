@@ -9,6 +9,8 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
+using namespace std;
+
 void buildRotMatrix(Point3D x, Point3D y, Point3D z, float *m) {
 
 	m[0] = x.x; m[1] = x.y; m[2] = x.z; m[3] = 0;
@@ -64,7 +66,7 @@ Translation::Translation(float xG, float yG, float zG) {
 	type=1;
 }
 
-Translation::Translation(double timeG,std::vector<Point3D> curve_pointsG) {
+Translation::Translation(double timeG,vector<Point3D> curve_pointsG) {
     time=timeG*1000.0;
     curve_points=curve_pointsG;
 	type=2;
@@ -145,16 +147,20 @@ void Translation::drawCatmullRomCurve() {
     
 }
 
-std::vector<float> Translation::applyTransform() {
-	std::vector<float> ret;
+vector<float> Translation::applyTransform() {
+
+	vector<float> ret;
 	ret.push_back(0);
     if (type==2) {
     	if (showCurves) drawCatmullRomCurve();
     	Point3D res,XX(1,0,0),YY(0,1,0),ZZ(0,0,1);
+
 		getGlobalCatmullRomPoint(currentPos,res,ZZ);
+
 		ret.push_back(res.x);
 		ret.push_back(res.y);
 		ret.push_back(res.z);
+		
         cross(YY,ZZ,XX);
 	    cross(ZZ,XX,YY);
 
