@@ -8,6 +8,7 @@
  * @copyright Copyright (c) 2022
  * 
  */
+#pragma once
 #include "Triangle.h"
 #include <vector>
 #include "../../Utils/Point3D.h"
