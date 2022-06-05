@@ -45,7 +45,6 @@ Point3D readPoint(XMLElement* info) {
 void xmlContent:: parseCamera(XMLElement * node){
 
     XMLElement* camera_Elem;
-    cout << node->FirstChildElement()->Name() << endl;
     if(node->FirstChildElement("position")){
         camera_Elem=node->FirstChildElement("position");
 
@@ -81,7 +80,7 @@ void xmlContent:: parseCamera(XMLElement * node){
         Point3D c_projection = Point3D(x_projection,y_projection,z_projection);
         camera.push_back(c_projection);
 
-        /** Debugging porposes
+        /* Debugging porposes
         cout << "x " << x << " y " << y << " z " << z << endl;
         cout << "x_look_at " << x_look_at << " y_look_at " << y_look_at << " z_look_at " << z_look_at << endl;
         cout << "x_up " << x_up << " y_up " << y_up << " z_up " << z_up << endl;
@@ -116,7 +115,6 @@ void xmlContent::parseLight(XMLElement * light) {
         float dy = atof(lightEl->Attribute("diry"));
         float dz = atof(lightEl->Attribute("dirz"));
         float angle = atof(lightEl->Attribute("cutoff"));
-        cout<<"tudo bem spot?"<<endl;
         shared_ptr<SpotLight> sl = make_shared<SpotLight>(x,y,z,dx,dy,dz,angle);
         
         lights.push_back(sl);
@@ -165,7 +163,6 @@ void xmlContent::parseColor(Point3D colors[],float& shininess, XMLElement * mode
             shin_aux = shin->Attribute("value");
         } 
     }
-    //cout << er << endl;
     //diffuse
     double dred   = color_exists ? atof(dr) : 200;
     double dgreen = color_exists ? atof(dg) : 200;
@@ -221,9 +218,7 @@ void xmlContent::loadTexture(string s) {
 	ilOriginFunc(IL_ORIGIN_LOWER_LEFT);
 	ilGenImages(1,&t);
 	ilBindImage(t);
-    cout << "Antes Load Tex"<< endl;
 	ilLoadImage((ILstring)("textures/" + s).c_str());
-    cout << "Apos Load Tex" << endl;
 	tw = ilGetInteger(IL_IMAGE_WIDTH);
 	th = ilGetInteger(IL_IMAGE_HEIGHT);
 	//cout << "Image Width: " << tw << endl;
@@ -252,12 +247,10 @@ Group xmlContent::parseGroup(XMLElement * group) {
     XMLElement * transform= group->FirstChildElement("transform");
     if(transform){
 
-        cout<<"transform: "<< transform->Name()<<endl;
 
         XMLElement * translation = transform->FirstChildElement("translate");
         XMLElement * rotation    = transform->FirstChildElement("rotate");
         XMLElement * scale       = transform->FirstChildElement("scale");
-        cout<<"problema aqui"<<endl;
         if (translation) {
             //shared_ptr<Transform> t;
             shared_ptr<Translation> t;
@@ -311,7 +304,7 @@ Group xmlContent::parseGroup(XMLElement * group) {
             double scalez = readZ ? atof(readZ) : 1;
             shared_ptr<Scale> s = make_shared<Scale>(scalex,scaley,scalez);
 
-            cout<<"scalex: "<<scalex<<"scaley: "<<scaley<<"scalez: "<<scalez<<endl;
+           //cout<<"scalex: "<<scalex<<"scaley: "<<scaley<<"scalez: "<<scalez<<endl;
 
             g.addTransform(s);
 
@@ -329,15 +322,12 @@ Group xmlContent::parseGroup(XMLElement * group) {
             string fileModel(model->Attribute("file"));
           
             XMLElement * texture_elem;
-            cout << BOLD_CYAN << "Model Name: " << RESET << model->Name() << endl;
             if(model->FirstChildElement("texture")){
-                cout << BOLD_YELLOW << "Aqui" << endl;
                 texture_elem=model->FirstChildElement("texture");
                 if(texture_elem->Attribute("file")){
 
                     const char* f=texture_elem->Attribute("file");
                     string text_file(f);
-                    cout<<text_file<<endl;
                 
                     if(textures.find(text_file) == textures.end()){
                         
@@ -367,20 +357,15 @@ vector<Group> xmlContent::parse() {
     XMLDocument doc;
     
     int err = doc.LoadFile(filename.c_str());
-    cout << err << endl;
 
     if(err == 0) {
-        cout << "Success" << endl;
         XMLElement * first = doc.FirstChildElement("world");
         XMLElement * node= first->FirstChildElement();
         
         for(node ;node != NULL;node = node->NextSiblingElement()) {
             string name(node->Name());
-             cout << "ate aqui tudo bem 1" << endl;
             if(name=="group") {
-                cout << "ate aqui tudo bem 4" << endl;
                 Group g = parseGroup(node);
-                cout << "ate aqui tudo bem 5" << endl;
                 groups.push_back(g);
                 
             }
@@ -393,9 +378,7 @@ vector<Group> xmlContent::parse() {
                 cout << "Error parsing xml!" << "\n";
                 exit(2);
             }
-              cout << "ate aqui tudo bem 2" << endl;
         }
-         cout << "ate aqui tudo bem 3" << endl;
     }
     else {
         doc.PrintError();

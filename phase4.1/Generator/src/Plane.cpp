@@ -69,7 +69,7 @@ shared_ptr<Model> Plane::generate() {
                 normals.push_back(normal);
             } 
             index_counter = index_counter + 4;
-            /** Visualizar coordenadas geradas */
+            /* Visualizar coordenadas geradas */
             /*
             cout << BOLD_CYAN << "TR: " << RESET << topRight.getCoords() << endl;
             cout << BOLD_CYAN << "TL: " << RESET << topLeft.getCoords() << endl;

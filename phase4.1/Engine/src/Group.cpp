@@ -41,7 +41,6 @@ void Group::addFile(string filename,Point3D * colors,float shininess, int textur
     string a,b, radius;
     fp >> a >> b >> radius;
     float r= stof(radius);
-    cout << "ate aqui esta tudo bem ao addFile2" << endl;
     models[filename]=Figure(texture,colors[0],colors[1],shininess,colors[2],colors[3],filename,r);
 }
 

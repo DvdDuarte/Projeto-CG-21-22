@@ -15,7 +15,7 @@ cutoff="45" />
     </camera>
 
     <lights>
-        <light type="directional" dirx="1" diry="1" dirz="1" />
+        <light type="point" posx="0" posy="0" posz="0" />
     </lights>
 
     <group>
@@ -29,6 +29,14 @@ cutoff="45" />
         
             <models>
                 <model file="sphere_solar.3d"> <!-- ./generator sphere 1 100 100 sphere_solar.3d-->
+                    
+                    <color>
+                        <diffuse R="0" G="0" B="0" />
+                        <ambient R="0" G="0" B="0" />
+                        <specular R="0" G="0" B="0" />
+                        <emissive R="255" G="255" B="0" />
+                        <shininess value="128" />
+                    </color>
                     <texture file="texSun.jpg"/>
                 </model>
             </models>
@@ -46,7 +54,7 @@ cutoff="45" />
                 </transform>
                 <models>
                     <model file="bezier_solar.3d"> <!-- ./generator patch teapot.patch 10 bezier_solar.3d-->
-                        <texture file="teapot.jpg"/>
+                        <texture file="texComet.jpg"/>
                     </model>
                 </models>
             </group>
@@ -138,6 +146,18 @@ cutoff="45" />
                     </model>
                 </models>
             </group>
+
+            <group>  <!-- Asteroids Ring--> 
+                <transform> -->
+                    <scale x="0.7" y="0.3" z="0.7"/>
+                    <rotate angle="-27" x="0" y="1" z="0"/>
+                </transform>-->
+                <models>-->
+                    <model file="torus_solar_asteroids.3d"> <!-- ./generator torus 18 1 100 100 torus_solar_asteroids.3d-->
+                        <texture file="texAsteroid.jpg"/>
+                    </model>
+                </models>
+            </group>
     
             <group> <!-- Júpiter-->
                 <transform>
@@ -177,6 +197,7 @@ cutoff="45" />
                 <group> <!-- Anel-->
                     <transform>
                         <scale x="0.4" y="0.4" z="0.4"/>
+                        <rotate angle="30" x="1" y="0" z="0"/>
                     </transform>
                     <models>
                         <model file="torus_solar.3d"> <!-- ./generator torus 4 3 100 2 torus_solar.3d-->

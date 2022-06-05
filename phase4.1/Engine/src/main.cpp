@@ -119,9 +119,7 @@ void drawFigures(Group g) {
 	glPushMatrix();
 	
 	for (auto& transform : g.transformations) {
-		//cout<< "DRAWFIGURES 1"<<endl;
 		auto tr = transform->applyTransform();
-	//	cout << BI_BRIGHT_BLUE << "transformation" << tr[0]<< endl;
 		
 		g.updateFigures(tr);
 	}
@@ -130,7 +128,6 @@ void drawFigures(Group g) {
 			drawFigure(modelFileName.second);
 	}
 	for (auto& group : g.nestedGroups) {
-		//cout<< "DRAWFIGURES 3"<<endl;
 		drawFigures(group);
 	}
 	g.isDrawn = true;
@@ -270,7 +267,6 @@ void readFile3D(string filename) {
 	getline(fp,line);
 	istringstream iss(line);
 	iss >> numVertexes >> numTriangles;
-	cout << BI_BRIGHT_GREEN << "NMVERTEX " << numVertexes << " NTR " << numTriangles << endl;
 	vector<float> vertixes;
 	vector<unsigned int> indexes;
 	vector<float> normals;
@@ -308,7 +304,6 @@ void readFile3D(string filename) {
 		indexes.push_back(indicePonto2);
 		indexes.push_back(indicePonto3);
 	}
-	cout << "NMR TRIANG " << (indexes.size()) << endl;
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,vbo.indexes); //liga o buffer indices ao array
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER,sizeof(unsigned int) * indexes.size(),indexes.data(),GL_STATIC_DRAW);
  	vbo.indexCount = indexes.size();
@@ -341,7 +336,6 @@ void readFile3D(string filename) {
 	glBindBuffer(GL_ARRAY_BUFFER,vbo.texCoords); //liga o buffer indices ao array
 	glBufferData(GL_ARRAY_BUFFER,sizeof(float) * textureCoordinates.size(),textureCoordinates.data(),GL_STATIC_DRAW);
 	buffers[filename]=vbo;
-	cout << "file3d aqui"<< endl;
 }
 
 void readConfig(int argc, char **argv) {
@@ -349,7 +343,6 @@ void readConfig(int argc, char **argv) {
 	string name;
 	xmlContent parser;
 	if(argc == 2) {
-		cout<< argv[1]<<endl;
 		name = "configs/" + string(argv[1]);
 		parser = xmlContent(name);
 		
@@ -362,7 +355,6 @@ void readConfig(int argc, char **argv) {
 	unordered_set<string> files = parser.getModels(); //é um set para evitar repetidos
 	for(auto& filename : files) {
 		string model = "models/" + filename;
-		cout<<filename<<endl;
 		readFile3D(model);
 	}
 	lights=parser.getLights();
@@ -389,7 +381,7 @@ void registerKeyDown(unsigned char key, int x, int y) {
 	if (key=='c') {
 		Translation::showCurves=!Translation::showCurves;
 	}
-	if (key==' ')
+	if (key=='m')
 		Transform::paused=!Transform::paused;
 	if (key=='r')
 		Transform::retroceder=-1*Transform::retroceder;

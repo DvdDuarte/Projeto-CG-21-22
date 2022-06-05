@@ -1,6 +1,16 @@
-#pragma once
+/**
+ * @file Point3D.h
+ * @author David Duarte (A93253) & Ema Dias (A89518) & Samuel Lira (A94166)
+ * @brief 
+ * @version 0.1
+ * @date 2022-06-05
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include <string>
 #include <memory>
+#include <colors.h>
 
 class Point3D {
 public:
