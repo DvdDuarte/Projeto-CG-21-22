@@ -25,6 +25,7 @@ Box::Box(int widthG,int depthG,int heightG,int nDivisionsG) {
 }
 
 void Box::addSquare(bool top,Point3D topRight,Point3D topLeft,Point3D bellowLeft,Point3D bellowRight) {
+    
     Triangle t1,t2;
     if (top) {
         t1=Triangle(topRight.index,topLeft.index,bellowLeft.index);
@@ -39,10 +40,12 @@ void Box::addSquare(bool top,Point3D topRight,Point3D topLeft,Point3D bellowLeft
 }
 
 void Box::addYLayer(bool top) { 
+    
     float x_increment=1.0*width/(1.0*nDivisions);
     float z_increment=1.0*depth/(1.0*nDivisions);
     float tex_increment = 1.0/(1.0*nDivisions);
     int y=top?1:0;
+
     vector<Point3D> layer;
     // Cálculo dos pontos 
     for(int x=0;x<=nDivisions;x++) {
@@ -68,6 +71,7 @@ void Box::addYLayer(bool top) {
 }
 
 void Box::addXLayer(bool top) {
+    
     float y_increment=1.0*height/(1.0*nDivisions);
     float z_increment=1.0*depth/(1.0*nDivisions);
     float tex_increment = 1.0/(1.0*nDivisions);

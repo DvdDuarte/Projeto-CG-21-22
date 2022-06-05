@@ -84,11 +84,12 @@ int main(int argc, char **argv) {
             filename=string(argc==5?argv[4]:argv[3]);
            
         }
-        else if (type=="bezier") {
+        else if (type=="patch") {
             if (argc!=5) {
-                std::cout<< "Not enough arguments\n";
+                cout<< "Not enough arguments\n";
                 return 1;
             }
+            cout<<"bezier"<<argc<<endl;
             string patch_file=string(argv[2]);
             int tesselation_level = atoi(argv[3]);
             Bezier b = Bezier(patch_file,tesselation_level);
@@ -96,7 +97,6 @@ int main(int argc, char **argv) {
             filename=string(argv[4]);
         }
 		else return 1;
-        cout<< "erro aqui ??"<< filename << endl;
         m->saveToFile(filename);
     }
 }

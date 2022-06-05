@@ -48,19 +48,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/bin/cmake
+CMAKE_COMMAND = /home/sdaslira/.local/lib/python3.8/site-packages/cmake/data/bin/cmake
 
 # The command to remove a file.
-RM = /usr/bin/cmake -E rm -f
+RM = /home/sdaslira/.local/lib/python3.8/site-packages/cmake/data/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/sleiman/Projeto-CG-21-22/phase4.1/Engine
+CMAKE_SOURCE_DIR = /home/sdaslira/Projeto-CG-21-22/phase4.1/Engine
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/sleiman/Projeto-CG-21-22/phase4.1/Engine
+CMAKE_BINARY_DIR = /home/sdaslira/Projeto-CG-21-22/phase4.1/Engine
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -68,7 +68,7 @@ CMAKE_BINARY_DIR = /home/sleiman/Projeto-CG-21-22/phase4.1/Engine
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/home/sdaslira/.local/lib/python3.8/site-packages/cmake/data/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -78,7 +78,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/home/sdaslira/.local/lib/python3.8/site-packages/cmake/data/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sleiman/Projeto-CG-21-22/phase4.1/Engine/CMakeFiles /home/sleiman/Projeto-CG-21-22/phase4.1/Engine//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sdaslira/Projeto-CG-21-22/phase4.1/Engine/CMakeFiles /home/sdaslira/Projeto-CG-21-22/phase4.1/Engine//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sleiman/Projeto-CG-21-22/phase4.1/Engine/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sdaslira/Projeto-CG-21-22/phase4.1/Engine/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -142,29 +142,29 @@ xmlParser/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/xmlParser.dir/build.make CMakeFiles/xmlParser.dir/build
 .PHONY : xmlParser/fast
 
-home/sleiman/Projeto-CG-21-22/phase4.1/Utils/Point3D.o: home/sleiman/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.o
-.PHONY : home/sleiman/Projeto-CG-21-22/phase4.1/Utils/Point3D.o
+home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.o: home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.o
+.PHONY : home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.o
 
 # target to build an object file
-home/sleiman/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/home/sleiman/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.o
-.PHONY : home/sleiman/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.o
+home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.o
+.PHONY : home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.o
 
-home/sleiman/Projeto-CG-21-22/phase4.1/Utils/Point3D.i: home/sleiman/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.i
-.PHONY : home/sleiman/Projeto-CG-21-22/phase4.1/Utils/Point3D.i
+home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.i: home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.i
+.PHONY : home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.i
 
 # target to preprocess a source file
-home/sleiman/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/home/sleiman/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.i
-.PHONY : home/sleiman/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.i
+home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.i
+.PHONY : home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.i
 
-home/sleiman/Projeto-CG-21-22/phase4.1/Utils/Point3D.s: home/sleiman/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.s
-.PHONY : home/sleiman/Projeto-CG-21-22/phase4.1/Utils/Point3D.s
+home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.s: home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.s
+.PHONY : home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.s
 
 # target to generate assembly for a file
-home/sleiman/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/home/sleiman/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.s
-.PHONY : home/sleiman/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.s
+home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.s
+.PHONY : home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.s
 
 src/Figure.o: src/Figure.cpp.o
 .PHONY : src/Figure.o
@@ -189,30 +189,6 @@ src/Figure.s: src/Figure.cpp.s
 src/Figure.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/Figure.cpp.s
 .PHONY : src/Figure.cpp.s
-
-src/Frustum.o: src/Frustum.cpp.o
-.PHONY : src/Frustum.o
-
-# target to build an object file
-src/Frustum.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/Frustum.cpp.o
-.PHONY : src/Frustum.cpp.o
-
-src/Frustum.i: src/Frustum.cpp.i
-.PHONY : src/Frustum.i
-
-# target to preprocess a source file
-src/Frustum.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/Frustum.cpp.i
-.PHONY : src/Frustum.cpp.i
-
-src/Frustum.s: src/Frustum.cpp.s
-.PHONY : src/Frustum.s
-
-# target to generate assembly for a file
-src/Frustum.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/Frustum.cpp.s
-.PHONY : src/Frustum.cpp.s
 
 src/Group.o: src/Group.cpp.o
 .PHONY : src/Group.o
@@ -309,30 +285,6 @@ src/Lights/SpotLight.s: src/Lights/SpotLight.cpp.s
 src/Lights/SpotLight.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/Lights/SpotLight.cpp.s
 .PHONY : src/Lights/SpotLight.cpp.s
-
-src/Plane.o: src/Plane.cpp.o
-.PHONY : src/Plane.o
-
-# target to build an object file
-src/Plane.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/Plane.cpp.o
-.PHONY : src/Plane.cpp.o
-
-src/Plane.i: src/Plane.cpp.i
-.PHONY : src/Plane.i
-
-# target to preprocess a source file
-src/Plane.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/Plane.cpp.i
-.PHONY : src/Plane.cpp.i
-
-src/Plane.s: src/Plane.cpp.s
-.PHONY : src/Plane.s
-
-# target to generate assembly for a file
-src/Plane.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/src/Plane.cpp.s
-.PHONY : src/Plane.cpp.s
 
 src/Transformations/Rotation.o: src/Transformations/Rotation.cpp.o
 .PHONY : src/Transformations/Rotation.o
@@ -512,15 +464,12 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... engine"
 	@echo "... xmlParser"
-	@echo "... home/sleiman/Projeto-CG-21-22/phase4.1/Utils/Point3D.o"
-	@echo "... home/sleiman/Projeto-CG-21-22/phase4.1/Utils/Point3D.i"
-	@echo "... home/sleiman/Projeto-CG-21-22/phase4.1/Utils/Point3D.s"
+	@echo "... home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.o"
+	@echo "... home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.i"
+	@echo "... home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.s"
 	@echo "... src/Figure.o"
 	@echo "... src/Figure.i"
 	@echo "... src/Figure.s"
-	@echo "... src/Frustum.o"
-	@echo "... src/Frustum.i"
-	@echo "... src/Frustum.s"
 	@echo "... src/Group.o"
 	@echo "... src/Group.i"
 	@echo "... src/Group.s"
@@ -533,9 +482,6 @@ help:
 	@echo "... src/Lights/SpotLight.o"
 	@echo "... src/Lights/SpotLight.i"
 	@echo "... src/Lights/SpotLight.s"
-	@echo "... src/Plane.o"
-	@echo "... src/Plane.i"
-	@echo "... src/Plane.s"
 	@echo "... src/Transformations/Rotation.o"
 	@echo "... src/Transformations/Rotation.i"
 	@echo "... src/Transformations/Rotation.s"

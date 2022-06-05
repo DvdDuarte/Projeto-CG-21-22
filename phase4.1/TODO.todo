@@ -1,9 +1,11 @@
-- [] Perceber e arranjar o pq de certos tipos de objetos nao estarem a ser guardados nos ficheiros
+- [X] Perceber e arranjar o pq de certos tipos de objetos nao estarem a ser guardados nos ficheiros
 - [X] Perceber o pq do plano so desenhar um quadrante sendo que faltam mais
-- [] Testar Luzes
-- [] Testar Cores
-- [] Testar os extras que temos
-- [] Adicionar Extras ao Relatorio
+- [] Ajustar posicao dos objetos
+- [] Ajustar escala dos objetos
+- [] Testar Luzes, falta
+- [] Testar Cores, parece bem
+- [] Testar o torus, e os outros extras
+- [] Adicionar Extras ao Relatorio!
 - [] Garantir que sabemos tudo o que esta a acontecer aqui
 - [] Tentar arranjar o scale do sistema solar
 

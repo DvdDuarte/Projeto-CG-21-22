@@ -69,7 +69,7 @@ float Bezier::distance(float x,float y,float z) {
 }
 
 void Bezier::read_patches() {
-    
+    cout<<"problem here"<<endl;
 	int numPoints;
 	string p;
 	string x,y,z;
@@ -77,8 +77,9 @@ void Bezier::read_patches() {
 	map<int,vector<int>> index_patches;
 	vector<Point3D> patch_points;
 
-    ifstream fp("../patches/" + patch_file);
+    ifstream fp("patches/" + patch_file);
 
+	
 	fp >> numPatches;
 	for (int i=0;i<numPatches;i++) {
 		for (int j=0;j<16;j++) {
@@ -209,6 +210,7 @@ void Bezier::calculatePoints(vector<vector<Point3D>> preCalculatedMatrix,int& in
 }
 
 shared_ptr<Model> Bezier::generate() {
+	cout<<"problem here"<<endl;
 	read_patches();
 	int indexPoint=0;
 	vector<Point3D> vertixes;

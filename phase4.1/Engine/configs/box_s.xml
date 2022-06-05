@@ -9,12 +9,13 @@
         <light type="directional" dirx="1" diry="1" dirz="1" />
     </lights>
     <group>
-         <rotate angle="90" x="0" y="0" z="1"/>
+         <!--<rotate angle="90" x="0" y="0" z="1"/>-->
         <group>
-            <translate x="1" y="0" z="0"/>
+            <translate x="0" y="0" z="0"/><!--x="1"-->
             <models>
-                <model file="box.3d" /> 
-                	<texture file="texToTest.jpg" />
+                <model file="box_nt.3d"> 
+                	<texture file="box.jpg" />
+                </model> 
             </models>
 	    </group>
     </group>

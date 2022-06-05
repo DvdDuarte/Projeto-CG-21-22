@@ -147,7 +147,8 @@ void calcPoint(float *m, float*p, float *res) {
 }
 
 // trans[0] == 0 -> Translation else trans[0] == 1 -> Scale else -> Rotation
-void Group::updateFigures(std::vector<float> trans) {
+void Group::updateFigures(vector<float> trans) {
+    //cout<< "tipo de transformation"<<trans[0]<<endl;
     float m[16];
     float centre[4] = {0,0,0,1};
     if(trans.size() != 0) {

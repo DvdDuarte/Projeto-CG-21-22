@@ -161,7 +161,7 @@ void xmlContent::parseColor(Point3D colors[],float& shininess, XMLElement * mode
             shin_aux = shin->Attribute("value");
         } 
     }
-    cout << er << endl;
+    //cout << er << endl;
     //diffuse
     double dred   = color_exists ? atof(dr) : 200;
     double dgreen = color_exists ? atof(dg) : 200;
@@ -226,64 +226,74 @@ void xmlContent::loadTexture(string s) {
 
 Group xmlContent::parseGroup(XMLElement * group) {
     Group g = Group();
-    XMLElement * translation = group->FirstChildElement("translate");
-    XMLElement * rotation = group->FirstChildElement("rotate");
-    XMLElement * scale = group->FirstChildElement("scale");
-    if (translation) {
-        shared_ptr<Transform> t;
-        if (const char * timeString = translation->Attribute("time")) {
-            double time = atof(timeString);
-            vector<Point3D> vector_points;
-            for (XMLElement * point = translation->FirstChildElement("point");point;point = point->NextSiblingElement()) {
-                vector_points.push_back(readPoint(point));
+    XMLElement * transform= group->FirstChildElement("transform");
+    if(transform){
+
+        cout<<"transform: "<< transform->Name()<<endl;
+
+        XMLElement * translation = transform->FirstChildElement("translate");
+        XMLElement * rotation    = transform->FirstChildElement("rotate");
+        XMLElement * scale       = transform->FirstChildElement("scale");
+        cout<<"problema aqui"<<endl;
+        if (translation) {
+            //shared_ptr<Transform> t;
+            shared_ptr<Translation> t;
+            if (const char * timeString = translation->Attribute("time")) {
+                double time = atof(timeString);
+                vector<Point3D> vector_points;
+                for (XMLElement * point = translation->FirstChildElement("point");point;point = point->NextSiblingElement()) {
+                    vector_points.push_back(readPoint(point));
+                }
+                t = make_shared<Translation>(time,vector_points);
             }
-            t = make_shared<Translation>(time,vector_points);
-        }
-        else {
-            Point3D point = readPoint(translation);
-            t = make_shared<Translation>(point.x,point.y,point.z);
-        }
-        g.addTransform(t);
-        cout << "ate aqui tudo bem 6" << endl;
-    }
-      
-    if (rotation) {
-        shared_ptr<Rotation> r;
-        const char * readAngle;
-        const char * readTime;
+            else {
+                Point3D point = readPoint(translation);
+                t = make_shared<Translation>(point.x,point.y,point.z);
+            }
+            g.addTransform(t);
 
-        const char * readX=rotation->Attribute("x");
-        const char * readY=rotation->Attribute("y");
-        const char * readZ=rotation->Attribute("z");
-        
-        double axisx = readX ? atof(readX) : 0;
-        double axisy = readY ? atof(readY) : 0;
-        double axisz = readZ ? atof(readZ) : 0;
-
-        if (readTime=rotation->Attribute("time")) {
-            const char * clockwise = rotation->Attribute("clockwise");
-            r = make_shared<Rotation>(atof(readTime),string(clockwise).size(),axisx,axisy,axisz);
         }
-        else {
-            readAngle=rotation->Attribute("angle");
-            r = make_shared<Rotation>(atof(readAngle),axisx,axisy,axisz);
-        }
-        g.addTransform(r);
-        cout << "ate aqui tudo bem 7" << endl;
-    }
-    if (scale) {
-        cout << "ate aqui tudo bem 8" << endl;
-        const char * readX = scale->Attribute("x");
-        const char * readY = scale->Attribute("y");
-        const char * readZ = scale->Attribute("z");
-        double scalex = readX ? atof(readX) : 1;
-        double scaley = readY ? atof(readY) : 1;
-        double scalez = readZ ? atof(readZ) : 1;
-        shared_ptr<Scale> s = make_shared<Scale>(scalex,scaley,scalez);
-        g.addTransform(s);
-        
-    }
 
+        if (rotation) {
+            shared_ptr<Rotation> r;
+            const char * readAngle;
+            const char * readTime;
+
+            const char * readX=rotation->Attribute("x");
+            const char * readY=rotation->Attribute("y");
+            const char * readZ=rotation->Attribute("z");
+
+            double axisx = readX ? atof(readX) : 0;
+            double axisy = readY ? atof(readY) : 0;
+            double axisz = readZ ? atof(readZ) : 0;
+
+            if (readTime=rotation->Attribute("time")) {
+                const char * clockwise = rotation->Attribute("clockwise");
+                r = make_shared<Rotation>(atof(readTime),string(clockwise).size(),axisx,axisy,axisz);
+            }
+            else {
+                readAngle=rotation->Attribute("angle");
+                r = make_shared<Rotation>(atof(readAngle),axisx,axisy,axisz);
+            }
+            g.addTransform(r);
+
+        }
+        if (scale) {
+
+            const char * readX = scale->Attribute("x");
+            const char * readY = scale->Attribute("y");
+            const char * readZ = scale->Attribute("z");
+            double scalex = readX ? atof(readX) : 1;
+            double scaley = readY ? atof(readY) : 1;
+            double scalez = readZ ? atof(readZ) : 1;
+            shared_ptr<Scale> s = make_shared<Scale>(scalex,scaley,scalez);
+
+            cout<<"scalex: "<<scalex<<"scaley: "<<scaley<<"scalez: "<<scalez<<endl;
+
+            g.addTransform(s);
+
+        }
+    }
     XMLElement * models = group->FirstChildElement("models");
     if (models) {
 
@@ -293,21 +303,8 @@ Group xmlContent::parseGroup(XMLElement * group) {
             float shininess;
             parseColor(colors,shininess,model);
             int texID = 0;
-            /*
-            if(model->Attribute("texture")){
-                
-                const char * texture = model->Attribute("texture");
-                
-                string text_file(texture);
-                if(textures.find(text_file) == textures.end()){
-                    
-                    loadTexture(text_file);
-                    
-                }
-                
-                texID = textures[text_file];
-            }
-            */
+            string fileModel(model->Attribute("file"));
+          
             XMLElement * texture_elem;
             cout << BOLD_CYAN << "Model Name: " << RESET << model->Name() << endl;
             if(model->FirstChildElement("texture")){
@@ -329,9 +326,9 @@ Group xmlContent::parseGroup(XMLElement * group) {
 
             }
 
-           // cout << "ate aqui esta tudo bem 9" << endl;
-            g.addFile(string(model->Attribute("file")),colors,shininess,texID);
-            //cout << "ate aqui tudo bem 10" << endl;
+           
+            g.addFile(fileModel,colors,shininess,texID);
+        
         }
     
     }

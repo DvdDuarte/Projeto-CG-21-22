@@ -11,7 +11,7 @@
 #include "../include/VBO.h"
 #include "../include/Lights/Light.h"
 #include "../include/XMLParser/xmlParser.h"
-#include "../include/Frustum.h"
+
 #include "../include/colors.h"
 #include <string>
 #define _USE_MATH_DEFINES
@@ -20,13 +20,14 @@
 #include <sstream>
 #include <unordered_map>
 #include <memory>
+
 using namespace std;
 
 bool Translation::showCurves=false;
 bool Transform::paused=false;
 float Transform::time_multiplier=1;
 int Transform::retroceder=1;
-bool axis=false,wire=true,firstCursor=true,enableFrustum = false;
+bool axis=false,wire=true,firstCursor=true;
 unordered_map<string,VBO> buffers;
 vector<Group> groups;
 vector<shared_ptr<Light>> lights;
@@ -45,7 +46,7 @@ Point3D camPosition(200,0,109.5);
 Point3D upVec(0,1,0);
 Point3D proj(45.0f , 1.0f ,10000.0f);//fov,near,far
 bool key_states[256];
-Frustum frustum;//tentar tirar
+
 float triangles = 0;
 
 
@@ -94,6 +95,7 @@ void drawAxis() {
 }
 
 void drawFigure(Figure figure) {
+
 	VBO vbo = buffers["models/"+figure.filename];
 	glBindBuffer(GL_ARRAY_BUFFER,vbo.vertixes);
  	glVertexPointer(3,GL_FLOAT,0,0);
@@ -110,23 +112,25 @@ void drawFigure(Figure figure) {
 	glColor3f(0,0,0);
 	triangles += (vbo.indexCount) / 3.0;
 	figure.reset();
+
 }
 
 void drawFigures(Group g) {
 	glPushMatrix();
+	
 	for (auto& transform : g.transformations) {
+		//cout<< "DRAWFIGURES 1"<<endl;
 		auto tr = transform->applyTransform();
+	//	cout << BI_BRIGHT_BLUE << "transformation" << tr[0]<< endl;
+		
 		g.updateFigures(tr);
 	}
 	for (auto& modelFileName : g.models) {
-		if(enableFrustum) {
-			if(frustum.sphereInFrustum(modelFileName.second.centerPoint,modelFileName.second.radius) == Frustum::INSIDE)
-				drawFigure(modelFileName.second);
-		}
-		else
+
 			drawFigure(modelFileName.second);
 	}
 	for (auto& group : g.nestedGroups) {
+		//cout<< "DRAWFIGURES 3"<<endl;
 		drawFigures(group);
 	}
 	g.isDrawn = true;
@@ -170,7 +174,6 @@ void frameRate(){
 void renderScene(void) {
 	processKeyboardInput();
 	triangles = 0;
-	frustum.calculatePlanes();
 	// clear buffers
 	glClearColor(0.0f,0.0f,0.0f,0.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -216,7 +219,6 @@ void changeSize(int w, int h) {
 	// Set perspective
 	gluPerspective(proj.x ,ratio, proj.y ,proj.z);
 	
-	frustum.calculatePlanes();//tentar tirar isso
 
 	// return to the model view matrix mode
 	glMatrixMode(GL_MODELVIEW);
@@ -373,7 +375,6 @@ void readConfig(int argc, char **argv) {
 	upVec = Point3D(camera_def[2]);
 	proj = Point3D(camera_def[3]);
 	
-	//camera=parser.getCamera();
 	
 }
 
@@ -392,8 +393,6 @@ void registerKeyDown(unsigned char key, int x, int y) {
 		Transform::paused=!Transform::paused;
 	if (key=='r')
 		Transform::retroceder=-1*Transform::retroceder;
-	if (key=='v')
-		enableFrustum = !enableFrustum;
 }
 
 void registerKeyUp(unsigned char key, int x, int y) {
@@ -409,8 +408,8 @@ void printCommands() {
 		SpaceBar - Pausar/Retomar simulação
 		F G - Diminuir/Aumentar velocidade da câmara
 		P - Mostrar PolygonMode
-		R - Retroceder Simulação)
-		V - Ativar/Desativar Frustum)";
+		R - Retroceder Simulação)";
+
 	cout << commands << endl;
 }
 
