@@ -147,7 +147,7 @@
                 </transform>-->
                 <models>-->
                     <model file="torus_solar_asteroids.3d"> <!-- ./generator torus 18 1 100 100 torus_solar_asteroids.3d-->
-                        <texture file="texAsteroid.jpg"/>
+                        <texture file="texAsteroidRing.jpg"/>
                     </model>
                 </models>
             </group>
