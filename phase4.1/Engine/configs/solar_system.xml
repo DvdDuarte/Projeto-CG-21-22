@@ -1,0 +1,230 @@
+<!-- directional spotlight point
+<light type="point" posX="0" posY="10" posZ="0" />
+<light type="directional" dirX="1" dirY="1" dirZ="1"/>
+<light type="spotlight" posX="0" posY="10" posZ="0"
+dirX="1" dirY="1" dirZ="1"
+cutoff="45" />
+-->
+
+<world>
+    <camera> 
+        <position x="40" y="40" z="40" />
+	    <lookAt x="0" y="0" z="0" />
+	    <up x="0" y="1" z="0" /> <!-- optional, use these values as default-->
+        <projection fov="60" near="1" far="1000" /> <!-- optional, use these values as default-->
+    </camera>
+
+    <lights>
+        <light type="directional" dirx="1" diry="1" dirz="1" />
+    </lights>
+
+    <group>
+        <transform>
+            <scale x="0.2" y="0.2" z="0.2"/>
+        </transform>
+            <group>
+            <transform>
+                <scale x="20" y="20" z="20"/>
+            </transform>
+        
+            <models>
+                <model file="sphere_solar.3d"> <!-- ./generator sphere 1 100 100 sphere_solar.3d-->
+                    <texture file="texSun.jpg"/>
+                </model>
+            </models>
+
+            <group> <!-- Cometa-->
+                <transform>
+                    <scale x="0.089" y="0.089" z="0.089"/>
+                    <rotate angle="-0.1" x="0" y="1" z="0"/>
+                    <translate time="500" align="True">
+                        <point x = "15" y = "0" z = "30" />
+		    			<point x = "-10" y = "0" z = "30" />
+                        <point x = "-10" y = "0"  z = "-30" />
+		    			<point x = "15" y = "0" z = "-30" />
+                    </translate>
+                </transform>
+                <models>
+                    <model file="bezier_solar.3d"> <!-- ./generator patch teapot.patch 10 bezier_solar.3d-->
+                        <texture file="teapot.jpg"/>
+                    </model>
+                </models>
+            </group>
+    
+            <group> <!-- Mercurio-->
+                <transform>
+                    <scale x="0.1" y="0.1" z="0.1"/>
+                    <rotate angle="-0.1" x="0" y="1" z="0"/>
+                    <translate time="15" align="True">
+		    			<point x = "0" y = "0" z = "2.5" />
+                        <point x = "2.5" y = "0" z = "0" />
+		    			<point x = "0" y = "0" z = "-2.5" />
+		    			<point x = "-2.5" y = "0" z = "0" />
+                    </translate>
+                </transform>
+                <models>
+                    <model file="sphere_solar.3d"> <!-- ./generator sphere 1 100 100 sphere_solar.3d-->
+                        <texture file="texMercury.jpg"/>
+                    </model>
+                </models>
+            </group>
+    
+            <group> <!-- Venus-->
+                <transform>
+                    <scale x="0.2" y="0.2" z="0.2"/>
+                    <rotate angle="-117" x="0" y="1" z="0"/>
+                    <translate time="37" align="True">
+		    			<point x = "0" y = "0" z = "5" />
+                        <point x = "5" y = "0" z = "0" />
+		    			<point x = "0" y = "0" z = "-5" />
+		    			<point x = "-5" y = "0" z = "0" />
+                    </translate>
+                </transform>
+                <models>
+                    <model file="sphere_solar.3d"> <!-- ./generator sphere 1 100 100 sphere_solar.3d-->
+                        <texture file="texVenus.jpg"/>
+                    </model>
+                </models>
+            </group>
+    
+            <group> <!-- Terra-->
+                <transform>
+                    <scale x="0.25" y="0.25" z="0.25"/>
+                    <rotate angle="-23" x="0" y="1" z="0"/>
+                    <translate time="60" align="True">
+		    			<point x = "0" y = "0" z = "7.5" />
+                        <point x = "7.5" y = "0" z = "0" />
+		    			<point x = "0" y = "0" z = "-7.5" />
+		    			<point x = "-7.5" y = "0" z = "0" />
+                    </translate>
+                </transform>
+                <models>
+                    <model file="sphere_solar.3d"> <!-- ./generator sphere 1 100 100 sphere_solar.3d-->
+                        <texture file="texEarth.jpg"/>
+                    </model>
+                </models>
+                <group> <!-- Lua-->
+                    <transform>
+                        <scale x="0.4" y="0.4" z="0.4"/>
+                        <translate time="0.17" align="True">
+		    			    <point x = "0" y = "0" z = "2.5" />
+                            <point x = "2.5" y = "0" z = "0" />
+		    			    <point x = "0" y = "0" z = "-2.5" />
+		    			    <point x = "-2.5" y = "0" z = "0" />
+                        </translate>
+                    </transform>
+                    <models>
+                        <model file="sphere_solar.3d"> <!-- ./generator sphere 1 100 100 sphere_solar.3d-->
+                            <texture file="texEarthMoon.jpg"/>
+                        </model>
+                    </models>
+                </group>
+            </group>
+    
+            <group> <!-- Marte-->
+                <transform>
+                    <scale x="0.17" y="0.17" z="0.17"/>
+                    <rotate angle="-25" x="0" y="1" z="0"/>
+                    <translate time="113" align="True">
+		    			<point x = "0" y = "0" z = "10" />
+                        <point x = "10" y = "0" z = "0" />
+		    			<point x = "0" y = "0" z = "-10" />
+		    			<point x = "-10" y = "0" z = "0" />
+                    </translate>
+                </transform>
+                <models>
+                    <model file="sphere_solar.3d"> <!-- ./generator sphere 1 100 100 sphere_solar.3d-->
+                        <texture file="texMars.jpg"/>
+                    </model>
+                </models>
+            </group>
+    
+            <group> <!-- Júpiter-->
+                <transform>
+                    <scale x="0.6" y="0.6" z="0.6"/>
+                    <rotate angle="-3" x="0" y="1" z="0"/>
+                    <translate time="720" align="True">
+		    			<point x = "0" y = "0" z = "17.5" />
+                        <point x = "17.5" y = "0" z = "0" />
+		    			<point x = "0" y = "0" z = "-17.5" />
+		    			<point x = "-17.5" y = "0" z = "0" />
+                    </translate>
+                </transform>
+                <models>
+                    <model file="sphere_solar.3d"> <!-- ./generator sphere 1 100 100 sphere_solar.3d-->
+                        <texture file="texJupiter.jpg"/>
+                    </model>
+                </models>
+            </group>
+    
+            <group> <!-- Saturno-->
+                <transform>
+                    <scale x="0.489" y="0.489" z="0.489"/>
+                    <rotate angle="-27" x="0" y="1" z="0"/>
+                    <translate time="1740" align="True">
+		    			<point x = "0" y = "0" z = "20" />
+                        <point x = "20" y = "0" z = "0" />
+		    			<point x = "0" y = "0" z = "-20" />
+		    			<point x = "-20" y = "0" z = "0" />
+                    </translate>
+                </transform>
+                <models>
+                    <model file="sphere_solar.3d"> <!-- ./generator sphere 1 100 100 sphere_solar.3d-->
+                        <texture file="texSaturn.jpg"/>
+                    </model>
+                </models>
+    
+                <group> <!-- Anel-->
+                    <transform>
+                        <scale x="0.4" y="0.4" z="0.4"/>
+                    </transform>
+                    <models>
+                        <model file="torus_solar.3d"> <!-- ./generator torus 4 3 100 2 torus_solar.3d-->
+                            <texture file="texSaturnRing.png"/>
+                        </model>
+                    </models>
+                </group>
+    
+            </group>
+    
+            <group> <!-- Urano-->
+                <transform>
+                    <scale x="0.389" y="0.389" z="0.389"/>
+                    <rotate angle="-98" x="0" y="1" z="0"/>
+                    <translate time="5040" align="True">
+		    			<point x = "0" y = "0" z = "22.5" />
+                        <point x = "22.5" y = "0" z = "0" />
+		    			<point x = "0" y = "0" z = "-22.5" />
+		    			<point x = "-22.5" y = "0" z = "0" />
+                    </translate>
+                </transform>
+                <models>
+                    <model file="sphere_solar.3d"> <!-- ./generator sphere 1 100 100 sphere_solar.3d-->
+                        <texture file="texUranus.jpg"/>
+                    </model>
+                </models>
+            </group>
+    
+            <group> <!-- Neptuno-->
+                <transform>
+                    <scale x="0.375" y="0.375" z="0.375"/>
+                    <rotate angle="-30" x="0" y="1" z="0"/>
+                    <translate time="9900" align="True">
+		    		    <point x = "0" y = "0" z = "25" />
+                        <point x = "25" y = "0" z = "0" />
+		    		    <point x = "0" y = "0" z = "-25" />
+		    		    <point x = "-25" y = "0" z = "0" />
+                    </translate>
+                </transform>
+                <models>
+                    <model file="sphere_solar.3d"> <!-- ./generator sphere 1 100 100 sphere_solar.3d-->
+                        <texture file="texNeptune.jpg"/>
+                    </model>
+                </models>
+            </group>
+    
+        </group>
+    
+    </group>
+    
+</world>    
