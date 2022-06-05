@@ -18,10 +18,15 @@ Figure::Figure() {
 }
 
 Figure::Figure(const Figure& fig) {
+    
     diffR = fig.diffR;diffG = fig.diffG;diffB = fig.diffB;
+    
     specR = fig.specR;specG = fig.specG;specB = fig.specB;
+    
     emissR = fig.emissR;emissG = fig.emissG;emissB = fig.emissB;
+    
     ambR = fig.ambR;ambG = fig.ambG;ambB = fig.ambB;
+    
     shininess = fig.shininess;
     filename = fig.filename;
     texID = fig.texID;
@@ -32,10 +37,15 @@ Figure::Figure(const Figure& fig) {
 // Point3D maps x,y,z to R,G,B
 
 Figure::Figure(int textureG, Point3D diff,Point3D spec,float shin,Point3D amb, Point3D emiss,std::string filenameG,float radiusG) {
+    
     diffR = diff.x;diffG = diff.y;diffB = diff.z;
+    
     emissR= emiss.x;emissG = emiss.y;emissB = emiss.z;
+    
     specR = spec.x;specG = spec.y;specB = spec.z;
+    
     ambR = amb.x;ambG = amb.y;ambB = amb.z;
+    
     shininess=shin;
     filename=filenameG;
     texID = textureG;
@@ -78,7 +88,7 @@ void Figure::reset() {
     float defemiss[4] = {0.0,0.0,0.0,1.0};
     float defspec[4] = {0.0,0.0,0.0,1.0};
     float defshin = 0;
-    
+
     glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT,defamb);
     glMaterialfv(GL_FRONT_AND_BACK,GL_DIFFUSE,defdiff);
     glMaterialfv(GL_FRONT_AND_BACK,GL_EMISSION,defemiss);
