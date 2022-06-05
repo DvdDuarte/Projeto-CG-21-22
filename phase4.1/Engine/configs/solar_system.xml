@@ -1,11 +1,3 @@
-<!-- directional spotlight point
-<light type="point" posX="0" posY="10" posZ="0" />
-<light type="directional" dirX="1" dirY="1" dirZ="1"/>
-<light type="spotlight" posX="0" posY="10" posZ="0"
-dirX="1" dirY="1" dirZ="1"
-cutoff="45" />
--->
-
 <world>
     <camera> 
         <position x="40" y="40" z="40" />
@@ -16,6 +8,7 @@ cutoff="45" />
 
     <lights>
         <light type="point" posx="0" posy="0" posz="0" />
+        <!--light type="directional" dirx="1" diry="1" dirz="1"/-->
     </lights>
 
     <group>
@@ -133,7 +126,7 @@ cutoff="45" />
                 <transform>
                     <scale x="0.17" y="0.17" z="0.17"/>
                     <rotate angle="-25" x="0" y="1" z="0"/>
-                    <translate time="113" align="True">
+                    <translate time="90" align="True">
 		    			<point x = "0" y = "0" z = "10" />
                         <point x = "10" y = "0" z = "0" />
 		    			<point x = "0" y = "0" z = "-10" />
@@ -163,7 +156,7 @@ cutoff="45" />
                 <transform>
                     <scale x="0.6" y="0.6" z="0.6"/>
                     <rotate angle="-3" x="0" y="1" z="0"/>
-                    <translate time="720" align="True">
+                    <translate time="110" align="True">
 		    			<point x = "0" y = "0" z = "17.5" />
                         <point x = "17.5" y = "0" z = "0" />
 		    			<point x = "0" y = "0" z = "-17.5" />
@@ -181,7 +174,7 @@ cutoff="45" />
                 <transform>
                     <scale x="0.489" y="0.489" z="0.489"/>
                     <rotate angle="-27" x="0" y="1" z="0"/>
-                    <translate time="1740" align="True">
+                    <translate time="150" align="True">
 		    			<point x = "0" y = "0" z = "20" />
                         <point x = "20" y = "0" z = "0" />
 		    			<point x = "0" y = "0" z = "-20" />
@@ -200,7 +193,7 @@ cutoff="45" />
                         <rotate angle="30" x="1" y="0" z="0"/>
                     </transform>
                     <models>
-                        <model file="torus_solar.3d"> <!-- ./generator torus 4 3 100 2 torus_solar.3d-->
+                        <model file="torus_saturn_ring_solar.3d"> <!-- ./generator torus 4 3 100 2 torus_saturn_ring_solar.3d-->
                             <texture file="texSaturnRing.png"/>
                         </model>
                     </models>
@@ -212,7 +205,7 @@ cutoff="45" />
                 <transform>
                     <scale x="0.389" y="0.389" z="0.389"/>
                     <rotate angle="-98" x="0" y="1" z="0"/>
-                    <translate time="5040" align="True">
+                    <translate time="170" align="True">
 		    			<point x = "0" y = "0" z = "22.5" />
                         <point x = "22.5" y = "0" z = "0" />
 		    			<point x = "0" y = "0" z = "-22.5" />
@@ -230,7 +223,7 @@ cutoff="45" />
                 <transform>
                     <scale x="0.375" y="0.375" z="0.375"/>
                     <rotate angle="-30" x="0" y="1" z="0"/>
-                    <translate time="9900" align="True">
+                    <translate time="200" align="True">
 		    		    <point x = "0" y = "0" z = "25" />
                         <point x = "25" y = "0" z = "0" />
 		    		    <point x = "0" y = "0" z = "-25" />
@@ -248,4 +241,4 @@ cutoff="45" />
     
     </group>
     
-</world>    
+</world> 

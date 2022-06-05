@@ -1,11 +1,21 @@
 <world>
+    <camera> 
+        <position x="40" y="40" z="40" />
+	    <lookAt x="0" y="0" z="0" />
+	    <up x="0" y="1" z="0" /> <!-- optional, use these values as default-->
+        <projection fov="60" near="1" far="1000" /> <!-- optional, use these values as default-->
+    </camera>
     <lights>
         <light type="directional" dirx="1" diry="1" dirz="1" />
     </lights>
     <group>
+        <transform>
+            <scale x="30" y="30" z="30"/>
+            <rotate angle="-90" x="0" y="1" z="0"/>
+        </transform>
         <models>
             <model file="sphere.3d">
-                <texture file="texSun.jpg"/>
+                <texture file="texAsteroidRing.jpg"/>
                 <color>
                     <diffuse R="200" G="200" B="200"/>
                     <ambient R="50" G="50" B="50"/>

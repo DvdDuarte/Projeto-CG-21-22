@@ -396,8 +396,7 @@ void printCommands() {
 		WASD - Mover Câmara
 		Q - Mostrar Eixos"
 		C - Mostrar Trajetórias
-		'+' '-' - Aumentar/Diminuir velocidade da simulação
-		SpaceBar - Pausar/Retomar simulação
+		M - Pausar/Retomar simulação
 		F G - Diminuir/Aumentar velocidade da câmara
 		P - Mostrar PolygonMode
 		R - Retroceder Simulação)";
