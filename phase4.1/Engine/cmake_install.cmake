@@ -1,4 +1,4 @@
-# Install script for directory: /home/sleiman/Projeto-CG-21-22/phase4.1/Engine
+# Install script for directory: /home/sdaslira/Projeto-CG-21-22/phase4.1/Engine
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/sleiman/Projeto-CG-21-22/phase4.1/Engine/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/sdaslira/Projeto-CG-21-22/phase4.1/Engine/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

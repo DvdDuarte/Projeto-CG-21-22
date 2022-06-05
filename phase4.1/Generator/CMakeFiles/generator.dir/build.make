@@ -44,19 +44,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/bin/cmake
+CMAKE_COMMAND = /home/sdaslira/.local/lib/python3.8/site-packages/cmake/data/bin/cmake
 
 # The command to remove a file.
-RM = /usr/bin/cmake -E rm -f
+RM = /home/sdaslira/.local/lib/python3.8/site-packages/cmake/data/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/sleiman/Projeto-CG-21-22/phase4.1/Generator
+CMAKE_SOURCE_DIR = /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/sleiman/Projeto-CG-21-22/phase4.1/Generator
+CMAKE_BINARY_DIR = /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator
 
 # Include any dependencies generated for this target.
 include CMakeFiles/generator.dir/depend.make
@@ -72,142 +72,142 @@ include CMakeFiles/generator.dir/flags.make
 CMakeFiles/generator.dir/src/main.cpp.o: CMakeFiles/generator.dir/flags.make
 CMakeFiles/generator.dir/src/main.cpp.o: src/main.cpp
 CMakeFiles/generator.dir/src/main.cpp.o: CMakeFiles/generator.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sleiman/Projeto-CG-21-22/phase4.1/Generator/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/generator.dir/src/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/generator.dir/src/main.cpp.o -MF CMakeFiles/generator.dir/src/main.cpp.o.d -o CMakeFiles/generator.dir/src/main.cpp.o -c /home/sleiman/Projeto-CG-21-22/phase4.1/Generator/src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/generator.dir/src/main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/generator.dir/src/main.cpp.o -MF CMakeFiles/generator.dir/src/main.cpp.o.d -o CMakeFiles/generator.dir/src/main.cpp.o -c /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/main.cpp
 
 CMakeFiles/generator.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/generator.dir/src/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sleiman/Projeto-CG-21-22/phase4.1/Generator/src/main.cpp > CMakeFiles/generator.dir/src/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/main.cpp > CMakeFiles/generator.dir/src/main.cpp.i
 
 CMakeFiles/generator.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/generator.dir/src/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sleiman/Projeto-CG-21-22/phase4.1/Generator/src/main.cpp -o CMakeFiles/generator.dir/src/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/main.cpp -o CMakeFiles/generator.dir/src/main.cpp.s
 
 CMakeFiles/generator.dir/src/Box.cpp.o: CMakeFiles/generator.dir/flags.make
 CMakeFiles/generator.dir/src/Box.cpp.o: src/Box.cpp
 CMakeFiles/generator.dir/src/Box.cpp.o: CMakeFiles/generator.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sleiman/Projeto-CG-21-22/phase4.1/Generator/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/generator.dir/src/Box.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/generator.dir/src/Box.cpp.o -MF CMakeFiles/generator.dir/src/Box.cpp.o.d -o CMakeFiles/generator.dir/src/Box.cpp.o -c /home/sleiman/Projeto-CG-21-22/phase4.1/Generator/src/Box.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/generator.dir/src/Box.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/generator.dir/src/Box.cpp.o -MF CMakeFiles/generator.dir/src/Box.cpp.o.d -o CMakeFiles/generator.dir/src/Box.cpp.o -c /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/Box.cpp
 
 CMakeFiles/generator.dir/src/Box.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/generator.dir/src/Box.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sleiman/Projeto-CG-21-22/phase4.1/Generator/src/Box.cpp > CMakeFiles/generator.dir/src/Box.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/Box.cpp > CMakeFiles/generator.dir/src/Box.cpp.i
 
 CMakeFiles/generator.dir/src/Box.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/generator.dir/src/Box.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sleiman/Projeto-CG-21-22/phase4.1/Generator/src/Box.cpp -o CMakeFiles/generator.dir/src/Box.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/Box.cpp -o CMakeFiles/generator.dir/src/Box.cpp.s
 
 CMakeFiles/generator.dir/src/Sphere.cpp.o: CMakeFiles/generator.dir/flags.make
 CMakeFiles/generator.dir/src/Sphere.cpp.o: src/Sphere.cpp
 CMakeFiles/generator.dir/src/Sphere.cpp.o: CMakeFiles/generator.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sleiman/Projeto-CG-21-22/phase4.1/Generator/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/generator.dir/src/Sphere.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/generator.dir/src/Sphere.cpp.o -MF CMakeFiles/generator.dir/src/Sphere.cpp.o.d -o CMakeFiles/generator.dir/src/Sphere.cpp.o -c /home/sleiman/Projeto-CG-21-22/phase4.1/Generator/src/Sphere.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/generator.dir/src/Sphere.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/generator.dir/src/Sphere.cpp.o -MF CMakeFiles/generator.dir/src/Sphere.cpp.o.d -o CMakeFiles/generator.dir/src/Sphere.cpp.o -c /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/Sphere.cpp
 
 CMakeFiles/generator.dir/src/Sphere.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/generator.dir/src/Sphere.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sleiman/Projeto-CG-21-22/phase4.1/Generator/src/Sphere.cpp > CMakeFiles/generator.dir/src/Sphere.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/Sphere.cpp > CMakeFiles/generator.dir/src/Sphere.cpp.i
 
 CMakeFiles/generator.dir/src/Sphere.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/generator.dir/src/Sphere.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sleiman/Projeto-CG-21-22/phase4.1/Generator/src/Sphere.cpp -o CMakeFiles/generator.dir/src/Sphere.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/Sphere.cpp -o CMakeFiles/generator.dir/src/Sphere.cpp.s
 
 CMakeFiles/generator.dir/src/Cone.cpp.o: CMakeFiles/generator.dir/flags.make
 CMakeFiles/generator.dir/src/Cone.cpp.o: src/Cone.cpp
 CMakeFiles/generator.dir/src/Cone.cpp.o: CMakeFiles/generator.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sleiman/Projeto-CG-21-22/phase4.1/Generator/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/generator.dir/src/Cone.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/generator.dir/src/Cone.cpp.o -MF CMakeFiles/generator.dir/src/Cone.cpp.o.d -o CMakeFiles/generator.dir/src/Cone.cpp.o -c /home/sleiman/Projeto-CG-21-22/phase4.1/Generator/src/Cone.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/generator.dir/src/Cone.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/generator.dir/src/Cone.cpp.o -MF CMakeFiles/generator.dir/src/Cone.cpp.o.d -o CMakeFiles/generator.dir/src/Cone.cpp.o -c /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/Cone.cpp
 
 CMakeFiles/generator.dir/src/Cone.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/generator.dir/src/Cone.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sleiman/Projeto-CG-21-22/phase4.1/Generator/src/Cone.cpp > CMakeFiles/generator.dir/src/Cone.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/Cone.cpp > CMakeFiles/generator.dir/src/Cone.cpp.i
 
 CMakeFiles/generator.dir/src/Cone.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/generator.dir/src/Cone.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sleiman/Projeto-CG-21-22/phase4.1/Generator/src/Cone.cpp -o CMakeFiles/generator.dir/src/Cone.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/Cone.cpp -o CMakeFiles/generator.dir/src/Cone.cpp.s
 
 CMakeFiles/generator.dir/src/Plane.cpp.o: CMakeFiles/generator.dir/flags.make
 CMakeFiles/generator.dir/src/Plane.cpp.o: src/Plane.cpp
 CMakeFiles/generator.dir/src/Plane.cpp.o: CMakeFiles/generator.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sleiman/Projeto-CG-21-22/phase4.1/Generator/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/generator.dir/src/Plane.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/generator.dir/src/Plane.cpp.o -MF CMakeFiles/generator.dir/src/Plane.cpp.o.d -o CMakeFiles/generator.dir/src/Plane.cpp.o -c /home/sleiman/Projeto-CG-21-22/phase4.1/Generator/src/Plane.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/generator.dir/src/Plane.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/generator.dir/src/Plane.cpp.o -MF CMakeFiles/generator.dir/src/Plane.cpp.o.d -o CMakeFiles/generator.dir/src/Plane.cpp.o -c /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/Plane.cpp
 
 CMakeFiles/generator.dir/src/Plane.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/generator.dir/src/Plane.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sleiman/Projeto-CG-21-22/phase4.1/Generator/src/Plane.cpp > CMakeFiles/generator.dir/src/Plane.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/Plane.cpp > CMakeFiles/generator.dir/src/Plane.cpp.i
 
 CMakeFiles/generator.dir/src/Plane.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/generator.dir/src/Plane.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sleiman/Projeto-CG-21-22/phase4.1/Generator/src/Plane.cpp -o CMakeFiles/generator.dir/src/Plane.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/Plane.cpp -o CMakeFiles/generator.dir/src/Plane.cpp.s
 
-CMakeFiles/generator.dir/home/sleiman/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.o: CMakeFiles/generator.dir/flags.make
-CMakeFiles/generator.dir/home/sleiman/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.o: /home/sleiman/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp
-CMakeFiles/generator.dir/home/sleiman/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.o: CMakeFiles/generator.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sleiman/Projeto-CG-21-22/phase4.1/Generator/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/generator.dir/home/sleiman/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/generator.dir/home/sleiman/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.o -MF CMakeFiles/generator.dir/home/sleiman/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.o.d -o CMakeFiles/generator.dir/home/sleiman/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.o -c /home/sleiman/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp
+CMakeFiles/generator.dir/home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.o: CMakeFiles/generator.dir/flags.make
+CMakeFiles/generator.dir/home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.o: /home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp
+CMakeFiles/generator.dir/home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.o: CMakeFiles/generator.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/generator.dir/home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/generator.dir/home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.o -MF CMakeFiles/generator.dir/home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.o.d -o CMakeFiles/generator.dir/home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.o -c /home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp
 
-CMakeFiles/generator.dir/home/sleiman/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/generator.dir/home/sleiman/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sleiman/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp > CMakeFiles/generator.dir/home/sleiman/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.i
+CMakeFiles/generator.dir/home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/generator.dir/home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp > CMakeFiles/generator.dir/home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.i
 
-CMakeFiles/generator.dir/home/sleiman/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/generator.dir/home/sleiman/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sleiman/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp -o CMakeFiles/generator.dir/home/sleiman/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.s
+CMakeFiles/generator.dir/home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/generator.dir/home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp -o CMakeFiles/generator.dir/home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.s
 
 CMakeFiles/generator.dir/src/Triangle.cpp.o: CMakeFiles/generator.dir/flags.make
 CMakeFiles/generator.dir/src/Triangle.cpp.o: src/Triangle.cpp
 CMakeFiles/generator.dir/src/Triangle.cpp.o: CMakeFiles/generator.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sleiman/Projeto-CG-21-22/phase4.1/Generator/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/generator.dir/src/Triangle.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/generator.dir/src/Triangle.cpp.o -MF CMakeFiles/generator.dir/src/Triangle.cpp.o.d -o CMakeFiles/generator.dir/src/Triangle.cpp.o -c /home/sleiman/Projeto-CG-21-22/phase4.1/Generator/src/Triangle.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/generator.dir/src/Triangle.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/generator.dir/src/Triangle.cpp.o -MF CMakeFiles/generator.dir/src/Triangle.cpp.o.d -o CMakeFiles/generator.dir/src/Triangle.cpp.o -c /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/Triangle.cpp
 
 CMakeFiles/generator.dir/src/Triangle.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/generator.dir/src/Triangle.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sleiman/Projeto-CG-21-22/phase4.1/Generator/src/Triangle.cpp > CMakeFiles/generator.dir/src/Triangle.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/Triangle.cpp > CMakeFiles/generator.dir/src/Triangle.cpp.i
 
 CMakeFiles/generator.dir/src/Triangle.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/generator.dir/src/Triangle.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sleiman/Projeto-CG-21-22/phase4.1/Generator/src/Triangle.cpp -o CMakeFiles/generator.dir/src/Triangle.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/Triangle.cpp -o CMakeFiles/generator.dir/src/Triangle.cpp.s
 
 CMakeFiles/generator.dir/src/Model.cpp.o: CMakeFiles/generator.dir/flags.make
 CMakeFiles/generator.dir/src/Model.cpp.o: src/Model.cpp
 CMakeFiles/generator.dir/src/Model.cpp.o: CMakeFiles/generator.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sleiman/Projeto-CG-21-22/phase4.1/Generator/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/generator.dir/src/Model.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/generator.dir/src/Model.cpp.o -MF CMakeFiles/generator.dir/src/Model.cpp.o.d -o CMakeFiles/generator.dir/src/Model.cpp.o -c /home/sleiman/Projeto-CG-21-22/phase4.1/Generator/src/Model.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/generator.dir/src/Model.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/generator.dir/src/Model.cpp.o -MF CMakeFiles/generator.dir/src/Model.cpp.o.d -o CMakeFiles/generator.dir/src/Model.cpp.o -c /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/Model.cpp
 
 CMakeFiles/generator.dir/src/Model.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/generator.dir/src/Model.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sleiman/Projeto-CG-21-22/phase4.1/Generator/src/Model.cpp > CMakeFiles/generator.dir/src/Model.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/Model.cpp > CMakeFiles/generator.dir/src/Model.cpp.i
 
 CMakeFiles/generator.dir/src/Model.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/generator.dir/src/Model.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sleiman/Projeto-CG-21-22/phase4.1/Generator/src/Model.cpp -o CMakeFiles/generator.dir/src/Model.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/Model.cpp -o CMakeFiles/generator.dir/src/Model.cpp.s
 
 CMakeFiles/generator.dir/src/Torus.cpp.o: CMakeFiles/generator.dir/flags.make
 CMakeFiles/generator.dir/src/Torus.cpp.o: src/Torus.cpp
 CMakeFiles/generator.dir/src/Torus.cpp.o: CMakeFiles/generator.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sleiman/Projeto-CG-21-22/phase4.1/Generator/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/generator.dir/src/Torus.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/generator.dir/src/Torus.cpp.o -MF CMakeFiles/generator.dir/src/Torus.cpp.o.d -o CMakeFiles/generator.dir/src/Torus.cpp.o -c /home/sleiman/Projeto-CG-21-22/phase4.1/Generator/src/Torus.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/generator.dir/src/Torus.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/generator.dir/src/Torus.cpp.o -MF CMakeFiles/generator.dir/src/Torus.cpp.o.d -o CMakeFiles/generator.dir/src/Torus.cpp.o -c /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/Torus.cpp
 
 CMakeFiles/generator.dir/src/Torus.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/generator.dir/src/Torus.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sleiman/Projeto-CG-21-22/phase4.1/Generator/src/Torus.cpp > CMakeFiles/generator.dir/src/Torus.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/Torus.cpp > CMakeFiles/generator.dir/src/Torus.cpp.i
 
 CMakeFiles/generator.dir/src/Torus.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/generator.dir/src/Torus.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sleiman/Projeto-CG-21-22/phase4.1/Generator/src/Torus.cpp -o CMakeFiles/generator.dir/src/Torus.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/Torus.cpp -o CMakeFiles/generator.dir/src/Torus.cpp.s
 
 CMakeFiles/generator.dir/src/Bezier.cpp.o: CMakeFiles/generator.dir/flags.make
 CMakeFiles/generator.dir/src/Bezier.cpp.o: src/Bezier.cpp
 CMakeFiles/generator.dir/src/Bezier.cpp.o: CMakeFiles/generator.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sleiman/Projeto-CG-21-22/phase4.1/Generator/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/generator.dir/src/Bezier.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/generator.dir/src/Bezier.cpp.o -MF CMakeFiles/generator.dir/src/Bezier.cpp.o.d -o CMakeFiles/generator.dir/src/Bezier.cpp.o -c /home/sleiman/Projeto-CG-21-22/phase4.1/Generator/src/Bezier.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/generator.dir/src/Bezier.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/generator.dir/src/Bezier.cpp.o -MF CMakeFiles/generator.dir/src/Bezier.cpp.o.d -o CMakeFiles/generator.dir/src/Bezier.cpp.o -c /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/Bezier.cpp
 
 CMakeFiles/generator.dir/src/Bezier.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/generator.dir/src/Bezier.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sleiman/Projeto-CG-21-22/phase4.1/Generator/src/Bezier.cpp > CMakeFiles/generator.dir/src/Bezier.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/Bezier.cpp > CMakeFiles/generator.dir/src/Bezier.cpp.i
 
 CMakeFiles/generator.dir/src/Bezier.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/generator.dir/src/Bezier.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sleiman/Projeto-CG-21-22/phase4.1/Generator/src/Bezier.cpp -o CMakeFiles/generator.dir/src/Bezier.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/src/Bezier.cpp -o CMakeFiles/generator.dir/src/Bezier.cpp.s
 
 # Object files for target generator
 generator_OBJECTS = \
@@ -216,7 +216,7 @@ generator_OBJECTS = \
 "CMakeFiles/generator.dir/src/Sphere.cpp.o" \
 "CMakeFiles/generator.dir/src/Cone.cpp.o" \
 "CMakeFiles/generator.dir/src/Plane.cpp.o" \
-"CMakeFiles/generator.dir/home/sleiman/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.o" \
+"CMakeFiles/generator.dir/home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.o" \
 "CMakeFiles/generator.dir/src/Triangle.cpp.o" \
 "CMakeFiles/generator.dir/src/Model.cpp.o" \
 "CMakeFiles/generator.dir/src/Torus.cpp.o" \
@@ -230,14 +230,14 @@ generator: CMakeFiles/generator.dir/src/Box.cpp.o
 generator: CMakeFiles/generator.dir/src/Sphere.cpp.o
 generator: CMakeFiles/generator.dir/src/Cone.cpp.o
 generator: CMakeFiles/generator.dir/src/Plane.cpp.o
-generator: CMakeFiles/generator.dir/home/sleiman/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.o
+generator: CMakeFiles/generator.dir/home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.o
 generator: CMakeFiles/generator.dir/src/Triangle.cpp.o
 generator: CMakeFiles/generator.dir/src/Model.cpp.o
 generator: CMakeFiles/generator.dir/src/Torus.cpp.o
 generator: CMakeFiles/generator.dir/src/Bezier.cpp.o
 generator: CMakeFiles/generator.dir/build.make
 generator: CMakeFiles/generator.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/sleiman/Projeto-CG-21-22/phase4.1/Generator/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable generator"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable generator"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/generator.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -249,6 +249,6 @@ CMakeFiles/generator.dir/clean:
 .PHONY : CMakeFiles/generator.dir/clean
 
 CMakeFiles/generator.dir/depend:
-	cd /home/sleiman/Projeto-CG-21-22/phase4.1/Generator && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sleiman/Projeto-CG-21-22/phase4.1/Generator /home/sleiman/Projeto-CG-21-22/phase4.1/Generator /home/sleiman/Projeto-CG-21-22/phase4.1/Generator /home/sleiman/Projeto-CG-21-22/phase4.1/Generator /home/sleiman/Projeto-CG-21-22/phase4.1/Generator/CMakeFiles/generator.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator /home/sdaslira/Projeto-CG-21-22/phase4.1/Generator/CMakeFiles/generator.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/generator.dir/depend
 

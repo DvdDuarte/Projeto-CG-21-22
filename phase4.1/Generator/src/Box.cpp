@@ -5,6 +5,7 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <fstream>
+#include <iostream>
 
 using namespace std;
 
@@ -39,49 +40,22 @@ void Box::addSquare(bool top,Point3D topRight,Point3D topLeft,Point3D bellowLeft
     faces.push_back(t2);
 }
 
-void Box::addYLayer(bool top) { 
-    
-    float x_increment=1.0*width/(1.0*nDivisions);
-    float z_increment=1.0*depth/(1.0*nDivisions);
-    float tex_increment = 1.0/(1.0*nDivisions);
-    int y=top?1:0;
 
-    vector<Point3D> layer;
-    // Cálculo dos pontos 
-    for(int x=0;x<=nDivisions;x++) {
-        for(int z=0;z<=nDivisions;z++) {
-            layer.push_back(Point3D(x*x_increment,y*height,z*z_increment,index++));
-            texCoords.push_back(make_pair<float,float>(x*tex_increment,z*tex_increment));
-        }
-    }
-    // Cálculo dos triângulos a desenhar
-    for(int x=0;x<nDivisions;x++) {
-        for(int z=0;z<nDivisions;z++) {
-            Point3D topLeft=layer[((nDivisions+1)*x)+z];
-            Point3D topRight=layer[((nDivisions+1)*(x+1))+z];
-            Point3D bellowLeft=layer[((nDivisions+1)*x)+z+1];
-            Point3D bellowRight=layer[((nDivisions+1)*(x+1))+z+1];
-            addSquare(top,topRight,topLeft,bellowLeft,bellowRight);
-        }
-    }
-    for(int i = 0; i < layer.size(); i++)
-        normals.push_back(Point3D(0,top?1:-1,0));
-    // Adição dos pontos calculados da face ao array de todos pontos que formam o cubo
-    points.insert(points.end(),layer.begin(),layer.end());
-}
 
 void Box::addXLayer(bool top) {
     
     float y_increment=1.0*height/(1.0*nDivisions);
     float z_increment=1.0*depth/(1.0*nDivisions);
     float tex_increment = 1.0/(1.0*nDivisions);
+    float aux=((float)width)/2.0;
     int x=top?1:0;
+    cout<<"Width/2: "<<aux<<endl;
 
     vector<Point3D> layer;
     // Cálculo dos pontos 
     for(int y=0;y<=nDivisions;y++) {
         for(int z=0;z<=nDivisions;z++) {
-            layer.push_back(Point3D(x*width,y*y_increment,z*z_increment,index++));
+            layer.push_back(Point3D((x*width)-aux,y*y_increment,z*z_increment,index++));
             texCoords.push_back(make_pair<float,float>(z*tex_increment,y*tex_increment));
         }
     }
@@ -101,16 +75,55 @@ void Box::addXLayer(bool top) {
     points.insert(points.end(),layer.begin(),layer.end());
 }
 
+void Box::addYLayer(bool top) { 
+    
+    float x_increment=1.0*width/(1.0*nDivisions);
+    float z_increment=1.0*depth/(1.0*nDivisions);
+    float tex_increment = 1.0/(1.0*nDivisions);
+
+    float aux=((float)height)/2.0;
+    cout<<"Height/2: "<<aux<<endl;
+
+    int y=top?1:0;
+
+    vector<Point3D> layer;
+    // Cálculo dos pontos 
+    for(int x=0;x<=nDivisions;x++) {
+        for(int z=0;z<=nDivisions;z++) {
+            layer.push_back(Point3D(x*x_increment,(y*height)-aux,z*z_increment,index++));
+            texCoords.push_back(make_pair<float,float>(x*tex_increment,z*tex_increment));
+        }
+    }
+    // Cálculo dos triângulos a desenhar
+    for(int x=0;x<nDivisions;x++) {
+        for(int z=0;z<nDivisions;z++) {
+            Point3D topLeft=layer[((nDivisions+1)*x)+z];
+            Point3D topRight=layer[((nDivisions+1)*(x+1))+z];
+            Point3D bellowLeft=layer[((nDivisions+1)*x)+z+1];
+            Point3D bellowRight=layer[((nDivisions+1)*(x+1))+z+1];
+            addSquare(top,topRight,topLeft,bellowLeft,bellowRight);
+        }
+    }
+    for(int i = 0; i < layer.size(); i++)
+        normals.push_back(Point3D(0,top?1:-1,0));
+    // Adição dos pontos calculados da face ao array de todos pontos que formam o cubo
+    points.insert(points.end(),layer.begin(),layer.end());
+}
+
 void Box::addZLayer(bool top) {
     float y_increment=1.0*height/(1.0*nDivisions);
     float x_increment=1.0*width/(1.0*nDivisions);
     float tex_increment = 1.0/(1.0*nDivisions);
+    
+    float aux=((float)depth)/2.0;
+
+    cout<<"Depth/2: "<<aux<<endl;
     int z=top?1:0;
     vector<Point3D> layer;
     // Cálculo dos pontos
     for(int y=0;y<=nDivisions;y++) {
         for(int x=0;x<=nDivisions;x++) {
-            layer.push_back(Point3D(x*x_increment,y*y_increment,z*depth,index++));
+            layer.push_back(Point3D(x*x_increment,y*y_increment,(z*depth)-aux,index++));
             texCoords.push_back(make_pair<float,float>(x*tex_increment,y*tex_increment));
         }
     }
