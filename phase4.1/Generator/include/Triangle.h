@@ -8,9 +8,9 @@
  * @copyright Copyright (c) 2022
  * 
  */
+#pragma once
 #include "../../Utils/Point3D.h"
 #include <memory>
-
 /**
  * @brief Classe do Triangulo
  * 

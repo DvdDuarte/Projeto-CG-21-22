@@ -184,13 +184,11 @@ CMakeFiles/generator.dir/src/main.cpp.o: \
  /usr/include/c++/11/bits/stl_multimap.h \
  /usr/include/c++/11/bits/erase_if.h \
  /home/sleiman/Projeto-CG-21-22/phase4.1/Generator/src/../include/../../Utils/Point3D.h \
- /home/sleiman/Projeto-CG-21-22/phase4.1/Generator/src/../include/../../Utils/colors.h \
  /home/sleiman/Projeto-CG-21-22/phase4.1/Generator/src/../include/Triangle.h \
  /home/sleiman/Projeto-CG-21-22/phase4.1/Generator/src/../include/Model.h \
  /home/sleiman/Projeto-CG-21-22/phase4.1/Generator/src/../include/Cone.h \
  /home/sleiman/Projeto-CG-21-22/phase4.1/Generator/src/../include/Box.h \
  /home/sleiman/Projeto-CG-21-22/phase4.1/Generator/src/../include/Plane.h \
- /home/sleiman/Projeto-CG-21-22/phase4.1/Generator/src/../include/Model.h \
  /home/sleiman/Projeto-CG-21-22/phase4.1/Generator/src/../include/Torus.h \
  /home/sleiman/Projeto-CG-21-22/phase4.1/Generator/src/../include/Bezier.h \
  /home/sleiman/Projeto-CG-21-22/phase4.1/Generator/src/../include/Patch.h
