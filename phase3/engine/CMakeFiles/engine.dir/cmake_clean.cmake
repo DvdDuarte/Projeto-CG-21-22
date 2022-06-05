@@ -1,8 +1,12 @@
 file(REMOVE_RECURSE
   "CMakeFiles/engine.dir/src/XMLParser/tinyxml2.cpp.o"
+  "CMakeFiles/engine.dir/src/XMLParser/tinyxml2.cpp.o.d"
   "CMakeFiles/engine.dir/src/engine.cpp.o"
+  "CMakeFiles/engine.dir/src/engine.cpp.o.d"
   "CMakeFiles/engine.dir/src/engine_aux.cpp.o"
+  "CMakeFiles/engine.dir/src/engine_aux.cpp.o.d"
   "CMakeFiles/engine.dir/src/translate.cpp.o"
+  "CMakeFiles/engine.dir/src/translate.cpp.o.d"
   "engine"
   "engine.pdb"
 )
