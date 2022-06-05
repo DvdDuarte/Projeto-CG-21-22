@@ -17,24 +17,26 @@
 #include "Figure.h"
 #include <math.h>
 
+using namespace std;
+
 class Group {
 public:
-    std::vector<std::shared_ptr<Transform>> transformations;
-    std::unordered_map<std::string,Figure> models;
-    std::vector<Group> nestedGroups;
+    vector<std::shared_ptr<Transform>> transformations;
+    unordered_map<string,Figure> models;
+    vector<Group> nestedGroups;
     bool isDrawn = false;
     float actualMatrix[16];
 
     Group();
     Group(const Group& g);
 
-    void addTransform(std::shared_ptr<Transform> t);
+    void addTransform(shared_ptr<Transform> t);
 
-    void addFile(std::string filename,Point3D * colors, float shininess, int texture);
+    void addFile(string filename,Point3D * colors, float shininess, int texture);
 
     void addGroup(Group group);
 
-    std::unordered_set<std::string> getModels();
+    std::unordered_set<string> getModels();
 
-    void updateFigures(std::vector<float> trans);
+    void updateFigures(vector<float> trans);
 };
