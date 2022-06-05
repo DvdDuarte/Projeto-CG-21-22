@@ -15,10 +15,10 @@ int main(int argc, char **argv) {
 	string filename;
 	shared_ptr<Model> m;
     if (argc>2) {
-        string type=std::string(argv[1]);
+        string type=string(argv[1]);
         if (type=="sphere") {
             if (argc!=6) {
-                std::cout<< "Not enough arguments\n";
+                cout<< "Not enough arguments\n";
                 return 1;
             }
             int radius=atoi(argv[2]),slices=atoi(argv[3]),stacks=atoi(argv[4]);
@@ -41,10 +41,10 @@ int main(int argc, char **argv) {
                 cout<< "Not enough arguments\n";
                 return 1;
             }
-            // 1 - 
-            // 2 -
+            // 1 - Tamanho do raio a partir do centro
+            // 2 - Tamanho do raio do anel(quanto maior menor o "buraco")
             // 3 - slices (torna mais ou menos redondo)
-            // 4 - Altura
+            // 4 - Altura (Aumenta grossura do torus)
             int widenessRadius=atoi(argv[2]), thicknessRadius=atoi(argv[3]),rings=atoi(argv[4]),sides=atoi(argv[5]);
             Torus t = Torus(widenessRadius,thicknessRadius,rings,sides);
             m=t.generate();

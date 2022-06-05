@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/engine.dir/home/sleiman/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.o"
-  "CMakeFiles/engine.dir/home/sleiman/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.o.d"
+  "CMakeFiles/engine.dir/home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.o"
+  "CMakeFiles/engine.dir/home/sdaslira/Projeto-CG-21-22/phase4.1/Utils/Point3D.cpp.o.d"
   "CMakeFiles/engine.dir/src/Figure.cpp.o"
   "CMakeFiles/engine.dir/src/Figure.cpp.o.d"
   "CMakeFiles/engine.dir/src/Group.cpp.o"

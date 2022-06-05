@@ -107,15 +107,18 @@ void xmlContent::parseLight(XMLElement * light) {
         shared_ptr<DirectionalLight> dl = make_shared<DirectionalLight>(x,y,z);
         lights.push_back(dl);
     }
-    else if(type=="spot") {
+    else if(type=="spotlight") {
+        
         float x = atof(lightEl->Attribute("posx"));
         float y = atof(lightEl->Attribute("posy"));
         float z = atof(lightEl->Attribute("posz"));
         float dx = atof(lightEl->Attribute("dirx"));
         float dy = atof(lightEl->Attribute("diry"));
         float dz = atof(lightEl->Attribute("dirz"));
-        float angle = atof(lightEl->Attribute("angle"));
+        float angle = atof(lightEl->Attribute("cutoff"));
+        cout<<"tudo bem spot?"<<endl;
         shared_ptr<SpotLight> sl = make_shared<SpotLight>(x,y,z,dx,dy,dz,angle);
+        
         lights.push_back(sl);
     }
     else {
@@ -133,6 +136,7 @@ void xmlContent::parseColor(Point3D colors[],float& shininess, XMLElement * mode
         color_exists=true;
         color=model->FirstChildElement("color");
         if(color->FirstChildElement("diffuse")){
+
             d=color->FirstChildElement("diffuse");
             dr = d->Attribute("R");
             dg = d->Attribute("G");
@@ -166,19 +170,38 @@ void xmlContent::parseColor(Point3D colors[],float& shininess, XMLElement * mode
     double dred   = color_exists ? atof(dr) : 200;
     double dgreen = color_exists ? atof(dg) : 200;
     double dblue  = color_exists ? atof(db) : 200;
+
+    dred   = dred/255.0;
+    dgreen = dgreen/255.0;
+    dblue  = dblue/255.0;
+
     //specular
     double sred   = color_exists ? atof(sr) : 0;
     double sgreen = color_exists ? atof(sg) : 0;
     double sblue  = color_exists ? atof(sb) : 0;
+
+    sred   = sred/255.0;
+    sgreen = sgreen/255.0;
+    sblue  = sblue/255.0;
+
     //emissive
     double ered   = color_exists ? atof(er) : 0;
     double egreen = color_exists ? atof(eg) : 0;
     double eblue  = color_exists ? atof(eb) : 0;
+    
+    ered   = ered/255.0;
+    egreen = egreen/255.0;
+    eblue  = eblue/255.0;
+
     //ambient
     double ared   = color_exists ? atof(ar) : 50;
     double agreen = color_exists ? atof(ag) : 50;
     double ablue  = color_exists ? atof(ab) : 50;
     
+    ared   = ared/255.0;
+    agreen = agreen/255.0;
+    ablue  = ablue/255.0;
+
     shininess = color_exists ? atof(shin_aux) : 0;
 
     colors[0] = Point3D(dred,dgreen,dblue);

@@ -48,30 +48,37 @@ void Figure::apply() {
         float appdiff[4] = {diffR,diffG,diffB,1.0};
         glMaterialfv(GL_FRONT,GL_DIFFUSE,appdiff);
     }
+
     if(emissR != -1 && emissG != -1 && emissB != -1) {
         float appemiss[4] = {emissR,emissG,emissB,1.0};
         glMaterialfv(GL_FRONT,GL_EMISSION,appemiss);
     }
+
     if(specR != -1 && specG != -1 && specB != -1) {
         float appspec[4] = {specR,specG,specB,1.0};
         glMaterialfv(GL_FRONT,GL_SPECULAR,appspec);
     }
+
     if(shininess != -1)
         glMaterialf(GL_FRONT,GL_SHININESS,shininess);
+
     if(ambR != -1 && ambG != -1 && ambB != -1) {
         float appamb[4] = {ambR,ambG,ambB,1.0};
         glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT,appamb);
     }
+
     if(texID != 0)
         glBindTexture(GL_TEXTURE_2D,texID);
 }
 
 void Figure::reset() {
+
     float defamb[4] = {0.2,0.2,0.2,1.0};
     float defdiff[4] = {0.8,0.8,0.8,1.0};
     float defemiss[4] = {0.0,0.0,0.0,1.0};
     float defspec[4] = {0.0,0.0,0.0,1.0};
     float defshin = 0;
+    
     glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT,defamb);
     glMaterialfv(GL_FRONT_AND_BACK,GL_DIFFUSE,defdiff);
     glMaterialfv(GL_FRONT_AND_BACK,GL_EMISSION,defemiss);

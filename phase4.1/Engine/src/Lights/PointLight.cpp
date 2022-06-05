@@ -20,5 +20,6 @@ PointLight::PointLight(float x, float y, float z) {
 
 void PointLight::applyLight() {
     float pos[4] = {pointX,pointY,pointZ,1.0};
+    //float pos[4] = {1.0,1.0,1.0,0.0};
     glLightfv(GL_LIGHT0,GL_POSITION,pos);
 }

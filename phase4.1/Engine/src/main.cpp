@@ -111,7 +111,7 @@ void drawFigure(Figure figure) {
  		0);// parâmetro não utilizado
 	glColor3f(0,0,0);
 	triangles += (vbo.indexCount) / 3.0;
-	figure.reset();
+	//figure.reset();
 
 }
 
