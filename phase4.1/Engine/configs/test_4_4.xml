@@ -8,7 +8,7 @@
 	
 	<lights> 
 		<light type="point" posx="2" posy="2" posz="-2" />
-		<light type="point" posx="-2" posy="2" posz="2" />
+		<!--<light type="point" posx="-2" posy="2" posz="2" />-->
 	</lights>
 	<group>
 		<group> 

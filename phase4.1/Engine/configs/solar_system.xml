@@ -200,7 +200,7 @@ cutoff="45" />
                         <rotate angle="30" x="1" y="0" z="0"/>
                     </transform>
                     <models>
-                        <model file="torus_solar.3d"> <!-- ./generator torus 4 3 100 2 torus_solar.3d-->
+                        <model file="torus_saturn_ring_solar.3d"> <!-- ./generator torus 4 3 100 2 torus_saturn_ring_solar.3d-->
                             <texture file="texSaturnRing.png"/>
                         </model>
                     </models>

@@ -267,6 +267,7 @@ void readFile3D(string filename) {
 	getline(fp,line);
 	istringstream iss(line);
 	iss >> numVertexes >> numTriangles;
+	//cout << BI_BRIGHT_GREEN << "NMVERTEX " << numVertexes << " NTR " << numTriangles << endl;
 	vector<float> vertixes;
 	vector<unsigned int> indexes;
 	vector<float> normals;
@@ -304,6 +305,7 @@ void readFile3D(string filename) {
 		indexes.push_back(indicePonto2);
 		indexes.push_back(indicePonto3);
 	}
+	//cout << "NMR TRIANG " << (indexes.size()) << endl;
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,vbo.indexes); //liga o buffer indices ao array
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER,sizeof(unsigned int) * indexes.size(),indexes.data(),GL_STATIC_DRAW);
  	vbo.indexCount = indexes.size();
@@ -397,7 +399,7 @@ void printCommands() {
 		Q - Mostrar Eixos"
 		C - Mostrar Trajetórias
 		'+' '-' - Aumentar/Diminuir velocidade da simulação
-		SpaceBar - Pausar/Retomar simulação
+		M - Pausar/Retomar simulação
 		F G - Diminuir/Aumentar velocidade da câmara
 		P - Mostrar PolygonMode
 		R - Retroceder Simulação)";
