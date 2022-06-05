@@ -17,6 +17,8 @@
 #include "Triangle.h"
 #include "Model.h"
 
+using namespace std;
+
 /**
  * @brief Classe do modelo Torus
  * 
@@ -24,11 +26,11 @@
 class Torus {
 private:
     int widenessRadius,thicknessRadius,nRings,nSides,index;
-    std::vector<Point3D> vertexes;
-    std::vector<Triangle> faces;
-    std::map<std::pair<int,int>,Point3D> points;
-    std::vector<Point3D> normals;
-    std::vector<std::pair<float,float>> texCoords;
+    vector<Point3D> vertexes;
+    vector<Triangle> faces;
+    map<pair<int,int>,Point3D> points;
+    vector<Point3D> normals;
+    vector<pair<float,float>> texCoords;
 public:
     /**
      * @brief Construct a new Torus object
@@ -63,7 +65,7 @@ public:
     /**
      * @brief 
      * 
-     * @return std::shared_ptr<Model> 
+     * @return shared_ptr<Model> 
      */
-    std::shared_ptr<Model> generate();
+    shared_ptr<Model> generate();
 };

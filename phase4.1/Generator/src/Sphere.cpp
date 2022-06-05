@@ -8,6 +8,8 @@
 #include <unordered_map>
 #include <fstream>
 
+using namespace std;
+
 Sphere::Sphere() {
     radius=1;
     nStacks=10;
@@ -26,8 +28,8 @@ void Sphere::addTopOrBottomSlice(bool onTop,int slice,int stack) {
     // Daí irmos buscar ao array nas posições 2*(slice-1), pois os array seria algo do genero [top,bot,top,bot,..]
     Point3D top=vertexes[2*(slice-1)],bottom=vertexes[(2*(slice-1))+1];
     Triangle t;
-    std::pair<int,int> point_before(slice-1,stack);
-    std::pair<int,int> point_now(slice,stack);
+    pair<int,int> point_before(slice-1,stack);
+    pair<int,int> point_now(slice,stack);
     Point3D second=points[point_before];
     Point3D third=points[point_now]; 
     if (onTop)
@@ -39,8 +41,8 @@ void Sphere::addTopOrBottomSlice(bool onTop,int slice,int stack) {
 
 // Vai buscar os 4 pontos, o atual, o da slice anterior, o da stack anterior, e o da slice e stack anterior, formando um quadrado
 void Sphere::addSquareSlice(int slice,int stack) {
-    std::pair<int,int> topleft(slice-1,stack-1),topright(slice,stack-1);
-    std::pair<int,int> bottomleft(slice-1,stack),bottomright(slice,stack);
+    pair<int,int> topleft(slice-1,stack-1),topright(slice,stack-1);
+    pair<int,int> bottomleft(slice-1,stack),bottomright(slice,stack);
     Point3D topRight=points[topright],topLeft=points[topleft];
     Point3D bottomLeft=points[bottomleft],bottomRight=points[bottomright];
     Triangle t1=Triangle(topRight.index,topLeft.index,bottomLeft.index);
@@ -49,7 +51,7 @@ void Sphere::addSquareSlice(int slice,int stack) {
     faces.push_back(t2);
 }
 
-std::shared_ptr<Model> Sphere::generate() {
+shared_ptr<Model> Sphere::generate() {
     double slice_angle_increment=M_PI*2.0/nSlices;
     double stack_angle_increment=M_PI/nStacks;
     float tex_x_increment = 1.0/(1.0*nSlices);
@@ -66,8 +68,8 @@ std::shared_ptr<Model> Sphere::generate() {
         normals.push_back(Point3D(0.0f,-1.0f,0.0f));
         // A coordenada x da textura será o ponto médio do incremento anterior e seguinte de cada slice de forma a aproveitar o máximo da textura
         double x_tex_coord = i * tex_x_increment * 1.0 + (tex_x_increment / 2.0);
-        texCoords.push_back(std::make_pair<float,float>(float(x_tex_coord),1.0f));
-        texCoords.push_back(std::make_pair<float,float>(float(x_tex_coord),0.0f));
+        texCoords.push_back(make_pair<float,float>(float(x_tex_coord),1.0f));
+        texCoords.push_back(make_pair<float,float>(float(x_tex_coord),0.0f));
     }
     for (int stack=1;stack<nStacks;stack++) {
         double stack_angle=stack*stack_angle_increment;
@@ -91,7 +93,7 @@ std::shared_ptr<Model> Sphere::generate() {
             texCoords.push_back(std::make_pair<float,float>(slice*tex_x_increment,(nStacks-stack)*tex_y_increment));
 
             //addPoint
-            std::pair<int,int> sliceAndStack(slice,stack);
+            pair<int,int> sliceAndStack(slice,stack);
             points[sliceAndStack]=ponto;
             if (first) {first=false;continue;} //primeira iteração de cada slice deve apenas guardar o ponto
             if (stack==1) {//forma triangulos
@@ -105,6 +107,6 @@ std::shared_ptr<Model> Sphere::generate() {
             }
         }
     }
-    return std::make_shared<Model>(vertexes,faces,normals,texCoords,radius);
+    return make_shared<Model>(vertexes,faces,normals,texCoords,radius);
 }
 

@@ -10,7 +10,7 @@
 using namespace std;
 
 Box::Box() {
-    nDivisions=0;
+    nDivisions=1;
     width=10;
     depth=10;
     height=10;
@@ -44,9 +44,9 @@ void Box::addSquare(bool top,Point3D topRight,Point3D topLeft,Point3D bellowLeft
 
 void Box::addXLayer(bool top) {
     
-    float y_increment=1.0*height/(1.0*nDivisions);
-    float z_increment=1.0*depth/(1.0*nDivisions);
-    float tex_increment = 1.0/(1.0*nDivisions);
+    float y_inc=1.0*height/(1.0*nDivisions);
+    float z_inc=1.0*depth/(1.0*nDivisions);
+    float tex_inc = 1.0/(1.0*nDivisions);
     float half_width=((float)width)/2.0; // X
     float half_height = ((float)height)/2.0; // Y
     float half_depth=((float)depth)/2.0; // Z
@@ -56,8 +56,8 @@ void Box::addXLayer(bool top) {
     // Cálculo dos pontos 
     for(int y=0;y<=nDivisions;y++) {
         for(int z=0;z<=nDivisions;z++) {
-            layer.push_back(Point3D((x*width)-half_width,(y*y_increment)-half_height,(z*z_increment)-half_depth,index++));
-            texCoords.push_back(make_pair<float,float>(z*tex_increment,y*tex_increment));
+            layer.push_back(Point3D((x*width)-half_width,(y*y_inc)-half_height,(z*z_inc)-half_depth,index++));
+            texCoords.push_back(make_pair<float,float>(z*tex_inc,y*tex_inc));
         }
     }
     // Cálculo dos triângulos a desenhar
@@ -78,9 +78,9 @@ void Box::addXLayer(bool top) {
 
 void Box::addYLayer(bool top) { 
     
-    float x_increment=1.0*width/(1.0*nDivisions);
-    float z_increment=1.0*depth/(1.0*nDivisions);
-    float tex_increment = 1.0/(1.0*nDivisions);
+    float x_inc=1.0*width/(1.0*nDivisions);
+    float z_inc=1.0*depth/(1.0*nDivisions);
+    float tex_inc = 1.0/(1.0*nDivisions);
     float half_width=((float)width)/2.0; // X
     float half_height = ((float)height)/2.0; // Y
     float half_depth=((float)depth)/2.0; // Z
@@ -91,8 +91,8 @@ void Box::addYLayer(bool top) {
     // Cálculo dos pontos 
     for(int x=0;x<=nDivisions;x++) {
         for(int z=0;z<=nDivisions;z++) {
-            layer.push_back(Point3D((x*x_increment)-half_width,(y*height)-half_height,(z*z_increment)-half_depth,index++));
-            texCoords.push_back(make_pair<float,float>(x*tex_increment,z*tex_increment));
+            layer.push_back(Point3D((x*x_inc)-half_width,(y*height)-half_height,(z*z_inc)-half_depth,index++));
+            texCoords.push_back(make_pair<float,float>(x*tex_inc,z*tex_inc));
         }
     }
     // Cálculo dos triângulos a desenhar
@@ -112,9 +112,9 @@ void Box::addYLayer(bool top) {
 }
 
 void Box::addZLayer(bool top) {
-    float y_increment=1.0*height/(1.0*nDivisions);
-    float x_increment=1.0*width/(1.0*nDivisions);
-    float tex_increment = 1.0/(1.0*nDivisions);
+    float y_inc=1.0*height/(1.0*nDivisions);
+    float x_inc=1.0*width/(1.0*nDivisions);
+    float tex_inc = 1.0/(1.0*nDivisions);
     float half_width=((float)width)/2.0; // X
     float half_height = ((float)height)/2.0; // Y
     float half_depth=((float)depth)/2.0; // Z
@@ -124,8 +124,8 @@ void Box::addZLayer(bool top) {
     // Cálculo dos pontos
     for(int y=0;y<=nDivisions;y++) {
         for(int x=0;x<=nDivisions;x++) {
-            layer.push_back(Point3D((x*x_increment)-half_width,(y*y_increment)-half_height,(z*depth)-half_depth,index++));
-            texCoords.push_back(make_pair<float,float>(x*tex_increment,y*tex_increment));
+            layer.push_back(Point3D((x*x_inc)-half_width,(y*y_inc)-half_height,(z*depth)-half_depth,index++));
+            texCoords.push_back(make_pair<float,float>(x*tex_inc,y*tex_inc));
         }
     }
     // Cálculo dos triângulos a desenhar 

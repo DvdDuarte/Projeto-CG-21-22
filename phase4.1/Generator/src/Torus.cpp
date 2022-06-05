@@ -7,6 +7,8 @@
 #include <math.h>
 #include <unordered_map>
 
+using namespace std;
+
 Torus::Torus() {
     widenessRadius=1;
     thicknessRadius=1;
@@ -23,8 +25,8 @@ Torus::Torus(int widenessRadiusG,int thicknessRadiusG,int ringsG,int sidesG) {
 
 // Pega em 4 pontos (os 2 em questão e outros dois, sendo esses o do ring anterior e o do side anterior) e forma um quadrado com eles
 void Torus::addSquare(int ring,int side,int not_last_ring,int not_last_side) {
-    std::pair<int,int> topleft(ring-1,side-1),topright(ring,side-1);
-    std::pair<int,int> bottomleft(ring-1,side),bottomright(ring,side);
+    pair<int,int> topleft(ring-1,side-1),topright(ring,side-1);
+    pair<int,int> bottomleft(ring-1,side),bottomright(ring,side);
     Point3D topRight=points[topright],topLeft=points[topleft];
     Point3D bottomLeft=points[bottomleft],bottomRight=points[bottomright];
     Triangle t1=Triangle(topRight.index,topLeft.index,bottomLeft.index);
@@ -55,10 +57,10 @@ void Torus::constructRing(int ring, float ring_angle) {
     normals.push_back(Point3D(0,-1,0));
     normals.push_back(Point3D(0,-1,0));
     // TexCoords de cada quadrado
-    texCoords.push_back(std::make_pair<float,float>(0.0f,float(ring)));
-    texCoords.push_back(std::make_pair<float,float>(1.0f,float(ring)));
-    texCoords.push_back(std::make_pair<float,float>(0.0f,float(ring)));
-    texCoords.push_back(std::make_pair<float,float>(1.0f,float(ring)));
+    texCoords.push_back(make_pair<float,float>(0.0f,float(ring)));
+    texCoords.push_back(make_pair<float,float>(1.0f,float(ring)));
+    texCoords.push_back(make_pair<float,float>(0.0f,float(ring)));
+    texCoords.push_back(make_pair<float,float>(1.0f,float(ring)));
     if(ring == 0)
         return;
     Point3D beforeNearCenter, beforeFarCenter;
@@ -79,7 +81,7 @@ void Torus::constructRing(int ring, float ring_angle) {
 }
 
 // Geração de um torus deitado
-std::shared_ptr<Model> Torus::generate() {
+shared_ptr<Model> Torus::generate() {
     // Incrementos de ângulos para cada iteração
     float ring_angle_increment=M_PI*2/nRings;
     float side_angle_increment=M_PI*2/nSides;
@@ -114,13 +116,13 @@ std::shared_ptr<Model> Torus::generate() {
             normals.push_back(normal);
             // Como as coordenadas de textura se repetem a cada unidade cartesiana, a instrução abaixo
             // faz com que a textura se repita em cada side de cada ring
-            texCoords.push_back(std::make_pair<float,float>(float(side),float(ring)));
+            texCoords.push_back(make_pair<float,float>(float(side),float(ring)));
 
             Point3D ponto=Point3D(x,y,z,index++);
             vertexes.push_back(ponto);
 
             //addPoint
-            std::pair<int,int> ringAndSide(ring,side);
+            pair<int,int> ringAndSide(ring,side);
             points[ringAndSide]=ponto;
             if (first) {first=false;continue;} //primeira iteração de cada side deve apenas guardar o ponto
             if (ring==0) continue;//mete só os pontos e passa à frente
@@ -136,5 +138,5 @@ std::shared_ptr<Model> Torus::generate() {
             }
         }
     }
-    return std::make_shared<Model>(vertexes,faces,normals,texCoords,widenessRadius+thicknessRadius);
+    return make_shared<Model>(vertexes,faces,normals,texCoords,widenessRadius+thicknessRadius);
 }

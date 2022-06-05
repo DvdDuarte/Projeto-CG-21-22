@@ -16,6 +16,7 @@
 #include <tuple>
 #include <map>
 
+using namespace std;
 /**
  * @brief Classe do modelo Box
  * 
@@ -39,15 +40,15 @@ public:
     /**
      * @brief 
      * 
-     * @return std::shared_ptr<Model> 
+     * @return shared_ptr<Model> 
      */
-    std::shared_ptr<Model> generate();
+    shared_ptr<Model> generate();
 private:
     int width,depth,height,nDivisions;
-    std::vector<Triangle> faces;
-    std::vector<Point3D> points;
-    std::vector<Point3D> normals;
-    std::vector<std::pair<float,float>> texCoords;
+    vector<Triangle> faces;
+    vector<Point3D> points;
+    vector<Point3D> normals;
+    vector<pair<float,float>> texCoords;
     int index;
     /**
      * @brief 

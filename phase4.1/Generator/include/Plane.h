@@ -17,6 +17,8 @@
 #include <string>
 #include <map>
 
+using namespace std;
+
 /**
  * @brief Classe do modelo Plano
  * 
@@ -44,9 +46,9 @@ public:
     /**
      * @brief 
      * 
-     * @return std::shared_ptr<Model> 
+     * @return shared_ptr<Model> 
      */
-    std::shared_ptr<Model> generate();
+    shared_ptr<Model> generate();
 private:
     int divisions;
     int side;

@@ -19,6 +19,7 @@
 #include <string>
 #include <map>
 
+using namespace std;
 /**
  * @brief Classe do modelo Bezier
  * 
@@ -47,18 +48,18 @@ public:
      * 
      * @return std::shared_ptr<Model> O modelo gerado
      */
-    std::shared_ptr<Model> generate();
+    shared_ptr<Model> generate();
     float maxDistance;
 private:
     int vertical_tesselation;
     float vertical_tesselation_inc;
     int horizontal_tesselation;
     float horizontal_tesselation_inc;
-    std::vector<std::vector<Point3D>> bezier_matrix;
-    std::string patch_file;
-    std::vector<Patch> patches;
-    std::vector<Point3D> normals;
-    std::vector<std::pair<float,float>> texCoords;
+    vector<vector<Point3D>> bezier_matrix;
+    string patch_file;
+    vector<Patch> patches;
+    vector<Point3D> normals;
+    vector<pair<float,float>> texCoords;
     int numPatches;
     
     /**
@@ -70,7 +71,7 @@ private:
      * @param u_matrix 
      * @param v_matrix 
      */
-    void computeNormal(std::vector<std::vector<Point3D>> preCalculatedMatrix, float u, float v, std::vector<std::vector<Point3D>> u_matrix, std::vector<std::vector<Point3D>> v_matrix);
+    void computeNormal(vector<vector<Point3D>> preCalculatedMatrix, float u, float v, vector<vector<Point3D>> u_matrix, vector<vector<Point3D>> v_matrix);
     /**
      * @brief 
      * 
@@ -79,7 +80,7 @@ private:
      * @param vertixes 
      * @param triangs 
      */
-    void calculatePoints(std::vector<std::vector<Point3D>> preCalculatedMatrix,int& indexPoint,std::vector<Point3D>& vertixes,std::vector<Triangle>& triangs);
+    void calculatePoints(vector<vector<Point3D>> preCalculatedMatrix,int& indexPoint,vector<Point3D>& vertixes,vector<Triangle>& triangs);
     /**
      * @brief 
      * 
@@ -88,15 +89,15 @@ private:
      * @param horizontal_level 
      * @return Point3D 
      */
-    Point3D calculatePoint(std::vector<std::vector<Point3D>> preCalculatedMatrix,int vertical_level,int horizontal_level);
+    Point3D calculatePoint(vector<vector<Point3D>> preCalculatedMatrix,int vertical_level,int horizontal_level);
     /**
      * @brief 
      * 
      * @param m1 
      * @param m2 
-     * @return std::vector<std::vector<Point3D>> 
+     * @return vector<std::vector<Point3D>> 
      */
-    std::vector<std::vector<Point3D>> multiplyMatrix(std::vector<std::vector<Point3D>> m1, std::vector<std::vector<Point3D>> m2);
+    vector<vector<Point3D>> multiplyMatrix(vector<vector<Point3D>> m1, vector<vector<Point3D>> m2);
     /**
      * @brief 
      * 

@@ -15,6 +15,9 @@
 #include <string>
 #include <map>
 #include <memory>
+
+using namespace std;
+
 /**
  * @brief Classe do modelo Cone
  * 
@@ -38,16 +41,16 @@ public:
     /**
      * @brief 
      * 
-     * @return std::shared_ptr<Model> 
+     * @return shared_ptr<Model> 
      */
-    std::shared_ptr<Model> generate();
+    shared_ptr<Model> generate();
 private:
     int radiusBase,height,nStacks,nSlices;
-    std::vector<Triangle> faces;
-    std::map<std::pair<int,int>,Point3D> points;
-    std::vector<Point3D> vertexes;
-    std::vector<Point3D> normals;
-    std::vector<std::pair<float,float>> texCoords;
+    vector<Triangle> faces;
+    map<pair<int,int>,Point3D> points;
+    vector<Point3D> vertexes;
+    vector<Point3D> normals;
+    vector<pair<float,float>> texCoords;
     /**
      * @brief 
      * 

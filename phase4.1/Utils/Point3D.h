@@ -10,7 +10,7 @@
  */
 #include <string>
 #include <memory>
-#include <colors.h>
+#include "colors.h"
 
 class Point3D {
 public:

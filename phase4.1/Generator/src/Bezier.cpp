@@ -11,11 +11,11 @@
 
 using namespace std;
 
-Bezier::Bezier(string patch_fileG,int tesselation_levelG) {
+Bezier::Bezier(string pf,int t) {
 
-	patch_file=patch_fileG;
-	vertical_tesselation=tesselation_levelG;
-	horizontal_tesselation=tesselation_levelG;
+	patch_file=pf;
+	vertical_tesselation=t;
+	horizontal_tesselation=t;
 	vertical_tesselation_inc=1.0/vertical_tesselation;
 	horizontal_tesselation_inc=1.0/horizontal_tesselation;
 	maxDistance = 0;
@@ -72,7 +72,6 @@ void Bezier::read_patches() {
 	int numPoints;
 	string p;
 	string x,y,z;
-	string comma;
 	map<int,vector<int>> index_patches;
 	vector<Point3D> patch_points;
 
@@ -190,10 +189,12 @@ Point3D Bezier::calculatePoint(vector<vector<Point3D>> preCalculatedMatrix,int v
 	texCoords.push_back(make_pair<float,float>((double)u,(double)v));
 	float dis = distance(returnMatrix[0][0].x,returnMatrix[0][0].y,returnMatrix[0][0].z);
 	maxDistance = dis > maxDistance ? dis : maxDistance;
+
 	return returnMatrix[0][0];
 }
 
 void Bezier::calculatePoints(vector<vector<Point3D>> preCalculatedMatrix,int& indexPoint,vector<Point3D>& vertixes,vector<Triangle>& triangs) {
+	
 	for (int i=0;i<=vertical_tesselation;i++){
 		for (int j=0;j<=horizontal_tesselation;j++) {
 			auto point = calculatePoint(preCalculatedMatrix,i,j);
@@ -209,10 +210,12 @@ void Bezier::calculatePoints(vector<vector<Point3D>> preCalculatedMatrix,int& in
 }
 
 shared_ptr<Model> Bezier::generate() {
+	
 	read_patches();
 	int indexPoint=0;
 	vector<Point3D> vertixes;
 	vector<Triangle> triangs;
+	
 	for (int i=0;i<numPatches;i++) {
 		Patch p = patches[i];
 

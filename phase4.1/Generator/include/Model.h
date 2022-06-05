@@ -15,6 +15,7 @@
 #include <map>
 #include <memory>
 
+using namespace std;
 /**
  * @brief Classe do Modelo
  * 
@@ -24,24 +25,24 @@ public:
     /**
      * @brief Construct a new Model object
      * 
-     * @param vertixesG 
+     * @param verticesG 
      * @param faces 
      * @param normals 
      * @param texCoords 
      * @param radius 
      */
-    Model(std::vector<Point3D> vertixesG,std::vector<Triangle> faces,std::vector<Point3D> normals,std::vector<std::pair<float,float>> texCoords,float radius);
+    Model(vector<Point3D> verticesG,vector<Triangle> faces,vector<Point3D> normals,vector<pair<float,float>> texCoords,float radius);
     /**
      * @brief 
      * 
      * @param filename 
      */
-    void saveToFile(std::string filename);
+    void saveToFile(string filename);
 private:
     int nVertices,nTriangulos;
-    std::vector<Triangle> facesT;
-    std::vector<Point3D> vertixesT;
-    std::vector<Point3D> normalsT;
-    std::vector<std::pair<float,float>> texCoordsT;
+    vector<Triangle> facesT;
+    vector<Point3D> verticesT;
+    vector<Point3D> normalsT;
+    vector<pair<float,float>> texCoordsT;
     float radius;
 };

@@ -8,11 +8,11 @@
 
 using namespace std;
 
-Model::Model(vector<Point3D> vertixesG,vector<Triangle> facesG,vector<Point3D> normals,vector<pair<float,float>> texCoords, float rad) {
+Model::Model(vector<Point3D> verticesG,vector<Triangle> facesG,vector<Point3D> normals,vector<pair<float,float>> texCoords, float rad) {
     
-    nVertices=vertixesG.size();
+    nVertices=verticesG.size();
     nTriangulos=facesG.size();
-    vertixesT=vertixesG;
+    verticesT=verticesG;
     facesT=facesG;
     normalsT=normals;
     texCoordsT=texCoords;
@@ -25,7 +25,7 @@ void Model::saveToFile(string filename) {
 
     fout<< to_string(nVertices) << " " << to_string(nTriangulos) << " " << to_string(radius) << "\n";
     for (int i=0;i<nVertices;i++) {
-        fout << to_string(vertixesT[i].x) << " " << to_string(vertixesT[i].y) << " " << to_string(vertixesT[i].z) << "\n"; 
+        fout << to_string(verticesT[i].x) << " " << to_string(verticesT[i].y) << " " << to_string(verticesT[i].z) << "\n"; 
 
     }
     for (int j=0;j<nTriangulos;j++) {
